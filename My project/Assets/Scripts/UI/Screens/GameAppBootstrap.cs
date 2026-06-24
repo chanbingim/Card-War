@@ -17,17 +17,6 @@ namespace TurnCardGame.UI.Screens
         private Text statusText;
         private Text logText;
 
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
-        private static void AutoCreate()
-        {
-            if (FindFirstObjectByType<GameAppBootstrap>() != null)
-            {
-                return;
-            }
-
-            new GameObject("Game App Bootstrap", typeof(GameAppBootstrap));
-        }
-
         private void Awake()
         {
             EnsureEventSystem();

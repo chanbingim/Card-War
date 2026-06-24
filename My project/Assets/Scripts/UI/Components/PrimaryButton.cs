@@ -14,7 +14,10 @@ namespace TurnCardGame.UI.Components
             var root = new GameObject(text + " Button", typeof(RectTransform), typeof(Image), typeof(Button), typeof(PrimaryButton));
             root.transform.SetParent(parent, false);
             var rect = root.GetComponent<RectTransform>();
-            rect.sizeDelta = new Vector2(220f, 48f);
+            rect.sizeDelta = new Vector2(320f, 52f);
+            var layout = root.AddComponent<LayoutElement>();
+            layout.preferredWidth = 320f;
+            layout.preferredHeight = 52f;
 
             var image = root.GetComponent<Image>();
             image.color = new Color(0.14f, 0.29f, 0.42f);
@@ -38,6 +41,9 @@ namespace TurnCardGame.UI.Components
             primaryButton.label.color = Color.white;
             primaryButton.label.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
             primaryButton.label.fontSize = 18;
+            primaryButton.label.resizeTextForBestFit = true;
+            primaryButton.label.resizeTextMinSize = 12;
+            primaryButton.label.resizeTextMaxSize = 18;
 
             return primaryButton;
         }
