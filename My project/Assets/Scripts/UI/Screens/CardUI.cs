@@ -3,8 +3,9 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using DG.Tweening;
 
-public class CardUI : MonoBehaviour, 
+public class CardUI : UIBase, 
     IPointerEnterHandler,
     IPointerExitHandler
 {
@@ -20,6 +21,9 @@ public class CardUI : MonoBehaviour,
     {
         image = GetComponent<Image>();
         text = GetComponent<Text>();
+
+        DOTween.Init();
+        DOTween.Init(true, true, LogBehaviour.Verbose).SetCapacity(200, 10);
     }
 
     public void SettingData(int CardID)
@@ -44,21 +48,6 @@ public class CardUI : MonoBehaviour,
         if(AnimCoroutine != null)
             StopCoroutine(AnimCoroutine);
 
-        AnimCoroutine = StartCoroutine(DrawAnimationv(Pos));
-    }
-
-    IEnumerator DrawAnimationv(Vector3 Pos)
-    {
-        float AccTime = 0;
-        Vector3 StartPosition = transform.position;
-
-        while (AccTime < 0.5f)
-        {
-            AccTime += Time.deltaTime;
-            transform.position = Vector3.Lerp(StartPosition, Pos, AccTime / 0.5f);
-            yield return null;
-        }
-
-        transform.position = Pos;
+        transform.DOMove(Pos, 0.5f, false);
     }
 }
