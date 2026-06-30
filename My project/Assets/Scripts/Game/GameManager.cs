@@ -15,10 +15,16 @@ public class GameManager : MonoBehaviour
     Application.Quit();
 #endif
     }
-    public void Chanage_Level(string level)
+    public void Change_Scene(string level)
     {
         NextLevel = level;
         SceneManager.LoadScene(NextLevel);
+    }
+
+    public void ADD_Scene(string level)
+    {
+        NextLevel = level;
+        SceneManager.LoadScene(NextLevel, LoadSceneMode.Additive);
     }
 
     static public GameManager   instance { get; private set; }

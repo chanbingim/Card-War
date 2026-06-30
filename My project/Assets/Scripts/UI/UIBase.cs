@@ -6,9 +6,11 @@ public class UIBase : MonoBehaviour
     [SerializeField] bool bIsPopup = false;
     DoTweenAnimator       _Animator;
 
-    private void Start()
+    private void Awake()
     {
         _Animator = GetComponent<DoTweenAnimator>();
+        if(_Animator != null )
+            _Animator.Initialize();
     }
 
     public void Open()
@@ -32,5 +34,11 @@ public class UIBase : MonoBehaviour
     private void OnDestroy()
     {
         transform.DOKill();
+    }
+
+    private void OnEnable()
+    {
+        if(bIsPopup)
+            transform.localScale = new Vector3(0, 0, 0);
     }
 }

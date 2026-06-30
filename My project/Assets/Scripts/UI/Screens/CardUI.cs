@@ -7,7 +7,10 @@ using DG.Tweening;
 
 public class CardUI : UIBase, 
     IPointerEnterHandler,
-    IPointerExitHandler
+    IPointerExitHandler,
+    IBeginDragHandler,
+    IDragHandler,
+    IEndDragHandler
 {
     public Boolean   _IsHover { get; private set; }
     public int       _CardID { get; private set; }
@@ -15,7 +18,6 @@ public class CardUI : UIBase,
     [SerializeField] private Vector3 HoverAnimScale;
     private Image       image = null;
     private Text        text = null;
-    private Coroutine   AnimCoroutine = null;
 
     void Start()
     {
@@ -45,9 +47,23 @@ public class CardUI : UIBase,
     
     public void DrawAnimation(Vector3 Pos)
     {
-        if(AnimCoroutine != null)
-            StopCoroutine(AnimCoroutine);
-
         transform.DOMove(Pos, 0.5f, false);
+    }
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        image.DOFade(0, 0.3f);
+        DragManager.instance.StartDrage(this);
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        DragManager.instance.Darg();
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        image.DOFade(1, 0.3f);
+        DragManager.instance.EndDrage();
     }
 }
