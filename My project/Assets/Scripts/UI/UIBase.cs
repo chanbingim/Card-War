@@ -31,7 +31,7 @@ public class UIBase : MonoBehaviour
         transform.DOKill();
     }
 
-    private void OnDestroy()
+    protected virtual void OnDestroy()
     {
         transform.DOKill();
     }

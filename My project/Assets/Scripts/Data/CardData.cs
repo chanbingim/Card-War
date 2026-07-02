@@ -25,4 +25,16 @@ namespace TurnCardGame.Data
         public int Power => Mathf.Max(0, power);
         public string Description => description;
     }
+
+    public class UI_CardData
+    {
+        public int HandIndex;
+        public int CardID;
+
+        public UI_CardData(int idx, int ID)
+        {
+           HandIndex = idx;
+           CardID = ID;
+        }
+    }
 }

@@ -1,9 +1,10 @@
+using DG.Tweening;
 using System;
 using System.Collections;
+using TurnCardGame.Data;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using DG.Tweening;
 
 public class CardUI : UIBase, 
     IPointerEnterHandler,
@@ -12,14 +13,14 @@ public class CardUI : UIBase,
     IDragHandler,
     IEndDragHandler
 {
-    public Boolean   _IsHover { get; private set; }
-    public int       _CardID { get; private set; }
+    public Boolean      _IsHover { get; private set; }
+    public UI_CardData  _Data { get; private set; }
 
     [SerializeField] private Vector3 HoverAnimScale;
     private Image       image = null;
     private Text        text = null;
 
-    void Start()
+    void Awake()
     {
         image = GetComponent<Image>();
         text = GetComponent<Text>();
@@ -28,9 +29,10 @@ public class CardUI : UIBase,
         DOTween.Init(true, true, LogBehaviour.Verbose).SetCapacity(200, 10);
     }
 
-    public void SettingData(int CardID)
+    public void SettingData(UI_CardData data)
     {
-        _CardID = CardID;
+        _Data = data;
+        image.sprite = PlayerDataManager.instance.Get_CardImage(_Data.CardID);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -65,5 +67,11 @@ public class CardUI : UIBase,
     {
         image.DOFade(1, 0.3f);
         DragManager.instance.EndDrage();
+    }
+
+    protected override void OnDestroy()
+    {
+        image.DOKill();
+        base.OnDestroy();
     }
 }
