@@ -1,12 +1,12 @@
 using UnityEngine;
-using UnityEngine.UI;
+using TurnCardGame.Data;
 
 public class Character : MonoBehaviour, IPointerHoverEvent
 {
+    int                     ID = 0;
+    CharacterRuntimeData    Data = null;
+
     private Material        _material = null;
-
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         SpriteRenderer spriteRender = GetComponent<SpriteRenderer>();
@@ -16,10 +16,12 @@ public class Character : MonoBehaviour, IPointerHoverEvent
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Initialize(int CharacterID)
     {
-
+        ID = CharacterID;
+        // 데이터 찾기
+        CharacterData CharacterSO = new CharacterData();
+        Data = new CharacterRuntimeData(CharacterSO);
     }
 
     public void OnDrop(UIBase DragUI)

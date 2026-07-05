@@ -5,7 +5,7 @@ using UnityEngine.U2D;
 
 public class PlayerDataManager : MonoBehaviour
 {
-    public PlayerData LocalPlayer {get; private set;}
+    public PlayerData       LocalPlayer {get; private set;}
     public SpriteAtlas      SpriteAtlas;
     private Sprite[]        sprites;
 
