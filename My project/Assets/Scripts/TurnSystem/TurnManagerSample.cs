@@ -6,13 +6,15 @@ public class TurnManagerSample : MonoBehaviour
     TurnManager turnManager = null;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Awake()
+    void Start()
     {
         List<ITurnParticipant> participants = new List<ITurnParticipant>();
-        for (int i = 0; i < 2; i++)
+        participants.Add(PlayerDataManager.instance.LocalPlayer);
+
+        for (int i = 1; i < 2; i++)
         {
             var player = new PlayerData();
-            player.SetName($"Player {i} ");
+            player.SetName($"Player {i}");
 
             participants.Add(player);
         }

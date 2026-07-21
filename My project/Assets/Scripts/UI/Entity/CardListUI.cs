@@ -12,11 +12,16 @@ public class CardListUI : MonoBehaviour
 
     [SerializeField] private float              _spreadAngle = 105f;
     [SerializeField] private int                _maxDrawCount = 5;
+    [SerializeField] private int                _DrawCardCount = 2;
 
-    private float   _CardPadding;
-
+    private float       _CardPadding;
     private Queue<int>  _drawRequestQueue = new Queue<int>();
-    private Coroutine   _drawRoutine; 
+    private Coroutine   _drawRoutine;
+
+    private void Awake()
+    {
+        EventBus.Subscribe<TurnStartEvent>(TurnStartEvent);
+    }
 
     void Start()
     {
@@ -24,12 +29,7 @@ public class CardListUI : MonoBehaviour
         _CardPadding = rectTransform.rect.width / _maxDrawCount;
 
         PlayerDataManager.instance.UseCardEvent += Remove_Card;
-    }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-            RequestDraw(2);
     }
 
     public void RequestDraw(int count)
@@ -51,6 +51,13 @@ public class CardListUI : MonoBehaviour
         _cardList.Add(obj.GetComponent<CardUI>());
         _cardList.Last().SettingData(data);
         RefreshCardTransform();
+    }
+
+    private void TurnStartEvent(TurnStartEvent turnStartEvent)
+    {
+        var Player = PlayerDataManager.instance.LocalPlayer;
+        if (0 == (Player.Name.CompareTo(turnStartEvent.Name)))
+            RequestDraw(_DrawCardCount);
     }
 
     private void Remove_Card(CardUI card)
@@ -96,6 +103,7 @@ public class CardListUI : MonoBehaviour
 
     void OnDisable()
     {
+        EventBus.Unsubscribe<TurnStartEvent>(TurnStartEvent);
         if (PlayerDataManager.instance != null)
             PlayerDataManager.instance.UseCardEvent -= Remove_Card; // ¹Ýµå½Ã ÇØÁà¾ß ÂüÁ¶ ²÷±è
     }

@@ -7,6 +7,10 @@ public class Character : MonoBehaviour, IPointerHoverEvent
     CharacterRuntimeData    Data = null;
 
     private Material        _material = null;
+
+    public delegate void     FinishedAction();
+    public event FinishedAction     OnFinishedAct;
+
     void Start()
     {
         SpriteRenderer spriteRender = GetComponent<SpriteRenderer>();
@@ -30,9 +34,30 @@ public class Character : MonoBehaviour, IPointerHoverEvent
 
         var CardUI = DragUI as CardUI;
         if( CardUI != null )
+        {
             PlayerDataManager.instance.Use_Card(CardUI);
 
+            //var CardAct = new CardAction(gameObject.GetComponent<Character>(), EACTION_TYPE.ATTACK);
+            //ADD_ActQueue(CardAct);
+        }
+
         OnHoverExit();
+    }
+
+    public void Update_Action()
+    { 
+        // 상대 받아서 현재 타입에 맞는 행동을 진행한다.
+        
+
+
+
+
+
+    }
+
+    public void Action_End()
+    {
+        OnFinishedAct.Invoke();
     }
 
     public void OnHoverEnter()

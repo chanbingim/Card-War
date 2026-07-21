@@ -1,25 +1,30 @@
 using DG.Tweening;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class TurnUI : UIBase
 {
-    Text            _text = null;
-    RectTransform   _rectTransform = null;
+    [SerializeField] List<Sprite> _sprites;
 
-    Vector3         _StatPos = Vector3.zero;
-    Vector3         _EndPos = Vector3.zero;
+    Text _text = null;
+    Image _image = null;
+    RectTransform _rectTransform = null;
+
+    Vector3 _StatPos = Vector3.zero;
+    Vector3 _EndPos = Vector3.zero;
 
     void Awake()
     {
         _text = GetComponentInChildren<Text>();
+        _image = GetComponentInChildren<Image>();
         _rectTransform = GetComponent<RectTransform>();
 
         float Width = Screen.width + 200;
         _StatPos = new Vector2(-Width, 0);
         _EndPos = new Vector2(Width + 200, 0);
 
-        EventBus.Subscribe<TurnStartEvent>(View_TurnUI);
+        EventBus.Subscribe<TurnUIEvent>(View_TurnUI);
         gameObject.SetActive(false);
     }
 
@@ -28,8 +33,14 @@ public class TurnUI : UIBase
         _rectTransform.anchoredPosition = _StatPos;
     }
 
-    private void View_TurnUI(TurnStartEvent turnStartEvent)
+    private void View_TurnUI(TurnUIEvent turnStartEvent)
     {
+        var Player = PlayerDataManager.instance.LocalPlayer;
+        if (0 == (Player.Name.CompareTo(turnStartEvent.Name)))
+            _image.sprite = _sprites[0]; 
+        else
+            _image.sprite = _sprites[1];
+
         _text.text = turnStartEvent.Name;
         Sequence seq = DOTween.Sequence()
             .Append(_rectTransform.DOAnchorPos(Vector3.zero, 0.5f))
@@ -38,6 +49,7 @@ public class TurnUI : UIBase
              .OnComplete(() =>
              {
                  gameObject.SetActive(false);
+                 EventBus.Publish<TurnStartEvent>(new TurnStartEvent(_text.text));
              });
 
         gameObject.SetActive(true);
@@ -45,7 +57,7 @@ public class TurnUI : UIBase
 
     protected override void OnDestroy()
     {
-        EventBus.Unsubscribe<TurnStartEvent>(View_TurnUI);
+        EventBus.Unsubscribe<TurnUIEvent>(View_TurnUI);
         base.OnDestroy();
     }
 }

@@ -5,8 +5,8 @@ using UnityEngine.U2D;
 
 public class PlayerDataManager : MonoBehaviour
 {
-    public PlayerData       LocalPlayer {get; private set;}
-    public SpriteAtlas      SpriteAtlas;
+    public  PlayerData       LocalPlayer {get; private set;}
+    public  SpriteAtlas      SpriteAtlas;
     private Sprite[]        sprites;
 
     public event Action<int>            DrawCardEvent;
@@ -15,8 +15,16 @@ public class PlayerDataManager : MonoBehaviour
     void Request_PlayerData()
     {
         LocalPlayer = new PlayerData();
+        LocalPlayer.SetName("Player 0");
+
         for (int i = 1; i <= GAME_CONST.Const.MAX_DECK; i++)
-            LocalPlayer.Decks.Add(i);
+            LocalPlayer.Decks.Add(i % 4);
+    }
+
+    public bool IsPlayerTurn() { return LocalPlayer.IsActive; }
+    public void PlayerTrunEnd()
+    {
+        LocalPlayer.TurnEnd();
     }
 
     public UI_CardData Draw_Card()
@@ -41,11 +49,12 @@ public class PlayerDataManager : MonoBehaviour
     public void Use_Card(CardUI card)
     {
         UseCardEvent.Invoke(card);
+
         LocalPlayer.Hands.RemoveAt(card._Data.HandIndex);
+
     }
 
     public Sprite Get_CardImage(int ID) { return sprites[ID]; }
-
 
     #region Defualt
     static public PlayerDataManager instance { get; private set; }

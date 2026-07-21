@@ -1,10 +1,13 @@
+using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TurnParticipantBase : ITurnParticipant
 {
-    public string Name { get; protected set; }
-    public bool IsActive { get; protected set; }
+    public string   Name { get; protected set; }
+    public bool     IsActive { get; protected set; }
+
     public event Func<string, bool> RequestTurnEnd;
 
     public virtual void TurnBegin()

@@ -1,7 +1,5 @@
-using NUnit.Framework.Constraints;
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class TurnManager
 {
@@ -14,6 +12,8 @@ public class TurnManager
 
     public ITurnParticipant Current => _participants[CurrentTurnIndex];
     public int ParticipantCount => _participants.Count;
+
+    Boolean                         _IsActTrun = false;
 
     public TurnManager(List<ITurnParticipant> participants)
     {
@@ -39,13 +39,23 @@ public class TurnManager
 
     private void StartTurn()
     {
-        EventBus.Publish<TurnStartEvent>(new TurnStartEvent(Current.Name));
+        EventBus.Publish<TurnUIEvent>(new TurnUIEvent(Current.Name));
         Current.TurnBegin();
     }
 
     public void Update()
     {
-        Current.TurnRunning();
+        if(_IsActTrun)
+        {
+            Turn_Action();
+        }
+        else
+        {
+            if (Current == null)
+                return;
+
+            Current.TurnRunning();
+        }
     }
 
     /// 현재 참가자의 턴을 종료하고 다음 참가자로 넘김.
@@ -86,7 +96,19 @@ public class TurnManager
             CurrentTurnIndex++;
         }
 
-        StartTurn();
+        _IsActTrun = true;
+    }
+
+    void Turn_Action()
+    {
+        PlayerData player = Current as PlayerData;
+        if (player?._ActQueues.Count <= 0)
+        {
+            _IsActTrun = false;
+            StartTurn();
+        }
+
+        player.Update_PlayerAction();
     }
 
     public void Stop()

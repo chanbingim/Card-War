@@ -13,10 +13,14 @@ public class DragManager : MonoBehaviour
     private IPointerHoverEvent  _hover = null;
     private PointerEventData    _Ponterevent = null;
 
-    public void StartDrage(CardUI UI) 
+    public bool StartDrage(CardUI UI) 
     {
+        if (PlayerDataManager.instance.IsPlayerTurn() == false)
+            return false;
+
         _CurDragUI = UI;
         DragArrow.gameObject.SetActive(true);
+        return true;
     }
 
     public void Darg()
@@ -39,8 +43,9 @@ public class DragManager : MonoBehaviour
 
     public void EndDrage() 
     {
-        IPointerHoverEvent newHover = Get_RayCast();
+        if(_CurDragUI == null) return;
 
+        IPointerHoverEvent newHover = Get_RayCast();
         if (newHover == null)
             newHover = Get_WorldRayCast();
 

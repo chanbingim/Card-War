@@ -53,8 +53,8 @@ public class CardUI : UIBase,
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        image.DOFade(0, 0.3f);
-        DragManager.instance.StartDrage(this);
+        if (DragManager.instance.StartDrage(this))
+            image.DOFade(0, 0.3f);
     }
 
     public void OnDrag(PointerEventData eventData)

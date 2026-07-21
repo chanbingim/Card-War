@@ -65,12 +65,15 @@
     <Compile Include="Assets\Scripts\UI\Entity\CardListUI.cs" />
     <Compile Include="Assets\Scripts\Game\UIManager.cs" />
     <Compile Include="Assets\Scripts\Event\Events\TurnStartEvent.cs" />
+    <Compile Include="Assets\Scripts\Game\CardAction.cs" />
     <Compile Include="Assets\Scripts\TurnSystem\TurnManagerSample.cs" />
     <Compile Include="Assets\Scripts\Manager\GameManager.cs" />
     <Compile Include="Assets\Scripts\UI\Components\Animation\UITransformAnimation.cs" />
     <Compile Include="Assets\Scripts\UI\Entity\CardUI.cs" />
+    <Compile Include="Assets\Scripts\Event\Events\TurnUIEvent.cs" />
     <Compile Include="Assets\Scripts\UI\Interface\IPointerHoverEvent.cs" />
     <Compile Include="Assets\Scripts\UI\Components\Animation\UIAnimation.cs" />
+    <Compile Include="Assets\Scripts\UI\Entity\TurnEndButton.cs" />
     <Compile Include="Assets\Scripts\Data\CardData.cs" />
     <Compile Include="Assets\Scripts\UI\UIBase.cs" />
     <Compile Include="Assets\Scripts\UI\Components\DoTweenAnimator.cs" />
@@ -88,6 +91,7 @@
     <Compile Include="Assets\Scripts\UI\Components\InGameButton.cs" />
     <Compile Include="Assets\Scripts\Manager\PlayerDataManager.cs" />
     <Compile Include="Assets\Scripts\UI\Enums.cs" />
+    <Compile Include="Assets\Scripts\Utility.cs" />
     <Compile Include="Assets\Scripts\Manager\DragManager.cs" />
     <Compile Include="Assets\Scripts\Data\PlayerData.cs" />
     <Compile Include="Assets\Scripts\Event\EventBus.cs" />
@@ -652,6 +656,14 @@
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe">
       <HintPath>Library\PackageCache\com.unity.collections@9796e5ee0d9e\Unity.Collections.Tests\System.Runtime.CompilerServices.Unsafe\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Android.Types">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\6000.3.17f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Android.Gradle">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\6000.3.17f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Gradle.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="netstandard">
