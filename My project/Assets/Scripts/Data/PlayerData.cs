@@ -1,8 +1,5 @@
-using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 
 public class PlayerData : TurnParticipantBase
 {
@@ -15,21 +12,25 @@ public class PlayerData : TurnParticipantBase
     private Queue<CardAction>   _OldActQueues = new Queue<CardAction>();
     private CardAction          _CurAction;
 
+    private GameObject          _TransformParent;
+
     public PlayerData()
     {
         Decks = new List<int>(GAME_CONST.Const.MAX_DECK);
         Hands = new List<int>(GAME_CONST.Const.MAX_HAND);
         Skills = new List<int>(GAME_CONST.Const.MAX_SKILL);
+
+        _TransformParent = new GameObject(Name + "_Party");
     }
 
     public void Request_ADDParty(int ID)
     {
-        GameObject Prefab = null; // 여기서 어드레서블로 받는다.
+        GameObject Prefab = AddressableManager.instance.Get<GameObject>("Prefabs/Character.prefab"); // 여기서 어드레서블로 받는다.
 
         if (!Utility.CHECK(Prefab))
             return;
 
-        var obj = GameObject.Instantiate(Prefab);
+        var obj = GameObject.Instantiate(Prefab, _TransformParent.transform);
         Character character = obj.GetComponent<Character>();
 
         if (Utility.CHECK(character))
@@ -71,7 +72,7 @@ public class PlayerData : TurnParticipantBase
     {
         if (_CurAction != null)
         {
-            _CurAction.ActObject.Update_Action();
+            _CurAction.ActObject.Update_Action(_CurAction);
         }
     }
 

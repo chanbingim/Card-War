@@ -7,7 +7,11 @@ namespace GamePlay.Enum
         BGM, EFFECT, VOICE,END
     }
 
-
-
-
+    public enum EAddressLabel
+    {
+        Sprtie,
+        Altas,
+        Prefabs,
+        END,
+    }
 }

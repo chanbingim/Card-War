@@ -12,6 +12,8 @@ public class PlayerDataManager : MonoBehaviour
     public event Action<int>            DrawCardEvent;
     public event Action<CardUI>         UseCardEvent;
 
+
+
     void Request_PlayerData()
     {
         LocalPlayer = new PlayerData();
@@ -19,6 +21,9 @@ public class PlayerDataManager : MonoBehaviour
 
         for (int i = 1; i <= GAME_CONST.Const.MAX_DECK; i++)
             LocalPlayer.Decks.Add(i % 4);
+
+        LocalPlayer.Request_ADDParty(1);
+        LocalPlayer.Request_ADDParty(2);
     }
 
     public bool IsPlayerTurn() { return LocalPlayer.IsActive; }

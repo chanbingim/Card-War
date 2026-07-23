@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using TurnCardGame.Data;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class DataManager : MonoBehaviour
 {

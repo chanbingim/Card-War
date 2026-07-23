@@ -35,24 +35,21 @@ public class Character : MonoBehaviour, IPointerHoverEvent
         var CardUI = DragUI as CardUI;
         if( CardUI != null )
         {
-            PlayerDataManager.instance.Use_Card(CardUI);
-
-            //var CardAct = new CardAction(gameObject.GetComponent<Character>(), EACTION_TYPE.ATTACK);
-            //ADD_ActQueue(CardAct);
+            var PlayerMgr = PlayerDataManager.instance;
+            PlayerMgr.Use_Card(CardUI);
+            
+            var CardAct = new CardAction(gameObject.GetComponent<Character>(), EACTION_TYPE.ATTACK);
+            PlayerMgr.LocalPlayer.ADD_ActQueue(CardAct);
         }
 
         OnHoverExit();
     }
 
-    public void Update_Action()
-    { 
+    public void Update_Action(CardAction action)
+    {
         // 상대 받아서 현재 타입에 맞는 행동을 진행한다.
-        
-
-
-
-
-
+        Debug.Log($"Action {action.ActType}");
+        Action_End();
     }
 
     public void Action_End()

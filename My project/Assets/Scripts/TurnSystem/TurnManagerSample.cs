@@ -15,6 +15,8 @@ public class TurnManagerSample : MonoBehaviour
         {
             var player = new PlayerData();
             player.SetName($"Player {i}");
+            player.Request_ADDParty(3);
+            player.Request_ADDParty(4);
 
             participants.Add(player);
         }

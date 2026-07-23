@@ -6,9 +6,9 @@ public class TurnManager
     // ---- 상태 ----
     private readonly List<ITurnParticipant> _participants;
 
-    public int CurrentTurnIndex { get; private set; } = 0;   // 현재 턴인 참가자의 인덱스
-    public int CurrentPhase { get; private set; } = 1;        // 현재 진행 중인 Phase (1부터 시작)
-    public bool IsRunning { get; private set; } = false;
+    public int CurrentTurnIndex     { get; private set; } = 0;   // 현재 턴인 참가자의 인덱스
+    public int CurrentPhase         { get; private set; } = 1;        // 현재 진행 중인 Phase (1부터 시작)
+    public bool IsRunning           { get; private set; } = false;
 
     public ITurnParticipant Current => _participants[CurrentTurnIndex];
     public int ParticipantCount => _participants.Count;
