@@ -1,13 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public  string  GetNextLevel() { return NextLevel; }
+    public  int     StageIndex { get; private set; }
     private string  NextLevel = "";
+
+    public  string  GetNextLevel() { return NextLevel; }
 
     public void GameExit()
     {
@@ -17,16 +16,23 @@ public class GameManager : MonoBehaviour
     Application.Quit();
 #endif
     }
+
     public void Change_Scene(string level)
     {
         NextLevel = level;
-        SceneManager.LoadScene(NextLevel);
+        SceneManager.LoadScene("LoadingScene");
+    }
+
+    public void Change_Scene(string level, int stageIdx = 0)
+    {
+        NextLevel = level;
+        StageIndex = stageIdx;
+        SceneManager.LoadScene("LoadingScene");
     }
 
     public void ADD_Scene(string level)
     {
-        NextLevel = level;
-        SceneManager.LoadScene(NextLevel, LoadSceneMode.Additive);
+        SceneManager.LoadScene(level, LoadSceneMode.Additive);
     }
 
     static public GameManager   instance { get; private set; }

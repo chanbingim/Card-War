@@ -76,8 +76,8 @@
     <Compile Include="Library\PackageCache\com.unity.test-framework.performance@8b56083ec0f0\Runtime\Meters\StopWatch.cs" />
     <Compile Include="Library\PackageCache\com.unity.test-framework.performance@8b56083ec0f0\Runtime\Data\Project.cs" />
     <Compile Include="Library\PackageCache\com.unity.test-framework.performance@8b56083ec0f0\Runtime\PlayerCallbacks.cs" />
-    <Compile Include="Library\PackageCache\com.unity.test-framework.performance@8b56083ec0f0\Runtime\Statistics\NormalDistributionHelper.cs" />
     <Compile Include="Library\PackageCache\com.unity.test-framework.performance@8b56083ec0f0\Runtime\Statistics\MeasurementsStatistics.cs" />
+    <Compile Include="Library\PackageCache\com.unity.test-framework.performance@8b56083ec0f0\Runtime\Statistics\NormalDistributionHelper.cs" />
     <Compile Include="Library\PackageCache\com.unity.test-framework.performance@8b56083ec0f0\Runtime\Metadata.cs" />
     <Compile Include="Library\PackageCache\com.unity.test-framework.performance@8b56083ec0f0\Runtime\Measurements\ProfilerMeasurementBehaviour.cs" />
     <Compile Include="Library\PackageCache\com.unity.test-framework.performance@8b56083ec0f0\Runtime\Statistics\ConfidenceLevelExtensions.cs" />
@@ -639,6 +639,14 @@
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>Library\PackageCache\com.unity.ext.nunit@d8c07649098d\net40\unity-custom\nunit.framework.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Android.Types">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\6000.3.17f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Android.Gradle">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\6000.3.17f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Gradle.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="netstandard">

@@ -35,7 +35,7 @@ public class TurnUI : UIBase
 
     private void View_TurnUI(TurnUIEvent turnStartEvent)
     {
-        var Player = PlayerDataManager.instance.LocalPlayer;
+        var Player = BattleManager.instance.GetLoaclPlayer();
         if (0 == (Player.Name.CompareTo(turnStartEvent.Name)))
             _image.sprite = _sprites[0]; 
         else

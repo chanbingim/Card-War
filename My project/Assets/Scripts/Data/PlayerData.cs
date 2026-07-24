@@ -23,15 +23,19 @@ public class PlayerData : TurnParticipantBase
         _TransformParent = new GameObject(Name + "_Party");
     }
 
-    public void Request_ADDParty(int ID)
+    public void Request_ADDParty(int ID, Vector3 WorldPosition = default)
     {
-        GameObject Prefab = AddressableManager.instance.Get<GameObject>("Prefabs/Character.prefab"); // 여기서 어드레서블로 받는다.
+        GameObject Prefab = AddressableManager.instance.Get<GameObject>("Prefabs/Character"); // 여기서 어드레서블로 받는다.
 
         if (!Utility.CHECK(Prefab))
             return;
 
         var obj = GameObject.Instantiate(Prefab, _TransformParent.transform);
+        if (Utility.CHECK(obj) == false)
+            return;
+
         Character character = obj.GetComponent<Character>();
+        character.transform.position = WorldPosition;
 
         if (Utility.CHECK(character))
         {

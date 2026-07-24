@@ -28,8 +28,7 @@ public class CardListUI : MonoBehaviour
         var rectTransform = GetComponent<RectTransform>();
         _CardPadding = rectTransform.rect.width / _maxDrawCount;
 
-        PlayerDataManager.instance.UseCardEvent += Remove_Card;
-
+        EventBus.Subscribe<UseCardEvent>(Remove_Card);
     }
 
     public void RequestDraw(int count)
@@ -55,16 +54,16 @@ public class CardListUI : MonoBehaviour
 
     private void TurnStartEvent(TurnStartEvent turnStartEvent)
     {
-        var Player = PlayerDataManager.instance.LocalPlayer;
+        var Player = BattleManager.instance.GetLoaclPlayer();
         if (0 == (Player.Name.CompareTo(turnStartEvent.Name)))
             RequestDraw(_DrawCardCount);
     }
 
-    private void Remove_Card(CardUI card)
+    private void Remove_Card(UseCardEvent card)
     {
-        _cardList.Remove(card);
-        Destroy(card.gameObject);
+        _cardList.Remove(card.UseCard);
 
+        Destroy(card.UseCard);
         RefreshCardTransform();
     }
 
@@ -90,7 +89,7 @@ public class CardListUI : MonoBehaviour
             int count = _drawRequestQueue.Dequeue();
             for (int i = 0; i < count; i++)
             {
-                var data = PlayerDataManager.instance.Draw_Card();
+                var data = BattleManager.instance.DrawCard();
                 if(data != null) 
                     ADD_Card(data);
 
@@ -104,7 +103,6 @@ public class CardListUI : MonoBehaviour
     void OnDisable()
     {
         EventBus.Unsubscribe<TurnStartEvent>(TurnStartEvent);
-        if (PlayerDataManager.instance != null)
-            PlayerDataManager.instance.UseCardEvent -= Remove_Card; // ¹Ýµå½Ã ÇØÁà¾ß ÂüÁ¶ ²÷±è
+        EventBus.Unsubscribe<UseCardEvent>(Remove_Card);
     }
 }

@@ -11,7 +11,7 @@ public class TurnEndButton: UIBase
     {
         gameObject.SetActive(true);
 
-        var Player = PlayerDataManager.instance.LocalPlayer;
+        var Player = BattleManager.instance.GetLoaclPlayer();
         if (0 == (Player.Name.CompareTo(turnStartEvent.Name)))
             gameObject.SetActive(true);
         else

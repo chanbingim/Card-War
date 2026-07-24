@@ -15,7 +15,7 @@ public class DragManager : MonoBehaviour
 
     public bool StartDrage(CardUI UI) 
     {
-        if (PlayerDataManager.instance.IsPlayerTurn() == false)
+        if (BattleManager.instance.IsPlayerTurn() == false)
             return false;
 
         _CurDragUI = UI;

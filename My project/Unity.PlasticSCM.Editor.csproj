@@ -104,8 +104,8 @@
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@0b1559bcd34e\Editor\CodeEditor\Rendering\TextLayer.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@0b1559bcd34e\Editor\Views\BranchExplorer\Drawing\Shapes\Colors\BrExColors.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@0b1559bcd34e\Editor\Views\BranchExplorer\Drawing\Shapes\ColumnHeaderShape.cs" />
-    <Compile Include="Library\PackageCache\com.unity.collab-proxy@0b1559bcd34e\Editor\CloudDrive\Workspaces\DirectoryContent\DirectoryContentPanel.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@0b1559bcd34e\Editor\_Deprecated\WebApi\IsCollabProjectMigratedResponse.cs" />
+    <Compile Include="Library\PackageCache\com.unity.collab-proxy@0b1559bcd34e\Editor\CloudDrive\Workspaces\DirectoryContent\DirectoryContentPanel.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@0b1559bcd34e\Editor\Developer\ProgressOperationHandler.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@0b1559bcd34e\Editor\CodeEditor\Document\TextAnchorTree.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@0b1559bcd34e\Editor\Views\BranchExplorer\Game\Launcher.cs" />
@@ -115,9 +115,9 @@
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@0b1559bcd34e\Editor\Views\Properties\PropertiesRefreshNotifier.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@0b1559bcd34e\Editor\Developer\GenericProgress.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@0b1559bcd34e\Editor\UI\DockEditorWindow.cs" />
-    <Compile Include="Library\PackageCache\com.unity.collab-proxy@0b1559bcd34e\Editor\Developer\ShelvedChangesNotification.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@0b1559bcd34e\Editor\AssetsUtils\Processor\UVCSAssetsProcessor.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@0b1559bcd34e\Editor\Views\BranchExplorer\Virtualization\VirtualCanvas.cs" />
+    <Compile Include="Library\PackageCache\com.unity.collab-proxy@0b1559bcd34e\Editor\Developer\ShelvedChangesNotification.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@0b1559bcd34e\Editor\AssetOverlays\Cache\BuildPathDictionary.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@0b1559bcd34e\Editor\Views\Branch\BranchListViewItem.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@0b1559bcd34e\Editor\UVCSToolbar\PopupWindow\UncontrolledPopupWindow.cs" />
@@ -595,9 +595,9 @@
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@0b1559bcd34e\Editor\Views\Merge\Developer\MergeOptionsDialog.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@0b1559bcd34e\Editor\Views\Branch\BranchesViewMenu.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@0b1559bcd34e\Editor\Headless\HeadlessGluonViewHost.cs" />
-    <Compile Include="Library\PackageCache\com.unity.collab-proxy@0b1559bcd34e\Editor\WebApi\ErrorResponse.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@0b1559bcd34e\Editor\WebApi\SubscriptionDetailsResponse.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@0b1559bcd34e\Editor\CloudDrive\Workspaces\Tree\CloudWorkspacesTreeViewMenu.cs" />
+    <Compile Include="Library\PackageCache\com.unity.collab-proxy@0b1559bcd34e\Editor\WebApi\ErrorResponse.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@0b1559bcd34e\Editor\Views\Merge\Developer\DirectoryConflicts\MoveDeleteMenu.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@0b1559bcd34e\Editor\Tool\PlasticExeLauncher.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@0b1559bcd34e\Editor\CloudDrive\Workspaces\DirectoryContent\ItemsGridSelection.cs" />
@@ -1366,6 +1366,10 @@
       <HintPath>C:\Program Files\Unity\Hub\Editor\6000.3.17f1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="UnityEditor.Android.Extensions">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\6000.3.17f1\Editor\Data\PlaybackEngines\AndroidPlayer\UnityEditor.Android.Extensions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>Library\PackageCache\com.unity.ext.nunit@d8c07649098d\net40\unity-custom\nunit.framework.dll</HintPath>
       <Private>False</Private>
@@ -1384,6 +1388,14 @@
     </Reference>
     <Reference Include="TextMateSharpPlastic.Grammars">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@0b1559bcd34e\Lib\Editor\TextMateSharp\TextMateSharpPlastic.Grammars.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Android.Types">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\6000.3.17f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Android.Gradle">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\6000.3.17f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Gradle.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="mscorlib">

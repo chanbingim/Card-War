@@ -1,30 +1,13 @@
+
 using System;
 using TurnCardGame.Data;
 using UnityEngine;
 using UnityEngine.U2D;
 
-public class PlayerDataManager : MonoBehaviour
+public class PlayerDataManager
 {
     public  PlayerData       LocalPlayer {get; private set;}
-    public  SpriteAtlas      SpriteAtlas;
-    private Sprite[]        sprites;
-
-    public event Action<int>            DrawCardEvent;
-    public event Action<CardUI>         UseCardEvent;
-
-
-
-    void Request_PlayerData()
-    {
-        LocalPlayer = new PlayerData();
-        LocalPlayer.SetName("Player 0");
-
-        for (int i = 1; i <= GAME_CONST.Const.MAX_DECK; i++)
-            LocalPlayer.Decks.Add(i % 4);
-
-        LocalPlayer.Request_ADDParty(1);
-        LocalPlayer.Request_ADDParty(2);
-    }
+    public event Action<int>     DrawCardEvent;
 
     public bool IsPlayerTurn() { return LocalPlayer.IsActive; }
     public void PlayerTrunEnd()
@@ -51,42 +34,63 @@ public class PlayerDataManager : MonoBehaviour
         return new UI_CardData(HandIndex, ID);
     }
 
-    public void Use_Card(CardUI card)
+    public void Use_Card(UseCardEvent card)
     {
-        UseCardEvent.Invoke(card);
+        LocalPlayer.Hands.RemoveAt(card.UseCard._Data.HandIndex);
 
-        LocalPlayer.Hands.RemoveAt(card._Data.HandIndex);
-
+        var CardAct = new CardAction(card.Target, EACTION_TYPE.ATTACK);
+        LocalPlayer.ADD_ActQueue(CardAct);
     }
-
-    public Sprite Get_CardImage(int ID) { return sprites[ID]; }
 
     #region Defualt
-    static public PlayerDataManager instance { get; private set; }
-    private void Awake()
+    /* 객체를 오래 소유하는 것은 피할것 */
+    public static PlayerDataManager Create(Stage stage, PlayerData playerData = null)
     {
-        if (instance != null && instance != this)
+        PlayerDataManager instance = new PlayerDataManager();
+        if(instance.Initialize(stage, playerData) == false)
+            return null;
+
+        return instance;
+    }
+
+    private bool Initialize(Stage stage, PlayerData playerData)
+    {
+        Request_PlayerData(stage, playerData);
+        EventBus.Subscribe<UseCardEvent>(Use_Card);
+
+        return true;
+    }
+
+    void Request_PlayerData(Stage stage, PlayerData playerData)
+    {
+        AddressableManager AddressableMgr = AddressableManager.instance;
+        if(AddressableMgr == null)
+            throw new ArgumentException("어드레서블 매니저 생성 필요");
+
+        var Fomation = AddressableMgr.Get<FormationSO>("SO/Formation/ThreeFormation");
+        if (playerData == null)
         {
-            Destroy(gameObject);
-            return;
+            LocalPlayer = new PlayerData();
+            LocalPlayer.SetName("Player 0");
+
+            for (int i = 1; i <= GAME_CONST.Const.MAX_DECK; i++)
+                LocalPlayer.Decks.Add(i % 4);
+
+            if (Fomation != null)
+            {
+                LocalPlayer.Request_ADDParty(1, stage.GetPlayerWorldPosition(Fomation.LocalPosition[0]));
+                LocalPlayer.Request_ADDParty(2, stage.GetPlayerWorldPosition(Fomation.LocalPosition[1]));
+            }
+            else
+            {
+                LocalPlayer.Request_ADDParty(1);
+                LocalPlayer.Request_ADDParty(2);
+            }
         }
-
-        instance = this;
-        instance.Initialize();
-    }
-
-    private void OnDestroy()
-    {
-        if (instance == this)
-            instance = null;
-    }
-
-    private void Initialize()
-    {
-        Request_PlayerData();
-
-        sprites = new Sprite[SpriteAtlas.spriteCount];
-        SpriteAtlas.GetSprites(sprites);
+        else
+        {
+            LocalPlayer = playerData;
+        }
     }
     #endregion
 }

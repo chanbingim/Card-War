@@ -31,7 +31,7 @@ public class CardUI : UIBase,
     public void SettingData(UI_CardData data)
     {
         _Data = data;
-        image.sprite = PlayerDataManager.instance.Get_CardImage(_Data.CardID);
+        image.sprite = DataManager.instance.GetCardSprite(_Data.CardID);
     }
 
     public void OnPointerEnter(PointerEventData eventData)

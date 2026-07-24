@@ -371,7 +371,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 241195642}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerDataManager, Assembly-CSharp
         m_MethodName: PlayerTrunEnd
         m_Mode: 1
@@ -444,7 +444,6 @@ GameObject:
   m_Component:
   - component: {fileID: 241195641}
   - component: {fileID: 241195640}
-  - component: {fileID: 241195642}
   - component: {fileID: 241195643}
   - component: {fileID: 241195644}
   m_Layer: 0
@@ -483,19 +482,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &241195642
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 241195639}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8444ba89d3eba4a4d99e729038675f46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerDataManager
-  SpriteAtlas: {fileID: 100100200, guid: 0362cf354d42e90429cf7c786e004143, type: 3}
 --- !u!114 &241195643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -518,9 +504,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 241195639}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74ad5dd88c35fa2408de687c8385617b, type: 3}
+  m_Script: {fileID: 11500000, guid: b8180f5712a1eab418f36014a5b5e95c, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TurnManagerSample
+  m_EditorClassIdentifier: Assembly-CSharp::BattleManager
 --- !u!1 &243802060
 GameObject:
   m_ObjectHideFlags: 0

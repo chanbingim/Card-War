@@ -35,11 +35,7 @@ public class Character : MonoBehaviour, IPointerHoverEvent
         var CardUI = DragUI as CardUI;
         if( CardUI != null )
         {
-            var PlayerMgr = PlayerDataManager.instance;
-            PlayerMgr.Use_Card(CardUI);
-            
-            var CardAct = new CardAction(gameObject.GetComponent<Character>(), EACTION_TYPE.ATTACK);
-            PlayerMgr.LocalPlayer.ADD_ActQueue(CardAct);
+            EventBus.Publish<UseCardEvent>(new UseCardEvent(this, CardUI));
         }
 
         OnHoverExit();
