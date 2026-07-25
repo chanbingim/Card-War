@@ -6,8 +6,7 @@ using UnityEngine.U2D;
 
 public class PlayerDataManager
 {
-    public  PlayerData       LocalPlayer {get; private set;}
-    public event Action<int>     DrawCardEvent;
+    public  PlayerData              LocalPlayer {get; private set;}
 
     public bool IsPlayerTurn() { return LocalPlayer.IsActive; }
     public void PlayerTrunEnd()

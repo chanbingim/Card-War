@@ -95,6 +95,9 @@ public class DoTweenAnimator : MonoBehaviour
 
     private void OnEnable()
     {
+        if (_AnimationList == null)
+            Initialize();
+
         _AnimationPasue = true;
         _AnimFlag.SetAll(false);
     }

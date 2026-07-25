@@ -1,0 +1,35 @@
+using System.Collections.Generic;
+
+public class ActionQueue
+{
+    public  Queue<CardAction> _ActQueues { get; private set; } = new Queue<CardAction>();
+    private Queue<CardAction> _OldActQueues = new Queue<CardAction>();
+    private CardAction _CurAction;
+
+    public void ADD_ActQueue(CardAction Act)
+    {
+        _ActQueues.Enqueue(Act);
+    }
+
+    public void Next_Action()
+    {
+        if (_CurAction != null)
+        {
+            _OldActQueues.Enqueue(_CurAction);
+            _CurAction = null;
+        }
+
+        if (_ActQueues.Count > 0)
+        {
+            _CurAction = _OldActQueues.Dequeue();
+        }
+    }
+
+    public void Update_PlayerAction()
+    {
+        if (_CurAction != null)
+        {
+            _CurAction.ActObject.Update_Action(_CurAction);
+        }
+    }
+}

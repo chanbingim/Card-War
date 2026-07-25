@@ -113,7 +113,7 @@ public class TurnManager
     void Turn_Action()
     {
         PlayerData player = Current as PlayerData;
-        if (player?._ActQueues.Count <= 0)
+        if (player?.ActionCount() <= 0)
         {
             _IsActTrun = false;
             StartTurn();
