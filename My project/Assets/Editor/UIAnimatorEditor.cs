@@ -5,16 +5,20 @@ using UnityEngine;
 public class UIAnimatorEditor : Editor
 {
     private SerializedProperty _animDatas;
+    private SerializedProperty _TotalPlayTime;
 
     private void OnEnable()
     {
         _animDatas = serializedObject.FindProperty("_AnimList");
+        _TotalPlayTime = serializedObject.FindProperty("_TotalPlayTime");
     }
 
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
 
+        EditorGUILayout.PropertyField(_TotalPlayTime);
+        EditorGUILayout.Space();
         // 리스트 그리기
         EditorGUILayout.PropertyField(_animDatas, true);
 
@@ -38,6 +42,11 @@ public class UIAnimatorEditor : Editor
             new GUIContent("Transform Animation"),
             false,
             () => AddAnimation(typeof(TransformAnimData)));
+
+        menu.AddItem(
+           new GUIContent("Color Animation"),
+           false,
+           () => AddAnimation(typeof(UIColorAnimData)));
 
         menu.ShowAsContext();
     }

@@ -25,3 +25,14 @@ public class TransformAnimData : UIAnimData
         return UITransformAnimation.Create(this);
     }
 }
+
+[Serializable]
+public class UIColorAnimData : UIAnimData
+{
+    public Color   _Color;
+
+    public override UIAnimation Create()
+    {
+        return UIColorAnimation.Create(this);
+    }
+}

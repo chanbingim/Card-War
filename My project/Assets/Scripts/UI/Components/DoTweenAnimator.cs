@@ -60,7 +60,9 @@ public class DoTweenAnimator : MonoBehaviour
                 if (!_AnimFlag[i] &&
                     _AnimFrame >= _AnimationList[i]._startFrame)
                 {
-                    _AnimationList[i].Play_Animation(transform, (float)_AnimationList[i]._endFrame / _TotalFrame);
+                    float duration = (_AnimationList[i]._endFrame - _AnimationList[i]._startFrame) / (float)(_TotalFrame) * _TotalPlayTime;
+
+                    _AnimationList[i].Play_Animation(transform, duration);
                     _AnimFlag[i] = true;
                 }
             }
