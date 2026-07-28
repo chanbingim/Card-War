@@ -29,7 +29,7 @@ public class BootStrapInit : MonoBehaviour
         while (!task.IsCompleted)
             yield return null;
 
-        
+        GameManager.instance.ChangeScene("MainMenu");
         Debug.Log("Coroutine");
     }
 }

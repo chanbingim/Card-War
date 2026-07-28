@@ -38,6 +38,7 @@ public class UIManager : MonoBehaviour
         {
             ui.Open();
             _popup_Stack.Push(ui);
+            _popupCanvas.sortingOrder = 10;
         }
     }
 
@@ -61,6 +62,11 @@ public class UIManager : MonoBehaviour
             _canvasGroup.blocksRaycasts = flag;
             _canvasGroup.alpha = flag ? 1f : 0f;
         }
+
+        if(flag)
+            _popupCanvas.sortingOrder = 10;
+        else
+            _popupCanvas.sortingOrder = 0;
     }
 
     private void Close_Popup()
@@ -72,7 +78,10 @@ public class UIManager : MonoBehaviour
         _popup_Stack.Pop();
 
         if (_popup_Stack.Count == 0)
+        {
             Setting_CanvasGroup(false);
+        }
+          
     }
 
     static public UIManager instance { get; private set; }

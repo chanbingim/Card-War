@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,7 +8,6 @@ public class GameManager : MonoBehaviour
     private string  NextLevel = "";
 
     public  string  GetNextLevel() { return NextLevel; }
-
     public void GameExit()
     {
 #if UNITY_EDITOR
@@ -17,22 +17,20 @@ public class GameManager : MonoBehaviour
 #endif
     }
 
-    public void Change_Scene(string level)
+    public void ChangeScene(string level, int stageIdx = 0)
     {
-        NextLevel = level;
-        SceneManager.LoadScene("LoadingScene");
+        StartCoroutine(ChangeSceneRoutine(level, stageIdx));
     }
 
-    public void Change_Scene(string level, int stageIdx = 0)
+    private IEnumerator ChangeSceneRoutine(string level, int stageIdx)
     {
+        if (string.IsNullOrEmpty(NextLevel) == false)
+            yield return SceneManager.UnloadSceneAsync(NextLevel);
+
+        yield return SceneManager.LoadSceneAsync("LoadingScene", LoadSceneMode.Additive);
+
         NextLevel = level;
         StageIndex = stageIdx;
-        SceneManager.LoadScene("LoadingScene");
-    }
-
-    public void ADD_Scene(string level)
-    {
-        SceneManager.LoadScene(level, LoadSceneMode.Additive);
     }
 
     static public GameManager   instance { get; private set; }

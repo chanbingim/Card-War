@@ -57,6 +57,7 @@ public class InventoryController : UIBase
         _itemListPanel = _View.Q<VisualElement>("ItemListScrollView");
 
         InitialzeSlot();
+        Close();
         return true;
     }
 

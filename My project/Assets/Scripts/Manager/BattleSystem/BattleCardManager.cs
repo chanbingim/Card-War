@@ -41,18 +41,18 @@ public class BattleCardManager
 
     #region Default
     /* 객체를 오래 소유하는 것은 피할것 */
-    public static BattleCardManager Create(Stage stage, PlayerData playerData = null)
+    public static BattleCardManager Create(Stage stage)
     {
         BattleCardManager instance = new BattleCardManager();
-        if(instance.Initialize(stage, playerData) == false)
+        if(instance.Initialize(stage) == false)
             return null;
 
         return instance;
     }
 
-    private bool Initialize(Stage stage, PlayerData playerData)
+    private bool Initialize(Stage stage)
     {
-        Request_PlayerData(stage, playerData);
+        Request_PlayerData(stage, GameClientManager.instance.playerData);
         EventBus.Subscribe<UseCardEvent>(Use_Card);
 
         return true;
@@ -64,7 +64,7 @@ public class BattleCardManager
         if(AddressableMgr == null)
             throw new ArgumentException("어드레서블 매니저 생성 필요");
 
-        var Fomation = AddressableMgr.Get<FormationSO>("SO/Formation/ThreeFormation");
+        var Fomation = AddressableMgr.Get<FormationSO>("Formation/ThreeFormation");
         LocalPlayer = new BattlePlayerData(playerData);
         LocalPlayer.SetName("Player 0");
 

@@ -4,9 +4,10 @@ using UnityEngine.EventSystems;
 public class SceneMoveComponent : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private string         _NextScene;
-    
+    [SerializeField] private int            _StageIndex = 0;
+
     public void OnPointerClick(PointerEventData eventData)
     {
-        GameManager.instance.Change_Scene(_NextScene);
+        GameManager.instance.ChangeScene(_NextScene, _StageIndex);
     }
 }

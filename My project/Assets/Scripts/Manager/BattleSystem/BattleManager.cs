@@ -23,6 +23,13 @@ public class BattleManager : MonoBehaviour
     public UI_CardData      DrawCard() { return _BattleCardManager?.Draw_Card() ?? null; }
     #endregion
 
+    #region TrunMgr
+    public void RequestEndTurn()
+    {
+        _TrunMgr?.RequestEndTurn(_TrunMgr.Current.Name);
+    }
+    #endregion
+
     #region Defualt
     static public BattleManager instance { get; private set; }
     private void Awake()
@@ -65,7 +72,7 @@ public class BattleManager : MonoBehaviour
         if (AddressableMgr == null)
             throw new ArgumentException("어드레서블 매니저 생성 필요");
 
-        var Fomation = AddressableMgr.Get<FormationSO>("SO/Formation/ThreeFormation");
+        var Fomation = AddressableMgr.Get<FormationSO>("Formation/EnemyThreeFormation");
         for (int i = 1; i < 2; i++)
         {
             var player = new BattlePlayerData();
@@ -73,8 +80,8 @@ public class BattleManager : MonoBehaviour
 
             if (Fomation != null)
             {
-                player.Request_ADDParty(3, _Cur_Stage.GetPlayerWorldPosition(Fomation.LocalPosition[0]));
-                player.Request_ADDParty(4, _Cur_Stage.GetPlayerWorldPosition(Fomation.LocalPosition[1]));
+                player.Request_ADDParty(3, _Cur_Stage.GetEnemyWorldPosition(Fomation.LocalPosition[0]));
+                player.Request_ADDParty(4, _Cur_Stage.GetEnemyWorldPosition(Fomation.LocalPosition[1]));
             }
             else
             {

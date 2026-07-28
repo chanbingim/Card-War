@@ -9,13 +9,15 @@ public class BattlePlayerData : TurnParticipantBase
     public  List<Character>         PlayerParty { get; protected set; }
 
     private GameObject                  _TransformParent;
-    private ActionQueue                 _ActionQueue;
+    private ActionQueue                 _ActionQueue = new ActionQueue();
 
     public BattlePlayerData()
     {
         Decks = new List<int>(GAME_CONST.Const.MAX_DECK);
         Hands = new List<int>(GAME_CONST.Const.MAX_HAND);
         Skills = new List<int>(GAME_CONST.Const.MAX_SKILL);
+
+        _TransformParent = new GameObject(Name + "_Party");
     }
 
     public BattlePlayerData(PlayerData playerData)
@@ -23,6 +25,8 @@ public class BattlePlayerData : TurnParticipantBase
         Decks = new List<int>(playerData.Decks);
         Skills = new List<int>(playerData.Skills);
         Hands = new List<int>(GAME_CONST.Const.MAX_HAND);
+
+        _TransformParent = new GameObject(Name + "_Party");
     }
 
     public void Request_ADDParty(int ID, Vector3 WorldPosition = default)
