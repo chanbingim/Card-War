@@ -12,18 +12,32 @@ namespace TurnCardGame.Data
     [CreateAssetMenu(menuName = "Turn Card Game/Card", fileName = "CardData")]
     public sealed class CardData : ScriptableObject
     {
-        [SerializeField] private string cardId = "card";
+        [SerializeField] private int cardId = 0;
+        [SerializeField] private int CardSpriteID = 0;
         [SerializeField] private string title = "Card";
         [SerializeField] private CardEffectType effectType = CardEffectType.Damage;
         [SerializeField] private int power = 3;
         [TextArea]
         [SerializeField] private string description = "Deal damage.";
 
-        public string CardId => cardId;
+        public int CardId => cardId;
+        public int SpriteID => CardSpriteID;
         public string Title => title;
         public CardEffectType EffectType => effectType;
         public int Power => Mathf.Max(0, power);
         public string Description => description;
+    }
+
+    public class RuntimeCardData
+    {
+        public int   ID;
+        public float Damage;
+
+        public RuntimeCardData(CardData data)
+        {
+            ID = data.CardId;
+            Damage = data.Power;
+        }
     }
 
     public class UI_CardData

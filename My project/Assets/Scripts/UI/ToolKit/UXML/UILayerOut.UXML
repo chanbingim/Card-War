@@ -1,0 +1,32 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+
+    <ui:VisualElement
+        name="Root"
+        style="
+            flex-grow:1;
+        ">
+
+
+        <!-- 메인 화면 영역 -->
+        <ui:VisualElement
+            name="MainLayer"
+            style="
+                flex-grow:1;
+            "/>
+
+
+        <!-- 팝업 영역 -->
+        <ui:VisualElement
+            name="PopupLayer"
+            style="
+                position:absolute;
+                left:0;
+                right:0;
+                top:0;
+                bottom:0;
+            "/>
+
+
+    </ui:VisualElement>
+
+</ui:UXML>

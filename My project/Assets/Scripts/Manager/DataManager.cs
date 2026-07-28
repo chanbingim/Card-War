@@ -7,12 +7,17 @@ using UnityEngine.U2D;
 public class DataManager : MonoBehaviour
 {
     [Header("로드할 CharacterData 경로 (Resources 폴더 기준)")]
-    [SerializeField] private string _CharacterDataloadPath = "Data/Characters";
+    [SerializeField] private string _CharacterDataloadPath = "SO/Characters";
+
+    [Header("로드할 CardData 경로 (Resources 폴더 기준)")]
+    [SerializeField] private string _CardDataloadPath = "SO/Cards";
+
 
     private Dictionary<int, CharacterData>  CharacterDatas = new Dictionary<int, CharacterData>();
+    private Dictionary<int, CardData>       CardDatas = new Dictionary<int, CardData>();
     private Sprite[] Cardsprites;
 
-    public CharacterData GetById(int id)
+    public CharacterData GetCharacterById(int id)
     {
         if (CharacterDatas.TryGetValue(id, out var data))
             return data;
@@ -21,9 +26,23 @@ public class DataManager : MonoBehaviour
         return null;
     }
 
-    public bool TryGetById(int id, out CharacterData data)
+    public bool TryCharacterGetById(int id, out CharacterData data)
     {
         return CharacterDatas.TryGetValue(id, out data);
+    }
+
+    public CardData GetCardById(int id)
+    {
+        if (CardDatas.TryGetValue(id, out var data))
+            return data;
+
+        Debug.LogError($"[DataManager] ID {id}에 해당하는 카드 데이터가 없습니다.");
+        return null;
+    }
+
+    public bool TryCardDataGetById(int id, out CardData data)
+    {
+        return CardDatas.TryGetValue(id, out data);
     }
 
     public Sprite GetCardSprite(int ID) { return Cardsprites[ID]; }
@@ -39,7 +58,6 @@ public class DataManager : MonoBehaviour
         }
 
         instance = this;
-        instance.Initialize();
     }
 
     private void OnDestroy()
@@ -48,9 +66,10 @@ public class DataManager : MonoBehaviour
             instance = null;
     }
 
-    private void Initialize()
+    public void Initialize()
     {
         LoadAllCharacterData();
+        LoadAllCardData();
         LoadCardSprites();
     }
 
@@ -70,6 +89,24 @@ public class DataManager : MonoBehaviour
         }
 
         Debug.Log($"[CharacterDataManager] 캐릭터 데이터 {CharacterDatas.Count}개 로드 완료");
+    }
+
+    private void LoadAllCardData()
+    {
+        CardData[] allData = Resources.LoadAll<CardData>(_CardDataloadPath);
+
+        foreach (var data in allData)
+        {
+            if (CardDatas.ContainsKey(data.CardId))
+            {
+                Debug.LogError($"[DataManager] 중복된 카드 ID 발견: {data.CardId} ({data.name})");
+                continue;
+            }
+
+            CardDatas.Add(data.CardId, data);
+        }
+
+        Debug.Log($"[DataManager] 카드 데이터 {CharacterDatas.Count}개 로드 완료");
     }
 
     private void LoadCardSprites()

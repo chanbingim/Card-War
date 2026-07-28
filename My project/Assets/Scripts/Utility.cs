@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using UnityEngine.UIElements;
 
 public static class Utility
 {
@@ -22,6 +23,16 @@ public static class Utility
         }
 
         return true;
+    }
+
+    public static void FullScreen(TemplateContainer asset)
+    {
+        if (asset == null)
+            return;
+
+        asset.style.flexGrow = 1;
+        asset.style.width = Length.Percent(100);
+        asset.style.height = Length.Percent(100);
     }
 }
 

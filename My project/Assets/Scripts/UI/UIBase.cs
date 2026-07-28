@@ -13,7 +13,7 @@ public class UIBase : MonoBehaviour
             _Animator.Initialize();
     }
 
-    public void Open()
+    public virtual void Open()
     {
         gameObject.SetActive(true);
 
@@ -21,7 +21,7 @@ public class UIBase : MonoBehaviour
             transform.SetAsLastSibling();
     }
 
-    public void Close()
+    public virtual void Close()
     {
         gameObject.SetActive(false);
     }

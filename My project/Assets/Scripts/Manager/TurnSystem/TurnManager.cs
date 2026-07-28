@@ -112,7 +112,7 @@ public class TurnManager
 
     void Turn_Action()
     {
-        PlayerData player = Current as PlayerData;
+        BattlePlayerData player = Current as BattlePlayerData;
         if (player?.ActionCount() <= 0)
         {
             _IsActTrun = false;

@@ -1,13 +1,14 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceLocations;
 using UnityEngine.U2D;
+using UnityEngine.UIElements;
 
 public class AddressableManager : MonoBehaviour
 {
@@ -65,11 +66,14 @@ public class AddressableManager : MonoBehaviour
 
             // handle이 비제네릭이라 Result는 object로 나옴 -> UnityEngine.Object로 캐스팅
             UnityEngine.Object result = handle.Result as UnityEngine.Object;
-
             string Key = Path.ChangeExtension(location.PrimaryKey, null);
-            group.Handles.Add(Key, handle);
-            group.Assets.Add(Key, result);
-            _cache[Key] = result;
+
+            if(group.Handles.ContainsKey(Key) == false)
+            {
+                group.Handles.Add(Key, handle);
+                group.Assets.Add(Key, result);
+                _cache[Key] = result;
+            }
         }
 
         _groups.Add(label, group);
@@ -79,6 +83,9 @@ public class AddressableManager : MonoBehaviour
     {
         if (location.ResourceType == typeof(SpriteAtlas))
             return Addressables.LoadAssetAsync<SpriteAtlas>(location);
+
+        if (location.ResourceType == typeof(VisualTreeAsset))
+            return Addressables.LoadAssetAsync<VisualTreeAsset>(location);
 
         if (location.ResourceType == typeof(Texture2D))
             return Addressables.LoadAssetAsync<Texture2D>(location);
@@ -232,16 +239,14 @@ public class AddressableManager : MonoBehaviour
         }
 
         _Instance = this;
-        _Instance.InitializeAsync();
-
         DontDestroyOnLoad(gameObject);
     }
 
-    public async Task InitializeAsync()
+    public async Task InitializeAsync(Action<float> action = null)
     {
         // 어드레서블 초기화
         await Addressables.InitializeAsync().Task;
-        await LoadLabelAll("STATIC");
+        await LoadLabelAll("STATIC", action);
 
         Debug.Log("Addressable Load Compleleted");
 

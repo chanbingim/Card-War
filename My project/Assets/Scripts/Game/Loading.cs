@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using UnityEngine.UI;
+using System.Threading.Tasks;
 
 public class Loading : MonoBehaviour
 {
@@ -21,37 +22,37 @@ public class Loading : MonoBehaviour
         asyncOperation.allowSceneActivation = false; //로딩이 완료되는대로 씬을 활성화할것인지
 
         float ProgressValue = 1f;
-        bool IsAddressableLoad = true;
         int StageIdx = GameMgr.StageIndex;
 
-        if(StageIdx != 0)
+        Task addressableTask = null;
+        if (StageIdx != 0)
         {
             ProgressValue = 0f;
-            IsAddressableLoad = false;
-            var addressableTask = AddressableManager.instance.LoadLabelAll($"Stage{StageIdx}", value =>
+            addressableTask = AddressableManager.instance.LoadLabelAll($"Stage{StageIdx}", value =>
             {
                 ProgressValue = value;
-                if (value >= 1f)
-                {
-                    IsAddressableLoad = true;
-                }
+            });
+        }
+        else
+        {
+            addressableTask = AddressableManager.instance.InitializeAsync(value =>
+            {
+                ProgressValue = value;
             });
         }
 
-        yield return new WaitForSeconds(1f);
-
-        while (!IsAddressableLoad)
+        _text.text = "패키지 로딩중~~~";
+        while (!addressableTask.IsCompleted)
         {
-            _text.text = "패키지 로딩중~~~";
             _Progress.value = ProgressValue * 0.5f;
             yield return null;
         }
 
         yield return new WaitForSeconds(1f);
+
+        _text.text = "화면 구성 하는중";
         while (!asyncOperation.isDone) //isDone는 로딩이 완료되었는지 확인하는 변수
         {
-            _text.text = "화면 구성 하는중";
-
             float sceneProgress = asyncOperation.progress / 0.9f;
             float totalProgress = sceneProgress * 0.5f + ProgressValue * 0.5f;
             _Progress.value = totalProgress;

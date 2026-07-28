@@ -1,0 +1,298 @@
+/* =========================
+   Popup Animation
+========================= */
+
+.popup
+{
+    scale:0.7 0.7 1;
+    opacity:0;
+
+    transition-property:scale, opacity;
+    transition-duration:0.25s,0.25s;
+    transition-timing-function:ease-out;
+}
+
+
+.popup-show
+{
+    scale:1 1 1;
+    opacity:1;
+}
+
+.popup-Close
+{
+     visibility:hidden;
+}
+
+.popup-Open
+{
+    visibility:visibility;
+}
+
+
+
+/* =========================
+   Root
+   화면 전체 영역
+========================= */
+
+.inventory-root
+{
+    width:100%;
+    height:100%;
+
+    flex-grow:1;
+
+    align-items:center;
+    justify-content:center;
+}
+
+
+
+/* =========================
+   실제 Inventory 크기
+   기준 1920 x 1600
+========================= */
+
+.inventory-panel
+{
+    width:1920px;
+    height:1600px;
+
+    flex-direction:column;
+}
+
+
+
+
+
+/* =========================
+   Select Panel
+========================= */
+
+.select-panel
+{
+    width:100%;
+    height:200px;
+
+    margin:20px;
+    padding:20px;
+
+    border-width:5px;
+    border-color:black;
+
+    align-items:flex-start;
+    justify-content:center;
+}
+
+
+
+.tag-title
+{
+    font-size:48px;
+
+    margin-bottom:20px;
+}
+
+
+
+.tag-button-group
+{
+    width:100%;
+
+    flex-direction:row;
+    flex-wrap:wrap;
+}
+
+
+
+.tag-button
+{
+    width:160px;
+    height:70px;
+
+    margin-right:20px;
+
+    font-size:32px;
+}
+
+
+
+
+
+/* =========================
+   Data Panel
+========================= */
+
+.data-panel
+{
+    width:100%;
+
+    flex-grow:1;
+
+    height:100%;
+
+    margin:20px;
+
+    flex-direction:row;
+}
+
+/* =========================
+   Item List
+========================= */
+
+.item-list-panel
+{
+    flex-grow:7;
+
+    height:100%;
+
+    margin-right:20px;
+    padding:20px;
+
+    border-width:5px;
+    border-color:rgb(255,0,51);
+
+    align-items:flex-start;
+}
+
+
+
+.panel-title
+{
+    font-size:40px;
+
+    margin-bottom:20px;
+}
+
+
+
+.item-scroll
+{
+    width:100%;
+
+    flex-grow:1;
+}
+
+
+
+
+
+/* =========================
+   Item Info
+========================= */
+
+.item-info-panel
+{
+    flex-grow:3;
+
+    height:100%;
+
+    padding:20px;
+
+    border-width:5px;
+    border-color:rgb(255,140,0);
+
+    flex-direction:column;
+}
+
+
+
+
+/* =========================
+   Item Image
+========================= */
+
+.item-image-box
+{
+    width:100%;
+
+    height:500px;
+
+    margin-bottom:20px;
+
+    border-width:5px;
+    border-color:rgb(255,140,0);
+
+    align-items:center;
+
+    justify-content:center;
+}
+
+
+
+.item-image
+{
+    width:100%;
+    height:100%;
+
+    -unity-background-scale-mode:scale-to-fit;
+}
+
+
+
+
+
+/* =========================
+   Item Name
+========================= */
+
+.item-name-box
+{
+    width:100%;
+
+    height:120px;
+
+    margin-bottom:20px;
+
+    border-width:5px;
+    border-color:rgb(255,140,0);
+
+    align-items:center;
+
+    justify-content:center;
+}
+
+
+
+.item-name
+{
+    font-size:40px;
+
+    -unity-text-align:middle-center;
+}
+
+
+
+
+
+/* =========================
+   Item Description
+========================= */
+
+.item-desc-box
+{
+    width:100%;
+
+    flex-grow:1;
+
+    padding:20px;
+
+    border-width:5px;
+    border-color:rgb(255,140,0);
+
+    align-items:center;
+}
+
+
+
+.item-desc
+{
+    width:100%;
+
+    font-size:32px;
+
+    white-space:normal;
+
+    -unity-text-align:upper-center;
+}

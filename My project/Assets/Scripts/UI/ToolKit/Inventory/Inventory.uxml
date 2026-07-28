@@ -1,0 +1,149 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements"
+         xmlns:uie="UnityEditor.UIElements"
+         xsi="http://www.w3.org/2001/XMLSchema-instance"
+         engine="UnityEngine.UIElements"
+         editor="UnityEditor.UIElements"
+         noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd"
+         editor-extension-mode="False">
+
+
+    <Style src="project://database/Assets/Scripts/UI/ToolKit/Inventory/Iventory.uss?fileID=7433441132597879392&amp;guid=4401b1d10db000e4c932898677694f84&amp;type=3#Iventory"/>
+
+
+    <!-- Root -->
+    <ui:VisualElement
+        name="Root"
+        class="inventory-root">
+
+
+        <!-- Tag 영역 -->
+        <ui:VisualElement
+            name="SelectPanel"
+            class="select-panel">
+
+
+            <ui:Label
+                text="Tag"
+                name="TagLabel"
+                class="tag-title"/>
+
+
+            <ui:VisualElement
+                name="TagButtonGroup"
+                class="tag-button-group">
+
+
+                <ui:Button text="전체" name="Tag_All" class="tag-button"/>
+                <ui:Button text="무기" name="Tag_Weapon" class="tag-button"/>
+                <ui:Button text="방어구" name="Tag_Armor" class="tag-button"/>
+                <ui:Button text="소비품" name="Tag_Consumable" class="tag-button"/>
+                <ui:Button text="재료" name="Tag_Material" class="tag-button"/>
+                <ui:Button text="퀘스트" name="Tag_Quest" class="tag-button"/>
+                <ui:Button text="기타" name="Tag_Etc" class="tag-button"/>
+
+
+            </ui:VisualElement>
+
+
+        </ui:VisualElement>
+
+
+
+
+        <!-- 데이터 영역 -->
+        <ui:VisualElement
+            name="DataPanel"
+            class="data-panel">
+
+
+
+            <!-- Item List -->
+            <ui:VisualElement
+                name="ItemList"
+                class="item-list-panel">
+
+
+                <ui:Label
+                    text="Item List"
+                    name="ItemListLabel"
+                    class="panel-title"/>
+
+
+                <ui:ScrollView
+                    name="ItemListScrollView"
+                    class="item-scroll"/>
+
+
+            </ui:VisualElement>
+
+
+
+
+            <!-- Item Info -->
+            <ui:VisualElement
+                name="ItemInfo"
+                class="item-info-panel">
+
+
+
+                <!-- Image -->
+                <ui:VisualElement
+                    name="ItemImageBox"
+                    class="item-image-box">
+
+
+                    <ui:VisualElement
+                        name="ItemImage"
+                        class="item-image"/>
+
+
+                </ui:VisualElement>
+
+
+
+
+                <!-- Name -->
+                <ui:VisualElement
+                    name="ItemNameBox"
+                    class="item-name-box">
+
+
+                    <ui:Label
+                        text="아이템 이름"
+                        name="ItemNameLabel"
+                        class="item-name"/>
+
+
+                </ui:VisualElement>
+
+
+
+
+                <!-- Description -->
+                <ui:VisualElement
+                    name="ItemDescBox"
+                    class="item-desc-box">
+
+
+                    <ui:Label
+                        text="아이템 정보"
+                        name="ItemDescLabel"
+                        class="item-desc"/>
+
+
+                </ui:VisualElement>
+
+
+
+            </ui:VisualElement>
+
+
+
+        </ui:VisualElement>
+
+
+
+    </ui:VisualElement>
+
+
+</ui:UXML>
