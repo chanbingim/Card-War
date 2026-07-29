@@ -11,6 +11,11 @@ public abstract class BaseSlot : VisualElement
     public event Action<BaseSlot>           OnDrop;
     public event Action<BaseSlot>           OnChangedItem;
 
+    protected void ChangedItem()
+    {
+        OnChangedItem?.Invoke(this);
+    }
+
     protected virtual void HoverEnter()
     {
         OnHoverEnter?.Invoke(this);

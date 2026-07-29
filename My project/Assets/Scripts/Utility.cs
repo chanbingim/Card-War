@@ -5,7 +5,7 @@ public static class Utility
 {
     [Conditional("UNITY_EDITOR")]
     [DebuggerHidden]
-    public static void DBG_CHECK(bool condition, string? message = null)
+    public static void DBG_CHECK(bool condition, string message = null)
     {
         if (!condition)
         {

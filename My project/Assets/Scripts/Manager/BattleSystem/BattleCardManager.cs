@@ -65,7 +65,7 @@ public class BattleCardManager
             throw new ArgumentException("어드레서블 매니저 생성 필요");
 
         var Fomation = AddressableMgr.Get<FormationSO>("Formation/ThreeFormation");
-        LocalPlayer = new BattlePlayerData(playerData);
+        LocalPlayer = new BattlePlayerData(playerData, true);
         LocalPlayer.SetName("Player 0");
 
         for (int i = 1; i <= GAME_CONST.Const.MAX_DECK; i++)

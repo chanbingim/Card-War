@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BattlePlayerData : TurnParticipantBase
 {
@@ -18,13 +19,15 @@ public class BattlePlayerData : TurnParticipantBase
         Skills = new List<int>(GAME_CONST.Const.MAX_SKILL);
 
         _TransformParent = new GameObject(Name + "_Party");
+        IsLocal = false;
     }
 
-    public BattlePlayerData(PlayerData playerData)
+    public BattlePlayerData(PlayerData playerData, bool IsLocalPlayer = false)
     {
         Decks = new List<int>(playerData.Decks);
         Skills = new List<int>(playerData.Skills);
         Hands = new List<int>(GAME_CONST.Const.MAX_HAND);
+        IsLocal = IsLocalPlayer;
 
         _TransformParent = new GameObject(Name + "_Party");
     }
@@ -45,6 +48,9 @@ public class BattlePlayerData : TurnParticipantBase
 
         if (Utility.CHECK(character))
         {
+            if (IsLocal == false)
+                character.GetComponent<SpriteRenderer>().flipX = true;
+
             character.Initialize(ID);
             character.OnFinishedAct += _ActionQueue.Next_Action;
         }

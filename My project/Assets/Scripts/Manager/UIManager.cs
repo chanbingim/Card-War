@@ -1,8 +1,10 @@
+using DG.Tweening;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
 public class UIManager : MonoBehaviour
@@ -17,8 +19,8 @@ public class UIManager : MonoBehaviour
 
     private VisualElement                   _mainLayer;
     private VisualElement                   _popupLayer;
-
-    Stack<UIBase>                           _popup_Stack = new Stack<UIBase>();
+    private Dictionary<KeyCode, Action>     _KeyInputs = new Dictionary<KeyCode, Action>();
+    List<UIBase>                            _popup_List = new List<UIBase>();
 
     private void Update()
     {
@@ -26,31 +28,38 @@ public class UIManager : MonoBehaviour
         {
             Close_Popup();
         }
+
+        foreach (var pair in _KeyInputs)
+        {
+            if (Input.GetKeyDown(pair.Key))
+            {
+                pair.Value?.Invoke();
+            }
+        }
     }
 
-    public void Add_UI(Type uiType)
+    public void BindKeyAction(KeyCode key, Action action)
     {
-        if (_popup_Stack.Count == 0)
-            Setting_CanvasGroup(true);
-
-        Debug.Log("Show Setting Menu");
-        if(_uiTable.TryGetValue(uiType, out var ui))
+        if (_KeyInputs.TryGetValue(key, out var BindAction))
         {
-            ui.Open();
-            _popup_Stack.Push(ui);
-            _popupCanvas.sortingOrder = 10;
+            _KeyInputs[key] = action;
+        }
+        else
+        {
+            _KeyInputs.Add(key, action);
         }
     }
 
     public void Clear_AllStack()
     {
-        while(0 < _popup_Stack.Count)
+        while(0 < _popup_List.Count)
         {
-            _popup_Stack.First().Close();
-            _popup_Stack.Pop();
+            var FirstUI = _popup_List.First();
+            FirstUI.Close();
+            _popup_List.Remove(FirstUI);
         }
 
-        _popup_Stack.Clear();
+        _popup_List.Clear();
         Setting_CanvasGroup(false);
     }
 
@@ -69,19 +78,39 @@ public class UIManager : MonoBehaviour
             _popupCanvas.sortingOrder = 0;
     }
 
-    private void Close_Popup()
+    public void Add_UI(Type uiType)
     {
-        if (_popup_Stack.Count <= 0)
+        if (!_uiTable.TryGetValue(uiType, out var ui))
             return;
 
-        _popup_Stack.First().Close();
-        _popup_Stack.Pop();
+        if (_popup_List.Contains(ui))
+        {
+            _popup_List.Remove(ui);
+        }
+        else if (_popup_List.Count == 0)
+        {
+            Setting_CanvasGroup(true);
+        }
 
-        if (_popup_Stack.Count == 0)
+        ui.Open();
+
+        _popup_List.Add(ui);
+        _popupCanvas.sortingOrder = 10;
+    }
+
+    private void Close_Popup()
+    {
+        if (_popup_List.Count <= 0)
+            return;
+
+        var LastUI = _popup_List.Last();
+        LastUI.Close();
+        _popup_List.Remove(LastUI);
+
+        if (_popup_List.Count == 0)
         {
             Setting_CanvasGroup(false);
         }
-          
     }
 
     static public UIManager instance { get; private set; }
@@ -111,14 +140,23 @@ public class UIManager : MonoBehaviour
             await Task.Yield();
         }
 
-        foreach (var ui in _defaultUIs)
-        {
-            _uiTable.TryAdd(ui.GetType(), ui);
-            await Task.Yield();
-        }
-
         var obj = InventoryController.Create(_popupLayer);
         _uiTable.TryAdd(typeof(InventoryController), obj);
+
+        foreach (var ui in _uiTable)
+        {
+            var type = ui.Key;
+            var runtimeInstance = ui.Value.gameObject;
+            if (runtimeInstance == null)
+                continue;
+
+            var systemKey = runtimeInstance.GetComponent<OpenSystemUIComponent>();
+            if (systemKey == null)
+                continue;
+
+            BindKeyAction(systemKey.Key, () => Add_UI(type));
+            await Task.Yield();
+        }
 
         _canvasGroup = _popupCanvas.GetComponent<CanvasGroup>();
     }

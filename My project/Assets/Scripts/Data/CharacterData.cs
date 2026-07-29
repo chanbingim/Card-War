@@ -7,11 +7,11 @@ namespace TurnCardGame.Data
     [CreateAssetMenu(menuName = "Turn Card Game/Character", fileName = "CharacterData")]
     public sealed class CharacterData : ScriptableObject
     {
-        [SerializeField] protected int    _ID;
-        [SerializeField] protected CHARACTER_PROPERTY   _Property = CHARACTER_PROPERTY.END;
+        [SerializeField] private int    _ID;
+        [SerializeField] private CHARACTER_PROPERTY   _Property = CHARACTER_PROPERTY.END;
 
-        [SerializeField] protected int _MaxHealth = 12;
-        [SerializeField] protected int _ATKPower = 2;
+        [SerializeField] private int _MaxHealth;
+        [SerializeField] private int _ATKPower;
 
         public int                  Id => _ID;
         public CHARACTER_PROPERTY   Property => _Property;
