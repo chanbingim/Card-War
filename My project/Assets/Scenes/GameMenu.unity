@@ -1078,6 +1078,7 @@ GameObject:
   - component: {fileID: 1279647995}
   - component: {fileID: 1279647994}
   - component: {fileID: 1279647993}
+  - component: {fileID: 1279647997}
   m_Layer: 5
   m_Name: StageSelector
   m_TagString: Untagged
@@ -1173,6 +1174,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1279647997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279647992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6829faca4a15a47478c8ec9cd4f9d133, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StageController
+  StageUIs:
+  - {fileID: 5006727459378972123}
+  - {fileID: 1853730519}
+  - {fileID: 2063787562}
 --- !u!1 &1758418710
 GameObject:
   m_ObjectHideFlags: 0
@@ -1436,6 +1453,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 9180992964696528562, guid: 4aa138a50ce39484e8c4741a56cbfa00, type: 3}
   m_PrefabInstance: {fileID: 1853730517}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1853730519 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3112495595259350164, guid: 4aa138a50ce39484e8c4741a56cbfa00, type: 3}
+  m_PrefabInstance: {fileID: 1853730517}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ed7fc454c8ddc34b8b87028b36ea5c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StageClearComponent
 --- !u!1 &1974506753
 GameObject:
   m_ObjectHideFlags: 0
@@ -1725,6 +1753,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 9180992964696528562, guid: 4aa138a50ce39484e8c4741a56cbfa00, type: 3}
   m_PrefabInstance: {fileID: 2063787560}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2063787562 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3112495595259350164, guid: 4aa138a50ce39484e8c4741a56cbfa00, type: 3}
+  m_PrefabInstance: {fileID: 2063787560}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ed7fc454c8ddc34b8b87028b36ea5c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StageClearComponent
 --- !u!1001 &5006727459378972119
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1929,6 +1968,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SceneMoveComponent
   _NextScene: GameScene
   _StageIndex: 1
+--- !u!114 &5006727459378972123 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3112495595259350164, guid: 4aa138a50ce39484e8c4741a56cbfa00, type: 3}
+  m_PrefabInstance: {fileID: 5006727459378972119}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5006727459378972121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ed7fc454c8ddc34b8b87028b36ea5c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StageClearComponent
 --- !u!1001 &5737731496506092822
 PrefabInstance:
   m_ObjectHideFlags: 0

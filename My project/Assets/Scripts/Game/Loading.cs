@@ -48,8 +48,6 @@ public class Loading : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSeconds(1f);
-    
         _text.text = "화면 구성 하는중";
         while (!loadOperation.isDone) //isDone는 로딩이 완료되었는지 확인하는 변수
         {

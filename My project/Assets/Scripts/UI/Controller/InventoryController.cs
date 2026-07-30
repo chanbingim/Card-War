@@ -63,11 +63,14 @@ public class InventoryController : UIBase
 
     private bool InitialzeSlot()
     {
-        var PlayerData = GameClientManager.instance.playerData;
-        int CollectionCount = PlayerData.Collections.Count;
+        var ClientMgr = GameClientManager.instance;
+        if (ClientMgr == null)
+            return false;
+
+        var Collections = ClientMgr.GetCollection();
 
         _Slots = new List<InventorySlot>(MaxSlotCount);
-        foreach (var card in PlayerData.Collections)
+        foreach (var card in Collections)
         {
             ADD_Slot(card.Value);
         }

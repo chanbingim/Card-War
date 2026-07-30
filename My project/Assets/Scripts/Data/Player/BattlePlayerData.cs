@@ -1,6 +1,6 @@
 using System.Collections.Generic;
+using TurnCardGame.Data;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class BattlePlayerData : TurnParticipantBase
 {
@@ -9,27 +9,38 @@ public class BattlePlayerData : TurnParticipantBase
     public  List<int>               Skills;
     public  List<Character>         PlayerParty { get; protected set; }
 
-    private GameObject                  _TransformParent;
-    private ActionQueue                 _ActionQueue = new ActionQueue();
+    private GameObject              TransformParent;
+    private ActionQueue             ActionQueue = new ActionQueue();
+
+#if UNITY_EDITOR
+    static int                      SampleIndex = 1;
+#endif
 
     public BattlePlayerData()
     {
+        Name = $"Sample Test Player {SampleIndex}";
+        SampleIndex++;
+
         Decks = new List<int>(GAME_CONST.Const.MAX_DECK);
         Hands = new List<int>(GAME_CONST.Const.MAX_HAND);
         Skills = new List<int>(GAME_CONST.Const.MAX_SKILL);
 
-        _TransformParent = new GameObject(Name + "_Party");
+        TransformParent = new GameObject(Name + "_Party");
         IsLocal = false;
+
+        ADDSamplePlayerData();
     }
 
+   
     public BattlePlayerData(PlayerData playerData, bool IsLocalPlayer = false)
     {
+        Name = playerData.Name;
         Decks = new List<int>(playerData.Decks);
         Skills = new List<int>(playerData.Skills);
         Hands = new List<int>(GAME_CONST.Const.MAX_HAND);
         IsLocal = IsLocalPlayer;
 
-        _TransformParent = new GameObject(Name + "_Party");
+        TransformParent = new GameObject(Name + "_Party");
     }
 
     public void Request_ADDParty(int ID, Vector3 WorldPosition = default)
@@ -39,7 +50,7 @@ public class BattlePlayerData : TurnParticipantBase
         if (!Utility.CHECK(Prefab))
             return;
 
-        var obj = GameObject.Instantiate(Prefab, _TransformParent.transform);
+        var obj = GameObject.Instantiate(Prefab, TransformParent.transform);
         if (Utility.CHECK(obj) == false)
             return;
 
@@ -52,8 +63,35 @@ public class BattlePlayerData : TurnParticipantBase
                 character.GetComponent<SpriteRenderer>().flipX = true;
 
             character.Initialize(ID);
-            character.OnFinishedAct += _ActionQueue.Next_Action;
+            character.OnFinishedAct += ActionQueue.Next_Action;
         }
+    }
+
+    public UI_CardData DrawCard()
+    {
+        int ID = 0;
+        int HandIndex = -1;
+        if (Decks.Count > 0)
+        {
+            ID = Decks[0];
+            Decks.RemoveAt(0);
+
+            HandIndex = Hands.Count;
+            Hands.Add(ID);
+        }
+
+        if (ID <= 0)
+            return null;
+
+        return new UI_CardData(HandIndex, ID);
+    }
+
+    public void UseCard(UseCardEvent card)
+    {
+        Hands.RemoveAt(card.UseCard._Data.HandIndex);
+
+        var CardAct = new CardAction(card.Target, EACTION_TYPE.ATTACK);
+        ADD_ActQueue(CardAct);
     }
 
     public void Request_RemoveParty(Character character)
@@ -71,20 +109,39 @@ public class BattlePlayerData : TurnParticipantBase
             return;
     }
 
-    public void SetName(string name)
-    {
-        Name = name;
-    }
-
     #region ActionQueue
-    public void ADD_ActQueue(CardAction action)  { _ActionQueue.ADD_ActQueue(action); }
-    public int  ActionCount() { return _ActionQueue._ActQueues.Count; }
-    public void Update_PlayerAction() { _ActionQueue.Update_PlayerAction(); }
+    public void ADD_ActQueue(CardAction action)  { ActionQueue.ADD_ActQueue(action); }
+    public int  ActionCount() { return ActionQueue._ActQueues.Count; }
+    public void Update_PlayerAction() { ActionQueue.Update_PlayerAction(); }
     #endregion
 
-    void OnDisable()
+    private void OnDisable()
     {
         foreach (var character  in PlayerParty)
-            character.OnFinishedAct -= _ActionQueue.Next_Action;
+            character.OnFinishedAct -= ActionQueue.Next_Action;
     }
+
+    private void ADDSamplePlayerData()
+    {
+        for (int i = 1; i <= GAME_CONST.Const.MAX_DECK; i++)
+            Decks.Add(i % 4);
+
+        var stage = BattleManager.instance.GetCurrentStage();
+        var AddressableMgr = AddressableManager.instance;
+        if (AddressableMgr == null)
+            return;
+
+        var Fomation = AddressableMgr.Get<FormationSO>("Formation/ThreeFormation");
+        if (Fomation != null)
+        {
+            Request_ADDParty(1, stage.GetPlayerWorldPosition(Fomation.LocalPosition[0]));
+            Request_ADDParty(2, stage.GetPlayerWorldPosition(Fomation.LocalPosition[1]));
+        }
+        else
+        {
+            Request_ADDParty(1);
+            Request_ADDParty(2);
+        }
+    }
+
 }

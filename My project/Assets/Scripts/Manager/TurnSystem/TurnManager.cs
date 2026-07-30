@@ -14,6 +14,13 @@ public class TurnManager
     public int ParticipantCount => _participants.Count;
 
     Boolean                         _IsActTrun = false;
+    public BattlePlayerData         LocalPlayer { get; private set; }
+
+    public bool IsPlayerTurn() { return LocalPlayer.IsActive; }
+    public void PlayerTrunEnd()
+    {
+        LocalPlayer.TurnEnd();
+    }
 
     public static TurnManager Create(List<ITurnParticipant> participants)
     {

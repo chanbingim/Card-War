@@ -9,6 +9,8 @@ public class BattleManager : MonoBehaviour
     private TurnManager              _TrunMgr = null;
     private Stage                    _Cur_Stage = null;
 
+    public Stage GetCurrentStage() { return _Cur_Stage ? _Cur_Stage : null; }
+
     public void Update()
     {
         if (_TrunMgr.IsRunning == false)
@@ -18,8 +20,8 @@ public class BattleManager : MonoBehaviour
     }
 
     #region PlayerMgr
-    public bool             IsPlayerTurn() { return _BattleCardManager?.IsPlayerTurn() ?? false; }
-    public BattlePlayerData GetLoaclPlayer() { return _BattleCardManager?.LocalPlayer; }
+    public bool             IsPlayerTurn() { return _TrunMgr?.IsPlayerTurn() ?? false; }
+    public BattlePlayerData GetLoaclPlayer() { return _TrunMgr?.LocalPlayer; }
     public UI_CardData      DrawCard() { return _BattleCardManager?.Draw_Card() ?? null; }
     #endregion
 
@@ -58,37 +60,19 @@ public class BattleManager : MonoBehaviour
             return;
         }
 
-        if (InitPlayerManager() == false)
+        if (InitBattleCardManager() == false)
         {
-            Debug.LogWarning("Initialize Fail PlayerManager");
+            Debug.LogWarning("Initialize Fail BattleCardManager");
             return;
         }
 
         // 이거 나중에 서버에서 받아오긴할거임
         List<ITurnParticipant> participants = new List<ITurnParticipant>();
-        participants.Add(_BattleCardManager.LocalPlayer);
+        participants.Add(GameClientManager.instance.GetBattleData());
 
-        AddressableManager AddressableMgr = AddressableManager.instance;
-        if (AddressableMgr == null)
-            throw new ArgumentException("어드레서블 매니저 생성 필요");
-
-        var Fomation = AddressableMgr.Get<FormationSO>("Formation/EnemyThreeFormation");
         for (int i = 1; i < 2; i++)
         {
             var player = new BattlePlayerData();
-            player.SetName($"Player {i}");
-
-            if (Fomation != null)
-            {
-                player.Request_ADDParty(3, _Cur_Stage.GetEnemyWorldPosition(Fomation.LocalPosition[0]));
-                player.Request_ADDParty(4, _Cur_Stage.GetEnemyWorldPosition(Fomation.LocalPosition[1]));
-            }
-            else
-            {
-                player.Request_ADDParty(3);
-                player.Request_ADDParty(4);
-            }
-
             participants.Add(player);
         }
 
@@ -101,9 +85,9 @@ public class BattleManager : MonoBehaviour
         Debug.LogWarning("Initialize Complelted BattleManager");
     }
 
-    private bool InitPlayerManager()
+    private bool InitBattleCardManager()
     {
-        _BattleCardManager = BattleCardManager.Create(_Cur_Stage);
+        _BattleCardManager = BattleCardManager.Create();
         return _BattleCardManager != null ? true : false;
     }
 
