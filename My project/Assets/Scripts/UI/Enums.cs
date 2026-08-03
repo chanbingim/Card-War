@@ -14,4 +14,20 @@ namespace GamePlay.Enum
         Prefabs,
         END,
     }
+
+    public enum EUICanvas
+    {
+        Screen,
+        Screen_Popup,
+        World,
+        Overlay,
+        END,
+    }
+
+    public enum ECreateUIType
+    {
+        Prefab,
+        UIBuilder,
+        END,
+    }
 }

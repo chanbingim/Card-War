@@ -16,6 +16,20 @@ public class TurnManager
     Boolean                         _IsActTrun = false;
     public BattlePlayerData         LocalPlayer { get; private set; }
 
+
+    public Queue<CardAction> GetPlayerHistoryAction(int index)
+    {
+        if (index < 0 || _participants.Count <= index)
+            return null;
+
+        var Player = _participants[index] as BattlePlayerData;
+        if (Player == null)
+            return null;
+
+        return Player.GetOldActions();
+    }
+
+
     public bool IsPlayerTurn() { return LocalPlayer.IsActive; }
     public void PlayerTrunEnd()
     {

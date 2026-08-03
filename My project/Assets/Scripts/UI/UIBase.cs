@@ -4,7 +4,7 @@ using UnityEngine;
 public class UIBase : MonoBehaviour
 {
     [SerializeField] bool bIsPopup = false;
-    DoTweenAnimator       _Animator;
+    protected DoTweenAnimator       _Animator;
 
     private void Awake()
     {

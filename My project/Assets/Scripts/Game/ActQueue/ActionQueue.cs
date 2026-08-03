@@ -3,7 +3,7 @@ using System.Collections.Generic;
 public class ActionQueue
 {
     public  Queue<CardAction> _ActQueues { get; private set; } = new Queue<CardAction>();
-    private Queue<CardAction> _OldActQueues = new Queue<CardAction>();
+    public Queue<CardAction> _OldActQueues { get; private set; } = new Queue<CardAction>();
     private CardAction _CurAction;
 
     public void ADD_ActQueue(CardAction Act)

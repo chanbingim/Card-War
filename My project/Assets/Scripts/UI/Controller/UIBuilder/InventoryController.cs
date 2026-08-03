@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.UIElements;
 using TurnCardGame.Data;
 
-public class InventoryController : UIBase
+public class InventoryController : BuilderController
 {
     [SerializeField] private int MaxSlotCount = 10;
     private List<InventorySlot>     _Slots;
@@ -27,19 +27,8 @@ public class InventoryController : UIBase
     }
 
     #region Default
-    public static InventoryController Create(VisualElement _Layer)
-    {
-        InventoryController instance = new InventoryController();
-        if(!instance.Initialize(_Layer))
-        {
-            instance = null;
-            return null;
-        }
 
-        return instance;
-    }
-
-    bool Initialize(VisualElement _Layer)
+    public override bool Initialize(VisualElement _Layer)
     {
         VisualTreeAsset asset = AddressableManager.instance.Get<VisualTreeAsset>("UI/Inventory");
         if (asset == null)
@@ -57,7 +46,6 @@ public class InventoryController : UIBase
         _itemListPanel = _View.Q<VisualElement>("ItemListScrollView");
 
         InitialzeSlot();
-        Close();
         return true;
     }
 

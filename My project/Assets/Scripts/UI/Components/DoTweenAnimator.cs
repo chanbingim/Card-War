@@ -2,23 +2,27 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 
 public class DoTweenAnimator : MonoBehaviour
 {
+    public bool             _AnimationPasue { get; private set; }
+    public event Action     _OnCompleted;
+
     [SerializeReference] private List<UIAnimData>    _AnimList;
+    [SerializeField]    private float          _TotalPlayTime = 1f;
+    [SerializeField]    private bool           _bIsLoop = false;
+
     private List<UIAnimation>                       _AnimationList;
     private BitArray                                _AnimFlag;
 
-    [SerializeField] private float     _TotalPlayTime = 1f;
-    private float     _AnimRate = 1f;
-    [SerializeField] private bool      _bIsLoop = false;
+    private float       _AnimRate = 1f;
 
-    private float           _CurAnimTime = 0f;
-    public bool             _AnimationPasue { get; private set; }
-    private int             _AnimFrame = 0;
-    private int             _TotalFrame = 0;
+    private float       _CurAnimTime = 0f;
+    private int         _AnimFrame = 0;
+    private int         _TotalFrame = 0;
 
     public void Initialize()
     {
@@ -57,8 +61,7 @@ public class DoTweenAnimator : MonoBehaviour
             // 아직 실행되지 않았고, 시작 프레임에 도달했다면 실행
             for (int i = 0; i < _AnimationList.Count; i++)
             {
-                if (!_AnimFlag[i] &&
-                    _AnimFrame >= _AnimationList[i]._startFrame)
+                if (!_AnimFlag[i] && _AnimFrame >= _AnimationList[i]._startFrame)
                 {
                     float duration = (_AnimationList[i]._endFrame - _AnimationList[i]._startFrame) / (float)(_TotalFrame) * _TotalPlayTime;
 
@@ -71,17 +74,33 @@ public class DoTweenAnimator : MonoBehaviour
             if (_CurAnimTime >= _TotalPlayTime)
             {
                 _CurAnimTime = 0f;
+                _AnimFlag.SetAll(false);
                 if (_bIsLoop)
                 {
                     _AnimFrame = 0;
-                    _AnimFlag.SetAll(false);
                 }
                 else
                 {
                     _AnimationPasue = false;
                 }
+
+                _OnCompleted?.Invoke();
             }
         }
+    }
+
+    public Task AsyncOnCompleted()
+    {
+        var tcs = new TaskCompletionSource<bool>();
+
+        void Complete()
+        {
+            _OnCompleted -= Complete;
+            tcs.TrySetResult(true);
+        }
+
+        _OnCompleted += Complete;
+        return tcs.Task;
     }
 
     public void Play_Animation() { _AnimationPasue = true; }

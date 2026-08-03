@@ -1,42 +1,42 @@
-using DG.Tweening;
+using GamePlay.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
+[Serializable]
+public struct CanvasData
+{
+    public EUICanvas Type;
+    public Canvas Canvas;
+
+}
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] private List<UIBase>    _defaultUIs;
-    [SerializeField] private UIDocument     _document;
+    // 스크립터블 오브젝트 UI 정보
+    [SerializeField] private List<UIConfig>     _Configs;
+    private Dictionary<Type, UIConfig>          _typeConfigTable = new();
+    private Dictionary<string, UIConfig>        _keyConfigTable = new();
 
-    [SerializeField] private Canvas         _popupCanvas;
+    // 팝업 Canvas Layer
+    [SerializeField] private List<CanvasData>  _Canvas;
+    private Dictionary<EUICanvas, Canvas>      _CanvasTypes;
 
-    private Dictionary<Type, UIBase>        _uiTable;
+    //팝업 캔버스 Group 팝업 Sorting 용
     private CanvasGroup                     _canvasGroup;
 
-    private VisualElement                   _mainLayer;
-    private VisualElement                   _popupLayer;
+    // PopUp List
+    private List<UIBase>                    _popup_List = new List<UIBase>();
+
+    // 캐시 테이블
+    private Dictionary<string, int>         _keyCashTable = new();
+    private Dictionary<Type, int>           _typeCashTable = new();
+    private List<UIBase>                    _UIList = new();
+
+    // UI Key 세팅에 따른 동작
     private Dictionary<KeyCode, Action>     _KeyInputs = new Dictionary<KeyCode, Action>();
-    List<UIBase>                            _popup_List = new List<UIBase>();
-
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            Close_Popup();
-        }
-
-        foreach (var pair in _KeyInputs)
-        {
-            if (Input.GetKeyDown(pair.Key))
-            {
-                pair.Value?.Invoke();
-            }
-        }
-    }
 
     public void BindKeyAction(KeyCode key, Action action)
     {
@@ -50,6 +50,26 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    #region FadeInOut
+    public async Task FadeInOut(Action func = null)
+    {
+        await ShowAsync("FadeIn");
+
+        if(func != null)
+        {
+            if (!_keyCashTable.TryGetValue("FadeIn", out var idx))
+                return;
+
+            _UIList[idx].Open();
+            await _UIList[idx].GetComponent<DoTweenAnimator>().AsyncOnCompleted();
+
+            _UIList[idx].Close();
+            func.Invoke();
+        }
+    }
+    #endregion
+
+    #region PopUp Action
     public void Clear_AllStack()
     {
         while(0 < _popup_List.Count)
@@ -63,6 +83,149 @@ public class UIManager : MonoBehaviour
         Setting_CanvasGroup(false);
     }
 
+    public async Task ShowAsync(String key)
+    {
+        if (!_keyCashTable.TryGetValue(key, out var idx))
+        {
+            idx =  await AddUIAsync(key);
+        }
+
+        if(idx == -1)
+            return ;
+
+        if (_keyConfigTable.TryGetValue(key, out var config))
+        {
+            ConfigureScreen(idx, config);
+        }
+    }
+
+    public async Task ShowAsync<T>()
+    {
+        Type type = typeof(T);
+
+        if (!_typeCashTable.TryGetValue(type, out var idx))
+        {
+            idx =  await AddUIAsync<T>();
+        }
+
+        if (idx == -1)
+            return;
+
+        if (_typeConfigTable.TryGetValue(type, out var config))
+        {
+            ConfigureScreen(idx, config);
+        }
+    }
+
+    public void HideAsync(String key)
+    {
+        if (!_keyCashTable.TryGetValue(key, out var idx))
+        {
+            return;
+        }
+
+        _UIList[idx].Close();
+    }
+
+    public void HideAsync<T>()
+    {
+        Type type = typeof(T);
+
+        if (!_typeCashTable.TryGetValue(type, out var idx))
+        {
+            return;
+        }
+
+        _UIList[idx].Close();
+    }
+
+    private void ConfigureScreen(int idx, UIConfig config)
+    {
+        if (config.CanvasType == EUICanvas.Screen_Popup)
+        {
+            OpenPopup(_UIList[idx]);
+        }
+        else
+        {
+            _UIList[idx].Open();
+        }
+    }
+
+    private async Task<int> AddUIAsync(String name)
+    {
+        if (_keyConfigTable.TryGetValue(name, out var config))
+        {
+            var UI = await CreateUserInterface(config);
+
+            int Idx = _UIList.Count;
+            _UIList.Add(UI);
+
+            _typeCashTable.Add(UI.GetType(), Idx);
+            _keyCashTable.Add(config.name, Idx);
+            return Idx;
+        }
+        else
+        {
+            Debug.Log("Not Bind UI Config");
+        }
+
+        return -1;
+    }
+
+    private async Task<int> AddUIAsync<T>()
+    {
+        Type type = typeof(T);
+        if (_typeConfigTable.TryGetValue(type, out var config))
+        {
+            var UI = await CreateUserInterface(config);
+
+            int Idx = _UIList.Count;
+            _UIList.Add(UI);
+
+            _typeCashTable.Add(type, Idx);
+            _keyCashTable.Add(config.AddressKey, Idx);
+            return Idx;
+        }
+        else
+        {
+            Debug.Log("Not Bind UI Config");
+        }
+
+        return -1;
+    }
+
+    private async Task<UIBase> CreateUserInterface(UIConfig Config)
+    {
+        try
+        {
+            GameObject UserInterface = null;
+            var AddressableMgr = AddressableManager.instance;
+            if (AddressableMgr == null)
+            {
+                throw new ArgumentException("어드레서블 NULL");
+            }
+
+            var Prefab = AddressableMgr.Get<GameObject>(Config.AddressKey);
+            if (Prefab == null)
+            {
+                Prefab = await AddressableMgr.LoadAsync<GameObject>(Config.AddressKey);
+            }
+
+            UserInterface = GameObject.Instantiate(Prefab,
+                    _CanvasTypes[Config.CanvasType].transform);
+
+            if (UserInterface == null)
+                throw new ArgumentException("[UIManager] Fail Create UI");
+
+            return UserInterface.GetComponent<UIBase>();
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e);
+            return null;
+        }
+    }
+
     private void Setting_CanvasGroup(bool flag)
     {
         if (_canvasGroup != null)
@@ -72,30 +235,20 @@ public class UIManager : MonoBehaviour
             _canvasGroup.alpha = flag ? 1f : 0f;
         }
 
-        if(flag)
-            _popupCanvas.sortingOrder = 10;
+        if (flag)
+            _CanvasTypes[EUICanvas.Screen_Popup].sortingOrder = 10;
         else
-            _popupCanvas.sortingOrder = 0;
+            _CanvasTypes[EUICanvas.Screen_Popup].sortingOrder = 0;
     }
-
-    public void Add_UI(Type uiType)
+    private void OpenPopup(UIBase ui)
     {
-        if (!_uiTable.TryGetValue(uiType, out var ui))
-            return;
-
-        if (_popup_List.Contains(ui))
-        {
+        if(_popup_List.Contains(ui))
             _popup_List.Remove(ui);
-        }
-        else if (_popup_List.Count == 0)
-        {
-            Setting_CanvasGroup(true);
-        }
-
-        ui.Open();
 
         _popup_List.Add(ui);
-        _popupCanvas.sortingOrder = 10;
+
+        ui.Open();
+        Setting_CanvasGroup(true);
     }
 
     private void Close_Popup()
@@ -112,7 +265,25 @@ public class UIManager : MonoBehaviour
             Setting_CanvasGroup(false);
         }
     }
+    #endregion
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Close_Popup();
+        }
+
+        foreach (var pair in _KeyInputs)
+        {
+            if (Input.GetKeyDown(pair.Key))
+            {
+                pair.Value?.Invoke();
+            }
+        }
+    }
+
+    #region Default
     static public UIManager instance { get; private set; }
     static UIManager _instance = null;
     private void Start()
@@ -129,35 +300,29 @@ public class UIManager : MonoBehaviour
 
     public async Task Initialize()
     {
-        var root = _document.rootVisualElement;
-        _mainLayer = root.Q<VisualElement>("MainLayer");
-        _popupLayer = root.Q<VisualElement>("PopupLayer");
-
-        _uiTable = new Dictionary<Type, UIBase>();
-        foreach (var ui in _defaultUIs)
+        foreach (var config in _Configs)
         {
-            _uiTable.TryAdd(ui.GetType(), ui);
-            await Task.Yield();
-        }
+            _keyConfigTable.Add(config.name, config);
 
-        var obj = InventoryController.Create(_popupLayer);
-        _uiTable.TryAdd(typeof(InventoryController), obj);
-
-        foreach (var ui in _uiTable)
-        {
-            var type = ui.Key;
-            var runtimeInstance = ui.Value.gameObject;
-            if (runtimeInstance == null)
+            if (config.Key == KeyCode.None)
                 continue;
 
-            var systemKey = runtimeInstance.GetComponent<OpenSystemUIComponent>();
-            if (systemKey == null)
-                continue;
-
-            BindKeyAction(systemKey.Key, () => Add_UI(type));
-            await Task.Yield();
+            BindKeyAction(config.Key, async() => 
+            {
+                if (_keyCashTable.TryGetValue(config.name, out var idx))
+                {
+                    if (_UIList[idx].gameObject.activeSelf)
+                        HideAsync(config.name);
+                    else
+                        OpenPopup(_UIList[idx]);
+                }
+                else
+                    await ShowAsync(config.name);
+            });
         }
 
-        _canvasGroup = _popupCanvas.GetComponent<CanvasGroup>();
+        _CanvasTypes = _Canvas.ToDictionary(value => value.Type, value => value.Canvas);
+        _canvasGroup = _CanvasTypes[EUICanvas.Screen_Popup].GetComponent<CanvasGroup>();
     }
+    #endregion
 }

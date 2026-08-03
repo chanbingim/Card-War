@@ -18,8 +18,10 @@ public class BattlePlayerData : TurnParticipantBase
 
     public BattlePlayerData()
     {
+#if UNITY_EDITOR
         Name = $"Sample Test Player {SampleIndex}";
         SampleIndex++;
+#endif
 
         Decks = new List<int>(GAME_CONST.Const.MAX_DECK);
         Hands = new List<int>(GAME_CONST.Const.MAX_HAND);
@@ -42,6 +44,8 @@ public class BattlePlayerData : TurnParticipantBase
 
         TransformParent = new GameObject(Name + "_Party");
     }
+
+    public Queue<CardAction> GetOldActions() { return ActionQueue._OldActQueues; }
 
     public void Request_ADDParty(int ID, Vector3 WorldPosition = default)
     {

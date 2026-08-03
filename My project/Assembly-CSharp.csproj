@@ -68,8 +68,10 @@
     <Compile Include="Assets\Scripts\Manager\Addressable\AddressableManager.cs" />
     <Compile Include="Assets\Scripts\Manager\GameManager.cs" />
     <Compile Include="Assets\Scripts\UI\Components\Animation\UITransformAnimation.cs" />
+    <Compile Include="Assets\Scripts\UI\Entity\FadeUI.cs" />
     <Compile Include="Assets\Scripts\UI\Controller\StageController.cs" />
     <Compile Include="Assets\Scripts\UI\Controller\CardController.cs" />
+    <Compile Include="Assets\Scripts\UI\Controller\UIBuilder\InventoryController.cs" />
     <Compile Include="Assets\Scripts\Manager\UIManager.cs" />
     <Compile Include="Assets\Scripts\Data\Player\BattlePlayerData.cs" />
     <Compile Include="Assets\Scripts\Game\Loading.cs" />
@@ -77,6 +79,7 @@
     <Compile Include="Assets\Scripts\Manager\Addressable\AddressableGroup.cs" />
     <Compile Include="Assets\Scripts\Event\Events\UseCardEvent.cs" />
     <Compile Include="Assets\Scripts\Manager\TurnSystem\TurnManager.cs" />
+    <Compile Include="Assets\Scripts\UI\Components\Button\ExitComponent.cs" />
     <Compile Include="Assets\Scripts\UI\Entity\CardUI.cs" />
     <Compile Include="Assets\Scripts\Event\Events\TurnUIEvent.cs" />
     <Compile Include="Assets\Scripts\UI\Interface\IPointerHoverEvent.cs" />
@@ -85,9 +88,11 @@
     <Compile Include="Assets\Scripts\UI\Entity\TurnEndButton.cs" />
     <Compile Include="Assets\Scripts\Data\CardData.cs" />
     <Compile Include="Assets\Scripts\UI\UIBase.cs" />
+    <Compile Include="Assets\Scripts\UI\Entity\TurnHistoryUI.cs" />
     <Compile Include="Assets\Scripts\UI\Components\DoTweenAnimator.cs" />
     <Compile Include="Assets\Scripts\UI\Components\Button\HoverComponent.cs" />
     <Compile Include="Assets\Scripts\UI\Entity\DragArrow.cs" />
+    <Compile Include="Assets\Scripts\Scriptable\UIConfig.cs" />
     <Compile Include="Assets\Scripts\UI\Components\Animation\Struct\UIAnimationStruct.cs" />
     <Compile Include="Assets\Scripts\Game\Stage\Stage.cs" />
     <Compile Include="Assets\Scripts\Game\Stage\BootStrapInit.cs" />
@@ -109,10 +114,9 @@
     <Compile Include="Assets\Scripts\Event\Events\StageClearEvent.cs" />
     <Compile Include="Assets\Scripts\UI\Entity\Slot\InventorySlot.cs" />
     <Compile Include="Assets\Scripts\UI\Enums.cs" />
-    <Compile Include="Assets\Scripts\UI\Controller\InventoryController.cs" />
+    <Compile Include="Assets\Scripts\UI\Controller\UIBuilder\BuilderController.cs" />
     <Compile Include="Assets\Scripts\UI\Entity\Slot\BaseSlot.cs" />
     <Compile Include="Assets\Scripts\Data\Stage\CardData.cs" />
-    <Compile Include="Assets\Scripts\UI\Components\Button\OpenSystemUIComponent.cs" />
     <Compile Include="Assets\Scripts\Utility.cs" />
     <Compile Include="Assets\Scripts\Manager\DragManager.cs" />
     <Compile Include="Assets\Scripts\Event\EventBus.cs" />

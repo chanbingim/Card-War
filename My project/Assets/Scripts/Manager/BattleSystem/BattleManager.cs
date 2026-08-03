@@ -30,6 +30,11 @@ public class BattleManager : MonoBehaviour
     {
         _TrunMgr?.RequestEndTurn(_TrunMgr.Current.Name);
     }
+
+    public Queue<CardAction> GetPlayerHistoryAction(int index)
+    {
+        return _TrunMgr?.GetPlayerHistoryAction(index) ?? null;
+    }
     #endregion
 
     #region Defualt
