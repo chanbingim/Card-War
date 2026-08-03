@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3962264, g: 0.3962264, b: 0.3962264, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -101,12 +101,12 @@ MonoBehaviour:
       type: {class: UIColorAnimData, ns: , asm: Assembly-CSharp}
       data:
         _startFrame: 0
-        _endFrame: 1
-        _Color: {r: 0.4056604, g: 0.4056604, b: 0.4056604, a: 0}
+        _endFrame: 20
+        _Color: {r: 0, g: 0, b: 0, a: 0}
     - rid: 4182431761163616332
       type: {class: UIColorAnimData, ns: , asm: Assembly-CSharp}
       data:
-        _startFrame: 1
+        _startFrame: 20
         _endFrame: 100
         _Color: {r: 0.04150939, g: 0.04150939, b: 0.04150939, a: 1}
 --- !u!114 &3488482699778490272
