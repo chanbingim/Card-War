@@ -279,6 +279,7 @@ MonoBehaviour:
   _Configs:
   - {fileID: 11400000, guid: 95be5e6e8a4ece149a2ff96c719a6142, type: 2}
   - {fileID: 11400000, guid: 02ccfb19f0abc414497ab6fd194a1e1c, type: 2}
+  - {fileID: 11400000, guid: 242e23c05251a334b8ff524c6bac3354, type: 2}
   _Canvas:
   - Type: 1
     Canvas: {fileID: 1984120476}
@@ -533,6 +534,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DataManager
   _CharacterDataloadPath: SO/Characters
   _CardDataloadPath: SO/Cards
+  _BmDataloadPath: SO/BM
 --- !u!1 &1521255370
 GameObject:
   m_ObjectHideFlags: 0
@@ -779,7 +781,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1984120472}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_Name: 

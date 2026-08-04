@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TurnCardGame.Data;
 using UnityEngine;
 using UnityEngine.U2D;
+using static CurrencyComponent;
 
 public class DataManager : MonoBehaviour
 {
@@ -12,17 +13,30 @@ public class DataManager : MonoBehaviour
     [Header("로드할 CardData 경로 (Resources 폴더 기준)")]
     [SerializeField] private string _CardDataloadPath = "SO/Cards";
 
+    [Header("로드할 BmItem 경로 (Resources 폴더 기준)")]
+    [SerializeField] private string _BmDataloadPath = "SO/BM";
 
-    private Dictionary<int, CharacterData>  CharacterDatas = new Dictionary<int, CharacterData>();
-    private Dictionary<int, CardData>       CardDatas = new Dictionary<int, CardData>();
+    private Dictionary<CurrencyType, List<CurrencyProductData>> BmDatas = new Dictionary<CurrencyType, List<CurrencyProductData>>();
+    private Dictionary<int, CharacterData>      CharacterDatas = new Dictionary<int, CharacterData>();
+    private Dictionary<int, CardData>           CardDatas = new Dictionary<int, CardData>();
     private Sprite[] Cardsprites;
+
 
     public CharacterData GetCharacterById(int id)
     {
         if (CharacterDatas.TryGetValue(id, out var data))
             return data;
 
-        Debug.LogError($"[CharacterDataManager] ID {id}에 해당하는 캐릭터 데이터가 없습니다.");
+        Debug.LogError($"[DataManager] ID {id}에 해당하는 캐릭터 데이터가 없습니다.");
+        return null;
+    }
+
+    public List<CurrencyProductData> GetBMData(CurrencyType type)
+    {
+        if (BmDatas.TryGetValue(type, out var data))
+            return data;
+
+        Debug.LogError($"[DataManager] {type}에 해당하는 BM 데이터가 없습니다.");
         return null;
     }
 
@@ -70,6 +84,7 @@ public class DataManager : MonoBehaviour
     {
         LoadAllCharacterData();
         LoadAllCardData();
+        LoadAllBMData();
         LoadCardSprites();
     }
 
@@ -123,6 +138,27 @@ public class DataManager : MonoBehaviour
         spriteAtlas.GetSprites(Cardsprites);
     }
 
+    private void LoadAllBMData()
+    {
+        CurrencyProductData[] allData = Resources.LoadAll<CurrencyProductData>(_BmDataloadPath);
+
+        foreach (var data in allData)
+        {
+            if(BmDatas.TryGetValue(data.CurrencyType, out var list))
+            {
+                list.Add(data);
+            }
+            else
+            {
+                var newList = new List<CurrencyProductData>();
+                newList.Add(data);
+
+                BmDatas.Add(data.CurrencyType, newList);
+            }
+        }
+
+        Debug.Log($"[DataManager] BM 데이터 {allData.Length}개 로드 완료");
+    }
     #endregion
 
 

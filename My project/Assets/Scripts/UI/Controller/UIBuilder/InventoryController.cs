@@ -74,7 +74,7 @@ public class InventoryController : BuilderController
         _Slots.Add(slot);
     }
 
-    public override void Open()
+    public override void Open(System.Object data = null)
     {
         _inventoryRoot.RemoveFromClassList("popup-Open");
         _inventoryRoot.schedule.Execute(() =>

@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using UnityEngine;
 
 public class UIBase : MonoBehaviour
@@ -13,7 +14,7 @@ public class UIBase : MonoBehaviour
             _Animator.Initialize();
     }
 
-    public virtual void Open()
+    public virtual void Open(System.Object data = null)
     {
         gameObject.SetActive(true);
 

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class FadeUI : UIBase
 {
-    public override void Open()
+    public override void Open(System.Object data = null)
     {
         base.Open();
         _Animator.Play_Animation();
