@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TurnCardGame.Data;
 using UnityEngine;
@@ -12,16 +13,9 @@ public class BattlePlayerData : TurnParticipantBase
     private GameObject              TransformParent;
     private ActionQueue             ActionQueue = new ActionQueue();
 
-#if UNITY_EDITOR
-    static int                      SampleIndex = 1;
-#endif
-
     public BattlePlayerData()
     {
-#if UNITY_EDITOR
-        Name = $"Sample Test Player {SampleIndex}";
-        SampleIndex++;
-#endif
+        Name = $"Sample Test Player {PlayerTurnIndex}";
 
         Decks = new List<int>(GAME_CONST.Const.MAX_DECK);
         Hands = new List<int>(GAME_CONST.Const.MAX_HAND);
@@ -32,7 +26,6 @@ public class BattlePlayerData : TurnParticipantBase
 
         ADDSamplePlayerData();
     }
-
    
     public BattlePlayerData(PlayerData playerData, bool IsLocalPlayer = false)
     {
@@ -44,8 +37,6 @@ public class BattlePlayerData : TurnParticipantBase
 
         TransformParent = new GameObject(Name + "_Party");
     }
-
-    public Queue<CardAction> GetOldActions() { return ActionQueue._OldActQueues; }
 
     public void Request_ADDParty(int ID, Vector3 WorldPosition = default)
     {
@@ -94,7 +85,7 @@ public class BattlePlayerData : TurnParticipantBase
     {
         Hands.RemoveAt(card.UseCard._Data.HandIndex);
 
-        var CardAct = new CardAction(card.Target, EACTION_TYPE.ATTACK);
+        var CardAct = new CardAction(PlayerTurnIndex, card.Target, EACTION_TYPE.ATTACK);
         ADD_ActQueue(CardAct);
     }
 
@@ -114,7 +105,11 @@ public class BattlePlayerData : TurnParticipantBase
     }
 
     #region ActionQueue
-    public void ADD_ActQueue(CardAction action)  { ActionQueue.ADD_ActQueue(action); }
+    public void ADD_ActQueue(CardAction action)  
+    {
+        ActionQueue.ADD_ActQueue(action); 
+
+    }
     public int  ActionCount() { return ActionQueue._ActQueues.Count; }
     public void Update_PlayerAction() { ActionQueue.Update_PlayerAction(); }
     #endregion

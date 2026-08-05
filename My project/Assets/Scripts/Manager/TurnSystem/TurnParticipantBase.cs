@@ -3,11 +3,17 @@ using UnityEngine;
 
 public class TurnParticipantBase : ITurnParticipant
 {
+    public int      PlayerTurnIndex { get; private set; }
     public string   Name { get; protected set; }
     public bool     IsActive { get; protected set; }
 
     public bool IsLocal { get; protected set; }
     public event Func<string, bool> RequestTurnEnd;
+
+    public void SetPlayerTurn(int Index)
+    {
+        PlayerTurnIndex = Index;
+    }
 
     public virtual void TurnBegin()
     {

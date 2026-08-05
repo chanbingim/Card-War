@@ -31,11 +31,12 @@ public class BattleManager : MonoBehaviour
         _TrunMgr?.RequestEndTurn(_TrunMgr.Current.Name);
     }
 
-    public Queue<CardAction> GetPlayerHistoryAction(int index)
+    public Queue<CardAction> GetAllHistory()
     {
-        return _TrunMgr?.GetPlayerHistoryAction(index) ?? null;
+        return _TrunMgr?.GetAllHistory() ?? null;
     }
     #endregion
+
 
     #region Defualt
     static public BattleManager instance { get; private set; }
@@ -59,11 +60,11 @@ public class BattleManager : MonoBehaviour
 
     public void Initialize()
     {
-        if (InitStage() == false)
+       /* if (InitStage() == false)
         {
             Debug.LogWarning("Initialize Fail Stage");
             return;
-        }
+        }*/
 
         if (InitBattleCardManager() == false)
         {
@@ -87,6 +88,7 @@ public class BattleManager : MonoBehaviour
             return;
         }
 
+ 
         Debug.LogWarning("Initialize Complelted BattleManager");
     }
 

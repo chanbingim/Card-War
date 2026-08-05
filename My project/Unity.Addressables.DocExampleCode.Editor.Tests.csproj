@@ -1253,6 +1253,10 @@
       <Project>{3FFCFF8A-7E01-149E-0ED8-E099EB63C6D4}</Project>
       <Name>Unity.ScriptableBuildPipeline.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.Services.Core.csproj">
+      <Project>{65F16392-679C-5B53-9435-F12308680A68}</Project>
+      <Name>Unity.Services.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

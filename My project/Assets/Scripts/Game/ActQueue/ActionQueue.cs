@@ -1,9 +1,10 @@
+using System;
 using System.Collections.Generic;
 
 public class ActionQueue
 {
     public  Queue<CardAction> _ActQueues { get; private set; } = new Queue<CardAction>();
-    public Queue<CardAction> _OldActQueues { get; private set; } = new Queue<CardAction>();
+    public  Queue<CardAction> _OldActQueues { get; private set; } = new Queue<CardAction>();
     private CardAction _CurAction;
 
     public void ADD_ActQueue(CardAction Act)
@@ -21,7 +22,8 @@ public class ActionQueue
 
         if (_ActQueues.Count > 0)
         {
-            _CurAction = _OldActQueues.Dequeue();
+            _CurAction = _ActQueues.Dequeue();
+            EventBus.Publish<CardActionEvent>(new CardActionEvent(_CurAction));
         }
     }
 

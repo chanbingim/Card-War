@@ -68,10 +68,10 @@ public class InventoryController : BuilderController
 
     private void ADD_Slot(int CardID)
     {
-        var slot = InventorySlot.Create(_itemListPanel);
-        slot.SetData(DataManager.instance.GetCardById(CardID));
+        //var slot = InventorySlot.Create(_itemListPanel);
+       /* slot.SetData(DataManager.instance.GetCardById(CardID));
 
-        _Slots.Add(slot);
+        _Slots.Add(slot);*/
     }
 
     public override void Open(System.Object data = null)

@@ -1,30 +1,23 @@
 using DG.Tweening;
 using System;
-using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class TurnHistoryUI : UIBase
+public class TurnHistoryUI : RecycleScrollView<CardAction>
 {
-    [SerializeField] private Image          _BackGround = null;
-    [SerializeField] private List<UIBase>   _HistoryView;
-    [SerializeField] private int            _ViewCount = 5;
+    [Header("애니메이션 위치")]
+    public Transform    _AnimTransform;
 
-    private Queue<CardAction>       _act = null;
-  
-
-    private int                     _maxPage = 0;
-    private int                     _CurPage = 1;
-
-    private int                     _Percent = 5;
-
-    void Start()
+    private void OnCardActionAdd(ActionRecordedEvent data)
     {
-        _ViewCount = _HistoryView.Count;
-     
+        ComputeRectSize();
+        if (_prevStartIndex == 0)
+        {
+            PlayAnim();
+        }
     }
 
-    public void SettingHistoryData(int ViewPlayerIndex)
+    public void SettingHistoryData()
     {
         try
         {
@@ -32,39 +25,62 @@ public class TurnHistoryUI : UIBase
             if (BattleMgr == null)
                 throw new ArgumentException("[TrunHistoryUI] Battle Manager NULL");
 
-            _act = BattleMgr.GetPlayerHistoryAction(ViewPlayerIndex);
-            if(_act == null)
+            _datas = BattleMgr.GetAllHistory();
+            if (_datas == null)
                 throw new ArgumentException("[TrunHistoryUI] Not Find Action");
 
-            _maxPage = (_act.Count / _ViewCount) + 1;
+            RefreshView();
         }
         catch (Exception e)
         {
             Debug.Log(e);
         }
     }
-    
-    public void ChangeValue(int Value)
+
+    private void PlayAnim()
     {
-        _CurPage = Math.Clamp(_CurPage + Value, 1, _maxPage);
+        var LastItem = _pooledItems.Last();
+        _pooledItems.Remove(LastItem);
 
-        for(int i = 0; i < _ViewCount; i++)
+        LastItem.transform.position = _AnimTransform.transform.position;
+        _pooledItems.Insert(0, LastItem);
+
+        float Startsize = (_itemHeight + _spacing) * 0.5f;
+        for (int i = 0; i < _pooledItems.Count; i++)
         {
-            int iIndex = (_CurPage * _ViewCount) + i;
+            int dataIndex = _prevStartIndex + i;
+            var go = _pooledItems[i];
 
-            if (_act.Count <= iIndex)
-                _HistoryView[i].Close();
-            else
+            //dataIndex가 유효 범위에 있는지 확인
+            if (dataIndex >= 0 && dataIndex < _datas.Count)
             {
-                _HistoryView[i].Open();
-                //여기서 값 세팅
+                go.SetActive(true);
+                var rt = go.GetComponent<RectTransform>();
+                float anchoredY = -dataIndex * (_itemHeight + _spacing) - Startsize;
+                rt.DOAnchorPos(new Vector2(0, anchoredY) + _Offset, 0.6f);
             }
-
+            else //데이터 범위 초과한 gameObject들은 active false.
+            {
+                go.SetActive(false);
+            }
         }
+    }
+
+    void Start()
+    {
+        SettingHistoryData();
+        Init();
+
+        EventBus.Subscribe<ActionRecordedEvent>(OnCardActionAdd);
     }
 
     protected override void OnDestroy()
     {
         base.OnDestroy();
+    }
+
+    private void OnDisable()
+    {
+        EventBus.Unsubscribe<ActionRecordedEvent>(OnCardActionAdd);
     }
 }

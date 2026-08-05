@@ -1,4 +1,4 @@
-using GamePlay.Enum;
+using UI.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +16,7 @@ public class UIManager : MonoBehaviour
 {
     // 스크립터블 오브젝트 UI 정보
     [SerializeField] private List<UIConfig>     _Configs;
-    private Dictionary<Type, UIConfig>          _typeConfigTable = new();
+    private Dictionary<UIID, UIConfig>          _typeConfigTable = new();
     private Dictionary<string, UIConfig>        _keyConfigTable = new();
 
     // 팝업 Canvas Layer
@@ -31,7 +31,7 @@ public class UIManager : MonoBehaviour
 
     // 캐시 테이블
     private Dictionary<string, int>         _keyCashTable = new();
-    private Dictionary<Type, int>           _typeCashTable = new();
+    private Dictionary<UIID, int>           _typeCashTable = new();
     private List<UIBase>                    _UIList = new();
 
     // UI Key 세팅에 따른 동작
@@ -49,25 +49,6 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    #region FadeInOut
-    public async Task FadeInOut(Action func = null)
-    {
-        await ShowAsync("FadeIn");
-
-        if(func != null)
-        {
-            if (!_keyCashTable.TryGetValue("FadeIn", out var idx))
-                return;
-
-            _UIList[idx].Open();
-            await _UIList[idx].GetComponent<DoTweenAnimator>().AsyncOnCompleted();
-
-            _UIList[idx].Close();
-            func.Invoke();
-        }
-    }
-    #endregion
-
     #region PopUp Action
     public void Clear_AllStack()
     {
@@ -82,7 +63,7 @@ public class UIManager : MonoBehaviour
         Setting_CanvasGroup(false);
     }
 
-    public async Task ShowAsync(String key)
+    public async Task ShowAsync(String key, System.Object data = null)
     {
         if (!_keyCashTable.TryGetValue(key, out var idx))
         {
@@ -94,25 +75,23 @@ public class UIManager : MonoBehaviour
 
         if (_keyConfigTable.TryGetValue(key, out var config))
         {
-            ConfigureScreen(idx, config);
+            ConfigureScreen(idx, config, data);
         }
     }
 
-    public async Task ShowAsync<T>()
+    public async Task ShowAsync(UIID ID, System.Object data = null)
     {
-        Type type = typeof(T);
-
-        if (!_typeCashTable.TryGetValue(type, out var idx))
+        if (!_typeCashTable.TryGetValue(ID, out var idx))
         {
-            idx =  await AddUIAsync<T>();
+            idx =  await AddUIAsync(ID);
         }
 
         if (idx == -1)
             return;
 
-        if (_typeConfigTable.TryGetValue(type, out var config))
+        if (_typeConfigTable.TryGetValue(ID, out var config))
         {
-            ConfigureScreen(idx, config);
+            ConfigureScreen(idx, config, data);
         }
     }
 
@@ -126,11 +105,9 @@ public class UIManager : MonoBehaviour
         _UIList[idx].Close();
     }
 
-    public void HideAsync<T>()
+    public void HideAsync(UIID ID)
     {
-        Type type = typeof(T);
-
-        if (!_typeCashTable.TryGetValue(type, out var idx))
+        if (!_typeCashTable.TryGetValue(ID, out var idx))
         {
             return;
         }
@@ -138,16 +115,14 @@ public class UIManager : MonoBehaviour
         _UIList[idx].Close();
     }
 
-    private void ConfigureScreen(int idx, UIConfig config)
+    private void ConfigureScreen(int idx, UIConfig config, System.Object data)
     {
         if (config.CanvasType == EUICanvas.Screen_Popup)
         {
             OpenPopup(_UIList[idx]);
         }
-        else
-        {
-            _UIList[idx].Open();
-        }
+
+        _UIList[idx].Open(data);
     }
 
     private async Task<int> AddUIAsync(String name)
@@ -159,7 +134,7 @@ public class UIManager : MonoBehaviour
             int Idx = _UIList.Count;
             _UIList.Add(UI);
 
-            _typeCashTable.Add(UI.GetType(), Idx);
+            _typeCashTable.Add(config.ID, Idx);
             _keyCashTable.Add(config.name, Idx);
             return Idx;
         }
@@ -171,17 +146,16 @@ public class UIManager : MonoBehaviour
         return -1;
     }
 
-    private async Task<int> AddUIAsync<T>()
+    private async Task<int> AddUIAsync(UIID ID)
     {
-        Type type = typeof(T);
-        if (_typeConfigTable.TryGetValue(type, out var config))
+        if (_typeConfigTable.TryGetValue(ID, out var config))
         {
             var UI = await CreateUserInterface(config);
 
             int Idx = _UIList.Count;
             _UIList.Add(UI);
 
-            _typeCashTable.Add(type, Idx);
+            _typeCashTable.Add(ID, Idx);
             _keyCashTable.Add(config.AddressKey, Idx);
             return Idx;
         }
@@ -245,8 +219,6 @@ public class UIManager : MonoBehaviour
             _popup_List.Remove(ui);
 
         _popup_List.Add(ui);
-
-        ui.Open();
         Setting_CanvasGroup(true);
     }
 
@@ -302,6 +274,7 @@ public class UIManager : MonoBehaviour
         foreach (var config in _Configs)
         {
             _keyConfigTable.Add(config.name, config);
+            _typeConfigTable.Add(config.ID, config);
 
             if (config.Key == KeyCode.None)
                 continue;

@@ -1,9 +1,12 @@
-using GamePlay.Enum;
+using UI.Enum;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "UI", menuName = "Scriptable Objects/UI")]
 public class UIConfig: ScriptableObject
 {
+    [Header("UI ID")]
+    public UIID     ID;
+
     [Header("Addressable")]
     public string AddressKey;
 

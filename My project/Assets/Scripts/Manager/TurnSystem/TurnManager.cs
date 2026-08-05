@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class TurnManager
 {
@@ -9,26 +10,23 @@ public class TurnManager
     public int CurrentTurnIndex     { get; private set; } = 0;   // 현재 턴인 참가자의 인덱스
     public int CurrentPhase         { get; private set; } = 1;        // 현재 진행 중인 Phase (1부터 시작)
     public bool IsRunning           { get; private set; } = false;
+    public BattlePlayerData         LocalPlayer { get; private set; }
 
     public ITurnParticipant Current => _participants[CurrentTurnIndex];
     public int ParticipantCount => _participants.Count;
 
     Boolean                         _IsActTrun = false;
-    public BattlePlayerData         LocalPlayer { get; private set; }
+    Queue<CardAction>               _AllPlayerAction = new Queue<CardAction>();
 
-
-    public Queue<CardAction> GetPlayerHistoryAction(int index)
+    public void Release()
     {
-        if (index < 0 || _participants.Count <= index)
-            return null;
-
-        var Player = _participants[index] as BattlePlayerData;
-        if (Player == null)
-            return null;
-
-        return Player.GetOldActions();
+        EventBus.Unsubscribe<CardActionEvent>(OnCardActionAdd);
     }
 
+    public Queue<CardAction> GetAllHistory()
+    {
+        return _AllPlayerAction;
+    }
 
     public bool IsPlayerTurn() { return LocalPlayer.IsActive; }
     public void PlayerTrunEnd()
@@ -44,7 +42,13 @@ public class TurnManager
 
         return instance;
     }
-    
+
+    private void OnCardActionAdd(CardActionEvent data)
+    {
+        _AllPlayerAction.Enqueue(data.Action);
+        EventBus.Publish<ActionRecordedEvent>(new(data.Action));
+    }
+
     private bool Initialize(List<ITurnParticipant> participants)
     {
         if (participants == null || participants.Count == 0)
@@ -57,6 +61,7 @@ public class TurnManager
             Base.RequestTurnEnd += RequestEndTurn;
         }
 
+        EventBus.Subscribe<CardActionEvent>(OnCardActionAdd);
         return true;
     }
 
@@ -77,6 +82,13 @@ public class TurnManager
 
     public void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Delete))
+        {
+            OnCardActionAdd(new CardActionEvent(
+                new CardAction(1, null, EACTION_TYPE.ATTACK)
+                ));
+        }
+
         if(_IsActTrun)
         {
             Turn_Action();

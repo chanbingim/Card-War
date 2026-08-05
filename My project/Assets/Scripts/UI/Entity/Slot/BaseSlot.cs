@@ -1,7 +1,8 @@
 using System;
+using UnityEngine;
 using UnityEngine.UIElements;
 
-public abstract class BaseSlot : VisualElement
+public abstract class BaseSlot : UIBase
 {
     protected int             _SlotID;
 

@@ -41,6 +41,6 @@ public class CurrencyComponent : MonoBehaviour
         if(UIMgr == null)
             Debug.LogWarning("[CurrencyComponent] Not Create UIManager");
 
-        UIMgr.ShowAsync("BMpopup");
+        UIMgr.ShowAsync(UI.Enum.UIID.CashShop);
     }
 }

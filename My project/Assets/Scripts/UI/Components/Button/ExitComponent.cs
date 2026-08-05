@@ -1,3 +1,5 @@
+using System;
+using UI.Enum;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -5,7 +7,7 @@ public class ExitComponent : MonoBehaviour, IPointerClickHandler
 {
     private async void ExitGame()
     {
-        await UIManager.instance.FadeInOut(FadeCompeleted);
+        await UIManager.instance.ShowAsync(UIID.Fade, (Action)FadeCompeleted);
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -20,6 +22,8 @@ public class ExitComponent : MonoBehaviour, IPointerClickHandler
 #else
         Application.Quit();
 #endif
+
+        UIManager.instance.HideAsync(UIID.Fade);
     }
 
 }
