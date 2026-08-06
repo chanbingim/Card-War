@@ -143,8 +143,8 @@
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Core\Utilities\LinqUtility.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Core\Listeners\MonoBehaviour\UnityOnJointBreakMessageListener.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Core\Dependencies\FullSerializer\Reflection\fsTypeCache.cs" />
-    <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Core\Dependencies\FullSerializer\fsBaseConverter.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Core\Dependencies\FullSerializer\fsJsonPrinter.cs" />
+    <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Core\Dependencies\FullSerializer\fsBaseConverter.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Core\Dependencies\FullSerializer\Converters\fsGuidConverter.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Core\Graphs\MergedGraphElementCollection.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Core\Collections\NonNullableCollection.cs" />
@@ -158,8 +158,8 @@
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Core\Graphs\IGraphElementWithData.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Core\Unity\Singleton.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Core\Dependencies\FullSerializer\Converters\fsDictionaryConverter.cs" />
-    <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Core\Graphs\GraphReference.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Core\Reflection\Operators\AdditionHandler.cs" />
+    <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Core\Graphs\GraphReference.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Core\Graphs\GraphElement.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Core\Dependencies\FullSerializer\fsAotCompilationManager.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Core\Connections\IConnectionCollection.cs" />
@@ -296,8 +296,8 @@
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Core\Reflection\Operators\InequalityHandler.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Core\Ensure\EnsureThat.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Core\Reflection\Optimization\InstanceActionInvoker_1.cs" />
-    <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Core\Reflection\TypeNameDetail.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Core\Reflection\Optimization\InstanceFunctionInvokerBase.cs" />
+    <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Core\Reflection\TypeNameDetail.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Core\Platforms\AotIncompatibleAttribute.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Core\Reflection\Operators\InvalidOperatorException.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Core\Graphs\GraphStack.cs" />
@@ -347,8 +347,8 @@
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Core\Properties\AssemblyInfo.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Core\Serialization\SerializeAttribute.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Core\Reflection\Operators\LeftShiftHandler.cs" />
-    <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Core\Listeners\UI\UnityOnDropdownValueChangedMessageListener.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Core\EditorBinding\Inspector\InspectorLabelAttribute.cs" />
+    <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Core\Listeners\UI\UnityOnDropdownValueChangedMessageListener.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Core\Reflection\Optimization\Action_6.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Core\Listeners\MessageListener.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Core\Dependencies\FullSerializer\fsMemberSerialization.cs" />
@@ -484,8 +484,8 @@
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Core\Exceptions\InvalidImplementationException.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Core\Reflection\Optimization\IOptimizedAccessor.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Core\Reflection\Operators\SubtractionHandler.cs" />
-    <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Core\Serialization\SerializeAsAttribute.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Core\EditorBinding\Inspector\InspectViaImplementationsAttribute.cs" />
+    <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Core\Serialization\SerializeAsAttribute.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Core\Dependencies\FullSerializer\fsExceptions.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Core\Ensure\EnsureThat.Strings.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Core\Collections\NonNullableHashSet.cs" />
@@ -1059,6 +1059,10 @@
       <HintPath>Library\PackageCache\com.unity.ext.nunit@d8c07649098d\net40\unity-custom\nunit.framework.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="XblPCSandbox">
+      <HintPath>Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Tools\SandboxSwitcher\XblPCSandbox.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.Plastic.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@0b1559bcd34e\Lib\Editor\Unity.Plastic.Antlr3.Runtime.dll</HintPath>
       <Private>False</Private>
@@ -1103,6 +1107,10 @@
       <HintPath>Assets\Plugins\Demigiant\DOTween\Editor\DOTweenUpgradeManager.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@4dfd81071c64\Runtime\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.VisualScripting.TextureAssets">
       <HintPath>Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\EditorAssetResources\Unity.VisualScripting.TextureAssets.dll</HintPath>
       <Private>False</Private>
@@ -1113,14 +1121,6 @@
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe">
       <HintPath>Library\PackageCache\com.unity.collections@9796e5ee0d9e\Unity.Collections.Tests\System.Runtime.CompilerServices.Unsafe\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@4dfd81071c64\Runtime\Newtonsoft.Json.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="XblPCSandbox">
-      <HintPath>Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Tools\SandboxSwitcher\XblPCSandbox.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Android.Types">

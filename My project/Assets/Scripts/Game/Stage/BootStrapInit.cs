@@ -1,35 +1,29 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
-using System.Threading.Tasks;
 using UnityEngine;
 
 public class BootStrapInit : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private async void Start()
     {
-        StartCoroutine(Init());
-
-        Debug.Log("BootStrapInit 종료");
-    }
-
-    private void Awake()
-    {
-     
+        await InitAsync();
     }
 
 
-    IEnumerator Init()
+    private async UniTask InitAsync()
     {
-        Task task = AddressableManager.instance.InitializeAsync();
-        while (!task.IsCompleted)
-            yield return null;
-
-        DataManager.instance.Initialize();
-        task = UIManager.instance.Initialize();
-        while (!task.IsCompleted)
-            yield return null;
+        await AddressableManager.instance.InitializeAsync();
+        await UniTask.WhenAll(
+            UIManager.instance.InitializeAsync(),
+            DataManager.instance.InitializeAsync()
+         );
 
         GameManager.instance.ChangeScene("MainMenu");
-        Debug.Log("Coroutine");
+
+        Debug.Log("비동기 2초 대기");
+        await UniTask.Delay(2000);
+        Debug.Log("비동기 초기화 완료");
+
     }
 }

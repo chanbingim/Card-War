@@ -209,15 +209,15 @@
     <Compile Include="Library\PackageCache\com.unity.timeline@8cd8509afae5\Editor\treeview\Snapping\ISnappable.cs" />
     <Compile Include="Library\PackageCache\com.unity.timeline@8cd8509afae5\Editor\Window\TimelineNavigator.cs" />
     <Compile Include="Library\PackageCache\com.unity.timeline@8cd8509afae5\Editor\Actions\TrackActions.cs" />
+    <Compile Include="Library\PackageCache\com.unity.timeline@8cd8509afae5\Editor\Window\TimelineWindow_TrackGui.cs" />
     <Compile Include="Library\PackageCache\com.unity.timeline@8cd8509afae5\Editor\Tooltip.cs" />
     <Compile Include="Library\PackageCache\com.unity.timeline@8cd8509afae5\Editor\Manipulators\Sequence\TrimClip.cs" />
-    <Compile Include="Library\PackageCache\com.unity.timeline@8cd8509afae5\Editor\Window\TimelineWindow_TrackGui.cs" />
     <Compile Include="Library\PackageCache\com.unity.timeline@8cd8509afae5\Editor\Actions\Menus\TimelineContextMenu.cs" />
     <Compile Include="Library\PackageCache\com.unity.timeline@8cd8509afae5\Editor\DirectorNamedColor.cs" />
     <Compile Include="Library\PackageCache\com.unity.timeline@8cd8509afae5\Editor\treeview\ManipulationsTracks.cs" />
-    <Compile Include="Library\PackageCache\com.unity.timeline@8cd8509afae5\Editor\Items\ItemsGroup.cs" />
     <Compile Include="Library\PackageCache\com.unity.timeline@8cd8509afae5\Editor\Manipulators\AddDelete\AddDeleteItemModeReplace.cs" />
     <Compile Include="Library\PackageCache\com.unity.timeline@8cd8509afae5\Editor\Manipulators\Sequence\EaseClip.cs" />
+    <Compile Include="Library\PackageCache\com.unity.timeline@8cd8509afae5\Editor\Items\ItemsGroup.cs" />
     <Compile Include="Library\PackageCache\com.unity.timeline@8cd8509afae5\Editor\inspectors\TimeFieldDrawer.cs" />
     <Compile Include="Library\PackageCache\com.unity.timeline@8cd8509afae5\Editor\Utilities\PreviewedBindings.cs" />
     <Compile Include="Library\PackageCache\com.unity.timeline@8cd8509afae5\Editor\Utilities\StyleNormalColorOverride.cs" />
@@ -228,8 +228,8 @@
     <Compile Include="Library\PackageCache\com.unity.timeline@8cd8509afae5\Editor\Animation\AnimationTrackActions.cs" />
     <Compile Include="Library\PackageCache\com.unity.timeline@8cd8509afae5\Editor\treeview\Drawers\Layers\ItemsLayer.cs" />
     <Compile Include="Library\PackageCache\com.unity.timeline@8cd8509afae5\Editor\Items\ItemsUtils.cs" />
-    <Compile Include="Library\PackageCache\com.unity.timeline@8cd8509afae5\Editor\Actions\IAction.cs" />
     <Compile Include="Library\PackageCache\com.unity.timeline@8cd8509afae5\Editor\treeview\ItemGui\TimelineMarkerGUI.cs" />
+    <Compile Include="Library\PackageCache\com.unity.timeline@8cd8509afae5\Editor\Actions\IAction.cs" />
     <Compile Include="Library\PackageCache\com.unity.timeline@8cd8509afae5\Editor\Animation\CurvesProxy.cs" />
     <Compile Include="Library\PackageCache\com.unity.timeline@8cd8509afae5\Editor\Manipulators\Cursors\TimelineCursors.cs" />
     <Compile Include="Library\PackageCache\com.unity.timeline@8cd8509afae5\Editor\inspectors\BuiltInCurvePresets.cs" />
@@ -923,6 +923,10 @@
       <HintPath>Library\PackageCache\com.unity.ext.nunit@d8c07649098d\net40\unity-custom\nunit.framework.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="XblPCSandbox">
+      <HintPath>Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Tools\SandboxSwitcher\XblPCSandbox.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.Plastic.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@0b1559bcd34e\Lib\Editor\Unity.Plastic.Antlr3.Runtime.dll</HintPath>
       <Private>False</Private>
@@ -967,6 +971,10 @@
       <HintPath>Assets\Plugins\Demigiant\DOTween\Editor\DOTweenUpgradeManager.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@4dfd81071c64\Runtime\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.VisualScripting.TextureAssets">
       <HintPath>Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\EditorAssetResources\Unity.VisualScripting.TextureAssets.dll</HintPath>
       <Private>False</Private>
@@ -977,14 +985,6 @@
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe">
       <HintPath>Library\PackageCache\com.unity.collections@9796e5ee0d9e\Unity.Collections.Tests\System.Runtime.CompilerServices.Unsafe\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@4dfd81071c64\Runtime\Newtonsoft.Json.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="XblPCSandbox">
-      <HintPath>Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Tools\SandboxSwitcher\XblPCSandbox.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Android.Types">

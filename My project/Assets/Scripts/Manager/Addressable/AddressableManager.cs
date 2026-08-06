@@ -1,7 +1,7 @@
+using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -32,7 +32,7 @@ public class AddressableManager : MonoBehaviour
     }
 
     #region Load
-    public async Task LoadLabelAll(string label, Action<float >action = null)
+    public async UniTask LoadLabelAll(string label, Action<float >action = null)
     {
         if (_groups.ContainsKey(label))
             return;
@@ -41,7 +41,7 @@ public class AddressableManager : MonoBehaviour
         
         // 함수는 Label의 Tag에 따라서 데이터를 로드한다.
         // label의 값으로 들어온 tag를 가지고있는 데이터는 전부 로드
-        var locations = await Addressables.LoadResourceLocationsAsync(label).Task;
+        var locations = await Addressables.LoadResourceLocationsAsync(label).ToUniTask();
       
         // 반환된 경로값을 통해 로드한다.
         // AssetName을 통해 데이터를 로드하고 그룹에 추가하는 행위
@@ -54,10 +54,10 @@ public class AddressableManager : MonoBehaviour
             while (!handle.IsDone)
             {
                 action?.Invoke(handle.PercentComplete);
-                await Task.Yield();
+                await UniTask.Yield();
             }
 
-            await handle.Task;
+            await handle.ToUniTask();
             action?.Invoke(1f);
 
             if (handle.Status != AsyncOperationStatus.Succeeded)
@@ -95,20 +95,20 @@ public class AddressableManager : MonoBehaviour
         return Addressables.LoadAssetAsync<UnityEngine.Object>(location);
     }
 
-    public async Task<T> LoadAsync<T>(string tag, int level)
+    public async UniTask<T> LoadAsync<T>(string tag, int level)
         where T : UnityEngine.Object
     {
         return await LoadAsync<T>($"{tag}_{level}");
     }
 
-    public async Task<T> LoadAsync<T>(string key)
+    public async UniTask<T> LoadAsync<T>(string key)
         where T : UnityEngine.Object
     {
         if (_cache.TryGetValue(key, out var cache))
             return cache as T;
 
         AsyncOperationHandle<T> handle = Addressables.LoadAssetAsync<T>(key);
-        await handle.Task;
+        await handle.ToUniTask();
 
         if (handle.Status != AsyncOperationStatus.Succeeded)
         {
@@ -241,10 +241,10 @@ public class AddressableManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public async Task InitializeAsync(Action<float> action = null)
+    public async UniTask InitializeAsync(Action<float> action = null)
     {
         // 어드레서블 초기화
-        await Addressables.InitializeAsync().Task;
+        await Addressables.InitializeAsync().ToUniTask();
         await LoadLabelAll("STATIC", action);
 
         Debug.Log("Addressable Load Compleleted");

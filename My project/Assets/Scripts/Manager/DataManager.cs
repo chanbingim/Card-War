@@ -1,6 +1,8 @@
+using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using TurnCardGame.Data;
+using Unity.Profiling;
 using UnityEngine;
 using UnityEngine.U2D;
 using static CurrencyComponent;
@@ -27,7 +29,7 @@ public class DataManager : MonoBehaviour
         if (CharacterDatas.TryGetValue(id, out var data))
             return data;
 
-        Debug.LogError($"[DataManager] ID {id}에 해당하는 캐릭터 데이터가 없습니다.");
+        UnityEngine.Debug.LogError($"[DataManager] ID {id}에 해당하는 캐릭터 데이터가 없습니다.");
         return null;
     }
 
@@ -36,7 +38,7 @@ public class DataManager : MonoBehaviour
         if (BmDatas.TryGetValue(type, out var data))
             return data;
 
-        Debug.LogError($"[DataManager] {type}에 해당하는 BM 데이터가 없습니다.");
+        UnityEngine.Debug.LogError($"[DataManager] {type}에 해당하는 BM 데이터가 없습니다.");
         return null;
     }
 
@@ -50,7 +52,7 @@ public class DataManager : MonoBehaviour
         if (CardDatas.TryGetValue(id, out var data))
             return data;
 
-        Debug.LogError($"[DataManager] ID {id}에 해당하는 카드 데이터가 없습니다.");
+        UnityEngine.Debug.LogError($"[DataManager] ID {id}에 해당하는 카드 데이터가 없습니다.");
         return null;
     }
 
@@ -80,54 +82,64 @@ public class DataManager : MonoBehaviour
             instance = null;
     }
 
-    public void Initialize()
+    private static readonly ProfilerMarker Marker =
+        new ProfilerMarker("DataManager.InitializeAsync");
+
+    public async UniTask InitializeAsync()
     {
-        LoadAllCharacterData();
-        LoadAllCardData();
-        LoadAllBMData();
-        LoadCardSprites();
+        await UniTask.WhenAll(
+            LoadAllCharacterData(),
+            LoadAllCardData(),
+            LoadAllBMData(),
+            LoadCardSprites()
+        );
     }
 
-    private void LoadAllCharacterData()
+    private async UniTask LoadAllCharacterData()
     {
         CharacterData[] allData = Resources.LoadAll<CharacterData>(_CharacterDataloadPath);
 
-        foreach (var data in allData)
+        await UniTask.RunOnThreadPool(() =>
         {
-            if (CharacterDatas.ContainsKey(data.Id))
+            foreach (var data in allData)
             {
-                Debug.LogError($"[CharacterDataManager] 중복된 캐릭터 ID 발견: {data.Id} ({data.name})");
-                continue;
-            }
+                if (CharacterDatas.ContainsKey(data.Id))
+                {
+                    Debug.LogError($"[CharacterDataManager] 중복된 캐릭터 ID 발견: {data.Id} ({data.name})");
+                    continue;
+                }
 
-            CharacterDatas.Add(data.Id, data);
-        }
+                CharacterDatas.Add(data.Id, data);
+            }
+        });
 
         Debug.Log($"[CharacterDataManager] 캐릭터 데이터 {CharacterDatas.Count}개 로드 완료");
     }
 
-    private void LoadAllCardData()
+    private async UniTask LoadAllCardData()
     {
         CardData[] allData = Resources.LoadAll<CardData>(_CardDataloadPath);
-
-        foreach (var data in allData)
+        await UniTask.RunOnThreadPool(() =>
         {
-            if (CardDatas.ContainsKey(data.CardId))
+            foreach (var data in allData)
             {
-                Debug.LogError($"[DataManager] 중복된 카드 ID 발견: {data.CardId} ({data.name})");
-                continue;
-            }
+                if (CardDatas.ContainsKey(data.CardId))
+                {
+                    Debug.LogError($"[DataManager] 중복된 카드 ID 발견: {data.CardId} ({data.name})");
+                    continue;
+                }
 
-            CardDatas.Add(data.CardId, data);
-        }
+                CardDatas.Add(data.CardId, data);
+            }
+        });
 
         Debug.Log($"[DataManager] 카드 데이터 {CharacterDatas.Count}개 로드 완료");
     }
 
-    private void LoadCardSprites()
+    private async UniTask LoadCardSprites()
     {
         AddressableManager AddressableMgr = AddressableManager.instance;
-        if(AddressableMgr == null)
+        if (AddressableMgr == null)
             throw new ArgumentException("어드레서블 매니저 생성 필요");
 
         SpriteAtlas spriteAtlas = AddressableMgr.Get<SpriteAtlas>("Atlas/CardAtlas");
@@ -136,26 +148,31 @@ public class DataManager : MonoBehaviour
 
         Cardsprites = new Sprite[spriteAtlas.spriteCount];
         spriteAtlas.GetSprites(Cardsprites);
+
+        await UniTask.CompletedTask;
     }
 
-    private void LoadAllBMData()
+    private async UniTask LoadAllBMData()
     {
         CurrencyProductData[] allData = Resources.LoadAll<CurrencyProductData>(_BmDataloadPath);
 
-        foreach (var data in allData)
+        await UniTask.RunOnThreadPool(() =>
         {
-            if(BmDatas.TryGetValue(data.CurrencyType, out var list))
+            foreach (var data in allData)
             {
-                list.Add(data);
-            }
-            else
-            {
-                var newList = new List<CurrencyProductData>();
-                newList.Add(data);
+                if (BmDatas.TryGetValue(data.CurrencyType, out var list))
+                {
+                    list.Add(data);
+                }
+                else
+                {
+                    var newList = new List<CurrencyProductData>();
+                    newList.Add(data);
 
-                BmDatas.Add(data.CurrencyType, newList);
+                    BmDatas.Add(data.CurrencyType, newList);
+                }
             }
-        }
+        });
 
         Debug.Log($"[DataManager] BM 데이터 {allData.Length}개 로드 완료");
     }

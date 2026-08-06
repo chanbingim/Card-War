@@ -747,6 +747,10 @@
       <HintPath>Library\PackageCache\com.unity.ext.nunit@d8c07649098d\net40\unity-custom\nunit.framework.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="XblPCSandbox">
+      <HintPath>Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Tools\SandboxSwitcher\XblPCSandbox.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.Plastic.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@0b1559bcd34e\Lib\Editor\Unity.Plastic.Antlr3.Runtime.dll</HintPath>
       <Private>False</Private>
@@ -791,6 +795,10 @@
       <HintPath>Assets\Plugins\Demigiant\DOTween\Editor\DOTweenUpgradeManager.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@4dfd81071c64\Runtime\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.VisualScripting.TextureAssets">
       <HintPath>Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\EditorAssetResources\Unity.VisualScripting.TextureAssets.dll</HintPath>
       <Private>False</Private>
@@ -801,14 +809,6 @@
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe">
       <HintPath>Library\PackageCache\com.unity.collections@9796e5ee0d9e\Unity.Collections.Tests\System.Runtime.CompilerServices.Unsafe\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@4dfd81071c64\Runtime\Newtonsoft.Json.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="XblPCSandbox">
-      <HintPath>Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Tools\SandboxSwitcher\XblPCSandbox.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Android.Types">
@@ -1481,13 +1481,13 @@
       <Project>{FD8EE2EF-8EFE-250B-1D53-A5CB7421B24D}</Project>
       <Name>Unity.2D.Common.Editor</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.Addressables.csproj">
-      <Project>{6B9AFBAA-5C0B-B28F-E613-D5A7076CDC35}</Project>
-      <Name>Unity.Addressables</Name>
-    </ProjectReference>
     <ProjectReference Include="Unity.Microsoft.GDK.Editor.csproj">
       <Project>{6BB85EB7-4943-105A-A239-7EF4AD34B7F2}</Project>
       <Name>Unity.Microsoft.GDK.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Addressables.csproj">
+      <Project>{6B9AFBAA-5C0B-B28F-E613-D5A7076CDC35}</Project>
+      <Name>Unity.Addressables</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.2D.Animation.Runtime.csproj">
       <Project>{3282F605-1BA0-A72B-E013-0963239ECC0E}</Project>
@@ -1521,6 +1521,10 @@
       <Project>{AE2B8359-24CC-A487-E887-B464FF119CD5}</Project>
       <Name>Unity.2D.Tilemap.Extras.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="UniTask.TextMeshPro.csproj">
+      <Project>{65B4D07C-C996-FD33-3417-E55B3C6DCD07}</Project>
+      <Name>UniTask.TextMeshPro</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.VisualStudio.Editor.csproj">
       <Project>{A5250F35-1318-2544-DD4C-5C2FC4147C97}</Project>
       <Name>Unity.VisualStudio.Editor</Name>
@@ -1552,6 +1556,10 @@
     <ProjectReference Include="Unity.Purchasing.Stores.XboxCloudServices.csproj">
       <Project>{3593264C-83F4-35A6-1624-A54A5375F47C}</Project>
       <Name>Unity.Purchasing.Stores.XboxCloudServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="UniTask.Linq.csproj">
+      <Project>{59C9ABB3-0B4F-9AE0-624F-DB3E16703D7E}</Project>
+      <Name>UniTask.Linq</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.2D.SpriteShape.Editor.csproj">
       <Project>{077AA5B1-BE7E-65F2-C87F-D9D7EE95961E}</Project>
@@ -1673,6 +1681,10 @@
       <Project>{242025EB-A21F-C644-83EA-B3689224D1C8}</Project>
       <Name>Unity.ResourceManager</Name>
     </ProjectReference>
+    <ProjectReference Include="UniTask.DOTween.csproj">
+      <Project>{D28A459C-EEA5-2F3B-51BC-BD5A91F5532E}</Project>
+      <Name>UniTask.DOTween</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.2D.Common.Runtime.csproj">
       <Project>{7AFA5A8C-BFEB-E797-B1AD-DEA8A0CA124A}</Project>
       <Name>Unity.2D.Common.Runtime</Name>
@@ -1685,13 +1697,13 @@
       <Project>{9DC54C43-50D1-95EB-BB01-5C3160E083A4}</Project>
       <Name>Unity.Timeline.Editor</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.Mathematics.csproj">
-      <Project>{F3E1D955-3AEC-9B08-AE6D-867DCA9DF752}</Project>
-      <Name>Unity.Mathematics</Name>
-    </ProjectReference>
     <ProjectReference Include="Unity.Purchasing.SecurityCore.csproj">
       <Project>{0F7B6030-F3D4-F255-5C0A-4DC4D2405ABF}</Project>
       <Name>Unity.Purchasing.SecurityCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Mathematics.csproj">
+      <Project>{F3E1D955-3AEC-9B08-AE6D-867DCA9DF752}</Project>
+      <Name>Unity.Mathematics</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Burst.csproj">
       <Project>{768BBF1D-EC13-B258-0C08-0F6608410401}</Project>
@@ -1709,9 +1721,17 @@
       <Project>{63E92730-EF54-26EB-8736-03A962D8FE11}</Project>
       <Name>Unity.Collections.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="UniTask.Addressables.csproj">
+      <Project>{662814E8-39D8-FBF0-B05D-61CE1BC9EBE0}</Project>
+      <Name>UniTask.Addressables</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.Microsoft.GDK.csproj">
       <Project>{A508796B-C0E8-CA1C-48F6-5A39D370E9BB}</Project>
       <Name>Unity.Microsoft.GDK</Name>
+    </ProjectReference>
+    <ProjectReference Include="UniTask.csproj">
+      <Project>{7D7354E4-C077-1E3D-D236-63F8D28E9DE8}</Project>
+      <Name>UniTask</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Purchasing.WebshopService.csproj">
       <Project>{67339DBC-FB5E-BD14-AE1F-F966A157C31E}</Project>

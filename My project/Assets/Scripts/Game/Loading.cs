@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using UnityEngine.UI;
-using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 
 public class Loading : MonoBehaviour
 {
@@ -24,7 +24,7 @@ public class Loading : MonoBehaviour
         float ProgressValue = 1f;
         int StageIdx = GameMgr.StageIndex;
 
-        Task addressableTask = null;
+        UniTask addressableTask;
         if (StageIdx != 0)
         {
             ProgressValue = 0f;
@@ -42,7 +42,7 @@ public class Loading : MonoBehaviour
         }
 
         _text.text = "패키지 로딩중~~~";
-        while (!addressableTask.IsCompleted)
+        while (!addressableTask.Status.IsCompleted())
         {
             _Progress.value = ProgressValue * 0.5f;
             yield return null;

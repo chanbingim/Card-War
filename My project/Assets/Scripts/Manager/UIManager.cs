@@ -1,8 +1,9 @@
-using UI.Enum;
+using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using UI.Enum;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [Serializable]
@@ -63,7 +64,7 @@ public class UIManager : MonoBehaviour
         Setting_CanvasGroup(false);
     }
 
-    public async Task ShowAsync(String key, System.Object data = null)
+    public async UniTask ShowAsync(String key, System.Object data = null)
     {
         if (!_keyCashTable.TryGetValue(key, out var idx))
         {
@@ -79,7 +80,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public async Task ShowAsync(UIID ID, System.Object data = null)
+    public async UniTask ShowAsync(UIID ID, System.Object data = null)
     {
         if (!_typeCashTable.TryGetValue(ID, out var idx))
         {
@@ -125,7 +126,7 @@ public class UIManager : MonoBehaviour
         _UIList[idx].Open(data);
     }
 
-    private async Task<int> AddUIAsync(String name)
+    private async UniTask<int> AddUIAsync(String name)
     {
         if (_keyConfigTable.TryGetValue(name, out var config))
         {
@@ -146,7 +147,7 @@ public class UIManager : MonoBehaviour
         return -1;
     }
 
-    private async Task<int> AddUIAsync(UIID ID)
+    private async UniTask<int> AddUIAsync(UIID ID)
     {
         if (_typeConfigTable.TryGetValue(ID, out var config))
         {
@@ -167,7 +168,7 @@ public class UIManager : MonoBehaviour
         return -1;
     }
 
-    private async Task<UIBase> CreateUserInterface(UIConfig Config)
+    private async UniTask<UIBase> CreateUserInterface(UIConfig Config)
     {
         try
         {
@@ -269,7 +270,7 @@ public class UIManager : MonoBehaviour
             Destroy(this);
     }
 
-    public async Task Initialize()
+    public async UniTask InitializeAsync()
     {
         foreach (var config in _Configs)
         {
