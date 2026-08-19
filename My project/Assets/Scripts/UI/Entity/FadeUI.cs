@@ -13,10 +13,12 @@ public class FadeUI : UIBase
         if(data != null)
         {
             if(FinishedAction  != null)
-                _Animator._OnCompleted -= FinishedAction;
-
-            FinishedAction = (Action)data;
-            _Animator._OnCompleted += FinishedAction;
+            {
+                _Animator.OnCompleted -= FinishedAction;
+                FinishedAction = (Action)data;
+                _Animator.OnCompleted += FinishedAction;
+            }
+                
         }
     }
 
@@ -24,7 +26,7 @@ public class FadeUI : UIBase
     {
         base.Close();
         _Animator.Pause_Animation();
-        _Animator._OnCompleted -= FinishedAction;
+        _Animator.OnCompleted -= FinishedAction;
         FinishedAction = null;
     }
 }

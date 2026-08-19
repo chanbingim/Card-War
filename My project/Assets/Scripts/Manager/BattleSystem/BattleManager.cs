@@ -31,16 +31,41 @@ public class BattleManager : MonoBehaviour
         _TrunMgr?.RequestEndTurn(_TrunMgr.Current.Name);
     }
 
-    public Queue<CardAction> GetAllHistory()
+    public IReadOnlyList<CharacterAction> GetAllHistory()
     {
         return _TrunMgr?.GetAllHistory() ?? null;
     }
+
+    public TurnManager.ETurnType GetTurnType()
+    {
+        return _TrunMgr?._TurnType ?? TurnManager.ETurnType.END;
+    }
     #endregion
 
+    #region Battle Mgr
+    public void RequestAttack(Character Attacker, Character Target)
+    {
+        CharacterRuntimeData AttackData = Attacker.Data;
+        CharacterRuntimeData TargetData = Target.Data;
+
+        int DamageAmount = ComputeDamageLogic(AttackData.CurrentATKPower);
+
+        _TrunMgr.ADDHistoryActionData(new BattleAction(Attacker, Target, EACTION_TYPE.ATTACK));
+        Target.RequestDamaged(DamageAmount);
+    }
+
+
+    private int ComputeDamageLogic(int OrizinDamage)
+    {
+
+        return OrizinDamage;
+    }
+
+    #endregion
 
     #region Defualt
     static public BattleManager instance { get; private set; }
-    private void Awake()
+    private void Start()
     {
         if (instance != null && instance != this)
         {
@@ -60,11 +85,11 @@ public class BattleManager : MonoBehaviour
 
     public void Initialize()
     {
-       /* if (InitStage() == false)
+        if (InitStage() == false)
         {
             Debug.LogWarning("Initialize Fail Stage");
             return;
-        }*/
+        }
 
         if (InitBattleCardManager() == false)
         {
@@ -75,21 +100,13 @@ public class BattleManager : MonoBehaviour
         // 이거 나중에 서버에서 받아오긴할거임
         List<ITurnParticipant> participants = new List<ITurnParticipant>();
         participants.Add(GameClientManager.instance.GetBattleData());
-
-        for (int i = 1; i < 2; i++)
-        {
-            var player = new BattlePlayerData();
-            participants.Add(player);
-        }
+        participants.Add(new BattlePlayerData());
 
         if (InitTurnManager(participants) == false)
         {
             Debug.LogWarning("Initialize Fail TurnManager");
             return;
         }
-
- 
-        Debug.LogWarning("Initialize Complelted BattleManager");
     }
 
     private bool InitBattleCardManager()

@@ -11,8 +11,6 @@ public class Stage : MonoBehaviour
         Utility.CHECK(_EnemyTransformAnchor);
 
         // 여기서 Map에 필요한 기능 전부 세팅
-
-
     }
 
     public Vector3 GetPlayerWorldPosition(Vector3 LocalPos)

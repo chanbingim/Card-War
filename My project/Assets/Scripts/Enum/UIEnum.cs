@@ -11,15 +11,17 @@ namespace UI.Enum
         Option,
         Fade,
         CashShop,
-        CharacterInfo
+        CharacterInfo,
+        GameSceneOption,
     }
 
     public enum EUICanvas
     {
-        Screen,
+        Screen_Overlay,
         Screen_Popup,
-        World,
-        Overlay,
+
+        Scene_World,
+        Scene_Overlay,
         END,
     }
 }

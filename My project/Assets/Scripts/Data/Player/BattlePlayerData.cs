@@ -1,24 +1,24 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TurnCardGame.Data;
 using UnityEngine;
 
 public class BattlePlayerData : TurnParticipantBase
 {
     public  List<int>               Decks;
-    public  List<int>               Hands;
+    public  List<UI_CardData>       Hands;
     public  List<int>               Skills;
     public  List<Character>         PlayerParty { get; protected set; }
 
     private GameObject              TransformParent;
-    private ActionQueue             ActionQueue = new ActionQueue();
 
     public BattlePlayerData()
     {
         Name = $"Sample Test Player {PlayerTurnIndex}";
 
         Decks = new List<int>(GAME_CONST.Const.MAX_DECK);
-        Hands = new List<int>(GAME_CONST.Const.MAX_HAND);
+        Hands = new List<UI_CardData>(GAME_CONST.Const.MAX_HAND);
         Skills = new List<int>(GAME_CONST.Const.MAX_SKILL);
 
         TransformParent = new GameObject(Name + "_Party");
@@ -32,34 +32,24 @@ public class BattlePlayerData : TurnParticipantBase
         Name = playerData.Name;
         Decks = new List<int>(playerData.Decks);
         Skills = new List<int>(playerData.Skills);
-        Hands = new List<int>(GAME_CONST.Const.MAX_HAND);
+        Hands = new List<UI_CardData>(GAME_CONST.Const.MAX_HAND);
         IsLocal = IsLocalPlayer;
 
         TransformParent = new GameObject(Name + "_Party");
+        ADDSamplePlayerData();
     }
 
     public void Request_ADDParty(int ID, Vector3 WorldPosition = default)
     {
-        GameObject Prefab = AddressableManager.instance.Get<GameObject>("Prefabs/Character"); // 여기서 어드레서블로 받는다.
+        var Character = Factory.CharacterCreateFactory.Create(
+         ID,
+         TransformParent.transform,
+         WorldPosition,
+         IsLocal);
 
-        if (!Utility.CHECK(Prefab))
+        if (Character == null)
             return;
-
-        var obj = GameObject.Instantiate(Prefab, TransformParent.transform);
-        if (Utility.CHECK(obj) == false)
-            return;
-
-        Character character = obj.GetComponent<Character>();
-        character.transform.position = WorldPosition;
-
-        if (Utility.CHECK(character))
-        {
-            if (IsLocal == false)
-                character.GetComponent<SpriteRenderer>().flipX = true;
-
-            character.Initialize(ID);
-            character.OnFinishedAct += ActionQueue.Next_Action;
-        }
+       
     }
 
     public UI_CardData DrawCard()
@@ -72,21 +62,24 @@ public class BattlePlayerData : TurnParticipantBase
             Decks.RemoveAt(0);
 
             HandIndex = Hands.Count;
-            Hands.Add(ID);
+            Hands.Add(new UI_CardData(HandIndex, ID));
         }
 
         if (ID <= 0)
             return null;
 
-        return new UI_CardData(HandIndex, ID);
+        return Hands.Last();
     }
 
     public void UseCard(UseCardEvent card)
     {
-        Hands.RemoveAt(card.UseCard._Data.HandIndex);
-
-        var CardAct = new CardAction(PlayerTurnIndex, card.Target, EACTION_TYPE.ATTACK);
-        ADD_ActQueue(CardAct);
+        TurnManager.ETurnType TrunType = BattleManager.instance.GetTurnType();
+        if (TrunType == TurnManager.ETurnType.USE_CARDTRUN)
+        {
+            Hands.Remove(card.UseCard._Data);
+            var CardAct = new CardAction(PlayerTurnIndex, card.Target, card.UseCard._Data, EACTION_TYPE.USE_CARD);
+            EventBus.Publish<CardActionEvent>(new CardActionEvent(CardAct));
+        }
     }
 
     public void Request_RemoveParty(Character character)
@@ -102,22 +95,14 @@ public class BattlePlayerData : TurnParticipantBase
     {
         if (IsActive == false)
             return;
-    }
 
-    #region ActionQueue
-    public void ADD_ActQueue(CardAction action)  
-    {
-        ActionQueue.ADD_ActQueue(action); 
+
 
     }
-    public int  ActionCount() { return ActionQueue._ActQueues.Count; }
-    public void Update_PlayerAction() { ActionQueue.Update_PlayerAction(); }
-    #endregion
 
     private void OnDisable()
     {
-        foreach (var character  in PlayerParty)
-            character.OnFinishedAct -= ActionQueue.Next_Action;
+
     }
 
     private void ADDSamplePlayerData()
@@ -133,8 +118,17 @@ public class BattlePlayerData : TurnParticipantBase
         var Fomation = AddressableMgr.Get<FormationSO>("Formation/ThreeFormation");
         if (Fomation != null)
         {
-            Request_ADDParty(1, stage.GetPlayerWorldPosition(Fomation.LocalPosition[0]));
-            Request_ADDParty(2, stage.GetPlayerWorldPosition(Fomation.LocalPosition[1]));
+            if(IsLocal)
+            {
+                Request_ADDParty(1, stage.GetPlayerWorldPosition(Fomation.LocalPosition[0]));
+                Request_ADDParty(2, stage.GetPlayerWorldPosition(Fomation.LocalPosition[1]));
+            }
+            else
+            {
+                Request_ADDParty(3, stage.GetEnemyWorldPosition(Fomation.LocalPosition[0]));
+                Request_ADDParty(4, stage.GetEnemyWorldPosition(Fomation.LocalPosition[1]));
+            }
+            
         }
         else
         {

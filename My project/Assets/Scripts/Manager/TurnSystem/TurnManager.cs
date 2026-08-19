@@ -1,38 +1,40 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
+using System.Linq;
 
 public class TurnManager
 {
-    // ---- 상태 ----
+    public enum ETurnType
+    {
+        USE_CARDTRUN,
+        ATTACK_ACTIONTURN,
+        END
+    }
+
     public List<ITurnParticipant> _participants { get; private set; }
 
     public int CurrentTurnIndex     { get; private set; } = 0;   // 현재 턴인 참가자의 인덱스
     public int CurrentPhase         { get; private set; } = 1;        // 현재 진행 중인 Phase (1부터 시작)
     public bool IsRunning           { get; private set; } = false;
     public BattlePlayerData         LocalPlayer { get; private set; }
+    public ETurnType                _TurnType { get; private set; }  = ETurnType.END;
 
     public ITurnParticipant Current => _participants[CurrentTurnIndex];
     public int ParticipantCount => _participants.Count;
-
-    Boolean                         _IsActTrun = false;
-    Queue<CardAction>               _AllPlayerAction = new Queue<CardAction>();
+   
+    List<CharacterAction>               _AllPlayerAction = new List<CharacterAction>();
 
     public void Release()
     {
         EventBus.Unsubscribe<CardActionEvent>(OnCardActionAdd);
     }
 
-    public Queue<CardAction> GetAllHistory()
+    public IReadOnlyList<CharacterAction> GetAllHistory()
     {
         return _AllPlayerAction;
     }
 
     public bool IsPlayerTurn() { return LocalPlayer.IsActive; }
-    public void PlayerTrunEnd()
-    {
-        LocalPlayer.TurnEnd();
-    }
 
     public static TurnManager Create(List<ITurnParticipant> participants)
     {
@@ -43,10 +45,15 @@ public class TurnManager
         return instance;
     }
 
+    public void ADDHistoryActionData(CharacterAction data)
+    {
+        _AllPlayerAction.Add(data);
+    }
+
     private void OnCardActionAdd(CardActionEvent data)
     {
-        _AllPlayerAction.Enqueue(data.Action);
-        EventBus.Publish<ActionRecordedEvent>(new(data.Action));
+        ADDHistoryActionData(data.Action);
+        EventBus.Publish<ActionRecordedEvent>(new ActionRecordedEvent(data.Action));
     }
 
     private bool Initialize(List<ITurnParticipant> participants)
@@ -59,9 +66,13 @@ public class TurnManager
         {
             var Base = participant as TurnParticipantBase;
             Base.RequestTurnEnd += RequestEndTurn;
+
+            if (Base.IsLocal)
+                LocalPlayer = Base as BattlePlayerData;
         }
 
         EventBus.Subscribe<CardActionEvent>(OnCardActionAdd);
+        _TurnType = ETurnType.USE_CARDTRUN;
         return true;
     }
 
@@ -76,30 +87,16 @@ public class TurnManager
 
     private void StartTurn()
     {
-        EventBus.Publish<TurnUIEvent>(new TurnUIEvent(Current.Name));
+        EventBus.Publish<TurnUIEvent>(new TurnUIEvent(Current.Name, _TurnType));
         Current.TurnBegin();
     }
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Delete))
-        {
-            OnCardActionAdd(new CardActionEvent(
-                new CardAction(1, null, EACTION_TYPE.ATTACK)
-                ));
-        }
+        if (Current == null)
+            return;
 
-        if(_IsActTrun)
-        {
-            Turn_Action();
-        }
-        else
-        {
-            if (Current == null)
-                return;
-
-            Current.TurnRunning();
-        }
+        Current.TurnRunning();
     }
 
     /// 현재 참가자의 턴을 종료하고 다음 참가자로 넘김.
@@ -121,38 +118,28 @@ public class TurnManager
             return false;
         }
 
-        ExecuteEndTurn();
+        _TurnType++;
+        if (_TurnType == ETurnType.END)
+        {
+            ExecuteEndTurn();
+            _TurnType = ETurnType.USE_CARDTRUN;
+        }
+
         return true;
     }
 
     private void ExecuteEndTurn()
     {
-        bool isLast = CurrentTurnIndex == _participants.Count - 1;
+        Current.TurnEnd();
+        CurrentTurnIndex++;
 
-        if (isLast)
+        if (CurrentTurnIndex >= _participants.Count)
         {
-            //EventBus.Publish<TurnStartEvent>(new TurnStartEvent(Current.Name));
             CurrentTurnIndex = 0;
             CurrentPhase++;
         }
-        else
-        {
-            CurrentTurnIndex++;
-        }
 
-        _IsActTrun = true;
-    }
-
-    void Turn_Action()
-    {
-        BattlePlayerData player = Current as BattlePlayerData;
-        if (player?.ActionCount() <= 0)
-        {
-            _IsActTrun = false;
-            StartTurn();
-        }
-
-        player.Update_PlayerAction();
+        StartTurn();
     }
 
     public void Stop()

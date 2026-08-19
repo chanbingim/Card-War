@@ -18,7 +18,7 @@ public abstract class RecycleScrollView<T> : UIBase
 
     protected int _prevStartIndex = -1; //스크롤 시 이전 Index에서 변화가 있는지 체크용.
     protected List<GameObject> _pooledItems = new List<GameObject>(); //프리팹 풀링용도
-    protected Queue<T> _datas = new();
+    protected IReadOnlyList<T> _datas = Array.Empty<T>();
 
     public void ChangeValue(Vector2 Value)
     {
@@ -37,7 +37,7 @@ public abstract class RecycleScrollView<T> : UIBase
         _Content.sizeDelta = new Vector2(_Content.sizeDelta.x, contentHeight);
     }
 
-    protected virtual void Init()
+    protected virtual void Init(IReadOnlyList<T> datas)
     {
         for (int i = 0; i < _visibleCount; i++)
         {
@@ -49,12 +49,14 @@ public abstract class RecycleScrollView<T> : UIBase
             _pooledItems.Add(item);
         }
 
-        ComputeRectSize();
         _ScrollRect.onValueChanged.AddListener(ChangeValue);
+        _datas = datas;
+
+        ComputeRectSize();
         RefreshView();
     }
 
-    protected void RefreshView()
+    protected virtual void RefreshView()
     {
         float scrollY = _Content.anchoredPosition.y;
         int startIndex = Mathf.FloorToInt(scrollY / (_itemHeight + _spacing));

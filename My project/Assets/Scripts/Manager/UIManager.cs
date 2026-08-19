@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UI.Enum;
-using Unity.VisualScripting;
 using UnityEngine;
 
 [Serializable]
@@ -37,6 +36,31 @@ public class UIManager : MonoBehaviour
 
     // UI Key 세팅에 따른 동작
     private Dictionary<KeyCode, Action>     _KeyInputs = new Dictionary<KeyCode, Action>();
+
+    #region Canvas
+    public Canvas GetCanvas(EUICanvas Type)
+    {
+        if(_CanvasTypes.TryGetValue(Type, out var canvas))
+            return canvas;
+
+        return null;
+    }
+    public void RegisteCanvas(EUICanvas Type, Canvas canvas)
+    {
+        if(!_CanvasTypes.ContainsKey(Type))
+        {
+            _CanvasTypes.Add(Type, canvas);
+        }
+    }
+
+    public void UnRegisteCanvas(EUICanvas Type)
+    {
+        if (_CanvasTypes.ContainsKey(Type))
+        {
+            _CanvasTypes.Remove(Type);
+        }
+    }
+    #endregion
 
     public void BindKeyAction(KeyCode key, Action action)
     {
@@ -103,6 +127,9 @@ public class UIManager : MonoBehaviour
             return;
         }
 
+        if (_popup_List.Contains(_UIList[idx]))
+            _popup_List.Remove(_UIList[idx]);
+
         _UIList[idx].Close();
     }
 
@@ -113,6 +140,9 @@ public class UIManager : MonoBehaviour
             return;
         }
 
+        if (_popup_List.Contains(_UIList[idx]))
+            _popup_List.Remove(_UIList[idx]);
+
         _UIList[idx].Close();
     }
 
@@ -122,6 +152,9 @@ public class UIManager : MonoBehaviour
         {
             OpenPopup(_UIList[idx]);
         }
+
+        if(data != null)
+            data = _UIList[idx];
 
         _UIList[idx].Open(data);
     }
@@ -243,7 +276,8 @@ public class UIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Close_Popup();
+            if(_popup_List.Count > 0)
+                Close_Popup();
         }
 
         foreach (var pair in _KeyInputs)
@@ -287,7 +321,7 @@ public class UIManager : MonoBehaviour
                     if (_UIList[idx].gameObject.activeSelf)
                         HideAsync(config.name);
                     else
-                        OpenPopup(_UIList[idx]);
+                        ConfigureScreen(idx, config, null);
                 }
                 else
                     await ShowAsync(config.name);

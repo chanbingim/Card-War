@@ -15,6 +15,11 @@ public class BattleCardManager
         ClientPlayer.UseCard(card);
     }
 
+    public void Relese()
+    {
+        EventBus.Unsubscribe<UseCardEvent>(Use_Card);
+    }
+
     #region Default
     /* 객체를 오래 소유하는 것은 피할것 */
     public static BattleCardManager Create()

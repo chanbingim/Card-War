@@ -1,14 +1,16 @@
 using DG.Tweening;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
+using UnityEngine.U2D;
 using UnityEngine.UI;
 
 public class TurnUI : UIBase
 {
-    [SerializeField] List<Sprite> _sprites;
+    [SerializeField] SpriteAtlas _spriteAtlas;
 
     Text _text = null;
     Image _image = null;
+    Sprite[] _sprites = null;
     RectTransform _rectTransform = null;
 
     Vector3 _StatPos = Vector3.zero;
@@ -24,6 +26,13 @@ public class TurnUI : UIBase
         _StatPos = new Vector2(-Width, 0);
         _EndPos = new Vector2(Width + 200, 0);
 
+        _sprites = new Sprite[_spriteAtlas.spriteCount];
+        _spriteAtlas.GetSprites(_sprites);
+        Array.Sort(_sprites ,(item1, item2) =>
+        {
+            return item1.name.CompareTo(item2.name);
+        });
+
         EventBus.Subscribe<TurnUIEvent>(View_TurnUI);
         gameObject.SetActive(false);
     }
@@ -36,10 +45,17 @@ public class TurnUI : UIBase
     private void View_TurnUI(TurnUIEvent turnStartEvent)
     {
         var Player = BattleManager.instance.GetLoaclPlayer();
-        if (0 == (Player.Name.CompareTo(turnStartEvent.Name)))
-            _image.sprite = _sprites[0]; 
+        if (turnStartEvent.eTurnType == TurnManager.ETurnType.USE_CARDTRUN)
+        {
+            if (0 == (Player.Name.CompareTo(turnStartEvent.Name)))
+                _image.sprite = _sprites[0];
+            else
+                _image.sprite = _sprites[1];
+        }
         else
-            _image.sprite = _sprites[1];
+        {
+            _image.sprite = _sprites[2];
+        }
 
         _text.text = turnStartEvent.Name;
         Sequence seq = DOTween.Sequence()

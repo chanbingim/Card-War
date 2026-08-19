@@ -63,7 +63,9 @@ public class CardController : MonoBehaviour
     {
         _cardList.Remove(card.UseCard);
 
-        Destroy(card.UseCard);
+        card.UseCard.Close();
+        Destroy(card.UseCard.gameObject);
+
         RefreshCardTransform();
     }
 

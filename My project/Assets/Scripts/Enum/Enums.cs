@@ -15,5 +15,18 @@ namespace GamePlay.Enum
         END,
     }
 
+    public enum EPoolType
+    {
+        Obejct,
+        UI,
+        Effect,
+        END
+    }
+
+    public enum EffectType
+    {
+        Hit,
+        END
+    }
    
 }

@@ -5,7 +5,7 @@ public class GameClientManager : MonoBehaviour
 {
     private PlayerData _playerData;
 
-    public BattlePlayerData                     GetBattleData()         { return new BattlePlayerData(_playerData); }
+    public BattlePlayerData                     GetBattleData()         { return new BattlePlayerData(_playerData, true); }
     public IReadOnlyDictionary<int, StageData>  GetPlayerStages()       { return _playerData?.StageDatas; }
     public IReadOnlyDictionary<int, int>        GetCollection()         { return _playerData?.Collections; }
     public IReadOnlyList<int>                   GetPlayerSkill()        { return _playerData?.Skills; }
@@ -39,6 +39,8 @@ public class GameClientManager : MonoBehaviour
        _playerData.ADDCollection(2, 4);
        _playerData.ADDCollection(3, 3);
        _playerData.ADDCollection(4, 2);
+
+        _playerData.ReName("Client A");
     }
 
     #endregion

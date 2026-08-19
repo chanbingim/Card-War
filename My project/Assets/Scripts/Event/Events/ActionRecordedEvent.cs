@@ -3,9 +3,9 @@ using UnityEngine;
 
 public readonly struct ActionRecordedEvent
 {
-    public readonly CardAction Action;
+    public readonly CharacterAction Action;
 
-    public ActionRecordedEvent(CardAction action)
+    public ActionRecordedEvent(CharacterAction action)
     {
         Action = action;
     }

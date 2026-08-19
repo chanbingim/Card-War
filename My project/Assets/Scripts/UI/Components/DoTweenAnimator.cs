@@ -9,7 +9,7 @@ using UnityEngine;
 public class DoTweenAnimator : MonoBehaviour
 {
     public bool             _AnimationPasue { get; private set; }
-    public event Action     _OnCompleted;
+    public event Action     OnCompleted;
 
     [SerializeReference] private List<UIAnimData>    _AnimList;
     [SerializeField]    private float          _TotalPlayTime = 1f;
@@ -84,7 +84,7 @@ public class DoTweenAnimator : MonoBehaviour
                     _AnimationPasue = false;
                 }
 
-                _OnCompleted?.Invoke();
+                OnCompleted?.Invoke();
             }
         }
     }
@@ -95,11 +95,11 @@ public class DoTweenAnimator : MonoBehaviour
 
         void Complete()
         {
-            _OnCompleted -= Complete;
+            OnCompleted -= Complete;
             tcs.TrySetResult(true);
         }
 
-        _OnCompleted += Complete;
+        OnCompleted += Complete;
         return tcs.Task;
     }
 

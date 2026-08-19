@@ -1,15 +1,24 @@
-using UnityEngine;
 using TurnCardGame.Data;
+using UnityEngine;
+using static TurnManager;
 
-public class Character : MonoBehaviour, IPointerHoverEvent
+public class Character : MonoBehaviour, IActionDragHandler
 {
-    int                     ID = 0;
-    CharacterRuntimeData    Data = null;
+    #region Delegate
+    public delegate void FinishedAction();
+    public delegate void OnDagmaed(float fHealthRatio);
+    public delegate void OnChangeState(CharacterRuntimeData Data);
+
+    public event OnDagmaed OnDamaged;
+    public event OnChangeState OnChangedState;
+    public event FinishedAction OnFinishedAct;
+    #endregion
+
+    int ID = 0;
+    public CharacterRuntimeData Data { get; private set; }
 
     private Material        _material = null;
-
-    public delegate void     FinishedAction();
-    public event FinishedAction     OnFinishedAct;
+    private bool            _bIsAttackAble = false;
 
     void Start()
     {
@@ -20,46 +29,86 @@ public class Character : MonoBehaviour, IPointerHoverEvent
         }
     }
 
-    public void Initialize(int CharacterID)
+    public void Initialize(int CharacterID, Vector3 Position)
     {
+        transform.position = Position;
         ID = CharacterID;
+        
         // 데이터 찾기
-        CharacterData CharacterSO = new CharacterData();
+        CharacterData CharacterSO = DataManager.instance.GetCharacterById(ID);
         Data = new CharacterRuntimeData(CharacterSO);
     }
 
-    public void OnDrop(UIBase DragUI)
+    public void RequestDamaged(int Amount)
     {
-        Debug.Log("Use Card");
+        Data.TakeDamage(Amount);
+        OnChangedState?.Invoke(Data);
 
-        var CardUI = DragUI as CardUI;
-        if( CardUI != null )
+        if(Data.IsDead)
         {
-            EventBus.Publish<UseCardEvent>(new UseCardEvent(this, CardUI));
+            Dead();
+        }
+    }
+
+    private void Dead()
+    {
+        // 상태를 바꿀지 아님 죽음 처리할지 여기서 선택
+    }
+
+    #region DragInterfaceLogic
+    void IActionDragHandler.OnHoverEnter()
+    {
+        if (Data.IsDead)
+            return;
+
+        if (BattleManager.instance.IsPlayerTurn())
+        {
+            _material.SetFloat("_Enable", 1);
+        }
+    }
+
+    void IActionDragHandler.OnHoverExit()
+    {
+        if (BattleManager.instance.IsPlayerTurn())
+        {
+            _material.SetFloat("_Enable", 0);
+        }
+    }
+
+    void IActionDragHandler.BeginDrag()
+    {
+
+    }
+
+    void IActionDragHandler.OnDrop(MonoBehaviour DragItem)
+    {
+        if (Data.IsDead)
+        {
+            return;
         }
 
-        OnHoverExit();
+        var BattleMgr = BattleManager.instance;
+        if (TurnManager.ETurnType.USE_CARDTRUN == BattleMgr.GetTurnType())
+        {
+            var CardUI = DragItem as CardUI;
+            if (CardUI != null)
+            {
+                EventBus.Publish<UseCardEvent>(new UseCardEvent(this, CardUI));
+            }
+        }
+        else if (TurnManager.ETurnType.ATTACK_ACTIONTURN == BattleMgr.GetTurnType())
+        {
+            BattleMgr.RequestAttack((Character)DragItem, this);
+        }
     }
 
-    public void Update_Action(CardAction action)
+    void IActionDragHandler.EndDrag()
     {
-        // 상대 받아서 현재 타입에 맞는 행동을 진행한다.
-        Debug.Log($"Action {action.ActType}");
-        Action_End();
     }
 
-    public void Action_End()
+    void IActionDragHandler.OnHovering()
     {
-        OnFinishedAct.Invoke();
-    }
 
-    public void OnHoverEnter()
-    {
-        _material.SetFloat("_Enable", 1);
     }
-
-    public void OnHoverExit()
-    {
-        _material.SetFloat("_Enable", 0);
-    }
+    #endregion
 }

@@ -1,18 +1,33 @@
 
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class TurnActionSlot : BaseSlot
 {
     [Header("UI ¿¬°á")]
-    public Image         _Image;        //Icon Image
-    public CardAction     CardData { get; private set; }
+    public float        _DurAnimtime;
 
+    [SerializeField] private Image          _Image;        //Icon Image
+    [SerializeField] private RectTransform  _RectTransform;
 
-    public void SetData(CardAction data, Vector2 Position, bool bIsAnimPlay)
+    private CardAction _CardData = null;
+
+    public void Awake()
     {
-        CardData = data;
+
+    }
+
+    public void SetData(CharacterAction data, Vector2 Position, bool bIsAnimPlay)
+    {
+        _CardData = data as CardAction;
+
+        _Image.sprite = DataManager.instance.GetCardSprite(_CardData.CardData.CardID);
+        if(bIsAnimPlay)
+        {
+            _RectTransform.DOKill();
+            _RectTransform.DOAnchorPos(Position, _DurAnimtime);
+        }
     }
 
     protected override void HoverEnter()
@@ -33,5 +48,17 @@ public class TurnActionSlot : BaseSlot
     protected override void Swap(BaseSlot target)
     {
         base.Swap(target);
+    }
+
+    private void OnDisable()
+    {
+        _RectTransform.DOKill();
+        transform.DOKill();
+    }
+
+    protected override void OnDestroy()
+    {
+        _RectTransform.DOKill();
+        base.OnDestroy();
     }
 }

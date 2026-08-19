@@ -14,7 +14,7 @@ public class AddressableManager : MonoBehaviour
     /// Key -> Asset
     private readonly Dictionary<string, UnityEngine.Object> _cache = new();
 
-    /// Label -> Group
+    /// Label -> Loaded Assets
     private readonly Dictionary<string, AddressableGroup> _groups = new();
 
     /// 개별 로드 Handle
@@ -32,12 +32,12 @@ public class AddressableManager : MonoBehaviour
     }
 
     #region Load
-    public async UniTask LoadLabelAll(string label, Action<float >action = null)
+    public async UniTask LoadLabelAll(string GroupName, string label, Action<float >action = null)
     {
         if (_groups.ContainsKey(label))
             return;
 
-        AddressableGroup group = new(label);
+        AddressableGroup group = new(GroupName);
         
         // 함수는 Label의 Tag에 따라서 데이터를 로드한다.
         // label의 값으로 들어온 tag를 가지고있는 데이터는 전부 로드
@@ -145,6 +145,29 @@ public class AddressableManager : MonoBehaviour
         return Get<T>($"{tag}_{level}");
     }
 
+    public UniTask<List<T>> GetLabelAll<T>(string Label)
+       where T : UnityEngine.Object
+    {
+        List<T> list = new List<T>();
+
+        if(_groups.TryGetValue(Label, out var group))
+        {
+            foreach(var Iter in group.Assets)
+            {
+                if (Iter.Value is not GameObject obj)
+                    continue;
+
+                var PoolAble = obj.GetComponent<T>();
+                if (PoolAble == null)
+                    continue;
+
+                list.Add(PoolAble);
+            }
+        }
+
+        return UniTask.FromResult(list);
+    }
+
     public bool TryGet<T>(string key, out T asset)
         where T : UnityEngine.Object
     {
@@ -245,7 +268,7 @@ public class AddressableManager : MonoBehaviour
     {
         // 어드레서블 초기화
         await Addressables.InitializeAsync().ToUniTask();
-        await LoadLabelAll("STATIC", action);
+        await LoadLabelAll("STATIC", "STATIC", action);
 
         Debug.Log("Addressable Load Compleleted");
 
