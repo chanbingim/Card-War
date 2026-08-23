@@ -1,3 +1,4 @@
+using DG.Tweening;
 using TurnCardGame.Data;
 using UnityEngine;
 using static TurnManager;
@@ -17,10 +18,13 @@ public class Character : MonoBehaviour, IActionDragHandler
     int ID = 0;
     public CharacterRuntimeData Data { get; private set; }
 
+    private FSM             _CharacterFSM = null;
+
     private Material        _material = null;
     private bool            _bIsAttackAble = false;
+    private Vector3         vOrizinPoint = Vector3.zero;
 
-    void Start()
+    private void Start()
     {
         SpriteRenderer spriteRender = GetComponent<SpriteRenderer>();
         if(spriteRender != null )
@@ -29,28 +33,116 @@ public class Character : MonoBehaviour, IActionDragHandler
         }
     }
 
+    private void Update()
+    {
+        _CharacterFSM?.UpdateFSM();
+    }
+
     public void Initialize(int CharacterID, Vector3 Position)
     {
         transform.position = Position;
         ID = CharacterID;
-        
+
         // 데이터 찾기
         CharacterData CharacterSO = DataManager.instance.GetCharacterById(ID);
         Data = new CharacterRuntimeData(CharacterSO);
+
+        var AddressableMgr = AddressableManager.instance;
+        Animator animator = gameObject.AddComponent<Animator>();
+
+        if(Data.Source.AnimControllerKey != null)
+            animator.runtimeAnimatorController = AddressableMgr.Get<RuntimeAnimatorController>(Data.Source.AnimControllerKey);
+
+        if (_CharacterFSM == null)
+            _CharacterFSM = GetComponent<FSM>();
+
+        _CharacterFSM.Initialized(Data.Source.FSMConfig, this, animator);
     }
 
     public void RequestDamaged(int Amount)
     {
         Data.TakeDamage(Amount);
-        OnChangedState?.Invoke(Data);
 
         if(Data.IsDead)
+            _CharacterFSM.ChangeState(EFSM_STATE.Dead);
+        else
+            _CharacterFSM.ChangeState(EFSM_STATE.Hit);
+
+        OnChangedState?.Invoke(Data);
+    }
+
+    public void MoveTarget(Vector3 vTargetPoint)
+    {
+        vOrizinPoint = transform.position;
+        _CharacterFSM.ChangeState(EFSM_STATE.Move);
+
+        var Animator = _CharacterFSM._Animator;
+        if (Animator != null)
         {
-            Dead();
+            AnimatorStateInfo state = Animator.GetCurrentAnimatorStateInfo(0);
+            transform.DOMove(vTargetPoint, state.length)
+                     .OnComplete(() =>
+                     {
+                         _CharacterFSM.ChangeState(EFSM_STATE.Attack);
+                     });
         }
     }
 
-    private void Dead()
+    public void Attack()
+    {
+        if(_CharacterFSM._CurStateType == EFSM_STATE.Attack)
+        {
+            var BattleMgr = BattleManager.instance;
+            if(BattleMgr == null)
+            {
+                Debug.LogWarning("[Character] not Find Battle Manager");
+                return;
+            }
+
+            var CurBattle = BattleMgr._CurBattleAction;
+            if (CurBattle == null)
+                return;
+
+            int Damage = BattleMgr.ComputeDamageLogic(Data.CurrentATKPower);
+            CurBattle.TargetObject.RequestDamaged(Damage);
+            AnimFinished();
+        }
+    }
+
+    public void AnimFinished()
+    {
+        if (_CharacterFSM._CurStateType == EFSM_STATE.Attack)
+        {
+            var Animator = _CharacterFSM._Animator;
+            if (Animator != null)
+            {
+                _CharacterFSM.ChangeState(EFSM_STATE.Move);
+                AnimatorStateInfo state = Animator.GetCurrentAnimatorStateInfo(0);
+                transform.DOMove(vOrizinPoint, state.length)
+                                         .OnComplete(() =>
+                                         {
+                                             _CharacterFSM.ChangeState(EFSM_STATE.Idle);
+                                         });
+            }
+        }
+    }
+
+    public virtual void Idle()
+    {
+
+    }
+
+    public virtual void Move()
+    {
+
+    }
+
+    public virtual void Hit()
+    {
+
+    }
+
+    public virtual void Dead()
     {
         // 상태를 바꿀지 아님 죽음 처리할지 여기서 선택
     }

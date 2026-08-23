@@ -62,7 +62,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\UI\Entity\Slot\TurnActionSlot.cs" />
+    <Compile Include="Assets\Scripts\Game\FSM\State\HitState.cs" />
+    <Compile Include="Assets\Scripts\Game\FSM\State\DeadState.cs" />
     <Compile Include="Assets\Scripts\Manager\TurnSystem\ITurnParticipant.cs" />
+    <Compile Include="Assets\Scripts\Game\FSM\SO\CharacterFsmConfig.cs" />
     <Compile Include="Assets\Scripts\Event\Events\CardActionEvent.cs" />
     <Compile Include="Assets\Scripts\Event\Events\TurnStartEvent.cs" />
     <Compile Include="Assets\Scripts\UI\Components\Button\BuyButtonComponent.cs" />
@@ -96,11 +99,14 @@
     <Compile Include="Assets\Scripts\UI\Components\Animation\UIAnimation.cs" />
     <Compile Include="Assets\Scripts\Manager\PoolManager\Component\PoolComponent.cs" />
     <Compile Include="Assets\Scripts\UI\Components\Button\StageClearComponent.cs" />
+    <Compile Include="Assets\Scripts\Game\FSM\State\AttackState.cs" />
     <Compile Include="Assets\Scripts\Manager\PoolManager\interface\IPoolAble.cs" />
+    <Compile Include="Assets\Scripts\Game\FSM\SO\FSMStateSO.cs" />
     <Compile Include="Assets\Scripts\UI\Entity\TurnEndButton.cs" />
     <Compile Include="Assets\Scripts\Data\CardData.cs" />
     <Compile Include="Assets\Scripts\UI\Entity\Character\BattleCharacterUI.cs" />
     <Compile Include="Assets\Scripts\UI\UIBase.cs" />
+    <Compile Include="Assets\Scripts\Game\FSM\State\State.cs" />
     <Compile Include="Assets\Scripts\UI\Components\Canvas\RegisterCanvas.cs" />
     <Compile Include="Assets\Scripts\UI\Entity\TurnHistoryUI.cs" />
     <Compile Include="Assets\Scripts\UI\Components\DoTweenAnimator.cs" />
@@ -112,9 +118,11 @@
     <Compile Include="Assets\Scripts\Game\Stage\Stage.cs" />
     <Compile Include="Assets\Scripts\Game\Stage\BootStrapInit.cs" />
     <Compile Include="Assets\Scripts\Manager\BattleSystem\BattleManager.cs" />
+    <Compile Include="Assets\Scripts\Game\FSM\FSM.cs" />
     <Compile Include="Assets\Scripts\UI\Components\UV_Scroll.cs" />
     <Compile Include="Assets\Scripts\Manager\PoolManager\ObjectPool.cs" />
     <Compile Include="Assets\Scripts\Data\Player\PlayerData.cs" />
+    <Compile Include="Assets\Scripts\Game\FSM\State\IdleState.cs" />
     <Compile Include="Assets\Scripts\UI\Entity\SettingMenu.cs" />
     <Compile Include="Assets\Scripts\Manager\TurnSystem\TurnParticipantBase.cs" />
     <Compile Include="Assets\Scripts\UI\Components\Button\abstract\HoverHandler.cs" />
@@ -131,6 +139,7 @@
     <Compile Include="Assets\Scripts\UI\Entity\BuyPopup.cs" />
     <Compile Include="Assets\Scripts\Event\Events\StageClearEvent.cs" />
     <Compile Include="Assets\Scripts\UI\Entity\Slot\InventorySlot.cs" />
+    <Compile Include="Assets\Scripts\Game\FSM\Factory\StateFactory.cs" />
     <Compile Include="Assets\Scripts\UI\Controller\UIBuilder\BuilderController.cs" />
     <Compile Include="Assets\Scripts\UI\Entity\Slot\BaseSlot.cs" />
     <Compile Include="Assets\Scripts\Data\Stage\CardData.cs" />
@@ -141,11 +150,13 @@
     <Compile Include="Assets\Scripts\Enum\UIEnum.cs" />
     <Compile Include="Assets\Scripts\Event\EventBus.cs" />
     <Compile Include="Assets\Scripts\UI\Entity\TurnUI.cs" />
+    <Compile Include="Assets\Scripts\Game\FSM\State\MoveState.cs" />
     <Compile Include="Assets\Scripts\Enum\Enums.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\UI\ToolKit\UXML\UILayerOut.UXML" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
+    <None Include="Assets\Spine\version.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile-2-Pass.shader" />
     <None Include="Assets\Scripts\UI\ToolKit\Inventory\Inventory.uxml" />
@@ -1624,17 +1635,37 @@
       <Project>{6A2F10FE-0898-9C1C-9897-D62F3A6958CF}</Project>
       <Name>Assembly-CSharp-firstpass</Name>
     </ProjectReference>
+    <ProjectReference Include="spine-csharp.csproj">
+      <Project>{1C32FA93-3A28-A81E-87A4-11426E5CBBC2}</Project>
+      <Name>spine-csharp</Name>
+    </ProjectReference>
+    <ProjectReference Include="spine-unity-examples-editor.csproj">
+      <Project>{EFDC65BA-AAD3-FDC9-1CA8-F29AC9EA672C}</Project>
+      <Name>spine-unity-examples-editor</Name>
+    </ProjectReference>
     <ProjectReference Include="UniTask.TextMeshPro.csproj">
       <Project>{65B4D07C-C996-FD33-3417-E55B3C6DCD07}</Project>
       <Name>UniTask.TextMeshPro</Name>
+    </ProjectReference>
+    <ProjectReference Include="spine-unity-examples.csproj">
+      <Project>{CAC35531-63B1-918B-98C1-DAF366799C42}</Project>
+      <Name>spine-unity-examples</Name>
     </ProjectReference>
     <ProjectReference Include="UniTask.Linq.csproj">
       <Project>{59C9ABB3-0B4F-9AE0-624F-DB3E16703D7E}</Project>
       <Name>UniTask.Linq</Name>
     </ProjectReference>
+    <ProjectReference Include="spine-unity.csproj">
+      <Project>{63ECDD77-B2A9-ED25-E8E8-13D2D2F24151}</Project>
+      <Name>spine-unity</Name>
+    </ProjectReference>
     <ProjectReference Include="UniTask.DOTween.csproj">
       <Project>{D28A459C-EEA5-2F3B-51BC-BD5A91F5532E}</Project>
       <Name>UniTask.DOTween</Name>
+    </ProjectReference>
+    <ProjectReference Include="spine-unity-editor.csproj">
+      <Project>{F125F787-6F29-6D37-20C2-E8AF068221A4}</Project>
+      <Name>spine-unity-editor</Name>
     </ProjectReference>
     <ProjectReference Include="UniTask.Addressables.csproj">
       <Project>{662814E8-39D8-FBF0-B05D-61CE1BC9EBE0}</Project>

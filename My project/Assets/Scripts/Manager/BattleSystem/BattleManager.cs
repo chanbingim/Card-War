@@ -5,11 +5,12 @@ using UnityEngine;
 
 public class BattleManager : MonoBehaviour
 {
+    public Stage GetCurrentStage() { return _Cur_Stage ? _Cur_Stage : null; }
+    public BattleAction              _CurBattleAction { get; private set; } = null;
+
     private BattleCardManager        _BattleCardManager = null;
     private TurnManager              _TrunMgr = null;
     private Stage                    _Cur_Stage = null;
-
-    public Stage GetCurrentStage() { return _Cur_Stage ? _Cur_Stage : null; }
 
     public void Update()
     {
@@ -45,17 +46,17 @@ public class BattleManager : MonoBehaviour
     #region Battle Mgr
     public void RequestAttack(Character Attacker, Character Target)
     {
-        CharacterRuntimeData AttackData = Attacker.Data;
-        CharacterRuntimeData TargetData = Target.Data;
+        _CurBattleAction = new BattleAction(Attacker, Target, EACTION_TYPE.ATTACK);
 
-        int DamageAmount = ComputeDamageLogic(AttackData.CurrentATKPower);
+        Vector3 TargetPos = Target.gameObject.transform.position;
+        Vector3 Point = TargetPos - (Vector3.right * 0.5f); 
 
-        _TrunMgr.ADDHistoryActionData(new BattleAction(Attacker, Target, EACTION_TYPE.ATTACK));
-        Target.RequestDamaged(DamageAmount);
+        Attacker.MoveTarget(Point);
+        _TrunMgr.ADDHistoryActionData(_CurBattleAction);
     }
 
 
-    private int ComputeDamageLogic(int OrizinDamage)
+    public int ComputeDamageLogic(int OrizinDamage)
     {
 
         return OrizinDamage;

@@ -10,12 +10,17 @@ namespace TurnCardGame.Data
         [SerializeField] private int    _ID;
         [SerializeField] private CHARACTER_PROPERTY   _Property = CHARACTER_PROPERTY.END;
 
+        [SerializeField] CharacterFsmConfig _FSMConfig;
+        [SerializeField] string             _AnimControllerKey;
+
         [SerializeField] private int _MaxHealth;
         [SerializeField] private int _ATKPower;
 
         public int                  Id => _ID;
         public CHARACTER_PROPERTY   Property => _Property;
 
+        public CharacterFsmConfig   FSMConfig => _FSMConfig;
+        public string               AnimControllerKey => _AnimControllerKey;
         public int                  MaxHealth => Mathf.Max(1, _MaxHealth);
         public int                  AttackPower => Mathf.Max(0, _ATKPower);
     }

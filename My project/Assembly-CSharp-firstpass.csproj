@@ -1523,17 +1523,37 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="spine-csharp.csproj">
+      <Project>{1C32FA93-3A28-A81E-87A4-11426E5CBBC2}</Project>
+      <Name>spine-csharp</Name>
+    </ProjectReference>
+    <ProjectReference Include="spine-unity-examples-editor.csproj">
+      <Project>{EFDC65BA-AAD3-FDC9-1CA8-F29AC9EA672C}</Project>
+      <Name>spine-unity-examples-editor</Name>
+    </ProjectReference>
     <ProjectReference Include="UniTask.TextMeshPro.csproj">
       <Project>{65B4D07C-C996-FD33-3417-E55B3C6DCD07}</Project>
       <Name>UniTask.TextMeshPro</Name>
+    </ProjectReference>
+    <ProjectReference Include="spine-unity-examples.csproj">
+      <Project>{CAC35531-63B1-918B-98C1-DAF366799C42}</Project>
+      <Name>spine-unity-examples</Name>
     </ProjectReference>
     <ProjectReference Include="UniTask.Linq.csproj">
       <Project>{59C9ABB3-0B4F-9AE0-624F-DB3E16703D7E}</Project>
       <Name>UniTask.Linq</Name>
     </ProjectReference>
+    <ProjectReference Include="spine-unity.csproj">
+      <Project>{63ECDD77-B2A9-ED25-E8E8-13D2D2F24151}</Project>
+      <Name>spine-unity</Name>
+    </ProjectReference>
     <ProjectReference Include="UniTask.DOTween.csproj">
       <Project>{D28A459C-EEA5-2F3B-51BC-BD5A91F5532E}</Project>
       <Name>UniTask.DOTween</Name>
+    </ProjectReference>
+    <ProjectReference Include="spine-unity-editor.csproj">
+      <Project>{F125F787-6F29-6D37-20C2-E8AF068221A4}</Project>
+      <Name>spine-unity-editor</Name>
     </ProjectReference>
     <ProjectReference Include="UniTask.Addressables.csproj">
       <Project>{662814E8-39D8-FBF0-B05D-61CE1BC9EBE0}</Project>
