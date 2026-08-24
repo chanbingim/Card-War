@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Unity Firebase Login</title>
+
+    <style>
+
+        body {
+            margin: 20px;
+            background: #111;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+
+        h2 {
+            margin-bottom: 15px;
+        }
+
+        #result {
+            white-space: pre-wrap;
+            word-break: break-all;
+            background: #222;
+            padding: 20px;
+            border-radius: 8px;
+            min-height: 400px;
+            font-family: Consolas, monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            overflow-y: auto;
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+    <h2>Unity Firebase Login</h2>
+
+    <pre id="result">Starting...</pre>
+
+
+    <script type="module">
+
+
+        // ============================================================
+        // Firebase Import
+        // ============================================================
+
+        import
+        {
+        initializeApp
+        }
+        from
+        "https://www.gstatic.com/firebasejs/13.15.0/firebase-app.js";
+
+
+        import
+        {
+        getAuth,
+        GoogleAuthProvider,
+        signInWithRedirect,
+        getRedirectResult,
+        onAuthStateChanged,
+        signOut
+        }
+        from
+        "https://www.gstatic.com/firebasejs/13.15.0/firebase-auth.js";
+
+
+        // ============================================================
+        // Log
+        // ============================================================
+
+        const resultElement =
+        document.getElementById("result");
+
+
+        function Log(message)
+        {
+        resultElement.textContent +=
+        message + "\n";
+
+        console.log(message);
+        }
+
+
+        function ClearLog()
+        {
+        resultElement.textContent = "";
+        }
+
+
+        // ============================================================
+        // Firebase Config
+        // ============================================================
+
+        const firebaseConfig =
+        {
+        apiKey:
+        "AIzaSyCvbIOnMsVcxpOAkh-g9--larhOWgdVagw",
+
+        authDomain:
+        "card-war-c7cd9.firebaseapp.com",
+
+        projectId:
+        "card-war-c7cd9",
+
+        storageBucket:
+        "card-war-c7cd9.firebasestorage.app",
+
+        messagingSenderId:
+        "248919833820",
+
+        appId:
+        "1:248919833820:web:f93d6a779632c9bcea4819",
+
+        measurementId:
+        "G-08FX75GWVY"
+        };
+
+
+        // ============================================================
+        // Firebase Initialize
+        // ============================================================
+
+        Log("================================");
+        Log("Firebase Initialize");
+        Log("================================");
+        Log("");
+
+
+        const app =
+        initializeApp(firebaseConfig);
+
+
+        const auth =
+        getAuth(app);
+
+
+        // ============================================================
+        // Google Provider
+        // ============================================================
+
+        const provider =
+        new GoogleAuthProvider();
+
+
+        // ★ Google 계정 선택창 강제
+        provider.setCustomParameters({
+        prompt: "select_account"
+        });
+
+
+        Log(
+        "Google Provider : OK"
+        );
+
+
+        Log(
+        "Google Account Selection : ENABLED"
+        );
+
+
+        Log("");
+
+
+        // ============================================================
+        // Firebase 정보
+        // ============================================================
+
+        Log(
+        "Auth : " +
+        (
+        auth
+        ? "OK"
+        : "NULL"
+        )
+        );
+
+
+        Log(
+        "Auth Domain : " +
+        auth.config.authDomain
+        );
+
+
+        Log(
+        "Current Origin : " +
+        window.location.origin
+        );
+
+
+        Log(
+        "Current URL : " +
+        window.location.href
+        );
+
+
+        Log("");
+
+
+        // ============================================================
+        // Auth State Listener
+        // ============================================================
+
+        onAuthStateChanged(
+        auth,
+        function(user)
+        {
+        Log(
+        "[Auth State Changed]"
+        );
+
+
+        if (user)
+        {
+        Log(
+        "USER FOUND"
+        );
+
+
+        Log(
+        "UID : " +
+        user.uid
+        );
+
+
+        Log(
+        "Email : " +
+        user.email
+        );
+        }
+        else
+        {
+        Log(
+        "USER : NULL"
+        );
+        }
+
+
+        Log("");
+        }
+        );
+
+
+        // ============================================================
+        // Unity Callback
+        // ============================================================
+
+        function SendUnityCallback(
+        success,
+        token = "",
+        error = ""
+        )
+        {
+        Log("");
+        Log("================================");
+        Log("Unity Callback");
+        Log("================================");
+
+
+        let callbackUrl =
+        "http://127.0.0.1:5000/callback" +
+        "?success=" +
+        success;
+
+
+        // --------------------------------------------------------
+        // Success
+        // --------------------------------------------------------
+
+        if (
+        success &&
+        token !== ""
+        )
+        {
+        callbackUrl +=
+        "&token=" +
+        encodeURIComponent(token);
+        }
+
+
+        // --------------------------------------------------------
+        // Error
+        // --------------------------------------------------------
+
+        if (
+        !success &&
+        error !== ""
+        )
+        {
+        callbackUrl +=
+        "&error=" +
+        encodeURIComponent(error);
+        }
+
+
+        Log(
+        "Callback URL:"
+        );
+
+
+        Log(
+        callbackUrl
+        );
+
+
+        Log("");
+
+
+        // --------------------------------------------------------
+        // Unity로 이동
+        // --------------------------------------------------------
+
+        window.location.href =
+        callbackUrl;
+        }
+
+
+        // ============================================================
+        // Logout
+        // ============================================================
+
+        async function Logout()
+        {
+        try
+        {
+        Log("");
+        Log("================================");
+        Log("Firebase Logout");
+        Log("================================");
+        Log("");
+
+
+        // Firebase 로그아웃
+        await signOut(auth);
+
+
+        Log(
+        "Firebase Logout Success"
+        );
+
+
+        Log(
+        "Current User : " +
+        (
+        auth.currentUser
+        ? auth.currentUser.uid
+        : "NULL"
+        )
+        );
+
+
+        Log("");
+
+
+        return true;
+        }
+        catch(error)
+        {
+        Log(
+        "Firebase Logout Error"
+        );
+
+
+        Log(
+        "Code : " +
+        (
+        error.code ||
+        "UNKNOWN"
+        )
+        );
+
+
+        Log(
+        "Message : " +
+        error.message
+        );
+
+
+        return false;
+        }
+        }
+
+
+        // ============================================================
+        // Logout 후 다시 Google Login
+        // ============================================================
+
+        async function LogoutAndLogin()
+        {
+        const logoutSuccess =
+        await Logout();
+
+
+        if (!logoutSuccess)
+        {
+        return false;
+        }
+
+
+        Log(
+        "Starting Google Login Again..."
+        );
+
+
+        await StartGoogleLogin();
+
+
+        return true;
+        }
+
+
+        // ============================================================
+        // Check Redirect Result
+        // ============================================================
+
+        async function CheckLoginResult()
+        {
+        try
+        {
+        Log("");
+        Log("================================");
+        Log("CheckLoginResult START");
+        Log("================================");
+        Log("");
+
+
+        // ----------------------------------------------------
+        // Current User BEFORE
+        // ----------------------------------------------------
+
+        Log(
+        "[1] Current User BEFORE"
+        );
+
+
+        if (auth.currentUser)
+        {
+        Log(
+        "UID : " +
+        auth.currentUser.uid
+        );
+        }
+        else
+        {
+        Log(
+        "Current User : NULL"
+        );
+        }
+
+
+        Log("");
+
+
+        // ----------------------------------------------------
+        // Redirect Result
+        // ----------------------------------------------------
+
+        Log(
+        "[2] getRedirectResult() CALL"
+        );
+
+
+        const result =
+        await getRedirectResult(auth);
+
+
+        Log(
+        "[3] getRedirectResult() RETURN"
+        );
+
+
+        Log("");
+
+
+        // ----------------------------------------------------
+        // Redirect Result
+        // ----------------------------------------------------
+
+        Log(
+        "Redirect Result : " +
+        (
+        result
+        ? "EXISTS"
+        : "NULL"
+        )
+        );
+
+
+        // ----------------------------------------------------
+        // Current User AFTER
+        // ----------------------------------------------------
+
+        Log(
+        "Current User AFTER : " +
+        (
+        auth.currentUser
+        ? auth.currentUser.uid
+        : "NULL"
+        )
+        );
+
+
+        Log("");
+
+
+        // ====================================================
+        // User 찾기
+        // ====================================================
+
+        let user = null;
+
+
+        if (
+        result &&
+        result.user
+        )
+        {
+        user =
+        result.user;
+        }
+        else if (
+        auth.currentUser
+        )
+        {
+        user =
+        auth.currentUser;
+        }
+
+
+        // ====================================================
+        // User 없음
+        // ====================================================
+
+        if (!user)
+        {
+        Log(
+        "================================"
+        );
+
+
+        Log(
+        "LOGIN FAILED"
+        );
+
+
+        Log(
+        "Firebase Redirect Result = NULL"
+        );
+
+
+        Log(
+        "Firebase Current User = NULL"
+        );
+
+
+        Log(
+        "================================"
+        );
+
+
+        SendUnityCallback(
+        false,
+        "",
+        "Firebase Redirect 결과와 User를 모두 받지 못했습니다."
+        );
+
+
+        return false;
+        }
+
+
+        // ====================================================
+        // Login Success
+        // ====================================================
+
+        Log(
+        "================================"
+        );
+
+
+        Log(
+        "LOGIN SUCCESS"
+        );
+
+
+        Log(
+        "================================"
+        );
+
+
+        Log(
+        "UID : " +
+        user.uid
+        );
+
+
+        Log(
+        "Email : " +
+        user.email
+        );
+
+
+        Log("");
+
+
+        // ====================================================
+        // ID Token
+        // ====================================================
+
+        Log(
+        "[4] getIdToken() CALL"
+        );
+
+
+        const idToken =
+        await user.getIdToken(
+        true
+        );
+
+
+        Log(
+        "[5] ID Token SUCCESS"
+        );
+
+
+        Log(
+        "Token Length : " +
+        idToken.length
+        );
+
+
+        Log("");
+
+
+        // ====================================================
+        // Unity Callback
+        // ====================================================
+
+        Log(
+        "[6] Send Unity Callback"
+        );
+
+
+        SendUnityCallback(
+        true,
+        idToken
+        );
+
+
+        return true;
+        }
+        catch(error)
+        {
+        Log("");
+        Log(
+        "================================"
+        );
+
+
+        Log(
+        "Firebase Redirect Error"
+        );
+
+
+        Log(
+        "================================"
+        );
+
+
+        Log(
+        "Code : " +
+        (
+        error.code ||
+        "UNKNOWN"
+        )
+        );
+
+
+        Log(
+        "Message : " +
+        error.message
+        );
+
+
+        SendUnityCallback(
+        false,
+        "",
+        error.message
+        );
+
+
+        return false;
+        }
+        }
+
+
+        // ============================================================
+        // Start Google Login
+        // ============================================================
+
+        async function StartGoogleLogin()
+        {
+        try
+        {
+        Log("");
+        Log("================================");
+        Log("Start Google Login");
+        Log("================================");
+        Log("");
+
+
+        Log(
+        "Auth Domain : " +
+        auth.config.authDomain
+        );
+
+
+        Log(
+        "Current Origin : " +
+        window.location.origin
+        );
+
+
+        Log("");
+
+
+        Log(
+        "Google Account Selection : ENABLED"
+        );
+
+
+        Log(
+        "Calling signInWithRedirect()..."
+        );
+
+
+        // ★ Google 로그인
+        await signInWithRedirect(
+        auth,
+        provider
+        );
+        }
+        catch(error)
+        {
+        Log("");
+        Log("================================");
+        Log("Google Login Error");
+        Log("================================");
+
+
+        Log(
+        "Code : " +
+        (
+        error.code ||
+        "UNKNOWN"
+        )
+        );
+
+
+        Log(
+        "Message : " +
+        error.message
+        );
+
+
+        SendUnityCallback(
+        false,
+        "",
+        error.message
+        );
+        }
+        }
+
+
+        // ============================================================
+        // Main
+        // ============================================================
+
+     async function Main()
+{
+    try
+    {
+        ClearLog();
+
+        Log("================================");
+        Log("Firebase Login Start");
+        Log("================================");
+        Log("");
+
+        Log("[URL]");
+        Log(window.location.href);
+        Log("");
+
+        Log("[Origin]");
+        Log(window.location.origin);
+        Log("");
+
+        // ============================================================
+        // 1. Redirect 결과 확인
+        // ============================================================
+
+        Log("[1] getRedirectResult() 호출");
+
+        const redirectResult =
+            await getRedirectResult(auth);
+
+        Log("[2] getRedirectResult() 완료");
+        Log("");
+
+        // ============================================================
+        // 2. Google 로그인 후 돌아온 경우
+        // ============================================================
+
+        if (
+            redirectResult &&
+            redirectResult.user
+        )
+        {
+            Log("================================");
+            Log("REDIRECT LOGIN SUCCESS");
+            Log("================================");
+            Log("");
+
+            const user =
+                redirectResult.user;
+
+            Log(
+                "UID : " +
+                user.uid
+            );
+
+            Log(
+                "Email : " +
+                user.email
+            );
+
+            Log("");
+
+            const idToken =
+                await user.getIdToken(true);
+
+            Log(
+                "ID Token Length : " +
+                idToken.length
+            );
+
+            Log("");
+
+            SendUnityCallback(
+                true,
+                idToken
+            );
+
+            return;
+        }
+
+        // ============================================================
+        // 3. 기존 Firebase 로그인 상태 확인
+        // ============================================================
+
+        Log("[3] Current User 확인");
+
+        if (auth.currentUser)
+        {
+            Log(
+                "기존 Firebase User 발견"
+            );
+
+            Log(
+                "UID : " +
+                auth.currentUser.uid
+            );
+
+            Log("");
+
+            // ★ 기존 Firebase 로그인 제거
+            Log(
+                "기존 Firebase 로그인 로그아웃..."
+            );
+
+            await signOut(auth);
+
+            Log(
+                "Firebase Logout 완료"
+            );
+
+            Log(
+                "Current User : " +
+                (
+                    auth.currentUser
+                        ? auth.currentUser.uid
+                        : "NULL"
+                )
+            );
+
+            Log("");
+        }
+        else
+        {
+            Log(
+                "기존 Firebase User 없음"
+            );
+
+            Log("");
+        }
+
+        // ============================================================
+        // 4. Google 로그인 시작
+        // ============================================================
+
+        Log("================================");
+        Log("Google Login 시작");
+        Log("================================");
+        Log("");
+
+        await StartGoogleLogin();
+    }
+    catch(error)
+    {
+        Log("");
+        Log("================================");
+        Log("MAIN ERROR");
+        Log("================================");
+        Log("");
+
+        Log(
+            "Code : " +
+            (
+                error.code ||
+                "UNKNOWN"
+            )
+        );
+
+        Log(
+            "Message : " +
+            error.message
+        );
+
+        console.error(error);
+    }
+}
+
+
+        // ====================================================
+        // Already Login
+        // ====================================================
+
+        if (auth.currentUser)
+        {
+        Log(
+        "================================"
+        );
+
+
+        Log(
+        "CURRENT USER FOUND"
+        );
+
+
+        Log(
+        "================================"
+        );
+
+
+        Log(
+        "UID : " +
+        auth.currentUser.uid
+        );
+
+
+        const idToken =
+        await auth.currentUser.getIdToken(
+        true
+        );
+
+
+        SendUnityCallback(
+        true,
+        idToken
+        );
+
+
+        return;
+        }
+
+
+        // ====================================================
+        // 최초 진입
+        // ====================================================
+
+        Log(
+        "================================"
+        );
+
+
+        Log(
+        "NO LOGIN SESSION"
+        );
+
+
+        Log(
+        "Starting Google Login..."
+        );
+
+
+        Log(
+        "================================"
+        );
+
+
+        await StartGoogleLogin();
+        }
+        catch(error)
+        {
+        Log("");
+        Log(
+        "================================"
+        );
+
+
+        Log(
+        "MAIN ERROR"
+        );
+
+
+        Log(
+        "================================"
+        );
+
+
+        Log(
+        "Code : " +
+        (
+        error.code ||
+        "UNKNOWN"
+        )
+        );
+
+
+        Log(
+        "Message : " +
+        error.message
+        );
+
+
+        console.error(error);
+        }
+        }
+
+
+        // ============================================================
+        // Start
+        // ============================================================
+
+        Main();
+
+
+    </script>
+
+</body>
+
+</html>

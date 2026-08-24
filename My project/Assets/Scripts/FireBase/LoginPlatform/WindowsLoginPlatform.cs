@@ -24,7 +24,7 @@ public class WindowsLoginPlatform: LoginPlatform
 
 
         // 2. Web Login 페이지 실행
-        string url = "http://localhost:8000/UnityWebLogin.html";
+        string url = "https://card-war-c7cd9.firebaseapp.com/UnityWebLogin.html";
         Application.OpenURL(url);
     }
 

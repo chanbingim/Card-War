@@ -34,47 +34,275 @@ public class OAuthCallbackServer
     {
         try
         {
-            // 브라우저가 callback을 요청할 때까지 대기
-            HttpListenerContext context = _listener.GetContext();
-            string path = context.Request.Url.AbsolutePath;
-            string query = context.Request.Url.Query;
+            Debug.Log("================================");
+            Debug.Log("OAuth Server Listening...");
+            Debug.Log("================================");
 
-            Debug.Log($"Callback Path : {path}");
-            Debug.Log($"Callback Query : {query}");
 
-            // 브라우저에 보여줄 응답
-            string html =
+            // ========================================================
+            // Callback 대기
+            // ========================================================
+
+            HttpListenerContext context =
+                _listener.GetContext();
+
+
+            Debug.Log("OAuth Callback Received");
+
+
+            // ========================================================
+            // URL
+            // ========================================================
+
+            string path =
+                context.Request.Url.AbsolutePath;
+
+            string query =
+                context.Request.Url.Query;
+
+
+            Debug.Log(
+                $"Callback Path : {path}"
+            );
+
+            Debug.Log(
+                $"Callback Query : {query}"
+            );
+
+            Debug.Log(
+                $"OAuth Request : {context.Request.Url}"
+            );
+
+
+            // ========================================================
+            // Query
+            // ========================================================
+
+            string successString =
+                context.Request.QueryString["success"];
+
+            string token =
+                context.Request.QueryString["token"];
+
+            string error =
+                context.Request.QueryString["error"];
+
+
+            Debug.Log(
+                $"Success String : " +
+                $"{successString ?? "NULL"}"
+            );
+
+            Debug.Log(
+                $"Token : " +
+                $"{(string.IsNullOrEmpty(token) ? "NULL" : "EXISTS")}"
+            );
+
+            Debug.Log(
+                $"Token Length : " +
+                $"{(token == null ? 0 : token.Length)}"
+            );
+
+            Debug.Log(
+                $"Error : " +
+                $"{error ?? "NULL"}"
+            );
+
+
+            // ========================================================
+            // success 검사
+            // ========================================================
+
+            if (string.IsNullOrEmpty(successString))
+            {
+                Debug.LogError(
+                    "OAuth Callback Error : " +
+                    "success parameter is NULL"
+                );
+
+
+                string html =
+                    "<html>" +
+                    "<body>" +
+                    "<h2>Login Failed</h2>" +
+                    "<p>success parameter is missing.</p>" +
+                    "</body>" +
+                    "</html>";
+
+
+                byte[] buffer =
+                    Encoding.UTF8.GetBytes(html);
+
+
+                context.Response.StatusCode = 400;
+
+                context.Response.ContentType =
+                    "text/html; charset=utf-8";
+
+                context.Response.ContentLength64 =
+                    buffer.Length;
+
+
+                context.Response.OutputStream.Write(
+                    buffer,
+                    0,
+                    buffer.Length
+                );
+
+
+                context.Response.OutputStream.Close();
+
+
+                return;
+            }
+
+
+            // ========================================================
+            // bool 변환
+            // ========================================================
+
+            if (!bool.TryParse(
+                    successString,
+                    out bool success))
+            {
+                Debug.LogError(
+                    $"Invalid success value : {successString}"
+                );
+
+
+                string html =
+                    "<html>" +
+                    "<body>" +
+                    "<h2>Login Failed</h2>" +
+                    "<p>Invalid success parameter.</p>" +
+                    "</body>" +
+                    "</html>";
+
+
+                byte[] buffer =
+                    Encoding.UTF8.GetBytes(html);
+
+
+                context.Response.StatusCode = 400;
+
+                context.Response.ContentType =
+                    "text/html; charset=utf-8";
+
+                context.Response.ContentLength64 =
+                    buffer.Length;
+
+
+                context.Response.OutputStream.Write(
+                    buffer,
+                    0,
+                    buffer.Length
+                );
+
+
+                context.Response.OutputStream.Close();
+
+
+                return;
+            }
+
+
+            // ========================================================
+            // LoginResult
+            // ========================================================
+
+            LoginResult result =
+                new LoginResult(
+                    success,
+                    token,
+                    error
+                );
+
+
+            Debug.Log(
+                $"LoginResult Created : " +
+                $"Success = {success}"
+            );
+
+
+            // ========================================================
+            // Browser Response
+            // ========================================================
+
+            string responseHtml =
+                success
+
+                ?
+
                 "<html>" +
+                "<head>" +
+                "<meta charset='UTF-8'>" +
+                "</head>" +
                 "<body>" +
                 "<h2>Login Complete</h2>" +
                 "<p>You can close this window.</p>" +
                 "</body>" +
+                "</html>"
+
+                :
+
+                "<html>" +
+                "<head>" +
+                "<meta charset='UTF-8'>" +
+                "</head>" +
+                "<body>" +
+                "<h2>Login Failed</h2>" +
+                "<p>" +
+                (error ?? "Unknown error") +
+                "</p>" +
+                "</body>" +
                 "</html>";
 
-            byte[] buffer =
-                Encoding.UTF8.GetBytes(html);
+
+            byte[] responseBuffer =
+                Encoding.UTF8.GetBytes(
+                    responseHtml
+                );
+
+
+            context.Response.StatusCode = 200;
 
             context.Response.ContentType =
-                "text/html";
+                "text/html; charset=utf-8";
+
+            context.Response.ContentEncoding =
+                Encoding.UTF8;
 
             context.Response.ContentLength64 =
-                buffer.Length;
+                responseBuffer.Length;
+
 
             context.Response.OutputStream.Write(
-                buffer,
+                responseBuffer,
                 0,
-                buffer.Length
+                responseBuffer.Length
             );
 
-            string successString = context.Request.QueryString["success"];
 
-            LoginResult result = new LoginResult(bool.Parse(successString),
-                                                context.Request.QueryString["token"],
-                                                context.Request.QueryString["error"]);
+            context.Response.OutputStream.Flush();
 
             context.Response.OutputStream.Close();
-            // Unity 쪽으로 결과 전달
+
+
+            // ========================================================
+            // Unity Callback
+            // ========================================================
+
+            Debug.Log(
+                "Invoking Unity Callback..."
+            );
+
+
             _onCallback?.Invoke(result);
+
+
+            Debug.Log(
+                "Unity Callback Finished"
+            );
         }
         catch (Exception e)
         {
