@@ -1,3 +1,5 @@
+using System;
+using System.Threading;
 using UnityEngine;
 
 public class LoginManager : MonoBehaviour
@@ -7,7 +9,11 @@ public class LoginManager : MonoBehaviour
         Google, FaceBook, IOS, END
     };
 
+    public event Action OnLoginSucessEvent;
+    public event Action OnLoginFailEvent;
+
     private LoginPlatform platform = null;
+    private SynchronizationContext _mainThreadContext = null;
 
     public void RequestLogin(ELoginType eLoginType)
     {
@@ -23,10 +29,19 @@ public class LoginManager : MonoBehaviour
 
         platform.RequestLogin(eLoginType, (Result) =>
         {
-            if (Result.Success)
-                Debug.Log("Login Success");
-            else
-                Debug.Log(Result.ErrorMessage);
+            _mainThreadContext.Post(_ =>
+            {
+                if (Result.Success)
+                {
+                    Debug.Log("Login Success");
+                    OnLoginSucessEvent?.Invoke();
+                }
+                else
+                {
+                    Debug.Log(Result.ErrorMessage);
+                    OnLoginFailEvent?.Invoke();
+                }
+            }, null);
         });
     }
 
@@ -64,11 +79,12 @@ public class LoginManager : MonoBehaviour
         }
 
         instance = this;
+        instance.Init();
     }
 
     private bool Init()
     {
-
+        _mainThreadContext = SynchronizationContext.Current;
 
         return true;
     }
