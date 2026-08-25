@@ -16,15 +16,9 @@ public class OAuthCallbackServer
         _onCallback = onCallback;
         _listener = new HttpListener();
 
-        _listener.Prefixes.Add(
-            $"http://127.0.0.1:{port}/"
-        );
+        _listener.Prefixes.Add( $"http://127.0.0.1:{port}/" );
 
         _listener.Start();
-
-        Debug.Log(
-            $"OAuth Server Start : http://127.0.0.1:{port}/"
-        );
 
         _thread = new Thread(Listen);
         _thread.Start();
@@ -34,81 +28,27 @@ public class OAuthCallbackServer
     {
         try
         {
-            Debug.Log("================================");
-            Debug.Log("OAuth Server Listening...");
-            Debug.Log("================================");
-
-
-            // ========================================================
-            // Callback 대기
-            // ========================================================
-
-            HttpListenerContext context =
-                _listener.GetContext();
-
-
+            HttpListenerContext context = _listener.GetContext();
             Debug.Log("OAuth Callback Received");
 
+            string path = context.Request.Url.AbsolutePath;
+            string query = context.Request.Url.Query;
 
-            // ========================================================
-            // URL
-            // ========================================================
-
-            string path =
-                context.Request.Url.AbsolutePath;
-
-            string query =
-                context.Request.Url.Query;
+            Debug.Log( $"Callback Path : {path}" );
+            Debug.Log( $"Callback Query : {query}" );
+            Debug.Log( $"OAuth Request : {context.Request.Url}" );
 
 
-            Debug.Log(
-                $"Callback Path : {path}"
-            );
-
-            Debug.Log(
-                $"Callback Query : {query}"
-            );
-
-            Debug.Log(
-                $"OAuth Request : {context.Request.Url}"
-            );
+            // 결과, Login토큰, 에러 메시지를 받아온다.
+            string successString = context.Request.QueryString["success"];
+            string token = context.Request.QueryString["token"];
+            string error = context.Request.QueryString["error"];
 
 
-            // ========================================================
-            // Query
-            // ========================================================
-
-            string successString =
-                context.Request.QueryString["success"];
-
-            string token =
-                context.Request.QueryString["token"];
-
-            string error =
-                context.Request.QueryString["error"];
-
-
-            Debug.Log(
-                $"Success String : " +
-                $"{successString ?? "NULL"}"
-            );
-
-            Debug.Log(
-                $"Token : " +
-                $"{(string.IsNullOrEmpty(token) ? "NULL" : "EXISTS")}"
-            );
-
-            Debug.Log(
-                $"Token Length : " +
-                $"{(token == null ? 0 : token.Length)}"
-            );
-
-            Debug.Log(
-                $"Error : " +
-                $"{error ?? "NULL"}"
-            );
-
-
+            Debug.Log($"Success String : " + $"{successString ?? "NULL"}");
+            Debug.Log($"Token : " + $"{(string.IsNullOrEmpty(token) ? "NULL" : "EXISTS")}");
+            Debug.Log($"Token Length : " + $"{(token == null ? 0 : token.Length)}" );
+            Debug.Log($"Error : " + $"{error ?? "NULL"}" );
             // ========================================================
             // success 검사
             // ========================================================

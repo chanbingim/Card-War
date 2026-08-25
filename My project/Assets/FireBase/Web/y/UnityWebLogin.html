@@ -59,7 +59,7 @@
         initializeApp
         }
         from
-        "https://www.gstatic.com/firebasejs/13.15.0/firebase-app.js";
+        "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
 
 
         import
@@ -68,11 +68,10 @@
         GoogleAuthProvider,
         signInWithRedirect,
         getRedirectResult,
-        onAuthStateChanged,
         signOut
         }
         from
-        "https://www.gstatic.com/firebasejs/13.15.0/firebase-auth.js";
+        "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
 
 
         // ============================================================
@@ -153,7 +152,7 @@
         new GoogleAuthProvider();
 
 
-        // ‚òÖ Google Í≥ÑÏ†ï ÏÑ†ÌÉùÏ∞Ω Í∞ïÏ†ú
+        // ±∏±€ ∞Ë¡§ º±≈√√¢ ∞≠¡¶
         provider.setCustomParameters({
         prompt: "select_account"
         });
@@ -173,7 +172,7 @@
 
 
         // ============================================================
-        // Firebase Ï†ïÎ≥¥
+        // Firebase ¡§∫∏
         // ============================================================
 
         Log(
@@ -208,47 +207,15 @@
 
 
         // ============================================================
-        // Auth State Listener
+        // Login Guard
         // ============================================================
+        // Main()¿« ∑Œ±◊¿Œ √≥∏Æ(º∫∞¯ ƒ›πÈ / StartGoogleLogin)∞°
+        // µŒ π¯ ¿ÃªÛ Ω««‡µ«¥¬ ∞Õ¿ª ∏∑±‚ ¿ß«— «√∑°±◊.
+        // onAuthStateChanged ∏ÆΩ∫≥ ¥¬ ∑Œ±◊æ∆øÙ->¿Á∑Œ±◊¿Œ Ω√∏∂¥Ÿ
+        // ∫∞µµ∑Œ ªÛ≈¬∫Ø∞Ê¿ª ∞®¡ˆ«ÿº≠ Main()¿« »Â∏ß∞˙ ∞„ƒ°∏Á
+        // π›∫π ∆Æ∏Æ∞≈∏¶ ¿œ¿∏≈≥ ºˆ ¿÷¿∏π«∑Œ ªÁøÎ«œ¡ˆ æ ¿Ω.
 
-        onAuthStateChanged(
-        auth,
-        function(user)
-        {
-        Log(
-        "[Auth State Changed]"
-        );
-
-
-        if (user)
-        {
-        Log(
-        "USER FOUND"
-        );
-
-
-        Log(
-        "UID : " +
-        user.uid
-        );
-
-
-        Log(
-        "Email : " +
-        user.email
-        );
-        }
-        else
-        {
-        Log(
-        "USER : NULL"
-        );
-        }
-
-
-        Log("");
-        }
-        );
+        let hasHandled = false;
 
 
         // ============================================================
@@ -317,7 +284,7 @@
 
 
         // --------------------------------------------------------
-        // UnityÎ°ú Ïù¥Îèô
+        // Unity∑Œ ¿Ãµø
         // --------------------------------------------------------
 
         window.location.href =
@@ -340,7 +307,7 @@
         Log("");
 
 
-        // Firebase Î°úÍ∑∏ÏïÑÏõÉ
+        // Firebase ∑Œ±◊æ∆øÙ
         await signOut(auth);
 
 
@@ -392,7 +359,7 @@
 
 
         // ============================================================
-        // Logout ÌõÑ Îã§Ïãú Google Login
+        // Logout »ƒ ¥ŸΩ√ Google Login
         // ============================================================
 
         async function LogoutAndLogin()
@@ -416,291 +383,6 @@
 
 
         return true;
-        }
-
-
-        // ============================================================
-        // Check Redirect Result
-        // ============================================================
-
-        async function CheckLoginResult()
-        {
-        try
-        {
-        Log("");
-        Log("================================");
-        Log("CheckLoginResult START");
-        Log("================================");
-        Log("");
-
-
-        // ----------------------------------------------------
-        // Current User BEFORE
-        // ----------------------------------------------------
-
-        Log(
-        "[1] Current User BEFORE"
-        );
-
-
-        if (auth.currentUser)
-        {
-        Log(
-        "UID : " +
-        auth.currentUser.uid
-        );
-        }
-        else
-        {
-        Log(
-        "Current User : NULL"
-        );
-        }
-
-
-        Log("");
-
-
-        // ----------------------------------------------------
-        // Redirect Result
-        // ----------------------------------------------------
-
-        Log(
-        "[2] getRedirectResult() CALL"
-        );
-
-
-        const result =
-        await getRedirectResult(auth);
-
-
-        Log(
-        "[3] getRedirectResult() RETURN"
-        );
-
-
-        Log("");
-
-
-        // ----------------------------------------------------
-        // Redirect Result
-        // ----------------------------------------------------
-
-        Log(
-        "Redirect Result : " +
-        (
-        result
-        ? "EXISTS"
-        : "NULL"
-        )
-        );
-
-
-        // ----------------------------------------------------
-        // Current User AFTER
-        // ----------------------------------------------------
-
-        Log(
-        "Current User AFTER : " +
-        (
-        auth.currentUser
-        ? auth.currentUser.uid
-        : "NULL"
-        )
-        );
-
-
-        Log("");
-
-
-        // ====================================================
-        // User Ï∞æÍ∏∞
-        // ====================================================
-
-        let user = null;
-
-
-        if (
-        result &&
-        result.user
-        )
-        {
-        user =
-        result.user;
-        }
-        else if (
-        auth.currentUser
-        )
-        {
-        user =
-        auth.currentUser;
-        }
-
-
-        // ====================================================
-        // User ÏóÜÏùå
-        // ====================================================
-
-        if (!user)
-        {
-        Log(
-        "================================"
-        );
-
-
-        Log(
-        "LOGIN FAILED"
-        );
-
-
-        Log(
-        "Firebase Redirect Result = NULL"
-        );
-
-
-        Log(
-        "Firebase Current User = NULL"
-        );
-
-
-        Log(
-        "================================"
-        );
-
-
-        SendUnityCallback(
-        false,
-        "",
-        "Firebase Redirect Í≤∞Í≥ºÏôÄ UserÎ•º Î™®Îëê Î∞õÏßÄ Î™ªÌñàÏäµÎãàÎã§."
-        );
-
-
-        return false;
-        }
-
-
-        // ====================================================
-        // Login Success
-        // ====================================================
-
-        Log(
-        "================================"
-        );
-
-
-        Log(
-        "LOGIN SUCCESS"
-        );
-
-
-        Log(
-        "================================"
-        );
-
-
-        Log(
-        "UID : " +
-        user.uid
-        );
-
-
-        Log(
-        "Email : " +
-        user.email
-        );
-
-
-        Log("");
-
-
-        // ====================================================
-        // ID Token
-        // ====================================================
-
-        Log(
-        "[4] getIdToken() CALL"
-        );
-
-
-        const idToken =
-        await user.getIdToken(
-        true
-        );
-
-
-        Log(
-        "[5] ID Token SUCCESS"
-        );
-
-
-        Log(
-        "Token Length : " +
-        idToken.length
-        );
-
-
-        Log("");
-
-
-        // ====================================================
-        // Unity Callback
-        // ====================================================
-
-        Log(
-        "[6] Send Unity Callback"
-        );
-
-
-        SendUnityCallback(
-        true,
-        idToken
-        );
-
-
-        return true;
-        }
-        catch(error)
-        {
-        Log("");
-        Log(
-        "================================"
-        );
-
-
-        Log(
-        "Firebase Redirect Error"
-        );
-
-
-        Log(
-        "================================"
-        );
-
-
-        Log(
-        "Code : " +
-        (
-        error.code ||
-        "UNKNOWN"
-        )
-        );
-
-
-        Log(
-        "Message : " +
-        error.message
-        );
-
-
-        SendUnityCallback(
-        false,
-        "",
-        error.message
-        );
-
-
-        return false;
-        }
         }
 
 
@@ -744,7 +426,7 @@
         );
 
 
-        // ‚òÖ Google Î°úÍ∑∏Ïù∏
+        // ±∏±€ ∑Œ±◊¿Œ
         await signInWithRedirect(
         auth,
         provider
@@ -786,10 +468,18 @@
         // Main
         // ============================================================
 
-     async function Main()
-{
-    try
-    {
+        async function Main()
+        {
+        // ¿ÃπÃ √≥∏Æ(º∫∞¯/¿Á∑Œ±◊¿Œ Ω√µµ)µ» ¿˚¿Ã ¿÷¿∏∏È
+        // ¥ŸΩ√ Ω««‡«œ¡ˆ æ ¿Ω (π›∫π πÊ¡ˆ)
+        if (hasHandled)
+        {
+        Log("Main() : ¿ÃπÃ √≥∏Æµ , ¿ÁΩ««‡ Ω∫≈µ");
+        return;
+        }
+
+        try
+        {
         ClearLog();
 
         Log("================================");
@@ -805,238 +495,136 @@
         Log(window.location.origin);
         Log("");
 
-        // ============================================================
-        // 1. Redirect Í≤∞Í≥º ÌôïÏù∏
-        // ============================================================
+        // ----------------------------------------------------------
+        // 1. Redirect ∞·∞˙ »Æ¿Œ
+        // ----------------------------------------------------------
 
-        Log("[1] getRedirectResult() Ìò∏Ï∂ú");
+        Log("[1] getRedirectResult() »£√‚");
 
         const redirectResult =
-            await getRedirectResult(auth);
+        await getRedirectResult(auth);
 
-        Log("[2] getRedirectResult() ÏôÑÎ£å");
+        Log("[2] getRedirectResult() øœ∑·");
         Log("");
 
-        // ============================================================
-        // 2. Google Î°úÍ∑∏Ïù∏ ÌõÑ ÎèåÏïÑÏò® Í≤ΩÏö∞
-        // ============================================================
+        // ----------------------------------------------------------
+        // 2. Google ∑Œ±◊¿Œ »ƒ µπæ∆ø¬ ∞ÊøÏ (º∫∞¯)
+        // ----------------------------------------------------------
 
         if (
-            redirectResult &&
-            redirectResult.user
+        redirectResult &&
+        redirectResult.user
         )
         {
-            Log("================================");
-            Log("REDIRECT LOGIN SUCCESS");
-            Log("================================");
-            Log("");
-
-            const user =
-                redirectResult.user;
-
-            Log(
-                "UID : " +
-                user.uid
-            );
-
-            Log(
-                "Email : " +
-                user.email
-            );
-
-            Log("");
-
-            const idToken =
-                await user.getIdToken(true);
-
-            Log(
-                "ID Token Length : " +
-                idToken.length
-            );
-
-            Log("");
-
-            SendUnityCallback(
-                true,
-                idToken
-            );
-
-            return;
-        }
-
-        // ============================================================
-        // 3. Í∏∞Ï°¥ Firebase Î°úÍ∑∏Ïù∏ ÏÉÅÌÉú ÌôïÏù∏
-        // ============================================================
-
-        Log("[3] Current User ÌôïÏù∏");
-
-        if (auth.currentUser)
-        {
-            Log(
-                "Í∏∞Ï°¥ Firebase User Î∞úÍ≤¨"
-            );
-
-            Log(
-                "UID : " +
-                auth.currentUser.uid
-            );
-
-            Log("");
-
-            // ‚òÖ Í∏∞Ï°¥ Firebase Î°úÍ∑∏Ïù∏ Ï†úÍ±∞
-            Log(
-                "Í∏∞Ï°¥ Firebase Î°úÍ∑∏Ïù∏ Î°úÍ∑∏ÏïÑÏõÉ..."
-            );
-
-            await signOut(auth);
-
-            Log(
-                "Firebase Logout ÏôÑÎ£å"
-            );
-
-            Log(
-                "Current User : " +
-                (
-                    auth.currentUser
-                        ? auth.currentUser.uid
-                        : "NULL"
-                )
-            );
-
-            Log("");
-        }
-        else
-        {
-            Log(
-                "Í∏∞Ï°¥ Firebase User ÏóÜÏùå"
-            );
-
-            Log("");
-        }
-
-        // ============================================================
-        // 4. Google Î°úÍ∑∏Ïù∏ ÏãúÏûë
-        // ============================================================
-
         Log("================================");
-        Log("Google Login ÏãúÏûë");
+        Log("REDIRECT LOGIN SUCCESS");
         Log("================================");
         Log("");
 
-        await StartGoogleLogin();
-    }
-    catch(error)
-    {
-        Log("");
-        Log("================================");
-        Log("MAIN ERROR");
-        Log("================================");
-        Log("");
-
-        Log(
-            "Code : " +
-            (
-                error.code ||
-                "UNKNOWN"
-            )
-        );
-
-        Log(
-            "Message : " +
-            error.message
-        );
-
-        console.error(error);
-    }
-}
-
-
-        // ====================================================
-        // Already Login
-        // ====================================================
-
-        if (auth.currentUser)
-        {
-        Log(
-        "================================"
-        );
-
-
-        Log(
-        "CURRENT USER FOUND"
-        );
-
-
-        Log(
-        "================================"
-        );
-
+        const user =
+        redirectResult.user;
 
         Log(
         "UID : " +
-        auth.currentUser.uid
+        user.uid
         );
 
+        Log(
+        "Email : " +
+        user.email
+        );
+
+        Log("");
 
         const idToken =
-        await auth.currentUser.getIdToken(
-        true
+        await user.getIdToken(true);
+
+        Log(
+        "ID Token Length : " +
+        idToken.length
         );
 
+        Log("");
+
+        hasHandled = true;
 
         SendUnityCallback(
         true,
         idToken
         );
 
-
+        // º∫∞¯ √≥∏Æ »ƒ π›µÂΩ√ ¡æ∑· (æ∆∑° ∑Œ±◊æ∆øÙ/¿Á∑Œ±◊¿Œ ∑Œ¡˜ Ω««‡ πÊ¡ˆ)
         return;
         }
 
+        // ----------------------------------------------------------
+        // 3. ±‚¡∏ Firebase ∑Œ±◊¿Œ ªÛ≈¬ »Æ¿Œ (redirect ∞·∞˙∞° æ¯¿ª ∂ß∏∏ µµ¥ﬁ)
+        // ----------------------------------------------------------
 
-        // ====================================================
-        // ÏµúÏ¥à ÏßÑÏûÖ
-        // ====================================================
+        Log("[3] Current User »Æ¿Œ");
 
+        if (auth.currentUser)
+        {
         Log(
-        "================================"
+        "±‚¡∏ Firebase User πﬂ∞ﬂ"
         );
 
-
         Log(
-        "NO LOGIN SESSION"
+        "UID : " +
+        auth.currentUser.uid
         );
 
+        Log("");
 
+        // ±‚¡∏ Firebase ∑Œ±◊¿Œ ¡¶∞≈
         Log(
-        "Starting Google Login..."
+        "±‚¡∏ Firebase ∑Œ±◊¿Œ ∑Œ±◊æ∆øÙ..."
         );
 
+        await signOut(auth);
 
         Log(
-        "================================"
+        "Firebase Logout øœ∑·"
         );
 
+        Log(
+        "Current User : " +
+        (
+        auth.currentUser
+        ? auth.currentUser.uid
+        : "NULL"
+        )
+        );
+
+        Log("");
+        }
+        else
+        {
+        Log(
+        "±‚¡∏ Firebase User æ¯¿Ω"
+        );
+
+        Log("");
+        }
+
+        // ----------------------------------------------------------
+        // 4. Google ∑Œ±◊¿Œ Ω√¿€
+        // ----------------------------------------------------------
+
+        Log("================================");
+        Log("Google Login Ω√¿€");
+        Log("================================");
+        Log("");
 
         await StartGoogleLogin();
         }
         catch(error)
         {
         Log("");
-        Log(
-        "================================"
-        );
-
-
-        Log(
-        "MAIN ERROR"
-        );
-
-
-        Log(
-        "================================"
-        );
-
+        Log("================================");
+        Log("MAIN ERROR");
+        Log("================================");
+        Log("");
 
         Log(
         "Code : " +
@@ -1046,12 +634,18 @@
         )
         );
 
-
         Log(
         "Message : " +
         error.message
         );
 
+        hasHandled = true;
+
+        SendUnityCallback(
+        false,
+        "",
+        error.message
+        );
 
         console.error(error);
         }
