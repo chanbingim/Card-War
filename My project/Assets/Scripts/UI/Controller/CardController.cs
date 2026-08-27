@@ -11,52 +11,34 @@ public class CardController : MonoBehaviour
     [SerializeField] private List<CardUI>       _cardList;
 
     [SerializeField] private float              _spreadAngle = 105f;
-    [SerializeField] private int                _maxDrawCount = 5;
-    [SerializeField] private int                _DrawCardCount = 2;
 
     private float       _CardPadding;
-    private Queue<int>  _drawRequestQueue = new Queue<int>();
-    private Coroutine   _drawRoutine;
 
     private void Awake()
     {
-        EventBus.Subscribe<TurnStartEvent>(TurnStartEvent);
+       
     }
 
     void Start()
     {
         var rectTransform = GetComponent<RectTransform>();
-        _CardPadding = rectTransform.rect.width / _maxDrawCount;
+        _CardPadding = rectTransform.rect.width / GAME_CONST.Const.MAX_HAND;
 
         EventBus.Subscribe<UseCardEvent>(Remove_Card);
+        EventBus.Subscribe<CardDrawEvent>(ADD_Card);
     }
 
-    public void RequestDraw(int count)
+    private void ADD_Card(CardDrawEvent data)
     {
-        _drawRequestQueue.Enqueue(count);
-
-        if (_drawRoutine == null)
-            _drawRoutine = StartCoroutine(DrawWorker());
-    }
-
-    private void ADD_Card(UI_CardData data)
-    {
-        if (_cardList.Count >= 5)
+        if (_cardList.Count >= GAME_CONST.Const.MAX_HAND)
             return;
 
         var obj = GameObject.Instantiate(_cardPrefab, gameObject.transform);
         obj.transform.position = _CardDeck.position;
 
         _cardList.Add(obj.GetComponent<CardUI>());
-        _cardList.Last().SettingData(data);
+        _cardList.Last().SettingData(data._CardData);
         RefreshCardTransform();
-    }
-
-    private void TurnStartEvent(TurnStartEvent turnStartEvent)
-    {
-        var Player = BattleManager.instance.GetLoaclPlayer();
-        if (0 == (Player.Name.CompareTo(turnStartEvent.Name)))
-            RequestDraw(_DrawCardCount);
     }
 
     private void Remove_Card(UseCardEvent card)
@@ -84,27 +66,9 @@ public class CardController : MonoBehaviour
         }
     }
 
-    IEnumerator DrawWorker()
-    {
-        while (_drawRequestQueue.Count > 0)
-        {
-            int count = _drawRequestQueue.Dequeue();
-            for (int i = 0; i < count; i++)
-            {
-                var data = BattleManager.instance.DrawCard();
-                if(data != null) 
-                    ADD_Card(data);
-
-                yield return new WaitForSeconds(0.5f); // 카드 한 장씩 연출 딜레이
-            }
-        }
-
-        _drawRoutine = null; // 큐 다 비면 워커 종료
-    }
-
     void OnDisable()
     {
-        EventBus.Unsubscribe<TurnStartEvent>(TurnStartEvent);
+        EventBus.Unsubscribe<CardDrawEvent>(ADD_Card);
         EventBus.Unsubscribe<UseCardEvent>(Remove_Card);
     }
 }

@@ -56,13 +56,19 @@ public class BattlePlayerData : TurnParticipantBase
     {
         int ID = 0;
         int HandIndex = -1;
+
         if (Decks.Count > 0)
         {
             ID = Decks[0];
             Decks.RemoveAt(0);
 
-            HandIndex = Hands.Count;
-            Hands.Add(new UI_CardData(HandIndex, ID));
+            if (Hands.Count < GAME_CONST.Const.MAX_HAND)
+            {
+                HandIndex = Hands.Count;
+                Hands.Add(new UI_CardData(HandIndex, ID));
+            }
+            else
+                return new UI_CardData(HandIndex, ID);
         }
 
         if (ID <= 0)

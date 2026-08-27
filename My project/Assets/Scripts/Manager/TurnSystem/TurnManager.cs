@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.SocialPlatforms;
 
 public class TurnManager
 {
@@ -14,7 +15,7 @@ public class TurnManager
     public List<ITurnParticipant> _participants { get; private set; }
 
     public int CurrentTurnIndex     { get; private set; } = 0;   // 현재 턴인 참가자의 인덱스
-    public int CurrentPhase         { get; private set; } = 1;        // 현재 진행 중인 Phase (1부터 시작)
+    public int CurrentPhase         { get; private set; } = 1;   // 현재 진행 중인 Phase (1부터 시작)
     public bool IsRunning           { get; private set; } = false;
     public BattlePlayerData         LocalPlayer { get; private set; }
     public ETurnType                _TurnType { get; private set; }  = ETurnType.END;
@@ -87,8 +88,16 @@ public class TurnManager
 
     private void StartTurn()
     {
-        EventBus.Publish<TurnUIEvent>(new TurnUIEvent(Current.Name, _TurnType));
         Current.TurnBegin();
+
+        bool IsLocal = LocalPlayer.IsActive;
+        EventBus.Publish<ChangeTurnEvent>(new ChangeTurnEvent(IsLocal, () =>
+        {
+            EventBus.Publish<ChangeTurnActEvent>(new ChangeTurnActEvent(_TurnType, IsLocal));
+            BattleManager.instance.RequestDraw(GAME_CONST.Const.DRAW_CARDCOUNT);
+        }));
+
+     
     }
 
     public void Update()
@@ -118,11 +127,21 @@ public class TurnManager
             return false;
         }
 
-        _TurnType++;
-        if (_TurnType == ETurnType.END)
+        Action OnCompleted = null;
+        if (_TurnType < ETurnType.END)
         {
-            ExecuteEndTurn();
-            _TurnType = ETurnType.USE_CARDTRUN;
+            _TurnType++;
+    
+            if (_TurnType >= ETurnType.END)
+            {
+                OnCompleted = () =>
+                {
+                    _TurnType = ETurnType.USE_CARDTRUN;
+                    ExecuteEndTurn();
+                };
+            }
+
+            EventBus.Publish<ChangeTurnActEvent>(new ChangeTurnActEvent(_TurnType, LocalPlayer.IsActive, OnCompleted));
         }
 
         return true;

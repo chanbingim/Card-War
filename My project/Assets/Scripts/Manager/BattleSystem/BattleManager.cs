@@ -23,7 +23,7 @@ public class BattleManager : MonoBehaviour
     #region PlayerMgr
     public bool             IsPlayerTurn() { return _TrunMgr?.IsPlayerTurn() ?? false; }
     public BattlePlayerData GetLoaclPlayer() { return _TrunMgr?.LocalPlayer; }
-    public UI_CardData      DrawCard() { return _BattleCardManager?.Draw_Card() ?? null; }
+    public void             RequestDraw(int Count) { _BattleCardManager?.RequestDrawCard(Count); }
     #endregion
 
     #region TrunMgr
