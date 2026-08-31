@@ -1,40 +1,103 @@
 fileFormatVersion: 2
-guid: 625829a7353a840459b8510c5636849d
+guid: 8c1cf990b6edc8441ab814b7d674b197
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3648734194455592796
-    second: TurnBar_0
+      213: 69226616897816627
+    second: TurnBarParticle_0
   - first:
-      213: 8396596888720908634
-    second: TurnBar_1
+      213: 5707050562731698459
+    second: TurnBarParticle_1
   - first:
-      213: -5454522183228787434
-    second: TurnBar_2
+      213: 3403006632102333543
+    second: TurnBarParticle_2
   - first:
-      213: -9177334903550885908
-    second: TurnBar_3
+      213: 5622823787754231690
+    second: TurnBarParticle_3
   - first:
-      213: -7474926306003971037
-    second: TurnBar_4
+      213: 2161447280946589847
+    second: TurnBarParticle_4
   - first:
-      213: -5356963352965010731
-    second: TurnBar_5
+      213: -4265824313315150960
+    second: TurnBarParticle_5
   - first:
-      213: 2419984148996421792
-    second: TurnBar_6
+      213: -3868168817845714759
+    second: TurnBarParticle_6
   - first:
-      213: -3685317465721312717
-    second: TurnBar_7
+      213: 355256083729048580
+    second: TurnBarParticle_7
   - first:
-      213: 2815438969736016294
-    second: TurnBar_8
+      213: 277054233427110091
+    second: TurnBarParticle_8
   - first:
-      213: 8129725908396667824
-    second: TurnBar_9
+      213: -1723338804386549423
+    second: TurnBarParticle_9
   - first:
-      213: 5536171550598175948
-    second: TurnBar_10
+      213: 3123827266757634712
+    second: TurnBarParticle_10
+  - first:
+      213: 2568008162448344276
+    second: TurnBarParticle_11
+  - first:
+      213: 6607154525511168610
+    second: TurnBarParticle_12
+  - first:
+      213: -8472577575147914253
+    second: TurnBarParticle_13
+  - first:
+      213: -8556248817206957595
+    second: TurnBarParticle_14
+  - first:
+      213: -3918192886422678428
+    second: TurnBarParticle_15
+  - first:
+      213: 5752534032764761410
+    second: TurnBarParticle_16
+  - first:
+      213: -2887610650039103294
+    second: TurnBarParticle_17
+  - first:
+      213: -9142419348379118281
+    second: TurnBarParticle_18
+  - first:
+      213: -5671067696199477018
+    second: TurnBarParticle_19
+  - first:
+      213: 339460492534825714
+    second: TurnBarParticle_20
+  - first:
+      213: 554249902120923693
+    second: TurnBarParticle_21
+  - first:
+      213: 1519025576884163200
+    second: TurnBarParticle_22
+  - first:
+      213: -5539722181504935710
+    second: TurnBarParticle_23
+  - first:
+      213: -8647633773464807967
+    second: TurnBarParticle_24
+  - first:
+      213: 2879571744543655552
+    second: TurnBarParticle_25
+  - first:
+      213: -9066972695179143640
+    second: TurnBarParticle_26
+  - first:
+      213: -3605419905505565157
+    second: TurnBarParticle_27
+  - first:
+      213: 3383090480585132069
+    second: TurnBarParticle_28
+  - first:
+      213: -3173500514281927222
+    second: TurnBarParticle_29
+  - first:
+      213: -2139405895008532778
+    second: TurnBarParticle_30
+  - first:
+      213: -2532448005499116771
+    second: TurnBarParticle_31
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -143,13 +206,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TurnBar_0
+      name: TurnBarParticle_0
       rect:
         serializedVersion: 2
-        x: 53
-        y: 405
-        width: 875
-        height: 106
+        x: 54
+        y: 79
+        width: 121
+        height: 140
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,19 +221,107 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4a047abf4971d5dc0800000000000000
-      internalID: -3648734194455592796
+      spriteID: 3384235cd31f5f000800000000000000
+      internalID: 69226616897816627
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TurnBar_1
+      name: TurnBarParticle_1
       rect:
         serializedVersion: 2
-        x: 145
-        y: 206
-        width: 130
+        x: 533
+        y: 87
+        width: 114
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b19e0d2ef34833f40800000000000000
+      internalID: 5707050562731698459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TurnBarParticle_2
+      rect:
+        serializedVersion: 2
+        x: 1028
+        y: 79
+        width: 129
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76c02c28088e93f20800000000000000
+      internalID: 3403006632102333543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TurnBarParticle_3
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 539
+        width: 444
+        height: 165
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8715b7a178480e40800000000000000
+      internalID: 5622823787754231690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TurnBarParticle_4
+      rect:
+        serializedVersion: 2
+        x: 524
+        y: 537
+        width: 463
+        height: 163
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7903e85a9d00ffd10800000000000000
+      internalID: 2161447280946589847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TurnBarParticle_5
+      rect:
+        serializedVersion: 2
+        x: 996
+        y: 530
+        width: 506
         height: 158
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -180,206 +331,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a512c5a1264b68470800000000000000
-      internalID: 8396596888720908634
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TurnBar_2
-      rect:
-        serializedVersion: 2
-        x: 420
-        y: 211
-        width: 141
-        height: 143
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 615f82149f4ad44b0800000000000000
-      internalID: -5454522183228787434
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TurnBar_3
-      rect:
-        serializedVersion: 2
-        x: 713
-        y: 212
-        width: 152
-        height: 143
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cef3e01678e83a080800000000000000
-      internalID: -9177334903550885908
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TurnBar_4
-      rect:
-        serializedVersion: 2
-        x: 186
-        y: 106
-        width: 53
-        height: 72
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3241968e02ab34890800000000000000
-      internalID: -7474926306003971037
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TurnBar_5
-      rect:
-        serializedVersion: 2
-        x: 468
-        y: 106
-        width: 55
-        height: 74
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5da2cbf763e38a5b0800000000000000
-      internalID: -5356963352965010731
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TurnBar_6
-      rect:
-        serializedVersion: 2
-        x: 752
-        y: 106
-        width: 54
-        height: 73
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0a8f10b03c2859120800000000000000
-      internalID: 2419984148996421792
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TurnBar_7
-      rect:
-        serializedVersion: 2
-        x: 99
-        y: 37
-        width: 93
-        height: 43
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 33a63236a4f1bdcc0800000000000000
-      internalID: -3685317465721312717
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TurnBar_8
-      rect:
-        serializedVersion: 2
-        x: 196
-        y: 37
-        width: 135
-        height: 43
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6a138ed73d2721720800000000000000
-      internalID: 2815438969736016294
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TurnBar_9
-      rect:
-        serializedVersion: 2
-        x: 404
-        y: 37
-        width: 174
-        height: 43
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0b3f54bf3a692d070800000000000000
-      internalID: 8129725908396667824
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TurnBar_10
-      rect:
-        serializedVersion: 2
-        x: 733
-        y: 37
-        width: 100
-        height: 43
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ccc170181be64dc40800000000000000
-      internalID: 5536171550598175948
+      spriteID: 09330aa636fbcc4c0800000000000000
+      internalID: -4265824313315150960
       vertices: []
       indices: 
       edges: []
@@ -388,7 +341,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 443e06909a8b62f4da62b047eeb6213d
     internalID: 0
     vertices: []
     indices: 
@@ -398,17 +351,39 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      TurnBar_0: -3648734194455592796
-      TurnBar_1: 8396596888720908634
-      TurnBar_10: 5536171550598175948
-      TurnBar_2: -5454522183228787434
-      TurnBar_3: -9177334903550885908
-      TurnBar_4: -7474926306003971037
-      TurnBar_5: -5356963352965010731
-      TurnBar_6: 2419984148996421792
-      TurnBar_7: -3685317465721312717
-      TurnBar_8: 2815438969736016294
-      TurnBar_9: 8129725908396667824
+      TurnBarParticle_0: 69226616897816627
+      TurnBarParticle_1: 5707050562731698459
+      TurnBarParticle_10: 3123827266757634712
+      TurnBarParticle_11: 2568008162448344276
+      TurnBarParticle_12: 6607154525511168610
+      TurnBarParticle_13: -8472577575147914253
+      TurnBarParticle_14: -8556248817206957595
+      TurnBarParticle_15: -3918192886422678428
+      TurnBarParticle_16: 5752534032764761410
+      TurnBarParticle_17: -2887610650039103294
+      TurnBarParticle_18: -9142419348379118281
+      TurnBarParticle_19: -5671067696199477018
+      TurnBarParticle_2: 3403006632102333543
+      TurnBarParticle_20: 339460492534825714
+      TurnBarParticle_21: 554249902120923693
+      TurnBarParticle_22: 1519025576884163200
+      TurnBarParticle_23: -5539722181504935710
+      TurnBarParticle_24: -8647633773464807967
+      TurnBarParticle_25: 2879571744543655552
+      TurnBarParticle_26: -9066972695179143640
+      TurnBarParticle_27: -3605419905505565157
+      TurnBarParticle_28: 3383090480585132069
+      TurnBarParticle_29: -3173500514281927222
+      TurnBarParticle_3: 5622823787754231690
+      TurnBarParticle_30: -2139405895008532778
+      TurnBarParticle_31: -2532448005499116771
+      TurnBarParticle_32: -384866495
+      TurnBarParticle_4: 2161447280946589847
+      TurnBarParticle_5: -4265824313315150960
+      TurnBarParticle_6: -3868168817845714759
+      TurnBarParticle_7: 355256083729048580
+      TurnBarParticle_8: 277054233427110091
+      TurnBarParticle_9: -1723338804386549423
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
