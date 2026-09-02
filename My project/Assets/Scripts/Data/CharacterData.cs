@@ -2,13 +2,13 @@ using UnityEngine;
 
 namespace TurnCardGame.Data
 {
-    public enum CHARACTER_PROPERTY { LIGHT, WATER, FIRE, WIND, END };
+    public enum EATTAK_TYPE { Attacker, Mage, END };
 
     [CreateAssetMenu(menuName = "Turn Card Game/Character", fileName = "CharacterData")]
     public sealed class CharacterData : ScriptableObject
     {
         [SerializeField] private int    _ID;
-        [SerializeField] private CHARACTER_PROPERTY   _Property = CHARACTER_PROPERTY.END;
+        [SerializeField] private EATTAK_TYPE _ATKType = EATTAK_TYPE.END;
 
         [SerializeField] CharacterFsmConfig _FSMConfig;
         [SerializeField] string             _AnimControllerKey;
@@ -17,7 +17,7 @@ namespace TurnCardGame.Data
         [SerializeField] private int _ATKPower;
 
         public int                  Id => _ID;
-        public CHARACTER_PROPERTY   Property => _Property;
+        public EATTAK_TYPE          ATKType => _ATKType;
 
         public CharacterFsmConfig   FSMConfig => _FSMConfig;
         public string               AnimControllerKey => _AnimControllerKey;

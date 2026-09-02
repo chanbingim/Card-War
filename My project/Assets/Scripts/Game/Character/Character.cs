@@ -15,7 +15,6 @@ public class Character : MonoBehaviour, IActionDragHandler
     public event FinishedAction OnFinishedAct;
     #endregion
 
-    int ID = 0;
     public CharacterRuntimeData Data { get; private set; }
 
     private FSM             _CharacterFSM = null;
@@ -38,13 +37,11 @@ public class Character : MonoBehaviour, IActionDragHandler
         _CharacterFSM?.UpdateFSM();
     }
 
-    public void Initialize(int CharacterID, Vector3 Position)
+    public void Initialize(CharacterData CharacterSO, Vector3 Position)
     {
         transform.position = Position;
-        ID = CharacterID;
 
         // 데이터 찾기
-        CharacterData CharacterSO = DataManager.instance.GetCharacterById(ID);
         Data = new CharacterRuntimeData(CharacterSO);
 
         var AddressableMgr = AddressableManager.instance;
