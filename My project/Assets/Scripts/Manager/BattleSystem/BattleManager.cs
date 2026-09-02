@@ -51,7 +51,7 @@ public class BattleManager : MonoBehaviour
         Vector3 TargetPos = Target.gameObject.transform.position;
         Vector3 Point = TargetPos - (Vector3.right * 0.5f); 
 
-        Attacker.MoveTarget(Point);
+        Attacker.AttackAction(Point);
         _TrunMgr.ADDHistoryActionData(_CurBattleAction);
     }
 

@@ -9,7 +9,7 @@ public class BattlePlayerData : TurnParticipantBase
     public  List<int>               Decks;
     public  List<UI_CardData>       Hands;
     public  List<int>               Skills;
-    public  List<Character>         PlayerParty { get; protected set; }
+    public  List<Character>         PlayerParty { get; protected set; } = new List<Character>();
 
     private GameObject              TransformParent;
 
@@ -25,6 +25,7 @@ public class BattlePlayerData : TurnParticipantBase
         IsLocal = false;
 
         ADDSamplePlayerData();
+        EventBus.Subscribe<ChangeTurnActEvent>(ChangeAttackAble);
     }
    
     public BattlePlayerData(PlayerData playerData, bool IsLocalPlayer = false)
@@ -37,6 +38,7 @@ public class BattlePlayerData : TurnParticipantBase
 
         TransformParent = new GameObject(Name + "_Party");
         ADDSamplePlayerData();
+        EventBus.Subscribe<ChangeTurnActEvent>(ChangeAttackAble);
     }
 
     public void Request_ADDParty(int ID, Vector3 WorldPosition = default)
@@ -49,7 +51,8 @@ public class BattlePlayerData : TurnParticipantBase
 
         if (Character == null)
             return;
-       
+
+        PlayerParty.Add(Character);
     }
 
     public UI_CardData DrawCard()
@@ -109,6 +112,17 @@ public class BattlePlayerData : TurnParticipantBase
     private void OnDisable()
     {
 
+    }
+
+    private void ChangeAttackAble(ChangeTurnActEvent turnStartEvent)
+    {
+        bool Active = turnStartEvent.eTurnType == TurnManager.ETurnType.ATTACK_ACTIONTURN ? 
+                        true : false;
+
+        foreach (var Character in PlayerParty)
+        {
+            Character.SetAttackAble(Active);
+        }
     }
 
     private void ADDSamplePlayerData()

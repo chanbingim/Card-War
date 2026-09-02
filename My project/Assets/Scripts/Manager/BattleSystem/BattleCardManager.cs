@@ -15,7 +15,7 @@ public class BattleCardManager
         if (isProcessing)
             return;
 
-        DrawCard(drawQueue.Dequeue()).Forget();
+        DrawCard().Forget();
     }
 
     public void Use_Card(UseCardEvent card)
@@ -29,14 +29,14 @@ public class BattleCardManager
         EventBus.Unsubscribe<UseCardEvent>(Use_Card);
     }
 
-    private async UniTaskVoid DrawCard(int DrawCount)
+    private async UniTaskVoid DrawCard()
     {
         isProcessing = true;
         while (drawQueue.Count > 0)
         {
             int count = drawQueue.Dequeue();
             var ClientPlayer = BattleManager.instance.GetLoaclPlayer();
-            for (int i = 0; i < DrawCount; i++)
+            for (int i = 0; i < count; i++)
             {
                 var card = ClientPlayer.DrawCard();
                 EventBus.Publish(new CardDrawEvent(card));

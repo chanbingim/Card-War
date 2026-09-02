@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using TurnCardGame.Data;
 using UnityEngine;
 using static TurnManager;
@@ -17,18 +18,19 @@ public class Character : MonoBehaviour, IActionDragHandler
 
     public CharacterRuntimeData Data { get; private set; }
 
-    private FSM             _CharacterFSM = null;
+    protected FSM             _CharacterFSM = null;
+    
+    protected SpriteRenderer  _spriteRender = null;
+    protected Material        _material = null;
+    protected bool            _bIsAttackAble = false;
+    protected Vector3         vOrizinPoint = Vector3.zero;
 
-    private Material        _material = null;
-    private bool            _bIsAttackAble = false;
-    private Vector3         vOrizinPoint = Vector3.zero;
-
-    private void Start()
+    private void Awake()
     {
-        SpriteRenderer spriteRender = GetComponent<SpriteRenderer>();
-        if(spriteRender != null )
+        _spriteRender = GetComponent<SpriteRenderer>();
+        if(_spriteRender != null )
         {
-            _material = spriteRender.material;
+            _material = _spriteRender.material;
         }
     }
 
@@ -41,8 +43,12 @@ public class Character : MonoBehaviour, IActionDragHandler
     {
         transform.position = Position;
 
-        // 데이터 찾기
+        var DataMgr = DataManager.instance;
+        if (DataMgr == null)
+            return;
+
         Data = new CharacterRuntimeData(CharacterSO);
+        _spriteRender.sprite = DataMgr.GetCharacterSprite(CharacterSO.Id);
 
         var AddressableMgr = AddressableManager.instance;
         Animator animator = gameObject.AddComponent<Animator>();
@@ -54,6 +60,11 @@ public class Character : MonoBehaviour, IActionDragHandler
             _CharacterFSM = GetComponent<FSM>();
 
         _CharacterFSM.Initialized(Data.Source.FSMConfig, this, animator);
+    }
+
+    public void SetAttackAble(bool Active)
+    {
+        _bIsAttackAble = Active;
     }
 
     public void RequestDamaged(int Amount)
@@ -68,45 +79,10 @@ public class Character : MonoBehaviour, IActionDragHandler
         OnChangedState?.Invoke(Data);
     }
 
-    public void MoveTarget(Vector3 vTargetPoint)
-    {
-        vOrizinPoint = transform.position;
-        _CharacterFSM.ChangeState(EFSM_STATE.Move);
+    public virtual void AttackAction(Vector3 vTargetPoint) { }
+   
 
-        var Animator = _CharacterFSM._Animator;
-        if (Animator != null)
-        {
-            AnimatorStateInfo state = Animator.GetCurrentAnimatorStateInfo(0);
-            transform.DOMove(vTargetPoint, state.length)
-                     .OnComplete(() =>
-                     {
-                         _CharacterFSM.ChangeState(EFSM_STATE.Attack);
-                     });
-        }
-    }
-
-    public void Attack()
-    {
-        if(_CharacterFSM._CurStateType == EFSM_STATE.Attack)
-        {
-            var BattleMgr = BattleManager.instance;
-            if(BattleMgr == null)
-            {
-                Debug.LogWarning("[Character] not Find Battle Manager");
-                return;
-            }
-
-            var CurBattle = BattleMgr._CurBattleAction;
-            if (CurBattle == null)
-                return;
-
-            int Damage = BattleMgr.ComputeDamageLogic(Data.CurrentATKPower);
-            CurBattle.TargetObject.RequestDamaged(Damage);
-            AnimFinished();
-        }
-    }
-
-    public void AnimFinished()
+    public virtual void AnimFinished()
     {
         if (_CharacterFSM._CurStateType == EFSM_STATE.Attack)
         {
@@ -122,6 +98,10 @@ public class Character : MonoBehaviour, IActionDragHandler
                                          });
             }
         }
+        else if(_CharacterFSM._CurStateType == EFSM_STATE.Hit)
+        {
+            _CharacterFSM.ChangeState(EFSM_STATE.Idle);
+        }
     }
 
     public virtual void Idle()
@@ -136,12 +116,29 @@ public class Character : MonoBehaviour, IActionDragHandler
 
     public virtual void Hit()
     {
-
+        // 파티클 재생
     }
 
     public virtual void Dead()
     {
         // 상태를 바꿀지 아님 죽음 처리할지 여기서 선택
+        _CharacterFSM.ChangeState(EFSM_STATE.Dead);
+    }
+
+    protected virtual void Attack() { }
+
+    protected void MoveTarget(Vector3 vTargetPoint, TweenCallback action)
+    {
+        vOrizinPoint = transform.position;
+        _CharacterFSM.ChangeState(EFSM_STATE.Move);
+
+        var Animator = _CharacterFSM._Animator;
+        if (Animator != null)
+        {
+            AnimatorStateInfo state = Animator.GetCurrentAnimatorStateInfo(0);
+            transform.DOMove(vTargetPoint, state.length)
+                     .OnComplete(action);
+        }
     }
 
     #region DragInterfaceLogic
@@ -187,7 +184,11 @@ public class Character : MonoBehaviour, IActionDragHandler
         }
         else if (TurnManager.ETurnType.ATTACK_ACTIONTURN == BattleMgr.GetTurnType())
         {
+            /*if (_bIsAttackAble == false)
+                return;*/
+
             BattleMgr.RequestAttack((Character)DragItem, this);
+            _bIsAttackAble = false;
         }
     }
 

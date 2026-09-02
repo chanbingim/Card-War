@@ -57,10 +57,10 @@ namespace Factory
             switch(eType)
             {
                 case EATTAK_TYPE.Attacker:
-                    return null;
+                    return typeof(AttackerCharacter);
 
                 case EATTAK_TYPE.Mage:
-                    return null;
+                    return typeof(MageCharacter);
             }
 
             return null;
