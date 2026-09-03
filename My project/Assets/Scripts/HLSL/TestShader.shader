@@ -4,6 +4,7 @@ Shader "Custom/TestShader"
     {
         [MainColor] _BaseColor("Base Color", Color) = (1, 1, 1, 1)
         [MainTexture] _BaseMap("Base Map", 2D) = "white" {}
+        _TransformOffset("TransformOffset", Vector) = (0, 0, 0, 0)
     }
 
     SubShader
@@ -52,6 +53,7 @@ Shader "Custom/TestShader"
             // Texture
             // ----------------------------------------
 
+            float4 _TransformOffset;
             TEXTURE2D(_BaseMap);
             SAMPLER(sampler_BaseMap);
 
@@ -78,7 +80,7 @@ Shader "Custom/TestShader"
                 FontData data = _InstanceBuffer[instanceID];
 
                 // 기존 Object Space 위치
-                float4 positionOS = IN.positionOS;
+                float4 positionOS = IN.positionOS + _TransformOffset;
 
                 // Instance별 World Matrix 적용
                 float4 positionWS = mul(
@@ -92,29 +94,33 @@ Shader "Custom/TestShader"
                     positionWS
                 );
 
-                OUT.uv = TRANSFORM_TEX(
-                    IN.uv,
-                    _BaseMap
-                );
+                int col = data.TexIndex;
+                float cellWidth = 30.0 / 300.0;
+                
+                float uMin = col * cellWidth;
+                float uMax = (col + 1) * cellWidth;
+                
+                OUT.uv.x = lerp(uMin, uMax, IN.uv.x);
+                OUT.uv.y = IN.uv.y;
 
                 return OUT;
             }
 
-
             // ----------------------------------------
             // Fragment
             // ----------------------------------------
-
             half4 frag(Varyings IN) : SV_Target
             {
-                half4 color =
-                    SAMPLE_TEXTURE2D(
-                        _BaseMap,
-                        sampler_BaseMap,
-                        IN.uv
-                    ) * _BaseColor;
+                half4 color = SAMPLE_TEXTURE2D(
+                    _BaseMap,
+                    sampler_BaseMap,
+                    IN.uv
+                );
 
-                return _BaseColor;
+                if(color.a <= 0.f)
+                    discard;
+
+                return color;
             }
 
             ENDHLSL

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class InstancingComponent : MonoBehaviour
@@ -48,6 +49,7 @@ public class InstancingComponent : MonoBehaviour
 
         _Args[1] = (uint)Count;
         _ArgsBuffer.SetData(_Args);
+        _Material.SetBuffer("_InstanceBuffer", _InstanceBuffer);
     }
 
     public void OnDraw()

@@ -43,13 +43,14 @@ public class DamageFont : MonoBehaviour
         {
             _InstancingComponent.Initailize(_Mesh, _material, _ViewFontCount, Marshal.SizeOf<FontData>());
         }
+
+        _material.SetTexture("_BaseMap", _DamageTexture);
     }
 
     private void Start()
     {
         Initalize(1234567, 10);
     }
-
 
     public void Initalize(Int64 Damage, int LifeTime)
     {
@@ -61,13 +62,15 @@ public class DamageFont : MonoBehaviour
         }
 
         int Count = 0;
+        int half = Data.Count / 2;
+        Vector3 pos = transform.position;
         for (int i = Data.Count - 1; i >= 0; i--)
         {
             var instance = _InstanceBuffer[Count];
             instance.Texindex = (int)Data[i];
 
             instance.WorldMatrix =
-                Matrix4x4.TRS(Vector3.right * Count * 2,
+                Matrix4x4.TRS(pos + Vector3.right * (Count - half),
                               Quaternion.identity,
                               Vector3.one);
 
@@ -79,7 +82,7 @@ public class DamageFont : MonoBehaviour
         if (_AnimCoroutine != null)
             StopCoroutine(_AnimCoroutine);
 
-        _AnimCoroutine = StartCoroutine(AnimCorutine(LifeTime));
+        _AnimCoroutine = StartCoroutine(AnimCorutine(LifeTime, Data.Count));
     }
 
     private void LateUpdate()
@@ -87,12 +90,17 @@ public class DamageFont : MonoBehaviour
        
     }
 
-    IEnumerator AnimCorutine(int LifeTime)
+    IEnumerator AnimCorutine(int LifeTime, int DataCount)
     {
         float time = 0;
-        while(time < LifeTime)
+        int half = DataCount / 2;
+
+        while (time < LifeTime)
         {
-            //time += Time.deltaTime;
+            time += Time.deltaTime;
+            transform.position += Vector3.up * Time.deltaTime * 1f;
+            _material.SetVector("_TransformOffset", new Vector4(0, transform.position.y, 0, 0));
+
             _InstancingComponent.OnDraw();
             yield return null;
         }
