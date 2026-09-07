@@ -16,9 +16,10 @@ public abstract class UIAnimData
 [Serializable]
 public class TransformAnimData : UIAnimData
 {
-    public Vector3 _Position;
-    public Vector3 _Scale;
-    public Vector3 _Rotation;
+    public bool     _bIsLoacl = true;
+    public Vector3  _Position;
+    public Vector3  _Scale;
+    public Vector3  _Rotation;
 
     public override UIAnimation Create()
     {

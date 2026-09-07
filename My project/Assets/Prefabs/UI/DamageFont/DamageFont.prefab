@@ -1,0 +1,119 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6570326029801195128
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4536296604651977323}
+  - component: {fileID: 7815000527756775459}
+  - component: {fileID: 1677750760285365709}
+  - component: {fileID: 2874525530000293546}
+  - component: {fileID: -2378747180703894040}
+  m_Layer: 0
+  m_Name: DamageFont
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4536296604651977323
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6570326029801195128}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2.1, y: 1.2, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7815000527756775459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6570326029801195128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bb4626bc9da3754c811be10e85c3b63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamageFont
+  _ViewFontCount: 10
+  _DamageTexture: {fileID: 2800000, guid: 2cc437649e8ad0d428b2acc467f9304e, type: 3}
+  _Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+  _material: {fileID: 2100000, guid: 2e7c608a253a0ce42aa6ba8271afb7e5, type: 2}
+--- !u!114 &1677750760285365709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6570326029801195128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08d1923dbcddaa04d8067b878c232b78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InstancingComponent
+--- !u!114 &2874525530000293546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6570326029801195128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d96611997bf52bd4db1f4d2d633c052a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DoTweenAnimator
+  _AnimList:
+  - rid: 2190205267132809300
+  - rid: 2190205267132809303
+  _TotalPlayTime: 1
+  _bIsLoop: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 2190205267132809300
+      type: {class: TransformAnimData, ns: , asm: Assembly-CSharp}
+      data:
+        _startFrame: 0
+        _endFrame: 0
+        _bIsLoacl: 0
+        _Position: {x: 0, y: 0, z: 0}
+        _Scale: {x: 1.4, y: 1.4, z: 1}
+        _Rotation: {x: 0, y: 0, z: 0}
+    - rid: 2190205267132809303
+      type: {class: TransformAnimData, ns: , asm: Assembly-CSharp}
+      data:
+        _startFrame: 1
+        _endFrame: 20
+        _bIsLoacl: 0
+        _Position: {x: -1, y: 0, z: 0}
+        _Scale: {x: 1, y: 1, z: 1}
+        _Rotation: {x: 0, y: 0, z: 0}
+--- !u!114 &-2378747180703894040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6570326029801195128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9691ba241161884c844e0c28bdbd0c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PoolAbleComponent
+  PoolType: 0
+  PoolName: DamageFont
+  PoolInitCount: 1000
+  ExpandCount: 20

@@ -11,9 +11,9 @@ public class DoTweenAnimator : MonoBehaviour
     public bool             _AnimationPasue { get; private set; }
     public event Action     OnCompleted;
 
-    [SerializeReference] private List<UIAnimData>    _AnimList;
-    [SerializeField]    private float          _TotalPlayTime = 1f;
-    [SerializeField]    private bool           _bIsLoop = false;
+    [SerializeReference] private List<UIAnimData>   _AnimList;
+    [SerializeField]    private float               _TotalPlayTime = 1f;
+    [SerializeField]    private bool                _bIsLoop = false;
 
     private List<UIAnimation>                       _AnimationList;
     private BitArray                                _AnimFlag;
@@ -103,6 +103,7 @@ public class DoTweenAnimator : MonoBehaviour
         return tcs.Task;
     }
 
+    public float GetToatalAnimTime() { return _TotalPlayTime; }
     public void Play_Animation() { _AnimationPasue = true; }
     public void Pause_Animation() { _AnimationPasue = false; }
 

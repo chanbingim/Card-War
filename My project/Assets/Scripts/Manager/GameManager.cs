@@ -2,8 +2,16 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public enum GameMode
+{
+    SinglePlayer,
+    Multiplayer
+}
+
 public class GameManager : MonoBehaviour
 {
+    public GameMode EGameMode { get; private set; } = GameMode.SinglePlayer;
+
     public  int     StageIndex { get; private set; }
     private string  NextLevel = "";
 
@@ -40,8 +48,8 @@ public class GameManager : MonoBehaviour
         if(_instance == null)
         {
             _instance = this;
-            _instance.Initialize();
             instance = _instance;
+            _instance.Initialize();
 
             DontDestroyOnLoad(_instance);
         }

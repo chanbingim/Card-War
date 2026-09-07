@@ -69,6 +69,7 @@ public class Loading : MonoBehaviour
     {
         float fProgress = _Progress.value;
         var GameMgr = GameManager.instance;
+
         AsyncOperation loadOperation = SceneManager.LoadSceneAsync(GameMgr.GetNextLevel(), LoadSceneMode.Additive);
         loadOperation.allowSceneActivation = false; //로딩이 완료되는대로 씬을 활성화할것인지
 
@@ -90,15 +91,23 @@ public class Loading : MonoBehaviour
         {
             SceneManager.SetActiveScene(nextScene);
             PoolManager.Instance.PoolRootMoveScene(nextScene);
-        }
 
-        Debug.Log(SceneManager.GetActiveScene().name);
-
-        for (int i = 0; i < SceneManager.sceneCount; i++)
-        {
-            Debug.Log(SceneManager.GetSceneAt(i).name);
+            await InitializeScene(nextScene);
         }
 
         await SceneManager.UnloadSceneAsync("LoadingScene");
+    }
+
+    private async UniTask InitializeScene(Scene scene)
+    {
+        foreach (GameObject rootObject in scene.GetRootGameObjects())
+        {
+            var initializers = rootObject.GetComponentsInChildren<IInitialize>(true);
+
+            foreach (var initializer in initializers)
+            {
+                await initializer.Initialize();
+            }
+        }
     }
 }

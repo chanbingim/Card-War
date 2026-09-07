@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using UnityEngine.SocialPlatforms;
 
 public class TurnManager
 {
@@ -12,21 +10,29 @@ public class TurnManager
         END
     }
 
-    public List<ITurnParticipant> _participants { get; private set; }
+    public List<BattlePlayerData> _participants { get; private set; }
 
     public int CurrentTurnIndex     { get; private set; } = 0;   // 현재 턴인 참가자의 인덱스
     public int CurrentPhase         { get; private set; } = 1;   // 현재 진행 중인 Phase (1부터 시작)
     public bool IsRunning           { get; private set; } = false;
+
     public BattlePlayerData         LocalPlayer { get; private set; }
     public ETurnType                _TurnType { get; private set; }  = ETurnType.END;
 
-    public ITurnParticipant Current => _participants[CurrentTurnIndex];
+    public BattlePlayerData Current => _participants[CurrentTurnIndex];
     public int ParticipantCount => _participants.Count;
-   
+
+    List<BattlePlayerData>              _GameOverList = new List<BattlePlayerData>();
     List<CharacterAction>               _AllPlayerAction = new List<CharacterAction>();
 
     public void Release()
     {
+        foreach (var participant in _participants)
+        {
+            participant.RequestTurnEnd += RequestEndTurn;
+            participant._OnGameOver += GameOverParticipant;
+        }
+
         EventBus.Unsubscribe<CardActionEvent>(OnCardActionAdd);
     }
 
@@ -62,14 +68,17 @@ public class TurnManager
         if (participants == null || participants.Count == 0)
             throw new ArgumentException("참가자가 최소 1명 이상 필요합니다.");
 
-        _participants = participants;
+        _participants = new List<BattlePlayerData>();
         foreach (ITurnParticipant participant in participants)
         {
-            var Base = participant as TurnParticipantBase;
+            var Base = participant as BattlePlayerData;
             Base.RequestTurnEnd += RequestEndTurn;
+            Base._OnGameOver += GameOverParticipant;
 
             if (Base.IsLocal)
-                LocalPlayer = Base as BattlePlayerData;
+                LocalPlayer = Base;
+
+            _participants.Add(Base);
         }
 
         EventBus.Subscribe<CardActionEvent>(OnCardActionAdd);
@@ -96,8 +105,6 @@ public class TurnManager
             EventBus.Publish<ChangeTurnActEvent>(new ChangeTurnActEvent(_TurnType, IsLocal));
             BattleManager.instance.RequestDraw(GAME_CONST.Const.DRAW_CARDCOUNT);
         }));
-
-     
     }
 
     public void Update()
@@ -152,6 +159,11 @@ public class TurnManager
         Current.TurnEnd();
         CurrentTurnIndex++;
 
+        while(CurrentTurnIndex >= _participants.Count && _GameOverList.Contains(_participants[CurrentTurnIndex]))
+        {
+            CurrentTurnIndex++;
+        }
+
         if (CurrentTurnIndex >= _participants.Count)
         {
             CurrentTurnIndex = 0;
@@ -159,6 +171,28 @@ public class TurnManager
         }
 
         StartTurn();
+    }
+
+    private void GameOverParticipant(BattlePlayerData player)
+    {
+        _GameOverList.Add(player);
+        if(_GameOverList.Count == _participants.Count - 1)
+        {
+            // 여기서 GameOver순서로 등수 주고
+            // 승리 실패 이거만 나누면 될듯
+            var eGameMode = GameManager.instance.EGameMode;
+            if (eGameMode == GameMode.SinglePlayer)
+            {
+                bool IsWin = !_GameOverList.Contains(LocalPlayer);
+                EventBus.Publish<BattleEndEvent>(new BattleEndEvent(IsWin, 3));
+            }
+            else
+            {
+                //멀티 서버는 서버에 요청
+                // 또는 순위
+                UnityEngine.Debug.Log($"GameOver {player.Name}");
+            }
+        }
     }
 
     public void Stop()

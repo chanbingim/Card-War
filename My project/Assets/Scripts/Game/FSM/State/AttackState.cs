@@ -11,14 +11,6 @@ public class AttackState : State
     public override void Update()
     {
         //_character.Attack();
-        if (_Animator != null)
-        {
-            AnimatorStateInfo state = _Animator.GetCurrentAnimatorStateInfo(0);
-            if (state.normalizedTime >= 1f)
-            {
-                _character.AnimFinished();
-            }
-        }
     }
 
     public override void Exit()

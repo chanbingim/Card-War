@@ -1,3 +1,4 @@
+using GAME_CONST;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,13 +7,17 @@ using UnityEngine;
 
 public class BattlePlayerData : TurnParticipantBase
 {
+    public event Action<BattlePlayerData>    _OnGameOver;
+
     public  List<int>               Decks;
     public  List<UI_CardData>       Hands;
     public  List<int>               Skills;
     public  List<Character>         PlayerParty { get; protected set; } = new List<Character>();
 
     private GameObject              TransformParent;
+    private int                     DeadCount = 0;
 
+    #region Constructor  (»ý¼ºÀÚ)
     public BattlePlayerData()
     {
         Name = $"Sample Test Player {PlayerTurnIndex}";
@@ -27,11 +32,17 @@ public class BattlePlayerData : TurnParticipantBase
         ADDSamplePlayerData();
         EventBus.Subscribe<ChangeTurnActEvent>(ChangeAttackAble);
     }
-   
+
     public BattlePlayerData(PlayerData playerData, bool IsLocalPlayer = false)
     {
         Name = playerData.Name;
-        Decks = new List<int>(playerData.Decks);
+
+        Decks = new List<int>(Const.MAX_DECK);
+        foreach (var Entry in playerData.Decks)
+        {
+            Decks.AddRange(Enumerable.Repeat(Entry.CardID, Entry.Count));
+        }
+
         Skills = new List<int>(playerData.Skills);
         Hands = new List<UI_CardData>(GAME_CONST.Const.MAX_HAND);
         IsLocal = IsLocalPlayer;
@@ -41,18 +52,50 @@ public class BattlePlayerData : TurnParticipantBase
         EventBus.Subscribe<ChangeTurnActEvent>(ChangeAttackAble);
     }
 
+    public BattlePlayerData(StageAISO AIData)
+    {
+        Name = AIData._Name;
+
+        Decks = new List<int>(Const.MAX_DECK);
+        foreach (var Entry in AIData._Decks)
+        {
+            Decks.AddRange(Enumerable.Repeat(Entry.CardID, Entry.Count));
+        }
+      
+        Skills = new List<int>(AIData._Skills);
+        Hands = new List<UI_CardData>(GAME_CONST.Const.MAX_HAND);
+       
+        var stage = BattleManager.instance.GetCurrentStage();
+        var AddressableMgr = AddressableManager.instance;
+        if (AddressableMgr == null)
+            return;
+
+        var Fomation = AddressableMgr.Get<FormationSO>("Formation/ThreeFormation");
+        int Count = 0;
+        TransformParent = new GameObject(Name + "_Party");
+        foreach (var id in AIData._Monsters)
+        {
+            Request_ADDParty(id, stage.GetEnemyWorldPosition(Fomation.LocalPosition[Count++]));
+        }
+
+        
+        EventBus.Subscribe<ChangeTurnActEvent>(ChangeAttackAble);
+    }
+    #endregion
+
     public void Request_ADDParty(int ID, Vector3 WorldPosition = default)
     {
-        var Character = Factory.CharacterCreateFactory.Create(
+        var character = Factory.CharacterCreateFactory.Create(
          ID,
          TransformParent.transform,
          WorldPosition,
          IsLocal);
 
-        if (Character == null)
+        if (character == null)
             return;
 
-        PlayerParty.Add(Character);
+        character.OnDead += PartyCharacterDead;
+        PlayerParty.Add(character);
     }
 
     public UI_CardData DrawCard()
@@ -96,17 +139,33 @@ public class BattlePlayerData : TurnParticipantBase
         if (PlayerParty.Count <= 0)
             return;
 
+        character.OnDead -= PartyCharacterDead;
         if (PlayerParty.Contains(character))
             PlayerParty.Remove(character);
+    }
+
+    public void Release()
+    {
+        foreach (var character in PlayerParty)
+        {
+            character.OnDead -= PartyCharacterDead;
+        }
     }
 
     public override void TurnRunning()
     {
         if (IsActive == false)
             return;
+    }
 
+    private void PartyCharacterDead()
+    {
+        DeadCount++;
 
-
+        if(DeadCount >= PlayerParty.Count)
+        {
+            _OnGameOver?.Invoke(this);
+        }
     }
 
     private void OnDisable()
@@ -156,5 +215,4 @@ public class BattlePlayerData : TurnParticipantBase
             Request_ADDParty(2);
         }
     }
-
 }

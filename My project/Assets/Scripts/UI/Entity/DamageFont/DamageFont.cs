@@ -8,22 +8,23 @@ public class DamageFont : MonoBehaviour
 {
     struct FontData
     {
-        public FontData(int texIdx, Matrix4x4 matrix4X4)
+        public FontData(int texIdx)
         {
             Texindex = texIdx;
-            WorldMatrix = matrix4X4;
         }
 
         public int          Texindex;
-        public Matrix4x4    WorldMatrix;
     }
 
     [SerializeField] int        _ViewFontCount = 10;
     [SerializeField] Texture    _DamageTexture = null;
     [SerializeField] Mesh       _Mesh = null;
-    [SerializeField] Material   _material = null;
+    [SerializeField] Material _material = null;
 
     InstancingComponent         _InstancingComponent = null;
+    PoolAbleComponent           _PoolAbleComponent = null;
+    DoTweenAnimator             _DoTweenAnimator = null;
+
     FontData[]                  _InstanceBuffer = null;
     Coroutine                   _AnimCoroutine;
 
@@ -34,25 +35,26 @@ public class DamageFont : MonoBehaviour
             _InstanceBuffer = new FontData[_ViewFontCount];
             for (int i = 0; i < _ViewFontCount; ++i)
             {
-                _InstanceBuffer[i] = new FontData(0, Matrix4x4.identity);
+                _InstanceBuffer[i] = new FontData(0);
             }
         }
 
         _InstancingComponent = GetComponent<InstancingComponent>();
+
         if (_InstancingComponent != null)
         {
             _InstancingComponent.Initailize(_Mesh, _material, _ViewFontCount, Marshal.SizeOf<FontData>());
         }
 
+        _DoTweenAnimator = GetComponent<DoTweenAnimator>();
+        _PoolAbleComponent = GetComponent<PoolAbleComponent>();
+
+        _DoTweenAnimator.Pause_Animation();
+
         _material.SetTexture("_BaseMap", _DamageTexture);
     }
 
-    private void Start()
-    {
-        Initalize(1234567, 10);
-    }
-
-    public void Initalize(Int64 Damage, int LifeTime)
+    public void Initalize(Int64 Damage, Transform transformParent = null)
     {
         List<Int64> Data = new List<Int64>();
         while(Damage > 0)
@@ -63,46 +65,58 @@ public class DamageFont : MonoBehaviour
 
         int Count = 0;
         int half = Data.Count / 2;
-        Vector3 pos = transform.position;
+
+        if (transformParent)
+        {
+            transform.parent = transformParent;
+            transform.localPosition = Vector3.up;
+        }
+
         for (int i = Data.Count - 1; i >= 0; i--)
         {
             var instance = _InstanceBuffer[Count];
             instance.Texindex = (int)Data[i];
 
-            instance.WorldMatrix =
-                Matrix4x4.TRS(pos + Vector3.right * (Count - half),
-                              Quaternion.identity,
-                              Vector3.one);
-
             _InstanceBuffer[Count] = instance;
             Count++;
         }
 
+        _material.SetFloat("_Count", Data.Count);
         _InstancingComponent.SetData(Count, _InstanceBuffer);
         if (_AnimCoroutine != null)
             StopCoroutine(_AnimCoroutine);
 
-        _AnimCoroutine = StartCoroutine(AnimCorutine(LifeTime, Data.Count));
+        _AnimCoroutine = StartCoroutine(AnimCorutine(_DoTweenAnimator.GetToatalAnimTime()));
     }
 
     private void LateUpdate()
     {
-       
+        _material.SetVector("_WorldPosition", transform.position);
+        _material.SetVector("_Scale", transform.localScale);
+        _InstancingComponent.OnDraw();
     }
 
-    IEnumerator AnimCorutine(int LifeTime, int DataCount)
+    IEnumerator AnimCorutine(float LifeTime)
     {
         float time = 0;
-        int half = DataCount / 2;
+        if (_DoTweenAnimator == null)
+            yield return null;
+
+        _DoTweenAnimator.Play_Animation();
 
         while (time < LifeTime)
         {
             time += Time.deltaTime;
-            transform.position += Vector3.up * Time.deltaTime * 1f;
-            _material.SetVector("_TransformOffset", new Vector4(0, transform.position.y, 0, 0));
+            float Ratio = 1 - (time / LifeTime);
+            _material.SetFloat("_ParentAlpha", Ratio);
 
-            _InstancingComponent.OnDraw();
             yield return null;
         }
+
+        _DoTweenAnimator.Pause_Animation();
+
+        // 여기에서 객체 반환 및 삭제를 진행
+        transform.parent = null;
+        _PoolAbleComponent?.ReturnToPool();
     }
 }

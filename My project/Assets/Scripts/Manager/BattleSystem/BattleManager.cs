@@ -1,9 +1,11 @@
+using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using TurnCardGame.Data;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class BattleManager : MonoBehaviour
+public class BattleManager : MonoBehaviour, IInitialize
 {
     public Stage GetCurrentStage() { return _Cur_Stage ? _Cur_Stage : null; }
     public BattleAction              _CurBattleAction { get; private set; } = null;
@@ -58,7 +60,6 @@ public class BattleManager : MonoBehaviour
 
     public int ComputeDamageLogic(int OrizinDamage)
     {
-
         return OrizinDamage;
     }
 
@@ -75,39 +76,59 @@ public class BattleManager : MonoBehaviour
         }
 
         instance = this;
-        instance.Initialize();
     }
 
     private void OnDestroy()
     {
+        _BattleCardManager.Relese();
+        _TrunMgr.Release();
+
         if (instance == this)
             instance = null;
     }
 
-    public void Initialize()
+    public UniTask Initialize()
     {
         if (InitStage() == false)
         {
             Debug.LogWarning("Initialize Fail Stage");
-            return;
+            return UniTask.CompletedTask;
         }
 
         if (InitBattleCardManager() == false)
         {
             Debug.LogWarning("Initialize Fail BattleCardManager");
-            return;
+            return UniTask.CompletedTask;
         }
 
         // 이거 나중에 서버에서 받아오긴할거임
-        List<ITurnParticipant> participants = new List<ITurnParticipant>();
-        participants.Add(GameClientManager.instance.GetBattleData());
-        participants.Add(new BattlePlayerData());
+        List<ITurnParticipant> participants = null;
+        var eGameMode = GameManager.instance.EGameMode;
+        
+        if (eGameMode == GameMode.SinglePlayer)
+        {
+            participants = new List<ITurnParticipant>();
+            participants.Add(GameClientManager.instance.GetBattleData());
+
+            var AddressableMgr = AddressableManager.instance;
+            if (AddressableMgr == null)
+                return UniTask.CompletedTask;
+
+            int CurStageIdx = GameManager.instance.StageIndex;
+            participants.Add(new BattlePlayerData(AddressableMgr.Get<StageAISO>($"AIData/AIData_Stage{CurStageIdx}")));
+        }
+        if (eGameMode == GameMode.Multiplayer)
+        {
+          
+        }
 
         if (InitTurnManager(participants) == false)
         {
             Debug.LogWarning("Initialize Fail TurnManager");
-            return;
+            return UniTask.CompletedTask;
         }
+
+        return UniTask.CompletedTask;
     }
 
     private bool InitBattleCardManager()
@@ -137,7 +158,10 @@ public class BattleManager : MonoBehaviour
             return false;
         }
 
+        Debug.Log("Battle" + SceneManager.GetActiveScene().name);
         var NewStage = GameObject.Instantiate(stagePrefab);
+        Debug.Log("Battle" + NewStage.scene.name);
+
         _Cur_Stage = NewStage.GetComponent<Stage>();
         _Cur_Stage.Initalize();
 

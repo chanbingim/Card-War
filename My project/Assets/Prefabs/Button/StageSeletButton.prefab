@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3203450955194566890
 RectTransform:
   m_ObjectHideFlags: 0
@@ -180,7 +180,8 @@ MonoBehaviour:
       data:
         _startFrame: 0
         _endFrame: 1
-        _Position: {x: 42, y: -15, z: 0}
+        _bIsLoacl: 1
+        _Position: {x: 0, y: 0, z: 0}
         _Scale: {x: 1.2, y: 1.2, z: 1.2}
         _Rotation: {x: 0, y: 0, z: 80}
     - rid: 4182431754241966158
@@ -188,7 +189,8 @@ MonoBehaviour:
       data:
         _startFrame: 1
         _endFrame: 5
-        _Position: {x: 42, y: -15, z: 0}
+        _bIsLoacl: 1
+        _Position: {x: 0, y: 0, z: 0}
         _Scale: {x: 1, y: 1, z: 1}
         _Rotation: {x: 0, y: 0, z: 0}
 --- !u!1 &4459720434386124215
@@ -273,7 +275,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6816193493273243798
 RectTransform:
   m_ObjectHideFlags: 0
@@ -432,7 +434,8 @@ MonoBehaviour:
       data:
         _startFrame: 0
         _endFrame: 1
-        _Position: {x: 14.166667, y: -15, z: 0}
+        _bIsLoacl: 1
+        _Position: {x: 0, y: 0, z: 0}
         _Scale: {x: 1.2, y: 1.2, z: 1.2}
         _Rotation: {x: 0, y: 0, z: 40}
     - rid: 4182431754241966156
@@ -440,7 +443,8 @@ MonoBehaviour:
       data:
         _startFrame: 1
         _endFrame: 5
-        _Position: {x: 14.16667, y: -15, z: 0}
+        _bIsLoacl: 1
+        _Position: {x: 0, y: 0, z: 0}
         _Scale: {x: 1, y: 1, z: 1}
         _Rotation: {x: 0, y: 0, z: 0}
 --- !u!1 &8102843802144501756
@@ -686,7 +690,8 @@ MonoBehaviour:
       data:
         _startFrame: 0
         _endFrame: 1
-        _Position: {x: 70.83334, y: -15, z: 0}
+        _bIsLoacl: 1
+        _Position: {x: 0, y: 0, z: 0}
         _Scale: {x: 1.2, y: 1.2, z: 1.2}
         _Rotation: {x: 0, y: 0, z: 120}
     - rid: 4182431754241966160
@@ -694,6 +699,7 @@ MonoBehaviour:
       data:
         _startFrame: 1
         _endFrame: 5
-        _Position: {x: 70.83334, y: -15, z: 0}
-        _Scale: {x: 0, y: 0, z: 0}
+        _bIsLoacl: 1
+        _Position: {x: 0, y: 0, z: 0}
+        _Scale: {x: 1, y: 1, z: 1}
         _Rotation: {x: 0, y: 0, z: 0}

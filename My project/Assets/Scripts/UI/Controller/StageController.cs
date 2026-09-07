@@ -26,7 +26,14 @@ public class StageController : MonoBehaviour
             for (int i = 0; i < StageUIs.Count; i++)
             {
                 if(Stages.Count >= i)
+                {
                     StageUIs[i].OpenStage($"{1} - {i + 1}");
+
+                    if(Stages.TryGetValue(i +1, out var stageData))
+                    {
+                        StageUIs[i].ClearStage(stageData.StarCount, stageData.IsClear);
+                    }
+                }
             }
         }
         catch (Exception Msg)

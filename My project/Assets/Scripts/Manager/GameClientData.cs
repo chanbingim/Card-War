@@ -10,7 +10,7 @@ public class GameClientManager : MonoBehaviour
     public IReadOnlyDictionary<int, int>        GetCollection()         { return _playerData?.Collections; }
     public IReadOnlyList<int>                   GetPlayerSkill()        { return _playerData?.Skills; }
     public IReadOnlyList<int>                   GetPlayerPartyList()    { return _playerData?.PlayerParty; }
-    public IReadOnlyList<int>                   GetPlayerDeck()         { return _playerData?.Decks; }
+    public IReadOnlyList<DeckEntry>             GetPlayerDeck()         { return _playerData?.Decks; }
 
     #region Defualt
     static public GameClientManager instance { get; private set; }

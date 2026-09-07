@@ -12,6 +12,8 @@ public class Character : MonoBehaviour, IActionDragHandler
     public delegate void OnChangeState(CharacterRuntimeData Data);
 
     public event OnDagmaed OnDamaged;
+    public event Action    OnDead;
+
     public event OnChangeState OnChangedState;
     public event FinishedAction OnFinishedAct;
     #endregion
@@ -70,9 +72,15 @@ public class Character : MonoBehaviour, IActionDragHandler
     public void RequestDamaged(int Amount)
     {
         Data.TakeDamage(Amount);
+        var PoolItem = PoolManager.Instance.Get<PoolAbleComponent>(GamePlay.Enum.EPoolType.Obejct, "DamageFont");
+        if(PoolItem != null)
+            PoolItem.gameObject.GetComponent<DamageFont>().Initalize(Amount, transform);
 
-        if(Data.IsDead)
+        if (Data.IsDead)
+        {
             _CharacterFSM.ChangeState(EFSM_STATE.Dead);
+            OnDead?.Invoke();
+        }
         else
             _CharacterFSM.ChangeState(EFSM_STATE.Hit);
 
@@ -81,7 +89,6 @@ public class Character : MonoBehaviour, IActionDragHandler
 
     public virtual void AttackAction(Vector3 vTargetPoint) { }
    
-
     public virtual void AnimFinished()
     {
         if (_CharacterFSM._CurStateType == EFSM_STATE.Attack)
