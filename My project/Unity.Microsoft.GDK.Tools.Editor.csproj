@@ -62,36 +62,36 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Editor\GdkPlugin.cs" />
+    <Compile Include="Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Editor\GdkPreBuild.cs" />
+    <Compile Include="Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Editor\GdkInstalledAppsEditorWindow.cs" />
+    <Compile Include="Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Editor\GDKPlatformManager.cs" />
+    <Compile Include="Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Editor\GdkToolsPackageProxy.cs" />
+    <Compile Include="Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Editor\GameConfigHelper.cs" />
+    <Compile Include="Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Editor\GdkPlaymodeStateListener.cs" />
+    <Compile Include="Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Editor\GdkEditionTracker.cs" />
+    <Compile Include="Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Editor\GameConfigEditor.cs" />
+    <Compile Include="Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Editor\MakePkgStableKeyConfig.cs" />
+    <Compile Include="Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Editor\GdkSwitchSandboxEditorWindow.cs" />
+    <Compile Include="Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Editor\ExecuteSystemProcess.cs" />
     <Compile Include="Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Editor\UIContent.cs" />
     <Compile Include="Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Editor\GdkPlatformSettingsGenerator.cs" />
     <Compile Include="Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Editor\GdkSettingsProvider.cs" />
-    <Compile Include="Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Editor\GdkPreBuild.cs" />
     <Compile Include="Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Editor\WindowsPlatformBuilder.cs" />
     <Compile Include="Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Editor\GdkUtility.cs" />
     <Compile Include="Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Editor\GdkToolsEvents.cs" />
-    <Compile Include="Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Editor\GdkInstalledAppsEditorWindow.cs" />
-    <Compile Include="Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Editor\GdkToolsPackageProxy.cs" />
-    <Compile Include="Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Editor\GDKPlatformManager.cs" />
-    <Compile Include="Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Editor\GameConfigHelper.cs" />
     <Compile Include="Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Editor\GdkEditionSelector.cs" />
     <Compile Include="Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Editor\GdkPostBuild.cs" />
     <Compile Include="Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Editor\WindowsSDKData.cs" />
-    <Compile Include="Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Editor\GdkPlaymodeStateListener.cs" />
     <Compile Include="Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Editor\GameConfigLocalizationTool.cs" />
     <Compile Include="Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Editor\MicrosoftGdkData.cs" />
-    <Compile Include="Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Editor\GdkEditionTracker.cs" />
     <Compile Include="Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Editor\GdkEditorHelpers.cs" />
     <Compile Include="Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Editor\GdkSettingsEditor.cs" />
     <Compile Include="Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Editor\GameConfigImporter.cs" />
-    <Compile Include="Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Editor\GameConfigEditor.cs" />
     <Compile Include="Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Editor\GdkSettings.cs" />
     <Compile Include="Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Editor\GdkBuild.cs" />
-    <Compile Include="Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Editor\MakePkgStableKeyConfig.cs" />
     <Compile Include="Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Editor\WindowsPlatform.cs" />
     <Compile Include="Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Editor\Validator\MGCValidatorUtility.cs" />
     <Compile Include="Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Editor\LanguagePairsPropertyDrawer.cs" />
-    <Compile Include="Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Editor\GdkSwitchSandboxEditorWindow.cs" />
-    <Compile Include="Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Editor\ExecuteSystemProcess.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Editor\unity.microsoft.gdk.tools.Editor.asmdef" />

@@ -25,13 +25,14 @@ public class BattleManager : MonoBehaviour, IInitialize
     #region PlayerMgr
     public bool             IsPlayerTurn() { return _TrunMgr?.IsPlayerTurn() ?? false; }
     public BattlePlayerData GetLoaclPlayer() { return _TrunMgr?.LocalPlayer; }
+    public BattlePlayerData GetTurnPlayer() { return _TrunMgr?.Current; }
     public void             RequestDraw(int Count) { _BattleCardManager?.RequestDrawCard(Count); }
     #endregion
 
     #region TrunMgr
-    public void RequestEndTurn()
+    public void RequestEndTurn(string participantId)
     {
-        _TrunMgr?.RequestEndTurn(_TrunMgr.Current.Name);
+        _TrunMgr?.RequestEndTurn(participantId);
     }
 
     public IReadOnlyList<CharacterAction> GetAllHistory()
@@ -39,9 +40,9 @@ public class BattleManager : MonoBehaviour, IInitialize
         return _TrunMgr?.GetAllHistory() ?? null;
     }
 
-    public TurnManager.ETurnType GetTurnType()
+    public ETurnType GetTurnType()
     {
-        return _TrunMgr?._TurnType ?? TurnManager.ETurnType.END;
+        return _TrunMgr?._TurnType ?? ETurnType.END;
     }
     #endregion
 
@@ -115,7 +116,20 @@ public class BattleManager : MonoBehaviour, IInitialize
                 return UniTask.CompletedTask;
 
             int CurStageIdx = GameManager.instance.StageIndex;
-            participants.Add(new BattlePlayerData(AddressableMgr.Get<StageAISO>($"AIData/AIData_Stage{CurStageIdx}")));
+
+            var AIObject = AddressableMgr.Get<GameObject>("AI/AIObject");
+            if(AIObject == null)
+                return UniTask.CompletedTask;
+
+            var AIData = AddressableMgr.Get<StageAISO>($"AIData/AIData_Stage{CurStageIdx}");
+            if (AIData == null)
+                return UniTask.CompletedTask;
+
+            var AIGameObject = GameObject.Instantiate(AIObject);
+            AIController Controller = AIGameObject.GetComponent<AIController>();
+            
+            Controller.Initialize(AIData);
+            participants.Add(Controller._Data);
         }
         if (eGameMode == GameMode.Multiplayer)
         {

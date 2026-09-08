@@ -12,7 +12,9 @@ public class StageClearComponent : MonoBehaviour
 
     private List<DoTweenAnimator>    _ImageAnim;
     private Sprite[]                 _Sprites;
-    private int                      _StarCount = -1;
+
+    private int                      _StarCount = 0;
+    private int                      _MaxStar = -1;
 
     private void Awake()
     {
@@ -28,11 +30,13 @@ public class StageClearComponent : MonoBehaviour
         _ImageAnim.Capacity = _Images.Count;
         foreach (var image in _Images)
         {
-            image.gameObject.SetActive(false);
             _ImageAnim.Add(image.gameObject.GetComponent<DoTweenAnimator>());
+
             var Animator = _ImageAnim.Last();
+            Animator.OnCompleted += OnCompoletedStarAnim;
             Animator.Pause_Animation();
             Animator.Initialize();
+            Animator.enabled = false;
         }
 
         _Sprites = new Sprite[atlas.spriteCount];
@@ -52,21 +56,35 @@ public class StageClearComponent : MonoBehaviour
     {
         _Text.gameObject.SetActive(false);
         _LockImage.gameObject.SetActive(true);
-        _StarCount = -1;
+        _StarCount = 0;
     }
 
     public void ClearStage(int StarCount, bool IsClear)
     {
-        for (int i = 0; i < StarCount; ++i)
+        if(IsClear)
         {
-            if (_StarCount < i)
-            {
-                _Images[i].gameObject.SetActive(true);
-                _Images[i].sprite = _Sprites[1];
-                _ImageAnim[i].Initialize();
-                _ImageAnim[i].Play_Animation();
-            }
+            _MaxStar = StarCount;
+            OnCompoletedStarAnim();
         }
-        _StarCount = StarCount;
+    }
+
+    private void OnCompoletedStarAnim()
+    {
+        if (_StarCount < _MaxStar)
+        {
+            _Images[_StarCount].sprite = _Sprites[1];
+
+            _ImageAnim[_StarCount].enabled = true;
+            _ImageAnim[_StarCount].Initialize();
+            _ImageAnim[_StarCount].Play_Animation();
+
+            _StarCount++;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        foreach (var Animator in _ImageAnim)
+            Animator.OnCompleted -= OnCompoletedStarAnim;
     }
 }

@@ -61,23 +61,23 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.3.17f1\Editor\Data\Tools\BuildPipeline\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Core\Initialization\UnityProjectNotLinkedException.cs" />
-    <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Core\Initialization\ServicesCreationException.cs" />
-    <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Core\IUnityServices.cs" />
     <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Core\ServiceObserver.cs" />
-    <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Core\UnityServices.cs" />
-    <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Core\Initialization\ServicesInitializationException.cs" />
-    <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Core\Initialization\InitializationOptions.cs" />
     <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Core\Utils\UnityThreadUtils.cs" />
     <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Core\IService.cs" />
     <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Core\UnityServicesBuilder.cs" />
     <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Core\CoreResetter.cs" />
-    <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Core\DynamicDependency\PreserveDependencyAttribute.cs" />
     <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Core\AssemblyInfo.cs" />
     <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Core\ExternalUserIdProperty.cs" />
-    <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Core\Initialization\ServicesInitializationState.cs" />
     <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Core\CommonErrorCodes.cs" />
     <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Core\RequestFailedException.cs" />
+    <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Core\Initialization\UnityProjectNotLinkedException.cs" />
+    <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Core\Initialization\ServicesCreationException.cs" />
+    <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Core\IUnityServices.cs" />
+    <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Core\UnityServices.cs" />
+    <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Core\Initialization\ServicesInitializationException.cs" />
+    <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Core\Initialization\InitializationOptions.cs" />
+    <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Core\DynamicDependency\PreserveDependencyAttribute.cs" />
+    <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Core\Initialization\ServicesInitializationState.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Core\Unity.Services.Core.asmdef" />

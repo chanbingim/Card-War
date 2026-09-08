@@ -1,15 +1,17 @@
 using System;
 using System.Collections.Generic;
+using Unity.Behavior;
+
+[BlackboardEnum]
+public enum ETurnType
+{
+    USE_CARDTRUN,
+    ATTACK_ACTIONTURN,
+    END
+}
 
 public class TurnManager
 {
-    public enum ETurnType
-    {
-        USE_CARDTRUN,
-        ATTACK_ACTIONTURN,
-        END
-    }
-
     public List<BattlePlayerData> _participants { get; private set; }
 
     public int CurrentTurnIndex     { get; private set; } = 0;   // 현재 턴인 참가자의 인덱스
@@ -29,8 +31,7 @@ public class TurnManager
     {
         foreach (var participant in _participants)
         {
-            participant.RequestTurnEnd += RequestEndTurn;
-            participant._OnGameOver += GameOverParticipant;
+            participant._OnGameOver -= GameOverParticipant;
         }
 
         EventBus.Unsubscribe<CardActionEvent>(OnCardActionAdd);
@@ -72,7 +73,6 @@ public class TurnManager
         foreach (ITurnParticipant participant in participants)
         {
             var Base = participant as BattlePlayerData;
-            Base.RequestTurnEnd += RequestEndTurn;
             Base._OnGameOver += GameOverParticipant;
 
             if (Base.IsLocal)
@@ -97,7 +97,10 @@ public class TurnManager
 
     private void StartTurn()
     {
+        _TurnType = ETurnType.USE_CARDTRUN;
+
         Current.TurnBegin();
+        Current.TrunChange(_TurnType);
 
         bool IsLocal = LocalPlayer.IsActive;
         EventBus.Publish<ChangeTurnEvent>(new ChangeTurnEvent(IsLocal, () =>
@@ -134,11 +137,12 @@ public class TurnManager
             return false;
         }
 
-        Action OnCompleted = null;
+        System.Action OnCompleted = null;
         if (_TurnType < ETurnType.END)
         {
             _TurnType++;
-    
+            Current.TrunChange(_TurnType);
+
             if (_TurnType >= ETurnType.END)
             {
                 OnCompleted = () =>
@@ -158,16 +162,20 @@ public class TurnManager
     {
         Current.TurnEnd();
         CurrentTurnIndex++;
-
-        while(CurrentTurnIndex >= _participants.Count && _GameOverList.Contains(_participants[CurrentTurnIndex]))
-        {
-            CurrentTurnIndex++;
-        }
-
         if (CurrentTurnIndex >= _participants.Count)
         {
             CurrentTurnIndex = 0;
             CurrentPhase++;
+        }
+
+        while (_GameOverList.Contains(Current))
+        {
+            CurrentTurnIndex++;
+            if (CurrentTurnIndex >= _participants.Count)
+            {
+                CurrentTurnIndex = 0;
+                CurrentPhase++;
+            }
         }
 
         StartTurn();

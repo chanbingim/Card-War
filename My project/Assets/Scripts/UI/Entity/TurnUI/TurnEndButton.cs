@@ -1,5 +1,8 @@
 
-public class TurnEndButton: UIBase
+using UnityEngine;
+using UnityEngine.EventSystems;
+
+public class TurnEndButton: UIBase, IPointerClickHandler
 {
     private DissolveComponent _Dissolve = null;
 
@@ -9,6 +12,19 @@ public class TurnEndButton: UIBase
         EventBus.Subscribe<ChangeTurnEvent>(View_TurnUI);
 
         gameObject.SetActive(false);
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        var BattleMgr = BattleManager.instance;
+        if(BattleMgr == null)
+        {
+            Debug.Log("[Turn End Button] Not Find BattleManager");
+            return;
+        }
+
+        var Player = BattleMgr.GetLoaclPlayer();
+        BattleMgr.RequestEndTurn(Player.Name);
     }
 
     private void View_TurnUI(ChangeTurnEvent turnStartEvent)

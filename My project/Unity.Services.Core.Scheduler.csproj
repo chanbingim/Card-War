@@ -61,13 +61,13 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.3.17f1\Editor\Data\Tools\BuildPipeline\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Scheduler\ScheduledInvocationComparer.cs" />
+    <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Scheduler\ScheduledInvocation.cs" />
+    <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Scheduler\ActionScheduler.cs" />
     <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Scheduler\TimeProvider\UtcTimeProvider.cs" />
     <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Scheduler\TimeProvider\ITimeProvider.cs" />
     <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Scheduler\AssemblyInfo.cs" />
     <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Scheduler\MinimumBinaryHeap.cs" />
-    <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Scheduler\ScheduledInvocationComparer.cs" />
-    <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Scheduler\ScheduledInvocation.cs" />
-    <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Scheduler\ActionScheduler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Scheduler\Unity.Services.Core.Scheduler.asmdef" />

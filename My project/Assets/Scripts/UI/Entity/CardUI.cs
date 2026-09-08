@@ -24,6 +24,10 @@ public class CardUI : UIBase, IActionDragHandler
     public void SettingData(UI_CardData data)
     {
         _Data = data;
+
+        if (_Data == null)
+            return;
+
         image.sprite = DataManager.instance.GetCardSprite(data.CardID);
     }
 

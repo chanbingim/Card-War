@@ -61,33 +61,33 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.3.17f1\Editor\Data\Tools\BuildPipeline\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Library\PackageCache\com.unity.addressables@8460f1c9c927\Runtime\ResourceLocators\ContentCatalogData.cs" />
-    <Compile Include="Library\PackageCache\com.unity.addressables@8460f1c9c927\Runtime\Utility\AssemblyUtility.cs" />
     <Compile Include="Library\PackageCache\com.unity.addressables@8460f1c9c927\Runtime\Initialization\CleanBundleCacheOperation.cs" />
     <Compile Include="Library\PackageCache\com.unity.addressables@8460f1c9c927\Runtime\Initialization\PackedPlayModeBuildLogs.cs" />
-    <Compile Include="Library\PackageCache\com.unity.addressables@8460f1c9c927\Runtime\AddressablesImpl.cs" />
     <Compile Include="Library\PackageCache\com.unity.addressables@8460f1c9c927\Runtime\ResourceLocators\ResourceLocationData.cs" />
     <Compile Include="Library\PackageCache\com.unity.addressables@8460f1c9c927\Runtime\Services\PlatformMappingService.cs" />
+    <Compile Include="Library\PackageCache\com.unity.addressables@8460f1c9c927\Runtime\ResourceLocators\CcdManagedData.cs" />
+    <Compile Include="Library\PackageCache\com.unity.addressables@8460f1c9c927\Runtime\Initialization\ResourceManagerRuntimeData.cs" />
+    <Compile Include="Library\PackageCache\com.unity.addressables@8460f1c9c927\Runtime\Initialization\InitializationObjectsOperation.cs" />
+    <Compile Include="Library\PackageCache\com.unity.addressables@8460f1c9c927\Runtime\Initialization\UpdateCatalogsOperation.cs" />
+    <Compile Include="Library\PackageCache\com.unity.addressables@8460f1c9c927\Runtime\ResourceProviders\ContentCatalogProvider.cs" />
+    <Compile Include="Library\PackageCache\com.unity.addressables@8460f1c9c927\Runtime\AssetReference.cs" />
+    <Compile Include="Library\PackageCache\com.unity.addressables@8460f1c9c927\Runtime\AssetLabelReference.cs" />
+    <Compile Include="Library\PackageCache\com.unity.addressables@8460f1c9c927\Runtime\Utility\SerializationUtilities.cs" />
+    <Compile Include="Library\PackageCache\com.unity.addressables@8460f1c9c927\Runtime\ResourceLocators\ContentCatalogData.cs" />
+    <Compile Include="Library\PackageCache\com.unity.addressables@8460f1c9c927\Runtime\Utility\AssemblyUtility.cs" />
+    <Compile Include="Library\PackageCache\com.unity.addressables@8460f1c9c927\Runtime\AddressablesImpl.cs" />
     <Compile Include="Library\PackageCache\com.unity.addressables@8460f1c9c927\Runtime\AssetReferenceUIRestriction.cs" />
     <Compile Include="Library\PackageCache\com.unity.addressables@8460f1c9c927\Runtime\Utility\AssetReferenceUtilities.cs" />
     <Compile Include="Library\PackageCache\com.unity.addressables@8460f1c9c927\Runtime\IKeyEvaluator.cs" />
-    <Compile Include="Library\PackageCache\com.unity.addressables@8460f1c9c927\Runtime\ResourceLocators\CcdManagedData.cs" />
     <Compile Include="Library\PackageCache\com.unity.addressables@8460f1c9c927\Runtime\ResourceLocators\IResourceLocator.cs" />
     <Compile Include="Library\PackageCache\com.unity.addressables@8460f1c9c927\Runtime\ResourceLocators\ResourceLocationMap.cs" />
-    <Compile Include="Library\PackageCache\com.unity.addressables@8460f1c9c927\Runtime\Initialization\ResourceManagerRuntimeData.cs" />
     <Compile Include="Library\PackageCache\com.unity.addressables@8460f1c9c927\Runtime\Initialization\AddressablesRuntimeProperties.cs" />
-    <Compile Include="Library\PackageCache\com.unity.addressables@8460f1c9c927\Runtime\Initialization\InitializationObjectsOperation.cs" />
-    <Compile Include="Library\PackageCache\com.unity.addressables@8460f1c9c927\Runtime\Initialization\UpdateCatalogsOperation.cs" />
     <Compile Include="Library\PackageCache\com.unity.addressables@8460f1c9c927\Runtime\Initialization\CheckCatalogsOperation.cs" />
-    <Compile Include="Library\PackageCache\com.unity.addressables@8460f1c9c927\Runtime\ResourceProviders\ContentCatalogProvider.cs" />
     <Compile Include="Library\PackageCache\com.unity.addressables@8460f1c9c927\Runtime\ResourceLocators\DynamicResourceLocators.cs" />
-    <Compile Include="Library\PackageCache\com.unity.addressables@8460f1c9c927\Runtime\AssetReference.cs" />
     <Compile Include="Library\PackageCache\com.unity.addressables@8460f1c9c927\Runtime\Initialization\InitializationOperation.cs" />
     <Compile Include="Library\PackageCache\com.unity.addressables@8460f1c9c927\Runtime\AssemblyInfo.cs" />
     <Compile Include="Library\PackageCache\com.unity.addressables@8460f1c9c927\Runtime\Addressables.cs" />
-    <Compile Include="Library\PackageCache\com.unity.addressables@8460f1c9c927\Runtime\AssetLabelReference.cs" />
     <Compile Include="Library\PackageCache\com.unity.addressables@8460f1c9c927\Runtime\Initialization\CacheInitialization.cs" />
-    <Compile Include="Library\PackageCache\com.unity.addressables@8460f1c9c927\Runtime\Utility\SerializationUtilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Library\PackageCache\com.unity.addressables@8460f1c9c927\Runtime\Unity.Addressables.asmdef" />

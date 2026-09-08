@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class BattlePlayerData : TurnParticipantBase
 {
-    public event Action<BattlePlayerData>    _OnGameOver;
+    public event Action<BattlePlayerData>   _OnGameOver;
 
     public  List<int>               Decks;
     public  List<UI_CardData>       Hands;
@@ -125,8 +125,8 @@ public class BattlePlayerData : TurnParticipantBase
 
     public void UseCard(UseCardEvent card)
     {
-        TurnManager.ETurnType TrunType = BattleManager.instance.GetTurnType();
-        if (TrunType == TurnManager.ETurnType.USE_CARDTRUN)
+        ETurnType TrunType = BattleManager.instance.GetTurnType();
+        if (TrunType == ETurnType.USE_CARDTRUN)
         {
             Hands.Remove(card.UseCard._Data);
             var CardAct = new CardAction(PlayerTurnIndex, card.Target, card.UseCard._Data, EACTION_TYPE.USE_CARD);
@@ -175,7 +175,7 @@ public class BattlePlayerData : TurnParticipantBase
 
     private void ChangeAttackAble(ChangeTurnActEvent turnStartEvent)
     {
-        bool Active = turnStartEvent.eTurnType == TurnManager.ETurnType.ATTACK_ACTIONTURN ? 
+        bool Active = turnStartEvent.eTurnType == ETurnType.ATTACK_ACTIONTURN ? 
                         true : false;
 
         foreach (var Character in PlayerParty)
@@ -187,7 +187,7 @@ public class BattlePlayerData : TurnParticipantBase
     private void ADDSamplePlayerData()
     {
         for (int i = 1; i <= GAME_CONST.Const.MAX_DECK; i++)
-            Decks.Add(i % 4);
+            Decks.Add(i % 4 + 1);
 
         var stage = BattleManager.instance.GetCurrentStage();
         var AddressableMgr = AddressableManager.instance;

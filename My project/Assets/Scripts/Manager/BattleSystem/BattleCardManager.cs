@@ -35,12 +35,12 @@ public class BattleCardManager
         while (drawQueue.Count > 0)
         {
             int count = drawQueue.Dequeue();
-            var ClientPlayer = BattleManager.instance.GetLoaclPlayer();
+            var ClientPlayer = BattleManager.instance.GetTurnPlayer();
             for (int i = 0; i < count; i++)
             {
                 var card = ClientPlayer.DrawCard();
-                EventBus.Publish(new CardDrawEvent(card));
 
+                EventBus.Publish(new CardDrawEvent(ClientPlayer.IsLocal, card));
                 await UniTask.Delay(150); // 드로우 템포
             }
         }

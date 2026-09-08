@@ -181,7 +181,7 @@ public class Character : MonoBehaviour, IActionDragHandler
         }
 
         var BattleMgr = BattleManager.instance;
-        if (TurnManager.ETurnType.USE_CARDTRUN == BattleMgr.GetTurnType())
+        if (ETurnType.USE_CARDTRUN == BattleMgr.GetTurnType())
         {
             var CardUI = DragItem as CardUI;
             if (CardUI != null)
@@ -189,7 +189,7 @@ public class Character : MonoBehaviour, IActionDragHandler
                 EventBus.Publish<UseCardEvent>(new UseCardEvent(this, CardUI));
             }
         }
-        else if (TurnManager.ETurnType.ATTACK_ACTIONTURN == BattleMgr.GetTurnType())
+        else if (ETurnType.ATTACK_ACTIONTURN == BattleMgr.GetTurnType())
         {
             /*if (_bIsAttackAble == false)
                 return;*/

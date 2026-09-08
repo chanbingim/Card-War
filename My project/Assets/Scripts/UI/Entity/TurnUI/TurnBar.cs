@@ -30,7 +30,7 @@ public class TurnBar : UIBase
     {
         var IconTransform = _CardActIcon[(int)turnStartEvent.eTurnType].transform;
 
-        if (turnStartEvent.eTurnType == TurnManager.ETurnType.USE_CARDTRUN)
+        if (turnStartEvent.eTurnType == ETurnType.USE_CARDTRUN)
         {
             IconTransform.DOScale(new Vector3(1.1f, 1.1f, 1.1f), 0.6f);
         }

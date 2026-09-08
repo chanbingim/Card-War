@@ -30,7 +30,7 @@ public class CardController : MonoBehaviour
 
     private void ADD_Card(CardDrawEvent data)
     {
-        if (_cardList.Count >= GAME_CONST.Const.MAX_HAND)
+        if (!data._IsLocal || _cardList.Count >= GAME_CONST.Const.MAX_HAND)
             return;
 
         var obj = GameObject.Instantiate(_cardPrefab, gameObject.transform);

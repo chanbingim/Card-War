@@ -61,17 +61,17 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.3.17f1\Editor\Data\Tools\BuildPipeline\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\SettingsProvider\ProjectSettings\CustomPropertyProviderSettings.cs" />
+    <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\SettingsProvider\ProjectSettings\CoreProviderSettings.cs" />
+    <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\SettingsProvider\EditorPreferencesProvider.cs" />
+    <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\SettingsProvider\ProjectSettings\ScriptReferenceResolverSettings.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\SettingsProvider\ProjectSettingsProviderView.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\SettingsProvider\EditorPreferencesProviderView.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\SettingsProvider\ProjectSettings\BackupSettings.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\SettingsProvider\ProjectSettings\LinkerPropertyProviderSettings.cs" />
-    <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\SettingsProvider\ProjectSettings\CustomPropertyProviderSettings.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\SettingsProvider\ProjectSettings\AssemblyOptionsSettings.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\SettingsProvider\ProjectSettings\TypeOptionsSettings.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\SettingsProvider\ProjectSettingsProvider.cs" />
-    <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\SettingsProvider\ProjectSettings\CoreProviderSettings.cs" />
-    <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\SettingsProvider\EditorPreferencesProvider.cs" />
-    <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\SettingsProvider\ProjectSettings\ScriptReferenceResolverSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\SettingsProvider\Unity.VisualScripting.SettingsProvider.Editor.asmdef" />

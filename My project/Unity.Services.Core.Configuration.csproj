@@ -61,17 +61,17 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.3.17f1\Editor\Data\Tools\BuildPipeline\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Configuration\IConfigurationLoader.cs" />
     <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Configuration\StreamingAssetsConfigurationLoader.cs" />
     <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Configuration\ConfigurationResetter.cs" />
     <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Configuration\SerializableProjectConfiguration.cs" />
+    <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Configuration\ConfigurationEntry.cs" />
+    <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Configuration\ProjectConfiguration.cs" />
+    <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Configuration\IConfigurationLoader.cs" />
     <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Configuration\ConfigurationUtils.cs" />
     <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Configuration\MemoryConfigurationLoader.cs" />
     <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Configuration\ConfigurationCollectionHelper.cs" />
     <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Configuration\ExternalUserId.cs" />
     <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Configuration\Utils\StreamingAssetsUtils.cs" />
-    <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Configuration\ConfigurationEntry.cs" />
-    <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Configuration\ProjectConfiguration.cs" />
     <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Configuration\CloudProjectId.cs" />
     <Compile Include="Library\PackageCache\com.unity.services.core@3464cb68d709\Runtime\Configuration\AssemblyInfo.cs" />
   </ItemGroup>

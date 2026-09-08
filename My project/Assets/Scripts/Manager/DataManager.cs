@@ -62,7 +62,14 @@ public class DataManager : MonoBehaviour
         return CardDatas.TryGetValue(id, out data);
     }
 
-    public Sprite GetCardSprite(int ID) { return Cardsprites[ID]; }
+    public Sprite GetCardSprite(int ID) 
+    {
+        if(TryCardDataGetById(ID, out CardData data))
+            return Cardsprites[data.SpriteID];
+
+        return null;
+    }
+
     public Sprite GetCharacterSprite(int ID) { return CharacterSprites[ID]; }
 
     #region Defualt

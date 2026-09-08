@@ -62,12 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Utilities\TransactionHistory\TransactionLog.cs" />
-    <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Utilities\StoreKitSelector.cs" />
-    <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Utilities\Interfaces\IMonoBehaviorUtil.cs" />
-    <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Utilities\FileReference.cs" />
     <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Utilities\UnityThreadUtils.cs" />
-    <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Utilities\Interfaces\IThreadUtils.cs" />
-    <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Utilities\IAPObsoleteMessages.cs" />
     <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Utilities\VersionCheck.cs" />
     <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Utilities\UnityUtil.cs" />
     <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Utilities\IAPVersion.cs" />
@@ -75,10 +70,15 @@
     <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Utilities\EnumerableExtensions.cs" />
     <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Utilities\MonoBehaviorUtil.cs" />
     <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Utilities\AssemblyInfo.cs" />
-    <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Utilities\Interfaces\IUtil.cs" />
     <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Utilities\MiniJSON.cs" />
     <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Utilities\TransactionHistory\Interfaces\ITransactionLog.cs" />
     <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Utilities\TaskQueue.cs" />
+    <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Utilities\StoreKitSelector.cs" />
+    <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Utilities\Interfaces\IMonoBehaviorUtil.cs" />
+    <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Utilities\FileReference.cs" />
+    <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Utilities\Interfaces\IThreadUtils.cs" />
+    <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Utilities\IAPObsoleteMessages.cs" />
+    <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Utilities\Interfaces\IUtil.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Utilities\Unity.Purchasing.Utilities.asmdef" />

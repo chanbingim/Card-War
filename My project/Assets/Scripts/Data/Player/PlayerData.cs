@@ -35,7 +35,7 @@ public class PlayerData
 
         EventBus.Subscribe<StageClearEvent>(ClearStage);
 
-        var stageData = new StageData(1, 3);
+        var stageData = new StageData(1, 3, true);
 
         _stageDatas.Add(1, stageData);
     }
