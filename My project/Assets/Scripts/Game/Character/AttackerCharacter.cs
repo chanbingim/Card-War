@@ -37,7 +37,7 @@ public class AttackerCharacter : Character
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            AttackAction(Vector3.one);
+            AttackAction(new Vector3(1, 1, 0));
         }
 
         _CharacterFSM?.UpdateFSM();

@@ -132,22 +132,16 @@ public class Character : MonoBehaviour, IActionDragHandler
 
         vOrizinPoint = transform.position;
         Vector3 dir = vTargetPoint - vOrizinPoint;
-        dir.y = 0f;
         dir.Normalize();
 
-        Vector3 forward = transform.forward;
-        forward.y = 0f;
-        forward.Normalize();
-
-        float cross = Vector3.Cross(forward, dir).y;
-
-        if (cross > 0)
-        {
-            transform.DORotate(new Vector3(0, 180, 0), 0.2f);
-        }
-        else if (cross < 0)
+        float cross = Vector3.Cross(transform.up, dir).z;
+        if (dir.x > 0)
         {
             transform.DORotate(Vector3.zero, 0.2f);
+        }
+        else if (dir.x < 0)
+        {
+            transform.DORotate(new Vector3(0, 180, 0), 0.2f);
         }
 
         transform.DOMove(vTargetPoint, 2.0f)
