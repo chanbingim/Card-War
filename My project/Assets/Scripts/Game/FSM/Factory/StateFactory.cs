@@ -1,10 +1,11 @@
+using Spine.Unity;
 using System;
 using UnityEngine;
 using UnityEngine.Purchasing;
 
 public class StateFactory
 {
-    public static State Create(EFSM_STATE state, Character owner, Animator animator)
+    public static State Create(EFSM_STATE state, Character owner, SkeletonAnimation animator)
     {
         return state switch
         {

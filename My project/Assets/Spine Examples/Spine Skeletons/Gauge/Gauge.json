@@ -1,13 +1,14 @@
 {
 "skeleton": {
-	"hash": "BZgZ4i+r9gc",
-	"spine": "4.3.74-beta",
+	"hash": "KzaKKsSONZMiN9P/N5Sy60ksi9M",
+	"spine": "3.8.33-beta",
 	"x": -125,
 	"y": -30,
 	"width": 250,
 	"height": 60,
+	"fps": 1,
 	"images": "./images/",
-	"audio": null
+	"audio": "C:/Spine/example_projects_unity/Gauge/old_export"
 },
 "bones": [
 	{ "name": "root" },
@@ -39,10 +40,7 @@
 		"bones": {
 			"Bar": {
 				"scale": [
-					{
-						"x": 0.002,
-						"curve": [ 0.25, 0.002, 0.75, 1, 0.25, 1, 0.75, 1 ]
-					},
+					{ "x": 0.002, "curve": 0.25, "c3": 0.75 },
 					{ "time": 1 }
 				]
 			}

@@ -21,6 +21,8 @@ public class AIController : MonoBehaviour
         _Data = new BattlePlayerData(data);
 
         _Data._OnTurnChangeStart += TurnChagneEvent;
+
+        _behaviour.SetVariableValue<AIController>("Controller", this);
         _behaviour.SetVariableValue<string>("NickName", _Data.Name);
     }
 

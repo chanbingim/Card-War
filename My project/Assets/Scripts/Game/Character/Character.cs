@@ -1,8 +1,11 @@
 using DG.Tweening;
+using Spine;
+using Spine.Unity;
 using System;
 using TurnCardGame.Data;
 using UnityEngine;
 using static TurnManager;
+using static UnityEngine.GraphicsBuffer;
 
 public class Character : MonoBehaviour, IActionDragHandler
 {
@@ -18,8 +21,7 @@ public class Character : MonoBehaviour, IActionDragHandler
     public event FinishedAction OnFinishedAct;
     #endregion
 
-    public CharacterRuntimeData Data { get; private set; }
-
+    public CharacterRuntimeData Data { get; protected set; }
     protected FSM             _CharacterFSM = null;
     
     protected SpriteRenderer  _spriteRender = null;
@@ -27,6 +29,7 @@ public class Character : MonoBehaviour, IActionDragHandler
     protected bool            _bIsAttackAble = false;
     protected Vector3         vOrizinPoint = Vector3.zero;
 
+    
     private void Awake()
     {
         _spriteRender = GetComponent<SpriteRenderer>();
@@ -41,6 +44,12 @@ public class Character : MonoBehaviour, IActionDragHandler
         _CharacterFSM?.UpdateFSM();
     }
 
+    private void OnDestroy()
+    {
+        var animator = gameObject.GetComponent<SkeletonAnimation>();
+        animator.AnimationState.Complete -= AnimFinished;
+    }
+
     public void Initialize(CharacterData CharacterSO, Vector3 Position)
     {
         transform.position = Position;
@@ -53,16 +62,20 @@ public class Character : MonoBehaviour, IActionDragHandler
         _spriteRender.sprite = DataMgr.GetCharacterSprite(CharacterSO.Id);
 
         var AddressableMgr = AddressableManager.instance;
-        Animator animator = gameObject.AddComponent<Animator>();
+        var animator = gameObject.GetComponent<SkeletonAnimation>();
 
-        if(Data.Source.AnimControllerKey != null)
-            animator.runtimeAnimatorController = AddressableMgr.Get<RuntimeAnimatorController>(Data.Source.AnimControllerKey);
+        if(Data.Source.SkeletonDataKey != null)
+            animator.skeletonDataAsset = AddressableMgr.Get<SkeletonDataAsset>(Data.Source.SkeletonDataKey);
+
+        animator.AnimationState.Complete += AnimFinished;
 
         if (_CharacterFSM == null)
             _CharacterFSM = GetComponent<FSM>();
 
         _CharacterFSM.Initialized(Data.Source.FSMConfig, this, animator);
     }
+
+   
 
     public void SetAttackAble(bool Active)
     {
@@ -88,28 +101,6 @@ public class Character : MonoBehaviour, IActionDragHandler
     }
 
     public virtual void AttackAction(Vector3 vTargetPoint) { }
-   
-    public virtual void AnimFinished()
-    {
-        if (_CharacterFSM._CurStateType == EFSM_STATE.Attack)
-        {
-            var Animator = _CharacterFSM._Animator;
-            if (Animator != null)
-            {
-                _CharacterFSM.ChangeState(EFSM_STATE.Move);
-                AnimatorStateInfo state = Animator.GetCurrentAnimatorStateInfo(0);
-                transform.DOMove(vOrizinPoint, state.length)
-                                         .OnComplete(() =>
-                                         {
-                                             _CharacterFSM.ChangeState(EFSM_STATE.Idle);
-                                         });
-            }
-        }
-        else if(_CharacterFSM._CurStateType == EFSM_STATE.Hit)
-        {
-            _CharacterFSM.ChangeState(EFSM_STATE.Idle);
-        }
-    }
 
     public virtual void Idle()
     {
@@ -133,19 +124,34 @@ public class Character : MonoBehaviour, IActionDragHandler
     }
 
     protected virtual void Attack() { }
+    protected virtual void AnimFinished(TrackEntry entry) { }
 
     protected void MoveTarget(Vector3 vTargetPoint, TweenCallback action)
     {
-        vOrizinPoint = transform.position;
         _CharacterFSM.ChangeState(EFSM_STATE.Move);
 
-        var Animator = _CharacterFSM._Animator;
-        if (Animator != null)
+        vOrizinPoint = transform.position;
+        Vector3 dir = vTargetPoint - vOrizinPoint;
+        dir.y = 0f;
+        dir.Normalize();
+
+        Vector3 forward = transform.forward;
+        forward.y = 0f;
+        forward.Normalize();
+
+        float cross = Vector3.Cross(forward, dir).y;
+
+        if (cross > 0)
         {
-            AnimatorStateInfo state = Animator.GetCurrentAnimatorStateInfo(0);
-            transform.DOMove(vTargetPoint, state.length)
-                     .OnComplete(action);
+            transform.DORotate(new Vector3(0, 180, 0), 0.2f);
         }
+        else if (cross < 0)
+        {
+            transform.DORotate(Vector3.zero, 0.2f);
+        }
+
+        transform.DOMove(vTargetPoint, 2.0f)
+                 .OnComplete(action);
     }
 
     #region DragInterfaceLogic

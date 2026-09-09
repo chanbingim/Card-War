@@ -1,3 +1,4 @@
+using Spine.Unity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,7 +14,7 @@ public enum EFSM_STATE
 
 public class FSM : MonoBehaviour
 {
-    public Animator            _Animator { get; private set; }
+    public SkeletonAnimation    _Animator { get; private set; }
     public State               _CurState { get; private set; } = null;
     public EFSM_STATE          _CurStateType { get; private set; }
 
@@ -21,7 +22,7 @@ public class FSM : MonoBehaviour
     private Dictionary<EFSM_STATE, State>       _StateTable = new();
     private Dictionary<EFSM_STATE, ulong>       _TranslateTable = new();
 
-    public void Initialized(CharacterFsmConfig Config, Character Owner, Animator Animator)
+    public void Initialized(CharacterFsmConfig Config, Character Owner, SkeletonAnimation Animator)
     {
         _Owner = Owner;
         _Animator = Animator;

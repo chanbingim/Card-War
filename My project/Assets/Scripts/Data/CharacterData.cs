@@ -11,7 +11,7 @@ namespace TurnCardGame.Data
         [SerializeField] private EATTAK_TYPE _ATKType = EATTAK_TYPE.END;
 
         [SerializeField] CharacterFsmConfig _FSMConfig;
-        [SerializeField] string             _AnimControllerKey;
+        [SerializeField] string             _SkeletonDataKey;
 
         [SerializeField] private int _MaxHealth;
         [SerializeField] private int _ATKPower;
@@ -20,7 +20,7 @@ namespace TurnCardGame.Data
         public EATTAK_TYPE          ATKType => _ATKType;
 
         public CharacterFsmConfig   FSMConfig => _FSMConfig;
-        public string               AnimControllerKey => _AnimControllerKey;
+        public string               SkeletonDataKey => _SkeletonDataKey;
         public int                  MaxHealth => Mathf.Max(1, _MaxHealth);
         public int                  AttackPower => Mathf.Max(0, _ATKPower);
     }

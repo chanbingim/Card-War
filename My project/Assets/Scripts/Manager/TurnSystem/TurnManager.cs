@@ -44,6 +44,20 @@ public class TurnManager
 
     public bool IsPlayerTurn() { return LocalPlayer.IsActive; }
 
+    public List<int> GetAlivePlayerIdxList()
+    {
+        List<int> idxs = new List<int>();
+
+        int PlayerCount = _participants.Count;
+        for (int i = 0; i < PlayerCount; i++)
+        {
+            if (_participants[i].IsAlive())
+                idxs.Add(i);
+        }
+
+        return idxs;
+    }
+
     public static TurnManager Create(List<ITurnParticipant> participants)
     {
         TurnManager instance = new TurnManager();
@@ -70,6 +84,7 @@ public class TurnManager
             throw new ArgumentException("참가자가 최소 1명 이상 필요합니다.");
 
         _participants = new List<BattlePlayerData>();
+
         foreach (ITurnParticipant participant in participants)
         {
             var Base = participant as BattlePlayerData;
@@ -78,6 +93,7 @@ public class TurnManager
             if (Base.IsLocal)
                 LocalPlayer = Base;
 
+            Base.SetPlayerTurn(_participants.Count);
             _participants.Add(Base);
         }
 
@@ -161,21 +177,18 @@ public class TurnManager
     private void ExecuteEndTurn()
     {
         Current.TurnEnd();
-        CurrentTurnIndex++;
-        if (CurrentTurnIndex >= _participants.Count)
-        {
-            CurrentTurnIndex = 0;
-            CurrentPhase++;
-        }
-
-        while (_GameOverList.Contains(Current))
+        while (true)
         {
             CurrentTurnIndex++;
             if (CurrentTurnIndex >= _participants.Count)
             {
-                CurrentTurnIndex = 0;
                 CurrentPhase++;
+                CurrentTurnIndex = 0;
+                BattleManager.instance.MakeMatchMaking();
             }
+
+            if (!_GameOverList.Contains(Current))
+                break;
         }
 
         StartTurn();

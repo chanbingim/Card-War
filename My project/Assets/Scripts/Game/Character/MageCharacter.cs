@@ -1,3 +1,4 @@
+using Spine;
 using UnityEngine;
 
 public class MageCharacter : Character
@@ -60,5 +61,10 @@ public class MageCharacter : Character
             int Damage = BattleMgr.ComputeDamageLogic(Data.CurrentATKPower);
             CurBattle.TargetObject.RequestDamaged(Damage);
         }
+    }
+
+    protected override void AnimFinished(TrackEntry entry)
+    {
+        _CharacterFSM.ChangeState(EFSM_STATE.Idle);
     }
 }

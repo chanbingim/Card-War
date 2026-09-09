@@ -2,17 +2,19 @@ using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using TurnCardGame.Data;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class BattleManager : MonoBehaviour, IInitialize
 {
-    public Stage GetCurrentStage() { return _Cur_Stage ? _Cur_Stage : null; }
     public BattleAction              _CurBattleAction { get; private set; } = null;
 
     private BattleCardManager        _BattleCardManager = null;
+    private MatchParing              _MatchMakingMgr = null;
     private TurnManager              _TrunMgr = null;
     private Stage                    _Cur_Stage = null;
+    private List<(int, int)>         _CurPhaseMatch = null;
 
     public void Update()
     {
@@ -47,6 +49,51 @@ public class BattleManager : MonoBehaviour, IInitialize
     #endregion
 
     #region Battle Mgr
+
+    public Stage GetCurrentStage() { return _Cur_Stage ? _Cur_Stage : null; }
+
+    public void MakeMatchMaking()
+    {
+        _CurPhaseMatch = _MatchMakingMgr.CreatePairs(_TrunMgr.GetAlivePlayerIdxList());
+    }
+
+
+    public Character RequestRandomTarget(List<Character> Partys)
+    {
+        int iRandIdx = Utility.GetRandomInt32(0, 100000) % Partys.Count;
+
+        return Partys[iRandIdx];
+    }
+
+    public List<Character> GetEnemyPartyList(int idx)
+    {
+        if(_TrunMgr == null)
+        {
+            Debug.Log("[Battle Manager] Not Find Turn Manager");
+            return null;
+        }
+
+        int Enemyidx = -1;
+        foreach ( var pair in _CurPhaseMatch)
+        {
+            if(idx == pair.Item1)
+                Enemyidx = pair.Item2;
+            else if(idx == pair.Item2)
+                Enemyidx = pair.Item1;
+
+            if (Enemyidx != -1)
+                break;
+        }
+
+        BattlePlayerData Data = null;
+        if (Enemyidx != -1)
+        {
+            Data = _TrunMgr._participants[Enemyidx];
+        }
+
+        return Data?.PlayerParty;
+    }
+
     public void RequestAttack(Character Attacker, Character Target)
     {
         _CurBattleAction = new BattleAction(Attacker, Target, EACTION_TYPE.ATTACK);
@@ -101,6 +148,8 @@ public class BattleManager : MonoBehaviour, IInitialize
             Debug.LogWarning("Initialize Fail BattleCardManager");
             return UniTask.CompletedTask;
         }
+
+        _MatchMakingMgr = new MatchParing();
 
         // 이거 나중에 서버에서 받아오긴할거임
         List<ITurnParticipant> participants = null;

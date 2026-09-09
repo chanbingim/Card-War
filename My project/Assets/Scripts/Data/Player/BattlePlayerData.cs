@@ -83,6 +83,11 @@ public class BattlePlayerData : TurnParticipantBase
     }
     #endregion
 
+    public bool IsAlive()
+    {
+        return DeadCount <= PlayerParty.Count ? true : false;
+    }
+
     public void Request_ADDParty(int ID, Vector3 WorldPosition = default)
     {
         var character = Factory.CharacterCreateFactory.Create(

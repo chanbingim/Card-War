@@ -1,10 +1,27 @@
+
 Gauge.png
-	size: 1024, 256
-	filter: Linear, Linear
+size: 1024,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
 Background
-	bounds: 287, 194, 224, 32
+  rotate: false
+  xy: 254, 30
+  size: 224, 32
+  orig: 224, 32
+  offset: 0, 0
+  index: -1
 Bar
-	bounds: 253, 2, 224, 32
-	rotate: 90
+  rotate: false
+  xy: 480, 30
+  size: 224, 32
+  orig: 224, 32
+  offset: 0, 0
+  index: -1
 Border
-	bounds: 2, 166, 250, 60
+  rotate: false
+  xy: 2, 2
+  size: 250, 60
+  orig: 250, 60
+  offset: 0, 0
+  index: -1

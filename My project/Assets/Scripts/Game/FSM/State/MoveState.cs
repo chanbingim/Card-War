@@ -1,11 +1,12 @@
 using NUnit.Framework;
+using Spine.Unity;
 using UnityEngine;
 
 public class MoveState : State
 {
     public override void Enter()
     {
-        _Animator.SetInteger("State", (int)EFSM_STATE.Move);
+        _Animator.AnimationName = "run_shield";
     }
 
     public override void Update()
@@ -18,7 +19,7 @@ public class MoveState : State
 
     }
 
-    public MoveState(Character character, Animator _animator)
+    public MoveState(Character character, SkeletonAnimation _animator)
     {
         _character = character;
         _Animator = _animator;

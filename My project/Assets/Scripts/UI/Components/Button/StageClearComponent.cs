@@ -70,10 +70,12 @@ public class StageClearComponent : MonoBehaviour
 
     private void OnCompoletedStarAnim()
     {
+        if(_StarCount - 1 >= 0)
+            _ImageAnim[_StarCount - 1].enabled = false;
+
         if (_StarCount < _MaxStar)
         {
             _Images[_StarCount].sprite = _Sprites[1];
-
             _ImageAnim[_StarCount].enabled = true;
             _ImageAnim[_StarCount].Initialize();
             _ImageAnim[_StarCount].Play_Animation();

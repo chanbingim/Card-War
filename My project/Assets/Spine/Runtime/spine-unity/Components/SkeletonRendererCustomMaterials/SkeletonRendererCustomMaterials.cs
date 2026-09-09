@@ -1,8 +1,8 @@
 /******************************************************************************
  * Spine Runtimes License Agreement
- * Last updated April 5, 2025. Replaces all prior versions.
+ * Last updated January 1, 2020. Replaces all prior versions.
  *
- * Copyright (c) 2013-2026, Esoteric Software LLC
+ * Copyright (c) 2013-2020, Esoteric Software LLC
  *
  * Integration of the Spine Runtimes into software or otherwise creating
  * derivative works of the Spine Runtimes is permitted under the terms and
@@ -30,52 +30,40 @@
 #if UNITY_2018_3 || UNITY_2019 || UNITY_2018_3_OR_NEWER
 #define NEW_PREFAB_SYSTEM
 #endif
-
-#if !SPINE_AUTO_UPGRADE_COMPONENTS_OFF
-#define AUTO_UPGRADE_TO_43_COMPONENTS
-#endif
+#define SPINE_OPTIONAL_MATERIALOVERRIDE
 
 // Contributed by: Lost Polygon
 
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Spine.Unity {
-#if NEW_PREFAB_SYSTEM
+	#if NEW_PREFAB_SYSTEM
 	[ExecuteAlways]
-#else
+	#else
 	[ExecuteInEditMode]
-#endif
-	[HelpURL("https://esotericsoftware.com/spine-unity-utility-components#SkeletonRendererCustomMaterials")]
-	public class SkeletonRendererCustomMaterials : MonoBehaviour, IUpgradable {
+	#endif
+	[HelpURL("http://esotericsoftware.com/spine-unity#SkeletonRendererCustomMaterials")]
+	public class SkeletonRendererCustomMaterials : MonoBehaviour {
 
 		#region Inspector
 		public SkeletonRenderer skeletonRenderer;
 		[SerializeField] protected List<SlotMaterialOverride> customSlotMaterials = new List<SlotMaterialOverride>();
 		[SerializeField] protected List<AtlasMaterialOverride> customMaterialOverrides = new List<AtlasMaterialOverride>();
 
-#if UNITY_EDITOR
-#if AUTO_UPGRADE_TO_43_COMPONENTS
-		public void Awake () {
-			if (!Application.isPlaying && !wasUpgradedTo43) {
-				UpgradeTo43();
-			}
-		}
-#endif
-
+		#if UNITY_EDITOR
 		void Reset () {
 			skeletonRenderer = GetComponent<SkeletonRenderer>();
 
 			// Populate atlas list
 			if (skeletonRenderer != null && skeletonRenderer.skeletonDataAsset != null) {
-				AtlasAssetBase[] atlasAssets = skeletonRenderer.skeletonDataAsset.atlasAssets;
+				var atlasAssets = skeletonRenderer.skeletonDataAsset.atlasAssets;
 
-				List<AtlasMaterialOverride> initialAtlasMaterialOverrides = new List<AtlasMaterialOverride>();
+				var initialAtlasMaterialOverrides = new List<AtlasMaterialOverride>();
 				foreach (AtlasAssetBase atlasAsset in atlasAssets) {
 					foreach (Material atlasMaterial in atlasAsset.Materials) {
-						AtlasMaterialOverride atlasMaterialOverride = new AtlasMaterialOverride {
+						var atlasMaterialOverride = new AtlasMaterialOverride {
 							overrideDisabled = true,
 							originalMaterial = atlasMaterial
 						};
@@ -87,7 +75,7 @@ namespace Spine.Unity {
 				customMaterialOverrides = initialAtlasMaterialOverrides;
 			}
 		}
-#endif
+		#endif
 		#endregion
 
 		void SetCustomSlotMaterials () {
@@ -102,8 +90,7 @@ namespace Spine.Unity {
 					continue;
 
 				Slot slotObject = skeletonRenderer.skeleton.FindSlot(slotMaterialOverride.slotName);
-				if (slotObject != null)
-					skeletonRenderer.CustomSlotMaterials[slotObject] = slotMaterialOverride.material;
+				skeletonRenderer.CustomSlotMaterials[slotObject] = slotMaterialOverride.material;
 			}
 		}
 
@@ -119,8 +106,7 @@ namespace Spine.Unity {
 					continue;
 
 				Slot slotObject = skeletonRenderer.skeleton.FindSlot(slotMaterialOverride.slotName);
-				if (slotObject == null)
-					continue;
+
 				Material currentMaterial;
 				if (!skeletonRenderer.CustomSlotMaterials.TryGetValue(slotObject, out currentMaterial))
 					continue;
@@ -139,6 +125,7 @@ namespace Spine.Unity {
 				return;
 			}
 
+			#if SPINE_OPTIONAL_MATERIALOVERRIDE
 			for (int i = 0; i < customMaterialOverrides.Count; i++) {
 				AtlasMaterialOverride atlasMaterialOverride = customMaterialOverrides[i];
 				if (atlasMaterialOverride.overrideDisabled)
@@ -146,6 +133,7 @@ namespace Spine.Unity {
 
 				skeletonRenderer.CustomMaterialOverride[atlasMaterialOverride.originalMaterial] = atlasMaterialOverride.replacementMaterial;
 			}
+			#endif
 		}
 
 		void RemoveCustomMaterialOverrides () {
@@ -154,6 +142,7 @@ namespace Spine.Unity {
 				return;
 			}
 
+			#if SPINE_OPTIONAL_MATERIALOVERRIDE
 			for (int i = 0; i < customMaterialOverrides.Count; i++) {
 				AtlasMaterialOverride atlasMaterialOverride = customMaterialOverrides[i];
 				Material currentMaterial;
@@ -167,6 +156,7 @@ namespace Spine.Unity {
 
 				skeletonRenderer.CustomMaterialOverride.Remove(atlasMaterialOverride.originalMaterial);
 			}
+			#endif
 		}
 
 		// OnEnable applies the overrides at runtime, and when the editor loads.
@@ -218,22 +208,5 @@ namespace Spine.Unity {
 				return overrideDisabled == other.overrideDisabled && originalMaterial == other.originalMaterial && replacementMaterial == other.replacementMaterial;
 			}
 		}
-
-		#region Transfer of Deprecated Fields
-#if UNITY_EDITOR && AUTO_UPGRADE_TO_43_COMPONENTS
-		public virtual void UpgradeTo43 () {
-			wasUpgradedTo43 = true;
-			if (skeletonRenderer == null) {
-				Component previousReference = previousSkeletonRenderer != null ? previousSkeletonRenderer : this;
-				skeletonRenderer = previousReference.GetComponent<SkeletonRenderer>();
-				if (skeletonRenderer == null)
-					Debug.LogError("Please manually re-assign SkeletonRenderer at SkeletonRendererCustomMaterials, " +
-						"automatic upgrade failed.", this);
-			}
-		}
-		[SerializeField, HideInInspector, FormerlySerializedAs("skeletonRenderer")] Component previousSkeletonRenderer;
-		[SerializeField] protected bool wasUpgradedTo43 = false;
-#endif
-		#endregion
 	}
 }

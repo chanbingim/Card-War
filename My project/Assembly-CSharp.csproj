@@ -85,6 +85,7 @@
     <Compile Include="Assets\Scripts\UI\Entity\ReCycleScroll\RecycleScrollView.cs" />
     <Compile Include="Assets\Scripts\UI\Entity\GameResultUI.cs" />
     <Compile Include="Assets\Scripts\Manager\TurnSystem\TurnManager.cs" />
+    <Compile Include="Assets\Scripts\Utility\Radnom\CryptoRandom.cs" />
     <Compile Include="Assets\Scripts\UI\Components\Button\StageClearComponent.cs" />
     <Compile Include="Assets\Scripts\Manager\PoolManager\interface\IPoolAble.cs" />
     <Compile Include="Assets\Scripts\UI\UIBase.cs" />
@@ -138,6 +139,7 @@
     <Compile Include="Assets\Scripts\SDK\Payment\Platform\PaymentAndroid.cs" />
     <Compile Include="Assets\Scripts\UI\Components\InstancingComponent.cs" />
     <Compile Include="Assets\Scripts\Game\Loading.cs" />
+    <Compile Include="Assets\Spine2D Knight Character Animation Pack\Scripts\KnightControl.cs" />
     <Compile Include="Assets\Scripts\Manager\DragSystem\DragManager.cs" />
     <Compile Include="Assets\Scripts\Manager\BattleSystem\BattleCardManager.cs" />
     <Compile Include="Assets\Scripts\UI\Entity\TurnUI\TurnHistoryUI.cs" />
@@ -168,13 +170,14 @@
     <Compile Include="Assets\Scripts\Scriptable\FormationSO.cs" />
     <Compile Include="Assets\Scripts\UI\Components\Animation\UIColorAnimation.cs" />
     <Compile Include="Assets\Scripts\Event\Events\GameEvent\ActionRecordedEvent.cs" />
+    <Compile Include="Assets\Scripts\Utility\Utility.cs" />
     <Compile Include="Assets\Scripts\UI\Entity\Slot\InventorySlot.cs" />
     <Compile Include="Assets\Scripts\Game\FSM\Factory\StateFactory.cs" />
     <Compile Include="Assets\Scripts\UI\Controller\UIBuilder\BuilderController.cs" />
     <Compile Include="Assets\Scripts\UI\Entity\TurnUI\TurnEndButton.cs" />
+    <Compile Include="Assets\Match\MatchParing.cs" />
     <Compile Include="Assets\Scripts\UI\Entity\DamageFont\DamageFont.cs" />
     <Compile Include="Assets\Scripts\Abstract\CharacterCreateFactory.cs" />
-    <Compile Include="Assets\Scripts\Utility.cs" />
     <Compile Include="Assets\Scripts\Data\ActionData\BattleAction.cs" />
     <Compile Include="Assets\Scripts\Game\Character\MageCharacter.cs" />
     <Compile Include="Assets\Scripts\FireBase\LoginPlatform\WindowsLoginPlatform.cs" />
@@ -191,6 +194,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\FireBase\Plugins\x86_64\FirebaseCppStorage.dll" />
     <None Include="Assets\FireBase\Plugins\Firebase.App.dll" />
+    <None Include="Assets\Spine2D Knight Character Animation Pack\readme.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\Scripts\UI\ToolKit\Inventory\Iventory.uss" />
@@ -202,6 +206,7 @@
     <None Include="Assets\Scripts\UI\ToolKit\Slot\InventorySlot.uxml" />
     <None Include="Assets\FireBase\Plugins\Firebase.Auth.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
+    <None Include="Assets\Spine2D Knight Character Animation Pack\Exports\json_export\Knight.atlas.txt" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
@@ -1497,10 +1502,6 @@
     <ProjectReference Include="Unity.2D.Aseprite.Common.csproj">
       <Project>{BD4024A1-4DBE-EA07-6534-C1796B01D1C7}</Project>
       <Name>Unity.2D.Aseprite.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="spine-csharp.csproj">
-      <Project>{1C32FA93-3A28-A81E-87A4-11426E5CBBC2}</Project>
-      <Name>spine-csharp</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Rider.Editor.csproj">
       <Project>{9B168589-3356-01B5-B9F7-335C1615CD9E}</Project>

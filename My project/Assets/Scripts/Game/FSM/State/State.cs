@@ -1,10 +1,11 @@
 using NUnit.Framework;
+using Spine.Unity;
 using UnityEngine;
 
 public abstract class State
 {
     protected Character _character;
-    protected Animator  _Animator;
+    protected SkeletonAnimation _Animator;
 
     public abstract void Enter();
     public abstract void Update();

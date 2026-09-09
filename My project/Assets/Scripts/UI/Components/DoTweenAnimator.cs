@@ -104,9 +104,13 @@ public class DoTweenAnimator : MonoBehaviour
     }
 
     public float GetToatalAnimTime() { return _TotalPlayTime; }
-    public void Play_Animation() { _AnimationPasue = true; }
-    public void Pause_Animation() { _AnimationPasue = false; }
+    public void Play_Animation() 
+    {
+        _AnimationPasue = true;
+        _AnimFlag.SetAll(false);
+    }
 
+    public void Pause_Animation() { _AnimationPasue = false; }
     private void Stop_Animation()
     {
         foreach (var anim in _AnimationList)
@@ -120,8 +124,7 @@ public class DoTweenAnimator : MonoBehaviour
         if (_AnimationList == null)
             Initialize();
 
-        _AnimationPasue = true;
-        _AnimFlag.SetAll(false);
+        Play_Animation();
     }
 
     private void OnDisable()
