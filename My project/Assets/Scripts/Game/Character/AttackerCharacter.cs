@@ -7,7 +7,6 @@ using UnityEngine.TextCore.Text;
 
 public class AttackerCharacter : Character
 {
-    [SerializeField] bool DebugMode = false;
     [SerializeField] CharacterData SO = null;
     [SerializeField] SkeletonDataAsset skeletonDataAsset = null;
 
@@ -17,19 +16,6 @@ public class AttackerCharacter : Character
         if(_spriteRender != null )
         {
             _material = _spriteRender.material;
-        }
-
-        if (DebugMode)
-        {
-            var animator = gameObject.GetComponent<SkeletonAnimation>();
-            animator.skeletonDataAsset = skeletonDataAsset;
-
-            animator.AnimationState.Complete += AnimFinished;
-            Data = new CharacterRuntimeData(SO);
-            
-            _CharacterFSM = GetComponent<FSM>();
-
-            _CharacterFSM.Initialized(Data.Source.FSMConfig, this, animator);
         }
     }
 
@@ -47,7 +33,7 @@ public class AttackerCharacter : Character
     {
         MoveTarget(vTargetPoint, () =>
         {
-            _CharacterFSM.ChangeState(EFSM_STATE.Attack);
+            _CharacterFSM.ChangeState(EFSM_STATE.ATTACK);
         });
     }
 
@@ -69,28 +55,28 @@ public class AttackerCharacter : Character
     public override void Dead()
     {
         // 상태를 바꿀지 아님 죽음 처리할지 여기서 선택
-        _CharacterFSM.ChangeState(EFSM_STATE.Dead);
+        _CharacterFSM.ChangeState(EFSM_STATE.DEAD);
     }
 
     protected override void AnimFinished(TrackEntry entry)
     {
-        if (_CharacterFSM._CurStateType == EFSM_STATE.Attack)
+        if (_CharacterFSM._CurStateType == EFSM_STATE.ATTACK)
         {
             MoveTarget(vOrizinPoint, () =>
             {
                 transform.DORotate(Vector3.zero, 0.2f);
-                _CharacterFSM.ChangeState(EFSM_STATE.Idle);
+                _CharacterFSM.ChangeState(EFSM_STATE.IDLE);
             });
         }
-        else if (_CharacterFSM._CurStateType == EFSM_STATE.Hit)
+        else if (_CharacterFSM._CurStateType == EFSM_STATE.HIT)
         {
-            _CharacterFSM.ChangeState(EFSM_STATE.Idle);
+            _CharacterFSM.ChangeState(EFSM_STATE.IDLE);
         }
     }
 
     protected override void Attack()
     {
-        if (_CharacterFSM._CurStateType == EFSM_STATE.Attack)
+        if (_CharacterFSM._CurStateType == EFSM_STATE.ATTACK)
         {
             var BattleMgr = BattleManager.instance;
             if (BattleMgr == null)

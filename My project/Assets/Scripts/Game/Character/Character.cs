@@ -4,8 +4,6 @@ using Spine.Unity;
 using System;
 using TurnCardGame.Data;
 using UnityEngine;
-using static TurnManager;
-using static UnityEngine.GraphicsBuffer;
 
 public class Character : MonoBehaviour, IActionDragHandler
 {
@@ -20,23 +18,23 @@ public class Character : MonoBehaviour, IActionDragHandler
     public event OnChangeState OnChangedState;
     public event FinishedAction OnFinishedAct;
     #endregion
-
-    public CharacterRuntimeData Data { get; protected set; }
-    protected FSM             _CharacterFSM = null;
     
-    protected SpriteRenderer  _spriteRender = null;
-    protected Material        _material = null;
-    protected bool            _bIsAttackAble = false;
-    protected Vector3         vOrizinPoint = Vector3.zero;
+    public CharacterRuntimeData     Data { get; protected set; }
+    public float RotSpeed = 0.2f;
 
+    protected FSM                   _CharacterFSM = null;
+    protected AnimComponent         _AnimComponent = null;
+
+    protected SpriteRenderer        _spriteRender = null;
+    protected Material              _material = null;
+    protected bool                  _bIsAttackAble = false;
+
+    protected Vector3               vOrizinLook = Vector3.right;
+    protected Vector3               vOrizinPoint = Vector3.zero;
     
     private void Awake()
     {
-        _spriteRender = GetComponent<SpriteRenderer>();
-        if(_spriteRender != null )
-        {
-            _material = _spriteRender.material;
-        }
+
     }
 
     private void Update()
@@ -59,12 +57,15 @@ public class Character : MonoBehaviour, IActionDragHandler
             return;
 
         Data = new CharacterRuntimeData(CharacterSO);
-        _spriteRender.sprite = DataMgr.GetCharacterSprite(CharacterSO.Id);
 
         var AddressableMgr = AddressableManager.instance;
         var animator = gameObject.GetComponent<SkeletonAnimation>();
 
-        if(Data.Source.SkeletonDataKey != null)
+        var _AnimComponent = gameObject.GetComponent<AnimComponent>();
+        if(_AnimComponent != null )
+            _AnimComponent.Initialize(CharacterSO.AnimationDatas, animator);
+
+        if (Data.Source.SkeletonDataKey != null)
             animator.skeletonDataAsset = AddressableMgr.Get<SkeletonDataAsset>(Data.Source.SkeletonDataKey);
 
         animator.AnimationState.Complete += AnimFinished;
@@ -72,10 +73,8 @@ public class Character : MonoBehaviour, IActionDragHandler
         if (_CharacterFSM == null)
             _CharacterFSM = GetComponent<FSM>();
 
-        _CharacterFSM.Initialized(Data.Source.FSMConfig, this, animator);
+        _CharacterFSM.Initialized(Data.Source.FSMConfig, this, _AnimComponent);
     }
-
-   
 
     public void SetAttackAble(bool Active)
     {
@@ -91,11 +90,11 @@ public class Character : MonoBehaviour, IActionDragHandler
 
         if (Data.IsDead)
         {
-            _CharacterFSM.ChangeState(EFSM_STATE.Dead);
+            _CharacterFSM.ChangeState(EFSM_STATE.DEAD);
             OnDead?.Invoke();
         }
         else
-            _CharacterFSM.ChangeState(EFSM_STATE.Hit);
+            _CharacterFSM.ChangeState(EFSM_STATE.HIT);
 
         OnChangedState?.Invoke(Data);
     }
@@ -119,8 +118,7 @@ public class Character : MonoBehaviour, IActionDragHandler
 
     public virtual void Dead()
     {
-        // 상태를 바꿀지 아님 죽음 처리할지 여기서 선택
-        _CharacterFSM.ChangeState(EFSM_STATE.Dead);
+
     }
 
     protected virtual void Attack() { }
@@ -128,22 +126,23 @@ public class Character : MonoBehaviour, IActionDragHandler
 
     protected void MoveTarget(Vector3 vTargetPoint, TweenCallback action)
     {
-        _CharacterFSM.ChangeState(EFSM_STATE.Move);
+        _CharacterFSM.ChangeState(EFSM_STATE.RUN);
 
         vOrizinPoint = transform.position;
-        Vector3 dir = vTargetPoint - vOrizinPoint;
-        dir.Normalize();
-
+        Vector3 dir = (vTargetPoint - vOrizinPoint).normalized;
         float cross = Vector3.Cross(transform.up, dir).z;
+        
+        Vector3 NewRot = Vector3.zero;
         if (dir.x > 0)
         {
-            transform.DORotate(Vector3.zero, 0.2f);
+            NewRot.y = vOrizinLook.x < 0 ? 180 : 0;
         }
         else if (dir.x < 0)
         {
-            transform.DORotate(new Vector3(0, 180, 0), 0.2f);
+            NewRot.y = vOrizinLook.x < 0 ? 0 : 180;
         }
 
+        transform.DORotate(NewRot, RotSpeed);
         transform.DOMove(vTargetPoint, 2.0f)
                  .OnComplete(action);
     }
@@ -156,7 +155,7 @@ public class Character : MonoBehaviour, IActionDragHandler
 
         if (BattleManager.instance.IsPlayerTurn())
         {
-            _material.SetFloat("_Enable", 1);
+            //_material.SetFloat("_Enable", 1);
         }
     }
 
@@ -164,7 +163,7 @@ public class Character : MonoBehaviour, IActionDragHandler
     {
         if (BattleManager.instance.IsPlayerTurn())
         {
-            _material.SetFloat("_Enable", 0);
+            //_material.SetFloat("_Enable", 0);
         }
     }
 

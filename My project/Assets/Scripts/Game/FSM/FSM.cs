@@ -1,3 +1,4 @@
+using Google.MiniJSON;
 using Spine.Unity;
 using System.Collections;
 using System.Collections.Generic;
@@ -5,16 +6,18 @@ using UnityEngine;
 
 public enum EFSM_STATE
 {
-    Idle = 0,
-    Attack = 1,
-    Move = 2,
-    Hit = 3,
-    Dead = 4,
+    IDLE = 0,
+    ATTACK,
+    WALK,
+    RUN,
+    STUN,
+    HIT,
+    BUFF,
+    DEAD,
 }
 
 public class FSM : MonoBehaviour
 {
-    public SkeletonAnimation    _Animator { get; private set; }
     public State               _CurState { get; private set; } = null;
     public EFSM_STATE          _CurStateType { get; private set; }
 
@@ -22,16 +25,15 @@ public class FSM : MonoBehaviour
     private Dictionary<EFSM_STATE, State>       _StateTable = new();
     private Dictionary<EFSM_STATE, ulong>       _TranslateTable = new();
 
-    public void Initialized(CharacterFsmConfig Config, Character Owner, SkeletonAnimation Animator)
+    public void Initialized(CharacterFsmConfig Config, Character Owner, AnimComponent animationComponent)
     {
         _Owner = Owner;
-        _Animator = Animator;
 
         if(Config != null)
         {
-            CreateState(ref Config._States);
+            CreateState(animationComponent, ref Config._States);
             CreateTranslate(ref Config._States);
-            ChangeState(EFSM_STATE.Idle);
+            ChangeState(EFSM_STATE.IDLE);
         }
     }
 
@@ -58,13 +60,13 @@ public class FSM : MonoBehaviour
         }
     }
 
-    private void CreateState(ref List<FSMStateSO> States)
+    private void CreateState(AnimComponent animationComponent, ref List<FSMStateSO> States)
     {
         foreach (var state in States)
         {
             if (!_StateTable.ContainsKey(state._StateType))
             {
-                var State = StateFactory.Create(state._StateType, _Owner, _Animator);
+                var State = StateFactory.Create(state._StateType, _Owner, animationComponent);
                 _StateTable.Add(state._StateType, State);
             }
         }

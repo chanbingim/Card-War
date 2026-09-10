@@ -1,4 +1,5 @@
 ﻿
+using DG.Tweening;
 using System;
 using TurnCardGame.Data;
 using UI.Enum;
@@ -20,9 +21,6 @@ namespace Factory
 
             if (Utility.CHECK(character))
             {
-                if (bIsLoacl == false)
-                    character.GetComponent<SpriteRenderer>().flipX = true;
-
                 character.Initialize(CharacterSO, Position);
             }
 
@@ -30,6 +28,9 @@ namespace Factory
             if (PoolAble == null)
                 return null;
             
+            if(bIsLoacl == false)
+                character.transform.DORotate(new Vector3(0, 180, 0), 0.2f);
+
             var CharacterHP = PoolAble.gameObject.GetComponent<BattleCharacterUI>();
             if (CharacterHP == null)
                 return null;

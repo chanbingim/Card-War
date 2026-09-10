@@ -6,7 +6,7 @@ public class MoveState : State
 {
     public override void Enter()
     {
-        _Animator.AnimationName = "run_shield";
+        _Animator.ChangeAnim(EFSM_STATE.RUN);
     }
 
     public override void Update()
@@ -19,7 +19,7 @@ public class MoveState : State
 
     }
 
-    public MoveState(Character character, SkeletonAnimation _animator)
+    public MoveState(Character character, AnimComponent _animator)
     {
         _character = character;
         _Animator = _animator;

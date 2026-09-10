@@ -58,7 +58,7 @@ public partial class AttackActionNode : Action
         else if(CurTime >= 1.0f)
         {
             Debug.Log("[AttackActionNode] Attack Action");
-            if(IsAttackAble)
+            if(IsAttackAble && _CombatList.Count > 0)
             {
                 var hash = _CombatList.First();
                 _BattleMgr.RequestAttack(hash.Item1, hash.Item2);

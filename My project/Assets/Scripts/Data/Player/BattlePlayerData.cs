@@ -205,19 +205,14 @@ public class BattlePlayerData : TurnParticipantBase
             if(IsLocal)
             {
                 Request_ADDParty(1, stage.GetPlayerWorldPosition(Fomation.LocalPosition[0]));
-                Request_ADDParty(2, stage.GetPlayerWorldPosition(Fomation.LocalPosition[1]));
+                //Request_ADDParty(2, stage.GetPlayerWorldPosition(Fomation.LocalPosition[1]));
             }
             else
             {
-                Request_ADDParty(3, stage.GetEnemyWorldPosition(Fomation.LocalPosition[0]));
-                Request_ADDParty(4, stage.GetEnemyWorldPosition(Fomation.LocalPosition[1]));
+                //Request_ADDParty(3, stage.GetEnemyWorldPosition(Fomation.LocalPosition[0]));
+                //Request_ADDParty(4, stage.GetEnemyWorldPosition(Fomation.LocalPosition[1]));
             }
             
-        }
-        else
-        {
-            Request_ADDParty(1);
-            Request_ADDParty(2);
         }
     }
 }

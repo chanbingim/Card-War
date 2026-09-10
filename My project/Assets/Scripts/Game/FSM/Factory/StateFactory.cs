@@ -5,17 +5,17 @@ using UnityEngine.Purchasing;
 
 public class StateFactory
 {
-    public static State Create(EFSM_STATE state, Character owner, SkeletonAnimation animator)
+    public static State Create(EFSM_STATE state, Character owner, AnimComponent animator)
     {
         return state switch
         {
-            EFSM_STATE.Idle => new IdleState(owner, animator),
-            EFSM_STATE.Move => new MoveState(owner, animator),
-            EFSM_STATE.Attack => new AttackState(owner, animator),
-            EFSM_STATE.Hit => new HitState(owner, animator),
-            EFSM_STATE.Dead => new DeadState(owner, animator),
+            EFSM_STATE.IDLE => new IdleState(owner, animator),
+            EFSM_STATE.RUN => new MoveState(owner, animator),
+            EFSM_STATE.ATTACK => new AttackState(owner, animator),
+            EFSM_STATE.HIT => new HitState(owner, animator),
+            EFSM_STATE.DEAD => new DeadState(owner, animator),
 
-            _ => throw new ArgumentOutOfRangeException()
+            _ => null
         };
     }
 }

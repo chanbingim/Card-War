@@ -6,8 +6,7 @@ public class DeadState : State
 {
     public override void Enter()
     {
-        _Animator.AnimationName = "Dead";
-        //_Animator.SetInteger("State", (int)EFSM_STATE.Dead);
+        _Animator.ChangeAnim(EFSM_STATE.DEAD);
     }
 
     public override void Update()
@@ -20,7 +19,7 @@ public class DeadState : State
        
     }
 
-    public DeadState(Character character, SkeletonAnimation _animator)
+    public DeadState(Character character, AnimComponent _animator)
     {
         _character = character;
         _Animator = _animator;

@@ -19,7 +19,7 @@ public class MageCharacter : Character
 
     public override void AttackAction(Vector3 vTargetPoint)
     {
-        _CharacterFSM.ChangeState(EFSM_STATE.Attack);
+        _CharacterFSM.ChangeState(EFSM_STATE.ATTACK);
     }
 
     public override void Idle()
@@ -40,12 +40,12 @@ public class MageCharacter : Character
     public override void Dead()
     {
         // 상태를 바꿀지 아님 죽음 처리할지 여기서 선택
-        _CharacterFSM.ChangeState(EFSM_STATE.Dead);
+        _CharacterFSM.ChangeState(EFSM_STATE.DEAD);
     }
 
     protected override void Attack()
     {
-        if (_CharacterFSM._CurStateType == EFSM_STATE.Attack)
+        if (_CharacterFSM._CurStateType == EFSM_STATE.ATTACK)
         {
             var BattleMgr = BattleManager.instance;
             if (BattleMgr == null)
@@ -65,6 +65,6 @@ public class MageCharacter : Character
 
     protected override void AnimFinished(TrackEntry entry)
     {
-        _CharacterFSM.ChangeState(EFSM_STATE.Idle);
+        _CharacterFSM.ChangeState(EFSM_STATE.IDLE);
     }
 }

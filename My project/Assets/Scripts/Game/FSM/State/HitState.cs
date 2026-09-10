@@ -6,7 +6,7 @@ public class HitState : State
 {
     public override void Enter()
     {
-        _Animator.AnimationName = "Hit";
+        _Animator.ChangeAnim(EFSM_STATE.HIT);
         //_Animator.SetInteger("State", (int)EFSM_STATE.Move);
     }
 
@@ -17,11 +17,10 @@ public class HitState : State
 
     public override void Exit()
     {
-        _Animator.AnimationName = "Idle_3";
         //_Animator.SetInteger("State", 0);
     }
 
-    public HitState(Character character, SkeletonAnimation _animator)
+    public HitState(Character character, AnimComponent _animator)
     {
         _character = character;
         _Animator = _animator; 

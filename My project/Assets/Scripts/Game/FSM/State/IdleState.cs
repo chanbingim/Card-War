@@ -6,7 +6,7 @@ public class IdleState : State
 {
     public override void Enter()
     {
-        _Animator.AnimationName = "idle_3";
+        _Animator.ChangeAnim(EFSM_STATE.IDLE);
         //_Animator.SetInteger("State", (int)EFSM_STATE.Idle);
     }
 
@@ -20,7 +20,7 @@ public class IdleState : State
        // _Animator.SetInteger("State", 0);
     }
 
-    public IdleState(Character character, SkeletonAnimation _animator)
+    public IdleState(Character character, AnimComponent _animator)
     {
         _character = character;
         _Animator = _animator;
