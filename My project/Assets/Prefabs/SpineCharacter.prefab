@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7797618395491375407}
   - component: {fileID: 8643021290930552223}
   - component: {fileID: 1483722677898016706}
+  - component: {fileID: -3320026105628448525}
   m_Layer: 0
   m_Name: SpineCharacter
   m_TagString: Untagged
@@ -201,3 +202,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31adc0e0c0ea95c4d9fa83e8727fe635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimComponent
+--- !u!114 &-3320026105628448525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6665665945045140450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80aa5fad2e9997c4e8edd0d82957c542, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OutLineRenderer
+  _OutLineMatrial: {fileID: 2100000, guid: aea0389c74859e0468cc7127bcc5bd1f, type: 2}

@@ -10,15 +10,6 @@ public class AttackerCharacter : Character
     [SerializeField] CharacterData SO = null;
     [SerializeField] SkeletonDataAsset skeletonDataAsset = null;
 
-    private void Awake()
-    {
-        _spriteRender = GetComponent<SpriteRenderer>();
-        if(_spriteRender != null )
-        {
-            _material = _spriteRender.material;
-        }
-    }
-
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Space))

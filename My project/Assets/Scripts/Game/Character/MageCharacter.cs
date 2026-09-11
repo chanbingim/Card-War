@@ -3,15 +3,6 @@ using UnityEngine;
 
 public class MageCharacter : Character
 {
-    private void Awake()
-    {
-        _spriteRender = GetComponent<SpriteRenderer>();
-        if(_spriteRender != null )
-        {
-            _material = _spriteRender.material;
-        }
-    }
-
     private void Update()
     {
         _CharacterFSM?.UpdateFSM();

@@ -18,25 +18,20 @@ public class Character : MonoBehaviour, IActionDragHandler
     public event OnChangeState OnChangedState;
     public event FinishedAction OnFinishedAct;
     #endregion
-    
+
     public CharacterRuntimeData     Data { get; protected set; }
     public float RotSpeed = 0.2f;
 
     protected FSM                   _CharacterFSM = null;
     protected AnimComponent         _AnimComponent = null;
 
+    protected OutLineRenderer       _OutLineRender = null;
     protected SpriteRenderer        _spriteRender = null;
-    protected Material              _material = null;
     protected bool                  _bIsAttackAble = false;
 
     protected Vector3               vOrizinLook = Vector3.right;
     protected Vector3               vOrizinPoint = Vector3.zero;
     
-    private void Awake()
-    {
-
-    }
-
     private void Update()
     {
         _CharacterFSM?.UpdateFSM();
@@ -74,6 +69,7 @@ public class Character : MonoBehaviour, IActionDragHandler
             _CharacterFSM = GetComponent<FSM>();
 
         _CharacterFSM.Initialized(Data.Source.FSMConfig, this, _AnimComponent);
+        _OutLineRender = gameObject.GetComponent<OutLineRenderer>();
     }
 
     public void SetAttackAble(bool Active)
@@ -155,7 +151,7 @@ public class Character : MonoBehaviour, IActionDragHandler
 
         if (BattleManager.instance.IsPlayerTurn())
         {
-            //_material.SetFloat("_Enable", 1);
+            _OutLineRender.OnEnableOutLine(true);
         }
     }
 
@@ -163,7 +159,7 @@ public class Character : MonoBehaviour, IActionDragHandler
     {
         if (BattleManager.instance.IsPlayerTurn())
         {
-            //_material.SetFloat("_Enable", 0);
+            _OutLineRender.OnEnableOutLine(false);
         }
     }
 
