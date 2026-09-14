@@ -88,9 +88,6 @@ public class DataManager : MonoBehaviour
             instance = null;
     }
 
-    private static readonly ProfilerMarker Marker =
-        new ProfilerMarker("DataManager.InitializeAsync");
-
     public async UniTask InitializeAsync()
     {
         await UniTask.WhenAll(

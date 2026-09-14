@@ -5633,6 +5633,9 @@
       }
     }
   ],
+  "events": {
+    "attack_hit": {}
+  },
   "animations": {
     "Attack": {
       "slots": {
@@ -5679,6 +5682,12 @@
           ]
         }
       },
+      "events": [
+        {
+          "time": 0.2333,
+          "name": "attack_hit"
+        }
+      ],
       "bones": {
         "shadow": {
           "scale": [

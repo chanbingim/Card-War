@@ -3,7 +3,6 @@ using Spine.Unity;
 using System.Collections.Generic;
 using TurnCardGame.Data;
 using UnityEngine;
-using static UnityEngine.Rendering.STP;
 
 public class AnimComponent : MonoBehaviour
 {
@@ -20,8 +19,17 @@ public class AnimComponent : MonoBehaviour
         public string[] animationNames;
     }
 
-    Dictionary<EFSM_STATE, List<Spine.Animation>> _AnimationMap = new();
+    Dictionary<EFSM_STATE, System.Action>           _AnimationEvents = new();
+    Dictionary<EFSM_STATE, List<Spine.Animation>>   _AnimationMap = new();
+
     SkeletonAnimation _Animation = null;
+    EFSM_STATE          eCurState;
+
+    private void Awake()
+    {
+        var Animation = GetComponent<SkeletonAnimation>();
+        Animation.AnimationState.Event += HandleAnimationEvent;
+    }
 
     public void Initialize(CharacterData data, SkeletonAnimation animaton)
     {
@@ -42,7 +50,6 @@ public class AnimComponent : MonoBehaviour
         }
 
         var config = JsonUtility.FromJson<AnimationConfig>(data.AnimationDatas.text);
-
         foreach (var group in config.groups)
         {
             if (System.Enum.TryParse<EFSM_STATE>(group.type, out var type))
@@ -53,7 +60,7 @@ public class AnimComponent : MonoBehaviour
                     if (Anim == null)
                         continue;
 
-                    if(_AnimationMap.TryGetValue(type, out var animations))
+                    if (_AnimationMap.TryGetValue(type, out var animations))
                     {
                         animations.Add(Anim);
                     }
@@ -70,6 +77,30 @@ public class AnimComponent : MonoBehaviour
         }
     }
 
+    public void AddListener(EFSM_STATE eState, System.Action e)
+    {
+        if(_AnimationEvents.TryGetValue(eState, out var events))
+        {
+            events = e + events;
+        }
+        else
+        {
+            _AnimationEvents.Add(eState, e);
+        }
+    }
+
+    public void RemoveListener(EFSM_STATE eState, System.Action e)
+    {
+        if (!_AnimationEvents.TryGetValue(eState, out System.Action current))
+            return;
+
+        current -= e;
+        if (current == null)
+            _AnimationEvents.Remove(eState);
+        else
+            _AnimationEvents[eState] = current;
+    }
+
     public void ChangeAnim(EFSM_STATE eState, int idx = 0, bool loop = true, int StartFrame = 0)
     {
         if (!_AnimationMap.TryGetValue(eState, out var anims))
@@ -84,7 +115,29 @@ public class AnimComponent : MonoBehaviour
         if (current?.Animation == target)
             return;
 
-        _Animation.AnimationState.SetAnimation(StartFrame, target, loop);
+        eCurState = eState;
+        var Track = _Animation.AnimationState.SetAnimation(StartFrame, target, loop);
+        Track.Event += HandleAnimationEvent;
+        Track.Dispose += HandleTrackDisposed;
     }
 
+    private void HandleAnimationEvent(TrackEntry trackEntry, Spine.Event e)
+    {
+        if(e.Data.Name == "attack_hit")
+        {
+            _AnimationEvents[eCurState]?.Invoke();
+        }
+    }
+
+    private void HandleTrackDisposed(TrackEntry track)
+    {
+        track.Event -= HandleAnimationEvent;
+        track.Dispose -= HandleTrackDisposed;
+    }
+
+    private void OnDisable()
+    {
+        var Animation = GetComponent<SkeletonAnimation>();
+        Animation.AnimationState.Event -= HandleAnimationEvent;
+    }
 }

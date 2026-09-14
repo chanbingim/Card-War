@@ -5,6 +5,7 @@ using Spine.Unity;
 using System;
 using TurnCardGame.Data;
 using Unity.AppUI.Core;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
@@ -44,6 +45,7 @@ public class Character : MonoBehaviour, IActionDragHandler
     {
         var animator = gameObject.GetComponent<SkeletonAnimation>();
         animator.AnimationState.Complete -= AnimFinished;
+        _AnimComponent.RemoveListener(EFSM_STATE.ATTACK, Attack);
     }
 
     public void Initialize(CharacterData CharacterSO, Vector3 Position)
@@ -59,9 +61,11 @@ public class Character : MonoBehaviour, IActionDragHandler
         var AddressableMgr = AddressableManager.instance;
         var animator = gameObject.GetComponent<SkeletonAnimation>();
 
-        var _AnimComponent = gameObject.GetComponent<AnimComponent>();
+        _AnimComponent = gameObject.GetComponent<AnimComponent>();
         if(_AnimComponent != null )
             _AnimComponent.Initialize(CharacterSO, animator);
+
+        _AnimComponent.AddListener(EFSM_STATE.ATTACK, Attack);
 
         animator.AnimationState.Complete += AnimFinished;
         if (_CharacterFSM == null)

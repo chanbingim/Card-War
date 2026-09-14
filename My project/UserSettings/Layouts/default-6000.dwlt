@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 989
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Game
   m_RootView: {fileID: 3}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 112}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 1
-  controlID: 72
+  controlID: 26
   draggingID: 0
 --- !u!114 &3
 MonoBehaviour:
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 112}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 73
+  controlID: 27
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 112}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 19
+  controlID: 28
   draggingID: 0
 --- !u!114 &8
 MonoBehaviour:
@@ -193,8 +193,8 @@ MonoBehaviour:
     y: 0
     width: 255
     height: 933
-  m_MinSize: {x: 202, y: 226}
-  m_MaxSize: {x: 4002, y: 4026}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -263,7 +263,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ConsoleWindow
+  m_Name: SceneView
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -272,16 +272,16 @@ MonoBehaviour:
     y: 0
     width: 1016
     height: 466
-  m_MinSize: {x: 50, y: 50}
+  m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 4000, y: 4000}
-  m_ActualView: {fileID: 13}
+  m_ActualView: {fileID: 22}
   m_Panes:
   - {fileID: 22}
   - {fileID: 16}
   - {fileID: 14}
   - {fileID: 13}
-  m_Selected: 3
-  m_LastSelected: 0
+  m_Selected: 0
+  m_LastSelected: 3
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -301,8 +301,8 @@ MonoBehaviour:
     y: 466
     width: 1016
     height: 467
-  m_MinSize: {x: 201, y: 226}
-  m_MaxSize: {x: 4001, y: 4026}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 21}
   m_Panes:
   - {fileID: 21}
@@ -867,19 +867,11 @@ MonoBehaviour:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs:
-      - m_Data: 66674
+      - m_Data: 67860
       m_LastClickedID:
         m_Data: 0
       m_ExpandedIDs:
-      - m_Data: -158400
-      - m_Data: -158242
-      - m_Data: -121536
-      - m_Data: -121518
-      - m_Data: -121428
-      - m_Data: -71104
-      - m_Data: -55238
-      - m_Data: -55130
-      - m_Data: -8930
+      - m_Data: -17724
       - m_Data: -1650
       m_RenameOverlay:
         m_UserAcceptedRename: 0
@@ -951,7 +943,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 540
+  m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:
@@ -1006,7 +998,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Dungeon Crawler 2D Art Pack/Spine Projects/ExportedForUnity/Monster1/Left
+    - Assets/SO/AI
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1016,7 +1008,7 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Dungeon Crawler 2D Art Pack/Spine Projects/ExportedForUnity/Monster1/Left
+  - Assets/SO/AI
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\gimch\Documents\GitHub\HanessTest\My project
   m_LockTracker:
@@ -1025,46 +1017,20 @@ MonoBehaviour:
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs:
-    - m_Data: 70258
+    - m_Data: 70486
     m_LastClickedID:
-      m_Data: 70258
+      m_Data: 70486
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 69684
-    - m_Data: 69686
-    - m_Data: 69688
-    - m_Data: 69690
-    - m_Data: 69692
-    - m_Data: 69696
-    - m_Data: 69700
-    - m_Data: 69702
-    - m_Data: 69704
-    - m_Data: 69706
-    - m_Data: 69708
-    - m_Data: 69710
-    - m_Data: 69712
-    - m_Data: 69714
-    - m_Data: 69716
-    - m_Data: 69718
-    - m_Data: 69720
-    - m_Data: 69722
-    - m_Data: 69724
-    - m_Data: 69726
-    - m_Data: 69728
-    - m_Data: 69730
-    - m_Data: 69732
-    - m_Data: 69734
-    - m_Data: 69736
-    - m_Data: 69738
-    - m_Data: 69740
-    - m_Data: 69742
-    - m_Data: 69744
-    - m_Data: 69746
-    - m_Data: 69748
-    - m_Data: 69750
-    - m_Data: 70330
-    - m_Data: 70354
-    - m_Data: 70448
+    - m_Data: 69604
+    - m_Data: 69606
+    - m_Data: 69608
+    - m_Data: 69610
+    - m_Data: 69612
+    - m_Data: 69614
+    - m_Data: 69616
+    - m_Data: 70118
+    - m_Data: 70160
     - m_Data: 1000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1098,40 +1064,13 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 69684
-    - m_Data: 69686
-    - m_Data: 69688
-    - m_Data: 69690
-    - m_Data: 69692
-    - m_Data: 69694
-    - m_Data: 69696
-    - m_Data: 69698
-    - m_Data: 69700
-    - m_Data: 69702
-    - m_Data: 69704
-    - m_Data: 69706
-    - m_Data: 69708
-    - m_Data: 69710
-    - m_Data: 69712
-    - m_Data: 69714
-    - m_Data: 69716
-    - m_Data: 69718
-    - m_Data: 69720
-    - m_Data: 69722
-    - m_Data: 69724
-    - m_Data: 69726
-    - m_Data: 69728
-    - m_Data: 69730
-    - m_Data: 69732
-    - m_Data: 69734
-    - m_Data: 69736
-    - m_Data: 69738
-    - m_Data: 69740
-    - m_Data: 69742
-    - m_Data: 69744
-    - m_Data: 69746
-    - m_Data: 69748
-    - m_Data: 69750
+    - m_Data: 69604
+    - m_Data: 69606
+    - m_Data: 69608
+    - m_Data: 69610
+    - m_Data: 69612
+    - m_Data: 69614
+    - m_Data: 69616
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1159,8 +1098,8 @@ MonoBehaviour:
       m_ResourceFile: 
   m_ListAreaState:
     m_SelectedInstanceIDs:
-    - m_Data: 66674
-    m_LastClickedInstanceID: 66674
+    - m_Data: 67860
+    m_LastClickedInstanceID: 67860
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs:
     - m_Data: 85230
@@ -1962,9 +1901,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: -3.8990698, y: -1.3787863, z: 0.00000006803815}
+    m_Target: {x: -1.7296611, y: -1.5233135, z: -0.022104539}
     speed: 2
-    m_Value: {x: -3.8990698, y: -1.3787863, z: 0.00000006803815}
+    m_Value: {x: -1.7296611, y: -1.5233135, z: -0.022104539}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -2014,9 +1953,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 0.64576435
+    m_Target: 2.85622
     speed: 2
-    m_Value: 0.64576435
+    m_Value: 2.85622
   m_Ortho:
     m_Target: 1
     speed: 2
