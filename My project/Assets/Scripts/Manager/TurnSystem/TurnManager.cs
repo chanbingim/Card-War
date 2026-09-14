@@ -67,14 +67,9 @@ public class TurnManager
         return instance;
     }
 
-    public void ADDHistoryActionData(CharacterAction data)
-    {
-        _AllPlayerAction.Add(data);
-    }
-
     private void OnCardActionAdd(CardActionEvent data)
     {
-        ADDHistoryActionData(data.Action);
+        _AllPlayerAction.Add(data.Action);
         EventBus.Publish<ActionRecordedEvent>(new ActionRecordedEvent(data.Action));
     }
 

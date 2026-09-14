@@ -55,7 +55,7 @@ public class AttackerCharacter : Character
         {
             MoveTarget(vOrizinPoint, () =>
             {
-                transform.DORotate(Vector3.zero, 0.2f);
+                ReverseLookAt();
                 _CharacterFSM.ChangeState(EFSM_STATE.IDLE);
             });
         }

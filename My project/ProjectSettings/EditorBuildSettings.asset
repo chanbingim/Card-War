@@ -6,8 +6,30 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Settings/Scenes/URP2DSceneTemplate.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/BootStrap.unity
+    guid: 94cc1d13b2047e248b80598f40fc7a39
+  - enabled: 1
+    path: Assets/Scenes/DemoScene.unity
+    guid: c3746c4235ac90b42b605f8367b2970b
+  - enabled: 1
+    path: Assets/Scenes/GachaScene.unity
+    guid: 1a0d703afd99b0d47877f2007384a273
+  - enabled: 1
+    path: Assets/Scenes/GameMenu.unity
+    guid: cb3ce24a5d9c09245b523b2c992de70a
+  - enabled: 1
+    path: Assets/Scenes/GameScene.unity
+    guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/LoadingScene.unity
+    guid: d4766c66d01aa9e44ae4afbff3382e02
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: cd36456e442649243833dd663b3e8347
+  - enabled: 1
+    path: Assets/Scenes/SampleScene.unity
+    guid: 735676e6ee4522d438b4c87dd610cab1
   m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 8ef1d3c85321ca340b03bda64656bfde, type: 2}
     com.unity.dt.app-ui: {fileID: 11400000, guid: 99f9c9493070a9d4c979a8fec7c5a8d3, type: 2}
   m_UseUCBPForAssetBundles: 0

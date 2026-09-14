@@ -21,7 +21,6 @@ public class DataManager : MonoBehaviour
     private Dictionary<CurrencyType, List<CurrencyProductData>> BmDatas = new Dictionary<CurrencyType, List<CurrencyProductData>>();
     private Dictionary<int, CharacterData>      CharacterDatas = new Dictionary<int, CharacterData>();
     private Dictionary<int, CardData>           CardDatas = new Dictionary<int, CardData>();
-    private Sprite[] CharacterSprites;
     private Sprite[] Cardsprites;
 
 
@@ -69,8 +68,6 @@ public class DataManager : MonoBehaviour
 
         return null;
     }
-
-    public Sprite GetCharacterSprite(int ID) { return CharacterSprites[ID]; }
 
     #region Defualt
     static public DataManager instance { get; private set; }
@@ -157,13 +154,6 @@ public class DataManager : MonoBehaviour
 
         Cardsprites = new Sprite[spriteAtlas.spriteCount];
         spriteAtlas.GetSprites(Cardsprites);
-
-        SpriteAtlas CharacterspriteAtlas = AddressableMgr.Get<SpriteAtlas>("Atlas/CharacterAtlas");
-        if (CharacterspriteAtlas == null)
-            return;
-
-        CharacterSprites = new Sprite[CharacterspriteAtlas.spriteCount];
-        CharacterspriteAtlas.GetSprites(CharacterSprites);
 
         await UniTask.CompletedTask;
     }

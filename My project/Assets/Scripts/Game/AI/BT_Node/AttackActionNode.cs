@@ -25,23 +25,27 @@ public partial class AttackActionNode : Action
     protected override void OnSetup()
     {
         CurTime = 0;
-        _PlayerData = _Controller.Value._Data;
-
         _BattleMgr = BattleManager.instance;
         if (_BattleMgr == null)
         {
             Debug.Log("[AttackActionNode] Not Find BattlgeManager");
-        }
-
-        foreach (var item in _PlayerData.PlayerParty)
-        {
-            item.OnFinishedAct += FinishedAction;
         }
     }
 
     protected override Status OnStart()
     {
         MakeTargetList();
+
+        if(_PlayerData == null)
+        {
+            _PlayerData = _Controller.Value._Data;
+
+            foreach (var item in _PlayerData.PlayerParty)
+            {
+                item.OnFinishedAct += FinishedAction;
+            }
+        }
+
         return Status.Running;
     }
 

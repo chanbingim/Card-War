@@ -26,6 +26,10 @@ public class HoverComponent : HoverHandler
         });
 
         _Image = GetComponent<Image>();
+
+        if (_Textures.Length <= 0)
+            return;
+
         _Image.sprite = _Textures[0];
     }
 

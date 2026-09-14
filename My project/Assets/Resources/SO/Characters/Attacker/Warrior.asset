@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b63bfecee262a54a8d4ba9927faf062, type: 3}
+  m_Name: Warrior
+  m_EditorClassIdentifier: Assembly-CSharp::TurnCardGame.Data.CharacterData
+  _ID: 1
+  _ATKType: 0
+  _CharacterImage:
+    m_AssetGUID: 5cc33c5b303d5714ca613e79b70114d3
+    m_SubObjectName: Knight
+    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    m_SubObjectGUID: bb39e5cacbe3aed4293209bcca0c7fb0
+    m_EditorAssetChanged: 1
+  _FSMConfig: {fileID: 11400000, guid: af559fb40f6614d4a817966542d8dee6, type: 2}
+  _SkeletonDataKey: Spine/Knight
+  _AnimationReverse: 0
+  _AnimationDatas: {fileID: 4900000, guid: 2cf343016ffa8394192e313b4586e59b, type: 3}
+  _MaxHealth: 2
+  _ATKPower: 2

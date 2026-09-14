@@ -126,7 +126,6 @@ public class AddressableManager : MonoBehaviour
     #endregion
 
     #region Get
-
     public T Get<T>(string key)
         where T : UnityEngine.Object
     {

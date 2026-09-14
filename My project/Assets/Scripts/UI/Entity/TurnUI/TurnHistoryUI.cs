@@ -13,6 +13,9 @@ public class TurnHistoryUI : RecycleScrollView<CharacterAction>
 
     private void OnCardActionAdd(ActionRecordedEvent data)
     {
+        if (_datas == null)
+            SettingHistoryData();
+
         ComputeRectSize();
         if (_prevStartIndex == -1)
             _prevStartIndex = 0;
@@ -33,18 +36,27 @@ public class TurnHistoryUI : RecycleScrollView<CharacterAction>
 
             _datas = BattleMgr.GetAllHistory();
             if (_datas == null)
-                throw new ArgumentException("[TrunHistoryUI] Not Find Action");
+                return;
 
             Init(_datas);
+
+            _TurnActionList = new List<TurnActionSlot>();
+            _TurnActionList.Capacity = _pooledItems.Count;
+            foreach (var item in _pooledItems)
+                _TurnActionList.Add(item.GetComponent<TurnActionSlot>());
+
         }
         catch (Exception e)
         {
-            Debug.Log(e);
+            Debug.LogException(e);
         }
     }
 
     protected override void RefreshView()
     {
+        if (_TurnActionList == null)
+            return;
+
         var LastItem = _TurnActionList.Last();
         _TurnActionList.Remove(LastItem);
 
@@ -78,12 +90,6 @@ public class TurnHistoryUI : RecycleScrollView<CharacterAction>
     void Start()
     {
         SettingHistoryData();
-
-        _TurnActionList = new List<TurnActionSlot>();
-        _TurnActionList.Capacity = _pooledItems.Count;
-        foreach (var item in _pooledItems)
-            _TurnActionList.Add(item.GetComponent<TurnActionSlot>());
-
         EventBus.Subscribe<ActionRecordedEvent>(OnCardActionAdd);
     }
 

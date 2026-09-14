@@ -1,9 +1,12 @@
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Spine;
 using Spine.Unity;
 using System;
 using TurnCardGame.Data;
+using Unity.AppUI.Core;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class Character : MonoBehaviour, IActionDragHandler
 {
@@ -58,13 +61,9 @@ public class Character : MonoBehaviour, IActionDragHandler
 
         var _AnimComponent = gameObject.GetComponent<AnimComponent>();
         if(_AnimComponent != null )
-            _AnimComponent.Initialize(CharacterSO.AnimationDatas, animator);
-
-        if (Data.Source.SkeletonDataKey != null)
-            animator.skeletonDataAsset = AddressableMgr.Get<SkeletonDataAsset>(Data.Source.SkeletonDataKey);
+            _AnimComponent.Initialize(CharacterSO, animator);
 
         animator.AnimationState.Complete += AnimFinished;
-
         if (_CharacterFSM == null)
             _CharacterFSM = GetComponent<FSM>();
 
@@ -127,8 +126,9 @@ public class Character : MonoBehaviour, IActionDragHandler
         vOrizinPoint = transform.position;
         Vector3 dir = (vTargetPoint - vOrizinPoint).normalized;
         float cross = Vector3.Cross(transform.up, dir).z;
-        
+
         Vector3 NewRot = Vector3.zero;
+        float yAngle = transform.eulerAngles.y;
         if (dir.x > 0)
         {
             NewRot.y = vOrizinLook.x < 0 ? 180 : 0;
@@ -138,9 +138,18 @@ public class Character : MonoBehaviour, IActionDragHandler
             NewRot.y = vOrizinLook.x < 0 ? 0 : 180;
         }
 
+        NewRot.y = NewRot.y - yAngle;
         transform.DORotate(NewRot, RotSpeed);
         transform.DOMove(vTargetPoint, 2.0f)
                  .OnComplete(action);
+    }
+
+    protected void ReverseLookAt()
+    {
+        float yAngle = transform.eulerAngles.y;
+
+        yAngle = (yAngle + 180) % 360.0f;
+        transform.DORotate(new Vector3(0, yAngle, 0), RotSpeed);
     }
 
     #region DragInterfaceLogic

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace TurnCardGame.Data
 {
@@ -7,25 +8,39 @@ namespace TurnCardGame.Data
     [CreateAssetMenu(menuName = "Turn Card Game/Character", fileName = "CharacterData")]
     public sealed class CharacterData : ScriptableObject
     {
+        public int Id => _ID;
+        public EATTAK_TYPE ATKType => _ATKType;
+
+        // Icon Image Key
+        public AssetReferenceAtlasedSprite CharacterIcon => _CharacterImage;
+
+        // Animdation Data
+        public CharacterFsmConfig FSMConfig => _FSMConfig;
+        public TextAsset AnimationDatas => _AnimationDatas;
+        public string SkeletonDataKey => _SkeletonDataKey;
+        public bool AnimReverse => _AnimationReverse;
+
+        // Character Info
+        public int MaxHealth => Mathf.Max(1, _MaxHealth);
+        public int AttackPower => Mathf.Max(0, _ATKPower);
+
         [SerializeField] private int    _ID;
         [SerializeField] private EATTAK_TYPE _ATKType = EATTAK_TYPE.END;
 
+        [Header("Icon Image")]
+        [SerializeField] AssetReferenceAtlasedSprite  _CharacterImage;
+
+        [Header("FSM Type")]
         [SerializeField] CharacterFsmConfig _FSMConfig;
 
+        [Header("Skelton Anmiation")]
         [SerializeField] string             _SkeletonDataKey;
+        [SerializeField] bool               _AnimationReverse;
         [SerializeField] private TextAsset  _AnimationDatas = null;
 
+        [Header("Infomation")]
         [SerializeField] private int _MaxHealth;
         [SerializeField] private int _ATKPower;
-
-        public int                  Id => _ID;
-        public EATTAK_TYPE          ATKType => _ATKType;
-
-        public CharacterFsmConfig   FSMConfig => _FSMConfig;
-        public string               SkeletonDataKey => _SkeletonDataKey;
-        public TextAsset            AnimationDatas => _AnimationDatas;
-        public int                  MaxHealth => Mathf.Max(1, _MaxHealth);
-        public int                  AttackPower => Mathf.Max(0, _ATKPower);
     }
 
     /*

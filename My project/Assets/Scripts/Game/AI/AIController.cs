@@ -14,6 +14,8 @@ public class AIController : MonoBehaviour
             Debug.Log("[AI_Character] Not Add Component Behavior");
             return;
         }
+
+        _behaviour.SetVariableValue<AIController>("Controller", this);
     }
 
     public void Initialize(StageAISO data)
@@ -21,8 +23,6 @@ public class AIController : MonoBehaviour
         _Data = new BattlePlayerData(data);
 
         _Data._OnTurnChangeStart += TurnChagneEvent;
-
-        _behaviour.SetVariableValue<AIController>("Controller", this);
         _behaviour.SetVariableValue<string>("NickName", _Data.Name);
     }
 

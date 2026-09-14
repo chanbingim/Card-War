@@ -1,5 +1,7 @@
+using Spine;
 using Spine.Unity;
 using System.Collections.Generic;
+using TurnCardGame.Data;
 using UnityEngine;
 using static UnityEngine.Rendering.STP;
 
@@ -18,13 +20,28 @@ public class AnimComponent : MonoBehaviour
         public string[] animationNames;
     }
 
-
     Dictionary<EFSM_STATE, List<Spine.Animation>> _AnimationMap = new();
     SkeletonAnimation _Animation = null;
 
-    public void Initialize(TextAsset json, SkeletonAnimation animaton)
+    public void Initialize(CharacterData data, SkeletonAnimation animaton)
     {
-        var config = JsonUtility.FromJson<AnimationConfig>(json.text);
+        _Animation = animaton;
+        var AddressableMgr = AddressableManager.instance;
+        if (AddressableMgr == null)
+        {
+            Debug.Log("[Anim Component] Not Find AddressableManager");
+            return;
+        }
+
+        if (data.SkeletonDataKey != null)
+        {
+            _Animation.ClearState();
+
+            _Animation.skeletonDataAsset = AddressableMgr.Get<SkeletonDataAsset>(data.SkeletonDataKey);
+            _Animation.Initialize(true);
+        }
+
+        var config = JsonUtility.FromJson<AnimationConfig>(data.AnimationDatas.text);
 
         foreach (var group in config.groups)
         {
@@ -51,8 +68,6 @@ public class AnimComponent : MonoBehaviour
                 }
             }
         }
-
-        _Animation = animaton;
     }
 
     public void ChangeAnim(EFSM_STATE eState, int idx = 0, bool loop = true, int StartFrame = 0)

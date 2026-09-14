@@ -102,7 +102,7 @@ public class BattleManager : MonoBehaviour, IInitialize
         Vector3 Point = TargetPos - (Vector3.right * 0.5f); 
 
         Attacker.AttackAction(Point);
-        _TrunMgr.ADDHistoryActionData(_CurBattleAction);
+        EventBus.Publish<CardActionEvent>(new CardActionEvent(_CurBattleAction));
     }
 
 

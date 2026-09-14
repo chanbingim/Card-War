@@ -27,9 +27,12 @@ namespace Factory
             var PoolAble = PoolManager.Instance.Get<PoolAbleComponent>(GamePlay.Enum.EPoolType.UI, "CharacterHP");
             if (PoolAble == null)
                 return null;
-            
-            if(bIsLoacl == false)
+
+            // NXOR 연산을 통해서 0, 0 또는 1, 1일경우만 뒤집어서 표현
+            if (!(CharacterSO.AnimReverse ^ bIsLoacl))
+            {
                 character.transform.DORotate(new Vector3(0, 180, 0), 0.2f);
+            }
 
             var CharacterHP = PoolAble.gameObject.GetComponent<BattleCharacterUI>();
             if (CharacterHP == null)

@@ -52,8 +52,11 @@ public abstract class RecycleScrollView<T> : UIBase
         _ScrollRect.onValueChanged.AddListener(ChangeValue);
         _datas = datas;
 
-        ComputeRectSize();
-        RefreshView();
+        if(_datas != null)
+        {
+            ComputeRectSize();
+            RefreshView();
+        }
     }
 
     protected virtual void RefreshView()
