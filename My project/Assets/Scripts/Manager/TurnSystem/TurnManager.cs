@@ -108,6 +108,7 @@ public class TurnManager
 
     private void StartTurn()
     {
+        BattleManager.instance.MakeMatchMaking();
         _TurnType = ETurnType.USE_CARDTRUN;
 
         Current.TurnBegin();
@@ -179,7 +180,7 @@ public class TurnManager
             {
                 CurrentPhase++;
                 CurrentTurnIndex = 0;
-                BattleManager.instance.MakeMatchMaking();
+             
             }
 
             if (!_GameOverList.Contains(Current))

@@ -1,15 +1,10 @@
-using DG.Tweening;
-using NUnit.Framework;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class GameResultUI : MonoBehaviour
 {
-    [SerializeField] private List<Sprite> _sprites;
     [SerializeField] private SceneMoveComponent _SceneMoveCom = null;
-    [SerializeField] private Image _Image = null;
-
+    
+    private Animator _Animator = null;
     private bool _IsClear = false;
 
     void Start()
@@ -19,32 +14,15 @@ public class GameResultUI : MonoBehaviour
             _SceneMoveCom.OnClicked += OnStageClearEvent;
         }
 
+        _Animator = gameObject.GetComponent<Animator>();
         gameObject.SetActive(false);
         EventBus.Subscribe<BattleEndEvent>(ResultUI);
     }
 
     private void ResultUI(BattleEndEvent Result)
     {
-        if (_sprites.Count <= 1)
-            return;
-
-        Color c = _Image.color;
-        c.a = 0.0f;
-        _Image.color = c;
-
+        _Animator.SetBool("IsWin", Result.IsWinner);
         gameObject.SetActive(true);
-        _Image.DOFade(1, 0.6f);
-
-        if (Result.IsWinner)
-        {
-            _Image.sprite = _sprites[0];
-            _IsClear = true;
-        }
-        else
-        {
-            _Image.sprite = _sprites[1];
-            _IsClear = false;
-        }
     }
 
     private void OnStageClearEvent()
@@ -70,13 +48,10 @@ public class GameResultUI : MonoBehaviour
 
     private void OnDisable()
     {
-        _Image.DOKill();
     }
 
     public void OnDestory()
     {
-        _Image.DOKill();
-
         _SceneMoveCom.OnClicked -= OnStageClearEvent;
         EventBus.Unsubscribe<BattleEndEvent>(ResultUI);
     }

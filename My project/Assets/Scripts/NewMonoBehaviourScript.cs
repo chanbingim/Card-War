@@ -20,8 +20,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     {
         if (skeletonAnimation == null)
         {
-            skeletonAnimation =
-                GetComponent<SkeletonAnimation>();
+            skeletonAnimation = GetComponent<SkeletonAnimation>();
         }
 
         if (skeletonAnimation == null)

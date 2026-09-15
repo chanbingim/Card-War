@@ -19,11 +19,18 @@ public class AnimComponent : MonoBehaviour
         public string[] animationNames;
     }
 
-    Dictionary<EFSM_STATE, System.Action>           _AnimationEvents = new();
-    Dictionary<EFSM_STATE, List<Spine.Animation>>   _AnimationMap = new();
+    [System.Serializable]
+    public class CurrentTrack
+    {
+        public TrackEntry   CurrnetEntry;
+        public EFSM_STATE   eCurState;
+    }
 
-    SkeletonAnimation _Animation = null;
-    EFSM_STATE          eCurState;
+    Dictionary<EFSM_STATE, System.Action<Spine.Event>>  _AnimationEvents = new();
+    Dictionary<EFSM_STATE, List<Spine.Animation>>       _AnimationMap = new();
+
+    SkeletonAnimation   _Animation = null;
+    CurrentTrack        _CurrentFrame = new();
 
     private void Awake()
     {
@@ -77,7 +84,7 @@ public class AnimComponent : MonoBehaviour
         }
     }
 
-    public void AddListener(EFSM_STATE eState, System.Action e)
+    public void AddListener(EFSM_STATE eState, System.Action<Spine.Event> e)
     {
         if(_AnimationEvents.TryGetValue(eState, out var events))
         {
@@ -89,9 +96,9 @@ public class AnimComponent : MonoBehaviour
         }
     }
 
-    public void RemoveListener(EFSM_STATE eState, System.Action e)
+    public void RemoveListener(EFSM_STATE eState, System.Action<Spine.Event> e)
     {
-        if (!_AnimationEvents.TryGetValue(eState, out System.Action current))
+        if (!_AnimationEvents.TryGetValue(eState, out System.Action<Spine.Event> current))
             return;
 
         current -= e;
@@ -115,18 +122,20 @@ public class AnimComponent : MonoBehaviour
         if (current?.Animation == target)
             return;
 
-        eCurState = eState;
         var Track = _Animation.AnimationState.SetAnimation(StartFrame, target, loop);
         Track.Event += HandleAnimationEvent;
         Track.Dispose += HandleTrackDisposed;
+
+        _CurrentFrame.CurrnetEntry = Track;
+        _CurrentFrame.eCurState = eState;
     }
 
     private void HandleAnimationEvent(TrackEntry trackEntry, Spine.Event e)
     {
-        if(e.Data.Name == "attack_hit")
-        {
-            _AnimationEvents[eCurState]?.Invoke();
-        }
+        if (_CurrentFrame.CurrnetEntry != trackEntry)
+            return;
+
+        _AnimationEvents[_CurrentFrame.eCurState]?.Invoke(e);
     }
 
     private void HandleTrackDisposed(TrackEntry track)

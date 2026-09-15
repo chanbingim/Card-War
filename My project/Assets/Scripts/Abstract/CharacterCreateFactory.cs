@@ -21,8 +21,9 @@ namespace Factory
 
             if (Utility.CHECK(character))
             {
-                character.Initialize(CharacterSO, Position);
+                character.Initialize(CharacterSO, Position, !bIsLoacl);
             }
+            character.AddComponent<BoxCollider2D>();
 
             var PoolAble = PoolManager.Instance.Get<PoolAbleComponent>(GamePlay.Enum.EPoolType.UI, "CharacterHP");
             if (PoolAble == null)

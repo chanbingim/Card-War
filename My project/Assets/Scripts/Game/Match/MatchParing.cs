@@ -1,10 +1,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MatchParing : MonoBehaviour
+public class MatchParing
 {
     // 각 플레이어가 이전에 누구와 붙었는지 기록
     private Dictionary<int, HashSet<int>> _matchHistory = new();
+
+    public void Initialize(int PlayerCount)
+    {
+        for(int i = 0; i < PlayerCount; ++i)
+        {
+            _matchHistory.Add(i, new());
+        }
+    }
 
     public List<(int playerA, int playerB)> CreatePairs(List<int> alivePlayers)
     {

@@ -34,17 +34,17 @@ public partial class AttackActionNode : Action
 
     protected override Status OnStart()
     {
-        MakeTargetList();
-
         if(_PlayerData == null)
         {
             _PlayerData = _Controller.Value._Data;
 
             foreach (var item in _PlayerData.PlayerParty)
             {
-                item.OnFinishedAct += FinishedAction;
+                item.OnFinishedAct += AttackFinished;
             }
         }
+        MakeTargetList();
+        IsAttackAble = true;
 
         return Status.Running;
     }
@@ -53,7 +53,7 @@ public partial class AttackActionNode : Action
     {
         CurTime += Time.deltaTime;
 
-        if(CurTime > 10.0f)
+        if(CurTime > 15.0f)
         {
             Debug.Log("[AttackActionNode] Turn Time Out");
             CurTime = 0;
@@ -66,6 +66,7 @@ public partial class AttackActionNode : Action
             {
                 var hash = _CombatList.First();
                 _BattleMgr.RequestAttack(hash.Item1, hash.Item2);
+                _CombatList.Remove(hash);
 
                 IsAttackAble = false;
             }
@@ -83,11 +84,11 @@ public partial class AttackActionNode : Action
     {
         foreach (var item in _PlayerData.PlayerParty)
         {
-            item.OnFinishedAct -= FinishedAction;
+            item.OnFinishedAct -= AttackFinished;
         }
     }
 
-    private void FinishedAction()
+    private void AttackFinished(EFSM_STATE state)
     {
         if (IsAttackAble == false)
             IsAttackAble = true;

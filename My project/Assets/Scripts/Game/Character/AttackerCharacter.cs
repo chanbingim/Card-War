@@ -53,16 +53,20 @@ public class AttackerCharacter : Character
     {
         if (_CharacterFSM._CurStateType == EFSM_STATE.ATTACK)
         {
+            ReverseLookAt();
             MoveTarget(vOrizinPoint, () =>
             {
                 ReverseLookAt();
                 _CharacterFSM.ChangeState(EFSM_STATE.IDLE);
+                base.AnimFinished(entry);
             });
         }
         else if (_CharacterFSM._CurStateType == EFSM_STATE.HIT)
         {
             _CharacterFSM.ChangeState(EFSM_STATE.IDLE);
         }
+
+       
     }
 
     protected override void Attack()

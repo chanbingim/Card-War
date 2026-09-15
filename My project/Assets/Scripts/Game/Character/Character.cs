@@ -1,18 +1,14 @@
-using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Spine;
 using Spine.Unity;
 using System;
 using TurnCardGame.Data;
-using Unity.AppUI.Core;
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class Character : MonoBehaviour, IActionDragHandler
 {
     #region Delegate
-    public delegate void FinishedAction();
+    public delegate void FinishedAction(EFSM_STATE state);
     public delegate void OnDagmaed(float fHealthRatio);
     public delegate void OnChangeState(CharacterRuntimeData Data);
 
@@ -23,6 +19,7 @@ public class Character : MonoBehaviour, IActionDragHandler
     public event FinishedAction OnFinishedAct;
     #endregion
 
+    public bool bIsLeft = false;
     public CharacterRuntimeData     Data { get; protected set; }
     public float RotSpeed = 0.2f;
 
@@ -45,19 +42,19 @@ public class Character : MonoBehaviour, IActionDragHandler
     {
         var animator = gameObject.GetComponent<SkeletonAnimation>();
         animator.AnimationState.Complete -= AnimFinished;
-        _AnimComponent.RemoveListener(EFSM_STATE.ATTACK, Attack);
+        _AnimComponent.RemoveListener(EFSM_STATE.ATTACK, AnimationCallbackEvent);
     }
 
-    public void Initialize(CharacterData CharacterSO, Vector3 Position)
+    public void Initialize(CharacterData CharacterSO, Vector3 Position, bool IsEnemy)
     {
         transform.position = Position;
+        bIsLeft = IsEnemy;
 
         var DataMgr = DataManager.instance;
         if (DataMgr == null)
             return;
 
         Data = new CharacterRuntimeData(CharacterSO);
-
         var AddressableMgr = AddressableManager.instance;
         var animator = gameObject.GetComponent<SkeletonAnimation>();
 
@@ -65,14 +62,16 @@ public class Character : MonoBehaviour, IActionDragHandler
         if(_AnimComponent != null )
             _AnimComponent.Initialize(CharacterSO, animator);
 
-        _AnimComponent.AddListener(EFSM_STATE.ATTACK, Attack);
+        _AnimComponent.AddListener(EFSM_STATE.ATTACK, AnimationCallbackEvent);
 
         animator.AnimationState.Complete += AnimFinished;
         if (_CharacterFSM == null)
             _CharacterFSM = GetComponent<FSM>();
 
         _CharacterFSM.Initialized(Data.Source.FSMConfig, this, _AnimComponent);
+        
         _OutLineRender = gameObject.GetComponent<OutLineRenderer>();
+        _OutLineRender.Initialize();
     }
 
     public void SetAttackAble(bool Active)
@@ -121,29 +120,22 @@ public class Character : MonoBehaviour, IActionDragHandler
     }
 
     protected virtual void Attack() { }
-    protected virtual void AnimFinished(TrackEntry entry) { }
+    protected virtual void AnimFinished(TrackEntry entry) 
+    {
+        OnFinishedAct?.Invoke(_CharacterFSM._CurStateType);
+    }
+
+    void AnimationCallbackEvent(Spine.Event e)
+    {
+        if(e.Data.Name == "attack_hit")
+            Attack();
+    }
 
     protected void MoveTarget(Vector3 vTargetPoint, TweenCallback action)
     {
         _CharacterFSM.ChangeState(EFSM_STATE.RUN);
 
         vOrizinPoint = transform.position;
-        Vector3 dir = (vTargetPoint - vOrizinPoint).normalized;
-        float cross = Vector3.Cross(transform.up, dir).z;
-
-        Vector3 NewRot = Vector3.zero;
-        float yAngle = transform.eulerAngles.y;
-        if (dir.x > 0)
-        {
-            NewRot.y = vOrizinLook.x < 0 ? 180 : 0;
-        }
-        else if (dir.x < 0)
-        {
-            NewRot.y = vOrizinLook.x < 0 ? 0 : 180;
-        }
-
-        NewRot.y = NewRot.y - yAngle;
-        transform.DORotate(NewRot, RotSpeed);
         transform.DOMove(vTargetPoint, 2.0f)
                  .OnComplete(action);
     }

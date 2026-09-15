@@ -97,14 +97,14 @@ public class BattleManager : MonoBehaviour, IInitialize
     public void RequestAttack(Character Attacker, Character Target)
     {
         _CurBattleAction = new BattleAction(Attacker, Target, EACTION_TYPE.ATTACK);
-
+        
         Vector3 TargetPos = Target.gameObject.transform.position;
-        Vector3 Point = TargetPos - (Vector3.right * 0.5f); 
+        Vector3 vDir = Attacker.bIsLeft ? -Vector3.right : Vector3.right;
+        Vector3 Point = TargetPos - (vDir * 0.5f); 
 
         Attacker.AttackAction(Point);
         EventBus.Publish<CardActionEvent>(new CardActionEvent(_CurBattleAction));
     }
-
 
     public int ComputeDamageLogic(int OrizinDamage)
     {
@@ -149,8 +149,7 @@ public class BattleManager : MonoBehaviour, IInitialize
             return UniTask.CompletedTask;
         }
 
-        _MatchMakingMgr = new MatchParing();
-
+      
         // 이거 나중에 서버에서 받아오긴할거임
         List<ITurnParticipant> participants = null;
         var eGameMode = GameManager.instance.EGameMode;
@@ -184,6 +183,9 @@ public class BattleManager : MonoBehaviour, IInitialize
         {
           
         }
+
+        _MatchMakingMgr = new MatchParing();
+        _MatchMakingMgr.Initialize(participants.Count);
 
         if (InitTurnManager(participants) == false)
         {

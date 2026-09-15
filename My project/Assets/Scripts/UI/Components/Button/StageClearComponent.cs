@@ -16,7 +16,7 @@ public class StageClearComponent : MonoBehaviour
     private int                      _StarCount = 0;
     private int                      _MaxStar = -1;
 
-    private void Awake()
+    private void Start()
     {
         var addressableMgr = AddressableManager.instance;
         if (Utility.CHECK(addressableMgr) == false)
@@ -25,6 +25,9 @@ public class StageClearComponent : MonoBehaviour
         var atlas = addressableMgr.Get<SpriteAtlas>("Atlas/StageClear");
         if (Utility.CHECK(atlas) == false)
             return;
+
+        _Sprites = new Sprite[atlas.spriteCount];
+        atlas.GetSprites(_Sprites);
 
         _ImageAnim = new List<DoTweenAnimator>();
         _ImageAnim.Capacity = _Images.Count;
@@ -37,10 +40,10 @@ public class StageClearComponent : MonoBehaviour
             Animator.Pause_Animation();
             Animator.Initialize();
             Animator.enabled = false;
+            image.enabled = false;
         }
 
-        _Sprites = new Sprite[atlas.spriteCount];
-        atlas.GetSprites(_Sprites);
+
         CloseStage();
     }
     
@@ -75,6 +78,7 @@ public class StageClearComponent : MonoBehaviour
 
         if (_StarCount < _MaxStar)
         {
+            _Images[_StarCount].enabled = true;
             _Images[_StarCount].sprite = _Sprites[1];
             _ImageAnim[_StarCount].enabled = true;
             _ImageAnim[_StarCount].Initialize();

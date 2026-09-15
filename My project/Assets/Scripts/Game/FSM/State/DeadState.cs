@@ -6,7 +6,7 @@ public class DeadState : State
 {
     public override void Enter()
     {
-        _Animator.ChangeAnim(EFSM_STATE.DEAD);
+        _Animator.ChangeAnim(EFSM_STATE.DEAD, 0, false);
     }
 
     public override void Update()
