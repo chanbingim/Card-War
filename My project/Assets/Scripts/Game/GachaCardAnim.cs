@@ -1,12 +1,17 @@
+using DG.Tweening;
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class GachaCardAnim : MonoBehaviour, IPointerClickHandler
 {
     public enum ECardType { EffectCard, Character };
     public event Action OnCompelted;
+
+    #region Orizin Data
+    [SerializeField] private Sprite _OrizinImage;
+    #endregion
 
     private Image _image;
     private ECardType Type;
@@ -17,9 +22,10 @@ public class GachaCardAnim : MonoBehaviour, IPointerClickHandler
     private void Awake()
     {
         _image = GetComponent<Image>();
+        gameObject.SetActive(false);
     }
 
-    public void Initialize(int id)
+    public void Initialize(int id, Vector3 AnimTargetPoint, Action OnCompelted)
     {
         var Gachasystem = GachaSystem.instance;
         if (Gachasystem == null)
@@ -30,6 +36,11 @@ public class GachaCardAnim : MonoBehaviour, IPointerClickHandler
 
         ID = id;
         bIsSecret = true;
+        _image.sprite = _OrizinImage;
+
+        transform.position = AnimTargetPoint + Vector3.right * 10;
+        transform.DOMove(AnimTargetPoint, 0.6f)
+                 .OnComplete(() => OnCompelted?.Invoke());
     }
 
     public void OnPointerClick(PointerEventData eventData)
