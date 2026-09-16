@@ -1,0 +1,2237 @@
+[Licensing::Module] Trying to connect to existing licensing client channel...
+Built from '6000.3/staging' branch; Version is '6000.3.17f1 (cf0352b38e81) revision 13566802'; Using compiler version '194234433'; Build Type 'Release'
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-gimch" at "2026-09-16T12:55:42.6322785Z"
+OS: 'Windows 11  (10.0.26200) Professional' Language: 'ko' Physical Memory: 16232 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+System  architecture: x64
+Process architecture: x64
+Date: 2026-09-16T12:55:42Z
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.3.17f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker4
+-projectPath
+C:/Users/gimch/Documents/GitHub/HanessTest/My project
+-logFile
+Logs/AssetImportWorker4.log
+-srvPort
+53714
+-licensingIpc
+LicenseClient-gimch
+-job-worker-count
+7
+-background-job-worker-count
+8
+-gc-helper-count
+1
+-name
+AssetImport
+Successfully changed project path to: C:/Users/gimch/Documents/GitHub/HanessTest/My project
+C:/Users/gimch/Documents/GitHub/HanessTest/My project
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-gfx=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+Player connection [1972]  Target information:
+
+Player connection [1972]  * "[IP] 49.142.53.194 [Port] 0 [Flags] 2 [Guid] 4105056554 [EditorId] 4105056554 [Version] 1048832 [Id] WindowsEditor(7,CHANBIN) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [1972] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [1972] Host joined alternative multi-casting on [225.0.0.222:34997]...
+JobSystem: Creating JobQueue using job-worker-count value 7
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+Library Redirect Path: Library/
+[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Refreshing native plugins compatible for Editor in 15.45 ms, found 9 plugins.
+Preloading 1 native plugins for Editor in 1.62 ms.
+Initialize engine version: 6000.3.17f1 (cf0352b38e81)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.3.17f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/gimch/Documents/GitHub/HanessTest/My project/Assets
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+d3d12: failed to query info queue interface (0x80004002).
+Direct3D:
+    Version:         Direct3D 12 [level 12.2]
+    Renderer:        NVIDIA GeForce RTX 3060 (ID=0x2504)
+    Vendor:          NVIDIA
+    VRAM:            12115 MB
+    App VRAM Budget: 11347 MB
+    Driver:          32.0.15.6094
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.3.17f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.3.17f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.3.17f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56948
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.3.17f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+[Licensing::Module] Licensing is not yet initialized.
+[Licensing::Client] Error: HandshakeResponse reported an error:
+	ResponseCode: 505
+	ResponseStatus: Unsupported protocol version '1.18.1'.
+[Licensing::Module] Error: Failed to handshake to channel: "LicenseClient-gimch"
+[Licensing::IpcConnector] LicenseClient-gimch channel disconnected successfully.
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-gimch-6000.3.17" at "2026-09-16T12:55:44.7082193Z"
+[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 1876, path: "C:/Program Files/Unity/Hub/Editor/6000.3.17f1/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client.exe")
+[Licensing::Module] LicensingClient has failed validation; ignoring
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.18.1+9fbee8e
+  Session Id:              d72a2f5624084d4b90421507888f3405
+  Correlation Id:          8c500b4af5a589741d69b78407bc226a
+  External correlation Id: 7427675007488853911
+  Machine Id:              KrNS+X8tESWlg/RUg6sq3F0RFxo=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-gimch-6000.3.17" (connect: 0.00s, validation: 0.01s, handshake: 0.01s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-gimch-6000.3.17-notifications" at "2026-09-16T12:55:44.7209923Z"
+[Licensing::Module] Licensing Background thread has ended after 2.09s
+[Licensing::Module] Licensing is initialized (took 0.95s).
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: 14568713557572-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.3.17f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
+Registered in 0.951152 seconds.
+- Loaded All Assemblies, in  1.386 seconds
+Native extension for Android target not found
+Native extension for WindowsStandalone target not found
+Package Manager log level set to [2]
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.480 seconds
+Domain Reload Profiling: 1864ms
+	BeginReloadAssembly (145ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (1ms)
+	RebuildCommonClasses (48ms)
+	RebuildNativeTypeToScriptingClass (17ms)
+	initialDomainReloadingComplete (993ms)
+	LoadAllAssembliesAndSetupDomain (181ms)
+		LoadAssemblies (144ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (177ms)
+			TypeCache.Refresh (174ms)
+				TypeCache.ScanAssembly (156ms)
+			BuildScriptInfoCaches (0ms)
+			ResolveRequiredComponents (1ms)
+	FinalizeReload (480ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (418ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (68ms)
+			SetLoadedEditorAssemblies (4ms)
+			BeforeProcessingInitializeOnLoad (94ms)
+			ProcessInitializeOnLoadAttributes (161ms)
+			ProcessInitializeOnLoadMethodAttributes (91ms)
+			AfterProcessingInitializeOnLoad (0ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+========================================================================
+Worker process is ready to serve import requests
+Import Worker Mode flag is 0x00
+Begin MonoManager ReloadAssembly
+[Licensing::Client] Successfully resolved entitlement details
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  1.673 seconds
+Refreshing native plugins compatible for Editor in 27.90 ms, found 9 plugins.
+Native extension for Android target not found
+Native extension for WindowsStandalone target not found
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Refreshing native plugins compatible for Editor in 13.28 ms, found 9 plugins.
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+System.Exception: Error! Visual Scripting: couldn't find visual scripting package
+  at Unity.VisualScripting.PackageVersionUtility.get_version () [0x00043] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\PackageVersionUtility.cs:31 
+  at Unity.VisualScripting.BoltCoreManifest.get_version () [0x00000] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Plugin\BoltCoreManifest.cs:11 
+  at Unity.VisualScripting.PluginManifest.get_currentVersion () [0x00000] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Plugins\PluginManifest.cs:33 
+  at Unity.VisualScripting.PluginManifest.get_versionMismatch () [0x00000] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Plugins\PluginManifest.cs:48 
+  at Unity.VisualScripting.PluginContainer.Initialize () [0x00525] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Plugins\PluginContainer.cs:208 
+  at Unity.VisualScripting.PluginContainer.InitializeOnLoad () [0x00009] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Plugins\PluginContainer.cs:32 
+  at Unity.VisualScripting.VSUsageUtility.DoInitializeOnLoadCalls () [0x00034] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\VSUsageUtility.cs:76 
+  at Unity.VisualScripting.VSUsageUtility.set_isVisualScriptingUsed (System.Boolean value) [0x0002c] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\VSUsageUtility.cs:114 
+  at Unity.VisualScripting.VSUsageUtility.CheckAndSetIsVisualScriptingUsed () [0x00032] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\VSUsageUtility.cs:48 
+  at Unity.VisualScripting.VSUsageUtility..cctor () [0x00000] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\VSUsageUtility.cs:22 
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogError (object)
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadAttributes (System.Type[])
+
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.944 seconds
+Domain Reload Profiling: 3604ms
+	BeginReloadAssembly (213ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (8ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (32ms)
+	RebuildCommonClasses (45ms)
+	RebuildNativeTypeToScriptingClass (14ms)
+	initialDomainReloadingComplete (61ms)
+	LoadAllAssembliesAndSetupDomain (1327ms)
+		LoadAssemblies (875ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (582ms)
+			TypeCache.Refresh (410ms)
+				TypeCache.ScanAssembly (384ms)
+			BuildScriptInfoCaches (149ms)
+			ResolveRequiredComponents (16ms)
+	FinalizeReload (1944ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (1710ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (8ms)
+			SetLoadedEditorAssemblies (6ms)
+			BeforeProcessingInitializeOnLoad (207ms)
+			ProcessInitializeOnLoadAttributes (1195ms)
+			ProcessInitializeOnLoadMethodAttributes (289ms)
+			AfterProcessingInitializeOnLoad (5ms)
+			EditorAssembliesLoaded (1ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (6ms)
+WARNING: Shader Unsupported: 'Spine/Outline/SkeletonGraphic' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/SkeletonGraphic' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Special/Skeleton Grayscale' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Special/Skeleton Grayscale' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Sprite/Vertex Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Sprite/Vertex Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/SkeletonGraphic Tint Black' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/SkeletonGraphic Tint Black' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Lit ZWrite' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Lit ZWrite' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Fill' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Fill' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Blend Modes/Skeleton PMA Additive' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Blend Modes/Skeleton PMA Additive' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Sprite/Unlit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Sprite/Unlit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Tint' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Tint' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Sprite/Pixel Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Sprite/Pixel Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Blend Modes/Skeleton PMA Screen' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Blend Modes/Skeleton PMA Screen' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Tint Black' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Tint Black' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Blend Modes/Skeleton PMA Multiply' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Blend Modes/Skeleton PMA Multiply' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.02 seconds
+Refreshing native plugins compatible for Editor in 12.39 ms, found 9 plugins.
+Preloading 1 native plugins for Editor in 0.24 ms.
+Unloading 31 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 11439 unused Assets / (9.1 MB). Loaded Objects now: 12301.
+Memory consumption went from 223.8 MB to 214.7 MB.
+Total: 38.274400 ms (FindLiveObjects: 1.325300 ms CreateObjectMapping: 1.982000 ms MarkObjects: 28.368800 ms  DeleteObjects: 6.595500 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 21895.183170 seconds.
+  path: Assets/Texture/UI/19b83dd9f3e1a9772-ezgif.com-gif-to-sprite-converter.png
+  artifactKey: Guid(9a7337b42a53ebf46a52f51f05768d0e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Texture/UI/19b83dd9f3e1a9772-ezgif.com-gif-to-sprite-converter.png using Guid(9a7337b42a53ebf46a52f51f05768d0e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '3b5a8f0173be1d8990e907c1b0764672') in 0.1189487 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+[Licensing::Client] Successfully resolved entitlement details
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  1.614 seconds
+Refreshing native plugins compatible for Editor in 9.36 ms, found 9 plugins.
+Native extension for Android target not found
+Native extension for WindowsStandalone target not found
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Refreshing native plugins compatible for Editor in 13.20 ms, found 9 plugins.
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+System.Exception: Error! Visual Scripting: couldn't find visual scripting package
+  at Unity.VisualScripting.PackageVersionUtility.get_version () [0x00043] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\PackageVersionUtility.cs:31 
+  at Unity.VisualScripting.BoltCoreManifest.get_version () [0x00000] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Plugin\BoltCoreManifest.cs:11 
+  at Unity.VisualScripting.PluginManifest.get_currentVersion () [0x00000] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Plugins\PluginManifest.cs:33 
+  at Unity.VisualScripting.PluginManifest.get_versionMismatch () [0x00000] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Plugins\PluginManifest.cs:48 
+  at Unity.VisualScripting.PluginContainer.Initialize () [0x00525] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Plugins\PluginContainer.cs:208 
+  at Unity.VisualScripting.PluginContainer.InitializeOnLoad () [0x00009] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Plugins\PluginContainer.cs:32 
+  at Unity.VisualScripting.VSUsageUtility.DoInitializeOnLoadCalls () [0x00034] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\VSUsageUtility.cs:76 
+  at Unity.VisualScripting.VSUsageUtility.set_isVisualScriptingUsed (System.Boolean value) [0x0002c] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\VSUsageUtility.cs:114 
+  at Unity.VisualScripting.VSUsageUtility.CheckAndSetIsVisualScriptingUsed () [0x0000d] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\VSUsageUtility.cs:33 
+  at Unity.VisualScripting.VSUsageUtility..cctor () [0x00000] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\VSUsageUtility.cs:22 
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogError (object)
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadAttributes (System.Type[])
+
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.986 seconds
+Domain Reload Profiling: 3608ms
+	BeginReloadAssembly (551ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (40ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (1ms)
+		CreateAndSetChildDomain (184ms)
+	RebuildCommonClasses (41ms)
+	RebuildNativeTypeToScriptingClass (13ms)
+	initialDomainReloadingComplete (36ms)
+	LoadAllAssembliesAndSetupDomain (980ms)
+		LoadAssemblies (730ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (374ms)
+			TypeCache.Refresh (26ms)
+				TypeCache.ScanAssembly (3ms)
+			BuildScriptInfoCaches (321ms)
+			ResolveRequiredComponents (16ms)
+	FinalizeReload (1987ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (1371ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (8ms)
+			SetLoadedEditorAssemblies (6ms)
+			BeforeProcessingInitializeOnLoad (256ms)
+			ProcessInitializeOnLoadAttributes (737ms)
+			ProcessInitializeOnLoadMethodAttributes (356ms)
+			AfterProcessingInitializeOnLoad (6ms)
+			EditorAssembliesLoaded (1ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (28ms)
+WARNING: Shader Unsupported: 'Spine/Outline/SkeletonGraphic' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/SkeletonGraphic' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Special/Skeleton Grayscale' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Special/Skeleton Grayscale' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Sprite/Vertex Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Sprite/Vertex Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/SkeletonGraphic Tint Black' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/SkeletonGraphic Tint Black' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Lit ZWrite' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Lit ZWrite' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Fill' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Fill' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Blend Modes/Skeleton PMA Additive' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Blend Modes/Skeleton PMA Additive' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Sprite/Unlit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Sprite/Unlit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Tint' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Tint' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Sprite/Pixel Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Sprite/Pixel Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Blend Modes/Skeleton PMA Screen' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Blend Modes/Skeleton PMA Screen' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Tint Black' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Tint Black' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Blend Modes/Skeleton PMA Multiply' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Blend Modes/Skeleton PMA Multiply' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+Refreshing native plugins compatible for Editor in 11.27 ms, found 9 plugins.
+Preloading 1 native plugins for Editor in 0.07 ms.
+Unloading 31 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 11438 unused Assets / (7.7 MB). Loaded Objects now: 12317.
+Memory consumption went from 223.4 MB to 215.7 MB.
+Total: 25.803000 ms (FindLiveObjects: 1.123700 ms CreateObjectMapping: 1.367300 ms MarkObjects: 19.002200 ms  DeleteObjects: 4.307500 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Import Request.
+  Time since last request: 2902.890898 seconds.
+  path: Assets/Animation
+  artifactKey: Guid(35417ff7ed037ee4cbbf76043e9e8cda) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animation using Guid(35417ff7ed037ee4cbbf76043e9e8cda) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '535eb406fa6a926d4925ce2e156f4da4') in 0.0036877 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.027195 seconds.
+  path: Assets/Animation/UI Anim
+  artifactKey: Guid(ac9486573aec2d6418c985b88f6af548) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animation/UI Anim using Guid(ac9486573aec2d6418c985b88f6af548) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '4e7fd1d1a3e725083ce2714a43c41414') in 0.0007166 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.403758 seconds.
+  path: Assets/Scripts/Game/GachaAnimation.cs
+  artifactKey: Guid(7ebd4d839302f71498d127a9e3d68df9) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Scripts/Game/GachaAnimation.cs using Guid(7ebd4d839302f71498d127a9e3d68df9) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '9c5648634452ca863e946b074036cf7a') in 0.0788194 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scripts/Game/GachaCardAnim.cs
+  artifactKey: Guid(65638e5c6c6dd8e459c34127d0929170) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Scripts/Game/GachaCardAnim.cs using Guid(65638e5c6c6dd8e459c34127d0929170) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'e891a3f27c8c6254c0d84c3e46944fee') in 0.0106291 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.606120 seconds.
+  path: Assets/Animation/UI Anim/New Folder
+  artifactKey: Guid(38bd23212cdf2734793fbfefb0ca645e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animation/UI Anim/New Folder using Guid(38bd23212cdf2734793fbfefb0ca645e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'cf5d21504bb0a7b30dd026d3065a2144') in 0.0006801 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.915725 seconds.
+  path: Assets/Animation/UI Anim/New Folder
+  artifactKey: Guid(38bd23212cdf2734793fbfefb0ca645e) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Animation/UI Anim/New Folder using Guid(38bd23212cdf2734793fbfefb0ca645e) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '206650655dcbdc80c6813562ed0694fc') in 0.0138421 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 9.978651 seconds.
+  path: Assets/Animation/UI Anim/GachaAnim
+  artifactKey: Guid(38bd23212cdf2734793fbfefb0ca645e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animation/UI Anim/GachaAnim using Guid(38bd23212cdf2734793fbfefb0ca645e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'cc27a9ddc14159c8efc243e46b8d90f8') in 0.0015529 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.922190 seconds.
+  path: Assets/Animation/UI Anim/GachaAnim
+  artifactKey: Guid(38bd23212cdf2734793fbfefb0ca645e) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Animation/UI Anim/GachaAnim using Guid(38bd23212cdf2734793fbfefb0ca645e) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '1192a458589b6a720581d3443c3780ce') in 0.0157177 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.889327 seconds.
+  path: Assets/Animation/UI Anim/GachaAnim/New Animator Controller.controller
+  artifactKey: Guid(6cf9a1e64b9aa1e488e04d39e72cb062) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animation/UI Anim/GachaAnim/New Animator Controller.controller using Guid(6cf9a1e64b9aa1e488e04d39e72cb062) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '45eea6e12001475e0358b8941bf20e3a') in 0.0174483 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.903049 seconds.
+  path: Assets/Animation/UI Anim/GachaAnim/New Animator Controller.controller
+  artifactKey: Guid(6cf9a1e64b9aa1e488e04d39e72cb062) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Animation/UI Anim/GachaAnim/New Animator Controller.controller using Guid(6cf9a1e64b9aa1e488e04d39e72cb062) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'de68e2aa7faf1e164b1a8d696e435734') in 0.0120106 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.631654 seconds.
+  path: Assets/Animation/UI Anim/GachaAnim/GachaAnimator.controller
+  artifactKey: Guid(6cf9a1e64b9aa1e488e04d39e72cb062) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animation/UI Anim/GachaAnim/GachaAnimator.controller using Guid(6cf9a1e64b9aa1e488e04d39e72cb062) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'b136fb9a730722a6e314ddc403050e13') in 0.0014308 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.925795 seconds.
+  path: Assets/Animation/UI Anim/GachaAnim/GachaAnimator.controller
+  artifactKey: Guid(6cf9a1e64b9aa1e488e04d39e72cb062) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Animation/UI Anim/GachaAnim/GachaAnimator.controller using Guid(6cf9a1e64b9aa1e488e04d39e72cb062) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'f705e5b2878026a3619ae3dfcdd0ed97') in 0.0723456 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 63.688459 seconds.
+  path: Assets/Texture/UI/19b83dd9f3e1a9772-ezgif.com-gif-to-sprite-converter.png
+  artifactKey: Guid(9a7337b42a53ebf46a52f51f05768d0e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Texture/UI/19b83dd9f3e1a9772-ezgif.com-gif-to-sprite-converter.png using Guid(9a7337b42a53ebf46a52f51f05768d0e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '286dc3b1e025a94426738ed825ef8eb2') in 0.1505446 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 18
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.825769 seconds.
+  path: Assets/Texture/UI/19b83dd9f3e1a9772-ezgif.com-gif-to-sprite-converter.png
+  artifactKey: Guid(9a7337b42a53ebf46a52f51f05768d0e) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Texture/UI/19b83dd9f3e1a9772-ezgif.com-gif-to-sprite-converter.png using Guid(9a7337b42a53ebf46a52f51f05768d0e) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'e7385a1793b641aaaf984062b8a50ae0') in 0.0763999 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 18
+
+========================================================================
+Received Import Request.
+  Time since last request: 21.164456 seconds.
+  path: Assets/Texture/UI/GachaLoop.anim
+  artifactKey: Guid(a0e336ea603be14478f1f51f43d48727) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Texture/UI/GachaLoop.anim using Guid(a0e336ea603be14478f1f51f43d48727) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'c1bff86e1ffe4a59a456cdce341ebd4d') in 0.0018566 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.937910 seconds.
+  path: Assets/Texture/UI/GachaLoop.anim
+  artifactKey: Guid(a0e336ea603be14478f1f51f43d48727) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Texture/UI/GachaLoop.anim using Guid(a0e336ea603be14478f1f51f43d48727) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '2d7ee951e4a42e79bc100ed175122c06') in 0.0272324 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.540027 seconds.
+  path: Assets/Animation/UI Anim/GachaAnim/GachaLoop.anim
+  artifactKey: Guid(a0e336ea603be14478f1f51f43d48727) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Animation/UI Anim/GachaAnim/GachaLoop.anim using Guid(a0e336ea603be14478f1f51f43d48727) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'cd295873f53c173ae8010f19e58a49be') in 0.0141606 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 10.909302 seconds.
+  path: Assets/Texture/UI/New Animation.anim
+  artifactKey: Guid(5be1ded6096b9d041ad7a8333c8fde47) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Texture/UI/New Animation.anim using Guid(5be1ded6096b9d041ad7a8333c8fde47) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'f990636f65a013e3ba3834e65389a407') in 0.0012764 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.935841 seconds.
+  path: Assets/Texture/UI/New Animation.anim
+  artifactKey: Guid(5be1ded6096b9d041ad7a8333c8fde47) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Texture/UI/New Animation.anim using Guid(5be1ded6096b9d041ad7a8333c8fde47) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '511945fe0ce739013b087b212617f0b1') in 0.0127797 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 7.350120 seconds.
+  path: Assets/Texture/UI/GachaEnd.anim
+  artifactKey: Guid(5be1ded6096b9d041ad7a8333c8fde47) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Texture/UI/GachaEnd.anim using Guid(5be1ded6096b9d041ad7a8333c8fde47) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '666c1e3a7abab5bc811de3f2d2448451') in 0.0011708 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.930243 seconds.
+  path: Assets/Texture/UI/GachaEnd.anim
+  artifactKey: Guid(5be1ded6096b9d041ad7a8333c8fde47) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Texture/UI/GachaEnd.anim using Guid(5be1ded6096b9d041ad7a8333c8fde47) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '39d1ee767f37a0fd01be4d1f28657898') in 0.0136932 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.150942 seconds.
+  path: Assets/Animation/UI Anim/GachaAnim/GachaEnd.anim
+  artifactKey: Guid(5be1ded6096b9d041ad7a8333c8fde47) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Animation/UI Anim/GachaAnim/GachaEnd.anim using Guid(5be1ded6096b9d041ad7a8333c8fde47) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '18bb6f524b46f12b396f0714414e6209') in 0.0139387 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+[Licensing::Client] Successfully resolved entitlement details
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  1.351 seconds
+Refreshing native plugins compatible for Editor in 14.02 ms, found 9 plugins.
+Native extension for Android target not found
+Native extension for WindowsStandalone target not found
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Refreshing native plugins compatible for Editor in 10.19 ms, found 9 plugins.
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+System.Exception: Error! Visual Scripting: couldn't find visual scripting package
+  at Unity.VisualScripting.PackageVersionUtility.get_version () [0x00043] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\PackageVersionUtility.cs:31 
+  at Unity.VisualScripting.BoltCoreManifest.get_version () [0x00000] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Plugin\BoltCoreManifest.cs:11 
+  at Unity.VisualScripting.PluginManifest.get_currentVersion () [0x00000] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Plugins\PluginManifest.cs:33 
+  at Unity.VisualScripting.PluginManifest.get_versionMismatch () [0x00000] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Plugins\PluginManifest.cs:48 
+  at Unity.VisualScripting.PluginContainer.Initialize () [0x00525] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Plugins\PluginContainer.cs:208 
+  at Unity.VisualScripting.PluginContainer.InitializeOnLoad () [0x00009] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Plugins\PluginContainer.cs:32 
+  at Unity.VisualScripting.VSUsageUtility.DoInitializeOnLoadCalls () [0x00034] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\VSUsageUtility.cs:76 
+  at Unity.VisualScripting.VSUsageUtility.set_isVisualScriptingUsed (System.Boolean value) [0x0002c] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\VSUsageUtility.cs:114 
+  at Unity.VisualScripting.VSUsageUtility.CheckAndSetIsVisualScriptingUsed () [0x0000d] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\VSUsageUtility.cs:33 
+  at Unity.VisualScripting.VSUsageUtility..cctor () [0x00000] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\VSUsageUtility.cs:22 
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogError (object)
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadAttributes (System.Type[])
+
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.806 seconds
+Domain Reload Profiling: 3161ms
+	BeginReloadAssembly (328ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (14ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (85ms)
+	RebuildCommonClasses (43ms)
+	RebuildNativeTypeToScriptingClass (17ms)
+	initialDomainReloadingComplete (35ms)
+	LoadAllAssembliesAndSetupDomain (933ms)
+		LoadAssemblies (654ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (426ms)
+			TypeCache.Refresh (22ms)
+				TypeCache.ScanAssembly (2ms)
+			BuildScriptInfoCaches (369ms)
+			ResolveRequiredComponents (21ms)
+	FinalizeReload (1806ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (1193ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (8ms)
+			SetLoadedEditorAssemblies (13ms)
+			BeforeProcessingInitializeOnLoad (202ms)
+			ProcessInitializeOnLoadAttributes (613ms)
+			ProcessInitializeOnLoadMethodAttributes (352ms)
+			AfterProcessingInitializeOnLoad (4ms)
+			EditorAssembliesLoaded (1ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (22ms)
+WARNING: Shader Unsupported: 'Spine/Outline/SkeletonGraphic' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/SkeletonGraphic' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Special/Skeleton Grayscale' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Special/Skeleton Grayscale' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Sprite/Vertex Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Sprite/Vertex Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/SkeletonGraphic Tint Black' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/SkeletonGraphic Tint Black' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Lit ZWrite' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Lit ZWrite' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Fill' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Fill' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Blend Modes/Skeleton PMA Additive' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Blend Modes/Skeleton PMA Additive' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Sprite/Unlit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Sprite/Unlit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Tint' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Tint' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Sprite/Pixel Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Sprite/Pixel Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Blend Modes/Skeleton PMA Screen' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Blend Modes/Skeleton PMA Screen' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Tint Black' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Tint Black' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Blend Modes/Skeleton PMA Multiply' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Blend Modes/Skeleton PMA Multiply' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+Refreshing native plugins compatible for Editor in 9.80 ms, found 9 plugins.
+Preloading 1 native plugins for Editor in 0.10 ms.
+Unloading 31 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 11438 unused Assets / (7.7 MB). Loaded Objects now: 12326.
+Memory consumption went from 223.5 MB to 215.8 MB.
+Total: 23.470600 ms (FindLiveObjects: 0.940300 ms CreateObjectMapping: 1.018700 ms MarkObjects: 16.640300 ms  DeleteObjects: 4.869400 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  1.042 seconds
+Refreshing native plugins compatible for Editor in 10.94 ms, found 9 plugins.
+Native extension for Android target not found
+Native extension for WindowsStandalone target not found
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Refreshing native plugins compatible for Editor in 9.44 ms, found 9 plugins.
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+System.Exception: Error! Visual Scripting: couldn't find visual scripting package
+  at Unity.VisualScripting.PackageVersionUtility.get_version () [0x00043] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\PackageVersionUtility.cs:31 
+  at Unity.VisualScripting.BoltCoreManifest.get_version () [0x00000] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Plugin\BoltCoreManifest.cs:11 
+  at Unity.VisualScripting.PluginManifest.get_currentVersion () [0x00000] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Plugins\PluginManifest.cs:33 
+  at Unity.VisualScripting.PluginManifest.get_versionMismatch () [0x00000] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Plugins\PluginManifest.cs:48 
+  at Unity.VisualScripting.PluginContainer.Initialize () [0x00525] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Plugins\PluginContainer.cs:208 
+  at Unity.VisualScripting.PluginContainer.InitializeOnLoad () [0x00009] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Plugins\PluginContainer.cs:32 
+  at Unity.VisualScripting.VSUsageUtility.DoInitializeOnLoadCalls () [0x00034] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\VSUsageUtility.cs:76 
+  at Unity.VisualScripting.VSUsageUtility.set_isVisualScriptingUsed (System.Boolean value) [0x0002c] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\VSUsageUtility.cs:114 
+  at Unity.VisualScripting.VSUsageUtility.CheckAndSetIsVisualScriptingUsed () [0x0000d] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\VSUsageUtility.cs:33 
+  at Unity.VisualScripting.VSUsageUtility..cctor () [0x00000] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\VSUsageUtility.cs:22 
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogError (object)
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadAttributes (System.Type[])
+
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.631 seconds
+Domain Reload Profiling: 2674ms
+	BeginReloadAssembly (258ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (13ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (71ms)
+	RebuildCommonClasses (35ms)
+	RebuildNativeTypeToScriptingClass (14ms)
+	initialDomainReloadingComplete (33ms)
+	LoadAllAssembliesAndSetupDomain (703ms)
+		LoadAssemblies (494ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (304ms)
+			TypeCache.Refresh (15ms)
+				TypeCache.ScanAssembly (2ms)
+			BuildScriptInfoCaches (272ms)
+			ResolveRequiredComponents (12ms)
+	FinalizeReload (1631ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (1072ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (8ms)
+			SetLoadedEditorAssemblies (7ms)
+			BeforeProcessingInitializeOnLoad (185ms)
+			ProcessInitializeOnLoadAttributes (589ms)
+			ProcessInitializeOnLoadMethodAttributes (278ms)
+			AfterProcessingInitializeOnLoad (4ms)
+			EditorAssembliesLoaded (1ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (22ms)
+WARNING: Shader Unsupported: 'Spine/Outline/SkeletonGraphic' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/SkeletonGraphic' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Special/Skeleton Grayscale' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Special/Skeleton Grayscale' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Sprite/Vertex Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Sprite/Vertex Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/SkeletonGraphic Tint Black' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/SkeletonGraphic Tint Black' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Lit ZWrite' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Lit ZWrite' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Fill' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Fill' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Blend Modes/Skeleton PMA Additive' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Blend Modes/Skeleton PMA Additive' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Sprite/Unlit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Sprite/Unlit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Tint' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Tint' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Sprite/Pixel Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Sprite/Pixel Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Blend Modes/Skeleton PMA Screen' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Blend Modes/Skeleton PMA Screen' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Tint Black' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Tint Black' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Blend Modes/Skeleton PMA Multiply' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Blend Modes/Skeleton PMA Multiply' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+Refreshing native plugins compatible for Editor in 9.69 ms, found 9 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Unloading 31 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 11438 unused Assets / (7.4 MB). Loaded Objects now: 12333.
+Memory consumption went from 227.1 MB to 219.6 MB.
+Total: 22.907600 ms (FindLiveObjects: 0.963200 ms CreateObjectMapping: 0.961400 ms MarkObjects: 16.934800 ms  DeleteObjects: 4.046900 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+[Licensing::Client] Successfully resolved entitlement details
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  1.017 seconds
+Refreshing native plugins compatible for Editor in 9.89 ms, found 9 plugins.
+Native extension for Android target not found
+Native extension for WindowsStandalone target not found
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Refreshing native plugins compatible for Editor in 11.20 ms, found 9 plugins.
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+System.Exception: Error! Visual Scripting: couldn't find visual scripting package
+  at Unity.VisualScripting.PackageVersionUtility.get_version () [0x00043] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\PackageVersionUtility.cs:31 
+  at Unity.VisualScripting.BoltCoreManifest.get_version () [0x00000] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Plugin\BoltCoreManifest.cs:11 
+  at Unity.VisualScripting.PluginManifest.get_currentVersion () [0x00000] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Plugins\PluginManifest.cs:33 
+  at Unity.VisualScripting.PluginManifest.get_versionMismatch () [0x00000] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Plugins\PluginManifest.cs:48 
+  at Unity.VisualScripting.PluginContainer.Initialize () [0x00525] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Plugins\PluginContainer.cs:208 
+  at Unity.VisualScripting.PluginContainer.InitializeOnLoad () [0x00009] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Plugins\PluginContainer.cs:32 
+  at Unity.VisualScripting.VSUsageUtility.DoInitializeOnLoadCalls () [0x00034] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\VSUsageUtility.cs:76 
+  at Unity.VisualScripting.VSUsageUtility.set_isVisualScriptingUsed (System.Boolean value) [0x0002c] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\VSUsageUtility.cs:114 
+  at Unity.VisualScripting.VSUsageUtility.CheckAndSetIsVisualScriptingUsed () [0x0000d] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\VSUsageUtility.cs:33 
+  at Unity.VisualScripting.VSUsageUtility..cctor () [0x00000] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\VSUsageUtility.cs:22 
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogError (object)
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadAttributes (System.Type[])
+
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.658 seconds
+Domain Reload Profiling: 2677ms
+	BeginReloadAssembly (245ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (13ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (67ms)
+	RebuildCommonClasses (31ms)
+	RebuildNativeTypeToScriptingClass (12ms)
+	initialDomainReloadingComplete (33ms)
+	LoadAllAssembliesAndSetupDomain (698ms)
+		LoadAssemblies (455ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (331ms)
+			TypeCache.Refresh (14ms)
+				TypeCache.ScanAssembly (2ms)
+			BuildScriptInfoCaches (299ms)
+			ResolveRequiredComponents (12ms)
+	FinalizeReload (1658ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (1092ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (8ms)
+			SetLoadedEditorAssemblies (8ms)
+			BeforeProcessingInitializeOnLoad (195ms)
+			ProcessInitializeOnLoadAttributes (577ms)
+			ProcessInitializeOnLoadMethodAttributes (299ms)
+			AfterProcessingInitializeOnLoad (4ms)
+			EditorAssembliesLoaded (1ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (22ms)
+WARNING: Shader Unsupported: 'Spine/Outline/SkeletonGraphic' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/SkeletonGraphic' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Special/Skeleton Grayscale' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Special/Skeleton Grayscale' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Sprite/Vertex Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Sprite/Vertex Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/SkeletonGraphic Tint Black' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/SkeletonGraphic Tint Black' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Lit ZWrite' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Lit ZWrite' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Fill' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Fill' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Blend Modes/Skeleton PMA Additive' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Blend Modes/Skeleton PMA Additive' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Sprite/Unlit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Sprite/Unlit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Tint' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Tint' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Sprite/Pixel Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Sprite/Pixel Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Blend Modes/Skeleton PMA Screen' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Blend Modes/Skeleton PMA Screen' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Tint Black' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Tint Black' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Blend Modes/Skeleton PMA Multiply' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Spine/Outline/Blend Modes/Skeleton PMA Multiply' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+Refreshing native plugins compatible for Editor in 9.30 ms, found 9 plugins.
+Preloading 1 native plugins for Editor in 0.11 ms.
+Unloading 31 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 11438 unused Assets / (8.1 MB). Loaded Objects now: 12340.
+Memory consumption went from 230.6 MB to 222.5 MB.
+Total: 25.228600 ms (FindLiveObjects: 0.977500 ms CreateObjectMapping: 0.956700 ms MarkObjects: 17.378600 ms  DeleteObjects: 5.914300 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Import Request.
+  Time since last request: 200.042534 seconds.
+  path: Assets/Animation/UI Anim/GachaAnim/GachaAnimator.controller
+  artifactKey: Guid(6cf9a1e64b9aa1e488e04d39e72cb062) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animation/UI Anim/GachaAnim/GachaAnimator.controller using Guid(6cf9a1e64b9aa1e488e04d39e72cb062) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '1cdf80a81fc1c9bb1b54eae59c24dc56') in 0.0266503 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 7
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.190539 seconds.
+  path: Assets/Animation/UI Anim/GachaAnim/GachaAnimator.controller
+  artifactKey: Guid(6cf9a1e64b9aa1e488e04d39e72cb062) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animation/UI Anim/GachaAnim/GachaAnimator.controller using Guid(6cf9a1e64b9aa1e488e04d39e72cb062) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'dd709c0faab440b578ddb995b3d831e1') in 0.002175 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 7
+
+========================================================================
+Received Import Request.
+  Time since last request: 75.064322 seconds.
+  path: Packages/com.unity.purchasing/Runtime/Purchasing/PaymentOption/Resources/com.unity.purchasing/Brands/AppleInAppPurchase1ln.png
+  artifactKey: Guid(6fa6673c15e05410da95cebffbeba0a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.unity.purchasing/Runtime/Purchasing/PaymentOption/Resources/com.unity.purchasing/Brands/AppleInAppPurchase1ln.png using Guid(6fa6673c15e05410da95cebffbeba0a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '85dac96c3ed67caaee2c6d78e250bb70') in 0.1229959 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 17
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Player/CharacterBack/Idle/CharacterBack-Idle_13.png
+  artifactKey: Guid(49885a503d7edec49bbc00fdb7dd48d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Player/CharacterBack/Idle/CharacterBack-Idle_13.png using Guid(49885a503d7edec49bbc00fdb7dd48d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '07397a98858d516b13bc90feabace156') in 0.0202014 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000082 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Player/CharacterBack/Idle/CharacterBack-Idle_14.png
+  artifactKey: Guid(8d61790ce8df45541b8247d52c6634a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Player/CharacterBack/Idle/CharacterBack-Idle_14.png using Guid(8d61790ce8df45541b8247d52c6634a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '049a7a18a77d5858314287fc44b77816') in 0.0238094 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Player/CharacterBack/Idle/CharacterBack-Idle_17.png
+  artifactKey: Guid(6dcfb191bc3a78644b302dcc44a02a3e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Player/CharacterBack/Idle/CharacterBack-Idle_17.png using Guid(6dcfb191bc3a78644b302dcc44a02a3e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '301e49055705e3e0fd37b2f2846f4bd9') in 0.022337 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Player/CharacterBack/Idle/CharacterBack-Idle_18.png
+  artifactKey: Guid(4aa233cbbd8cb89469eeef54faab9915) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Player/CharacterBack/Idle/CharacterBack-Idle_18.png using Guid(4aa233cbbd8cb89469eeef54faab9915) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '86d9d849a19a7ceab214daa211dcb8ea') in 0.021972 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Flying Monster/Left/Death/Monster2Left-Death_17.png
+  artifactKey: Guid(81efb2517496ccd48b22dcaf161c45d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Flying Monster/Left/Death/Monster2Left-Death_17.png using Guid(81efb2517496ccd48b22dcaf161c45d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '0466f44a80533c115ee841068c68fa4c') in 0.0345958 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Flying Monster/Left/Death/Monster2Left-Death_12.png
+  artifactKey: Guid(6b22f85de8c60234899554235e44c39c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Flying Monster/Left/Death/Monster2Left-Death_12.png using Guid(6b22f85de8c60234899554235e44c39c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '27eeb3b057b444b2908cf1126696a260') in 0.0323113 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Flying Monster/Back/Run/Monster1Back-Fly_4.png
+  artifactKey: Guid(bebc2ec1ed1f2244982a5c7109c5498b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Flying Monster/Back/Run/Monster1Back-Fly_4.png using Guid(bebc2ec1ed1f2244982a5c7109c5498b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '8150c7e63dc3dd0b1a0adcdd5774d3a5') in 0.0512609 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Flying Monster/Back/Run/Monster1Back-Fly_1.png
+  artifactKey: Guid(6b7d13038b49f214d93fff4d39a3ff5b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Flying Monster/Back/Run/Monster1Back-Fly_1.png using Guid(6b7d13038b49f214d93fff4d39a3ff5b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'abfb961b8c01b3fe2e5093c28a281e28') in 0.037833 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Player/CharacterBack/Idle/CharacterBack-Idle_16.png
+  artifactKey: Guid(4a3b8857bb2c9c14e9c88597aa9c7b79) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Player/CharacterBack/Idle/CharacterBack-Idle_16.png using Guid(4a3b8857bb2c9c14e9c88597aa9c7b79) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '952c47f3d0b2f3cc23658884ea615589') in 0.0258734 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Player/CharacterBack/Idle/CharacterBack-Idle_15.png
+  artifactKey: Guid(dfcc0e04fd62ebf4f8eaeffb378e2ed4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Player/CharacterBack/Idle/CharacterBack-Idle_15.png using Guid(dfcc0e04fd62ebf4f8eaeffb378e2ed4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '60bd40d423a298c68a03549c5e7d5482') in 0.0271846 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Flying Monster/Left/Death/Monster2Left-Death_16.png
+  artifactKey: Guid(f30156b3ed38bcc49bcd351572bf3600) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Flying Monster/Left/Death/Monster2Left-Death_16.png using Guid(f30156b3ed38bcc49bcd351572bf3600) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a08ae6eef7912201a1e284e979119287') in 0.0248986 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Flying Monster/Back/Run/Monster1Back-Fly_6.png
+  artifactKey: Guid(59e85e916a1789142b0f3f382341c52f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Flying Monster/Back/Run/Monster1Back-Fly_6.png using Guid(59e85e916a1789142b0f3f382341c52f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'd19e44c37d41d739196a4e7cf3097aab') in 0.0294317 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000051 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Flying Monster/Back/Run/Monster1Back-Fly_7.png
+  artifactKey: Guid(fc05b4e2970112a4a846432355c96898) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Flying Monster/Back/Run/Monster1Back-Fly_7.png using Guid(fc05b4e2970112a4a846432355c96898) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '735859d30f7eb7c9bb73ebc3d36257af') in 0.0290681 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.171519 seconds.
+  path: Assets/Prefabs/UI/GameScene/victory-start20-loop15.png
+  artifactKey: Guid(656190a9734750849bf579abaf4414ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/UI/GameScene/victory-start20-loop15.png using Guid(656190a9734750849bf579abaf4414ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '39bfbe0a45fec0117a916f51c863c47a') in 0.2662846 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 37
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.737150 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Level/Walls/7x7Room/top_wall.png
+  artifactKey: Guid(cef4cc48d61f62347a0b84e5ab4bee2a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Level/Walls/7x7Room/top_wall.png using Guid(cef4cc48d61f62347a0b84e5ab4bee2a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '257116c111d598f5f40369b125a32deb') in 0.0246513 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Level/TopDoor/TopDoor1.png
+  artifactKey: Guid(24b24db9f105c244ca52400dd57c1a59) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Level/TopDoor/TopDoor1.png using Guid(24b24db9f105c244ca52400dd57c1a59) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '9689a741d23e7851de9f23526907bf1b') in 0.0197113 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Level/TopDoor/TopDoor2.png
+  artifactKey: Guid(e0df601e03da4174a90aa6498eb96164) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Level/TopDoor/TopDoor2.png using Guid(e0df601e03da4174a90aa6498eb96164) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '48999aa1f3f9ed02b2fdc50f3f177634') in 0.0200695 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.063833 seconds.
+  path: Packages/com.unity.purchasing/Runtime/Purchasing/PaymentOption/Resources/com.unity.purchasing/Brands/StripeWhite.png
+  artifactKey: Guid(d286fcb5d11c86e4aac2e79e50f86b90) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.unity.purchasing/Runtime/Purchasing/PaymentOption/Resources/com.unity.purchasing/Brands/StripeWhite.png using Guid(d286fcb5d11c86e4aac2e79e50f86b90) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '5bfa568c74726e0a44f23814b5dfe9de') in 0.0357884 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 7
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Spine2D Knight Character Animation Pack/Exports/Gifs/sword_attack.gif
+  artifactKey: Guid(673983cc40b769d44a9b61734ee5e200) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Spine2D Knight Character Animation Pack/Exports/Gifs/sword_attack.gif using Guid(673983cc40b769d44a9b61734ee5e200) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '8964858312da90f2988ac55e81b320d5') in 0.0246147 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Spine2D Knight Character Animation Pack/Sources/image/sword.png
+  artifactKey: Guid(d4c4b152d21d0a441b5e4bf2ae829824) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Spine2D Knight Character Animation Pack/Sources/image/sword.png using Guid(d4c4b152d21d0a441b5e4bf2ae829824) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'ee6cdd8dd69f9ba0cdce8c5bd6fcbd1c') in 0.0218698 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.404280 seconds.
+  path: Assets/Texture/Character/Wrrior Anim/Wrrior.png
+  artifactKey: Guid(82d4c0e4cda9479408964ae9529243b2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Texture/Character/Wrrior Anim/Wrrior.png using Guid(82d4c0e4cda9479408964ae9529243b2) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '7c5a5af9d7b2e159dc9a185696f84072') in 0.2352884 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 40
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.094396 seconds.
+  path: Assets/Spine2D Knight Character Animation Pack/Sources/image/slash.png
+  artifactKey: Guid(c91a1f9b614f9f540bdc1b6ef00c5a89) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Spine2D Knight Character Animation Pack/Sources/image/slash.png using Guid(c91a1f9b614f9f540bdc1b6ef00c5a89) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '498c7a5d30db1679c41e6024506b109b') in 0.0225786 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Spine2D Knight Character Animation Pack/Sources/image/Slash_2.png
+  artifactKey: Guid(2a604a0fdac51994cb01271807239f2b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Spine2D Knight Character Animation Pack/Sources/image/Slash_2.png using Guid(2a604a0fdac51994cb01271807239f2b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'ae901be3e556f7da37eb3291f3e2caa9') in 0.0233386 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Spine2D Knight Character Animation Pack/Sources/image/Slash_4.png
+  artifactKey: Guid(62b570c809f905e46b54d9bd4c50c74b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Spine2D Knight Character Animation Pack/Sources/image/Slash_4.png using Guid(62b570c809f905e46b54d9bd4c50c74b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '8b2c1e72fabff1bb5655274cf08aa101') in 0.0261373 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/Spine2D Knight Character Animation Pack/Sources/image/smoke.png
+  artifactKey: Guid(e84fd859d66bca7469ff30d9531d4745) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Spine2D Knight Character Animation Pack/Sources/image/smoke.png using Guid(e84fd859d66bca7469ff30d9531d4745) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '437f56b6b52e8f43be7518b6785f177b') in 0.023983 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.234432 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Level/Walls/7x7Room/right_wall.png
+  artifactKey: Guid(f1d98e3c8b4068e43bcfc77d7d55f668) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Level/Walls/7x7Room/right_wall.png using Guid(f1d98e3c8b4068e43bcfc77d7d55f668) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '2ead6dc9a10fc0d388e3daa7eba79349') in 0.0215157 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Level/RightDoor/RightDoor1.png
+  artifactKey: Guid(1f3f8e53a14934242913abee03e5aed0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Level/RightDoor/RightDoor1.png using Guid(1f3f8e53a14934242913abee03e5aed0) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '73bd7cc3b99cdeb500a9e5d502b21cd8') in 0.0191521 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Spine2D Knight Character Animation Pack/Exports/Gifs/run.gif
+  artifactKey: Guid(f593e630b9a155848b0316a7df978300) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Spine2D Knight Character Animation Pack/Exports/Gifs/run.gif using Guid(f593e630b9a155848b0316a7df978300) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '723c3f85d7e085b805158297318c6851') in 0.0208581 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Run/Monster3Left-Run_13.png
+  artifactKey: Guid(85f9808a6ef4bd34885b0848b82ad497) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Run/Monster3Left-Run_13.png using Guid(85f9808a6ef4bd34885b0848b82ad497) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '15290230b85c30342a3194410abf4baa') in 0.0276487 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Model/Gacha/Meshy_AI_Circle_of_Light_in_th_0804061104_texture.fbm/normal.jpg
+  artifactKey: Guid(387869a3c6e3e5248956c5f3acdf6da7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Model/Gacha/Meshy_AI_Circle_of_Light_in_th_0804061104_texture.fbm/normal.jpg using Guid(387869a3c6e3e5248956c5f3acdf6da7) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '7273e0e9f1e24820974354b304df0741') in 0.0218659 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Run/Monster3Left-Run_3.png
+  artifactKey: Guid(5eb37ac142b75364fba135d9880bdd6c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Run/Monster3Left-Run_3.png using Guid(5eb37ac142b75364fba135d9880bdd6c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '70228880befdc091382e2379a3615432') in 0.0201668 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Idle/Monster3Left-Idle_31.png
+  artifactKey: Guid(dc8d7ec0f6b3ba84f96fe5aaaebf1ced) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Idle/Monster3Left-Idle_31.png using Guid(dc8d7ec0f6b3ba84f96fe5aaaebf1ced) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '4fb2c532d7ab8864d472dfc01af4d9d7') in 0.0177694 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Idle/Monster3Left-Idle_14.png
+  artifactKey: Guid(c91372b353799e44e957a8d84cdc7655) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Idle/Monster3Left-Idle_14.png using Guid(c91372b353799e44e957a8d84cdc7655) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'c79ea8c680b050644c3a6f2b1ab7fb7d') in 0.0269055 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Idle/Monster3Left-Idle_16.png
+  artifactKey: Guid(c769b76bd9a5c5e41945eda41b582038) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Idle/Monster3Left-Idle_16.png using Guid(c769b76bd9a5c5e41945eda41b582038) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'd1d3447e408b850f9bc7caba52b5bfaf') in 0.0244133 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Run/Monster3Left-Run_4.png
+  artifactKey: Guid(8164471d0707a9e4095e0afcaf0f29d1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Run/Monster3Left-Run_4.png using Guid(8164471d0707a9e4095e0afcaf0f29d1) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'd14fe0bb528fead1eaf503ca7abc4ed9') in 0.0223507 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Idle/Monster3Left-Idle_25.png
+  artifactKey: Guid(ecad7d67e8f79834490a651a15a1e9dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Idle/Monster3Left-Idle_25.png using Guid(ecad7d67e8f79834490a651a15a1e9dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '736dd0e26b97416bf3501ace2df7a62a') in 0.0250206 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Idle/Monster3Left-Idle_29.png
+  artifactKey: Guid(c540033cc61cb6d4cafa99c613adc0d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Idle/Monster3Left-Idle_29.png using Guid(c540033cc61cb6d4cafa99c613adc0d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '4a8d076b8a4629b4a7a51d6205aaf726') in 0.0264732 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Run/Monster3Left-Run_17.png
+  artifactKey: Guid(a2d88c853509b2a4dbda0006d4d30ceb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Run/Monster3Left-Run_17.png using Guid(a2d88c853509b2a4dbda0006d4d30ceb) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '6fdde12b8dd0a24da83c6524ee650626') in 0.0198286 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000058 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Run/Monster3Left-Run_14.png
+  artifactKey: Guid(d4807f6947c6f7447bc408102cae3a87) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Run/Monster3Left-Run_14.png using Guid(d4807f6947c6f7447bc408102cae3a87) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '224386f21e335732f3e4c0ae2cfbe49a') in 0.0174233 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Run/Monster3Left-Run_19.png
+  artifactKey: Guid(50b7c74e185f9df44838cce84feba74f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Run/Monster3Left-Run_19.png using Guid(50b7c74e185f9df44838cce84feba74f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '30535ffde694935543133aec04b4ab0d') in 0.0185321 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Hit/Monster3Left-Hit_9.png
+  artifactKey: Guid(5541c46fd060bec48bd1916f5e0de177) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Hit/Monster3Left-Hit_9.png using Guid(5541c46fd060bec48bd1916f5e0de177) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '518eb78558c1c716157b633c70787d7d') in 0.0191282 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Idle/Monster3Left-Idle_3.png
+  artifactKey: Guid(78033df5e1138524caab2fb30316d859) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Idle/Monster3Left-Idle_3.png using Guid(78033df5e1138524caab2fb30316d859) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '8901297fa5a87332b7827fd6f67ce13a') in 0.0188939 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Attack/Monster3Left-Attack_16.png
+  artifactKey: Guid(d5a5046a8ca72564d80a60dea4dd4f31) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Attack/Monster3Left-Attack_16.png using Guid(d5a5046a8ca72564d80a60dea4dd4f31) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '6e9dc86908c2270728d3d99ec9b26a4e') in 0.0189512 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Spine Projects/ExportedForUnity/Monster3/Left/Monster3Left.png
+  artifactKey: Guid(6603f8411ac13674f973bfd78494027a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Spine Projects/ExportedForUnity/Monster3/Left/Monster3Left.png using Guid(6603f8411ac13674f973bfd78494027a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'c1afb164c42badd74751b73cfc0071de') in 0.0209864 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Attack/Monster3Left-Attack_17.png
+  artifactKey: Guid(d15262fe9b9c7224ead7785f35c2e7af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Attack/Monster3Left-Attack_17.png using Guid(d15262fe9b9c7224ead7785f35c2e7af) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '286386c8ed720b741d55a1112cbf2b2c') in 0.0223947 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Idle/Monster3Left-Idle_17.png
+  artifactKey: Guid(30afd69ef657b2b4ab489a38727de098) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Idle/Monster3Left-Idle_17.png using Guid(30afd69ef657b2b4ab489a38727de098) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'ffb5c3e8254089188099fe18aed27848') in 0.0212991 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossFront/Run/Monster3Front-Run_18.png
+  artifactKey: Guid(73e1799c3d82ec640bf7975d9cf437ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossFront/Run/Monster3Front-Run_18.png using Guid(73e1799c3d82ec640bf7975d9cf437ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'f2f4d90b05da090795c9ed8a4fc34e1e') in 0.0234743 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Level/RightDoor/RightDoorBackside.png
+  artifactKey: Guid(6643f57ea2e4e0b43aa2954f8cc2e6fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Level/RightDoor/RightDoorBackside.png using Guid(6643f57ea2e4e0b43aa2954f8cc2e6fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '3a58002145621de7655bd472916554ea') in 0.0181395 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Level/RightDoor/RightDoorBorder.png
+  artifactKey: Guid(91e13ae9a873222468040a285306a51a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Level/RightDoor/RightDoorBorder.png using Guid(91e13ae9a873222468040a285306a51a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'faa168fb240360b3099da2a2ca0adb73') in 0.0188482 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Attack/Monster3Left-Attack_4.png
+  artifactKey: Guid(aabdbce93d4698349aa1c2bf4393369a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Attack/Monster3Left-Attack_4.png using Guid(aabdbce93d4698349aa1c2bf4393369a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '06da7c7a71d6deeb49e6d21c3e740a2d') in 0.0204854 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Attack/Monster3Left-Attack_9.png
+  artifactKey: Guid(1451d1cf56b1dac4ea89190faafa61ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Attack/Monster3Left-Attack_9.png using Guid(1451d1cf56b1dac4ea89190faafa61ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '1d5eeea7f819aa006224b7df13d8146b') in 0.0227109 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Attack/Monster3Left-Attack_11.png
+  artifactKey: Guid(cbab7fb349fb3974299796e85547ba37) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Attack/Monster3Left-Attack_11.png using Guid(cbab7fb349fb3974299796e85547ba37) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'cd7374f567edd96888fc74d73d6707b8') in 0.0210069 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Attack/Monster3Left-Attack_0.png
+  artifactKey: Guid(2738813793e18104d9878e4c813e82b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Attack/Monster3Left-Attack_0.png using Guid(2738813793e18104d9878e4c813e82b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '14cabfde61c38b31ca3d29e9d25870f7') in 0.0182983 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossFront/Run/Monster3Front-Run_10.png
+  artifactKey: Guid(3dad2636cd4c96a4e82f49205ea3bc26) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossFront/Run/Monster3Front-Run_10.png using Guid(3dad2636cd4c96a4e82f49205ea3bc26) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '11228393fe96a855f65b4bcddeb9aa3e') in 0.0201887 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossFront/Idle/Monster3Front-Idle_1.png
+  artifactKey: Guid(6636a8d179aab5b4e85ab1dbcc37b1ed) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossFront/Idle/Monster3Front-Idle_1.png using Guid(6636a8d179aab5b4e85ab1dbcc37b1ed) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '3c60fc1c8b53eb60b08312cbb4667001') in 0.0215841 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossFront/Run/Monster3Front-Run_12.png
+  artifactKey: Guid(24809eadca872de4881759712936f31c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossFront/Run/Monster3Front-Run_12.png using Guid(24809eadca872de4881759712936f31c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '1f64d68d72088905285c415d0a3798de') in 0.0202182 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossFront/Run/Monster3Front-Run_8.png
+  artifactKey: Guid(a37827e94d746d84ab3a1fb5609b5099) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossFront/Run/Monster3Front-Run_8.png using Guid(a37827e94d746d84ab3a1fb5609b5099) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'fccbb203a1425cbd20c8b57bf0c41779') in 0.0214003 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossFront/Idle/Monster3Front-Idle_0.png
+  artifactKey: Guid(7afd3d09d59e6a14b8ffd1ef49d2563e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossFront/Idle/Monster3Front-Idle_0.png using Guid(7afd3d09d59e6a14b8ffd1ef49d2563e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '498097b317284c1364fe2d7644ec8d2e') in 0.0220001 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossFront/Hit/Monster3Front-Hit_3.png
+  artifactKey: Guid(d6b3f418aefc0a544ad75719ca5dfeae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossFront/Hit/Monster3Front-Hit_3.png using Guid(d6b3f418aefc0a544ad75719ca5dfeae) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '3ec3c48b69fa8b0e362867cc41c484c1') in 0.0231537 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossFront/Death/Monster3Front-Death_8.png
+  artifactKey: Guid(ae358b6d09edcd34383ce22a157321f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossFront/Death/Monster3Front-Death_8.png using Guid(ae358b6d09edcd34383ce22a157321f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '542e695b0123800403af2989dba7f079') in 0.0266873 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossFront/Death/Monster3Front-Death_2.png
+  artifactKey: Guid(f17c31de589addf428114e6abea5c361) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossFront/Death/Monster3Front-Death_2.png using Guid(f17c31de589addf428114e6abea5c361) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'b33cf1cde5d87b779e3a1c1b85123b24') in 0.0257195 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000137 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossFront/Idle/Monster3Front-Idle_2.png
+  artifactKey: Guid(034d142403680fb4584315d87a499643) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossFront/Idle/Monster3Front-Idle_2.png using Guid(034d142403680fb4584315d87a499643) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '77075818ca61cca2ff4485d6c37c1501') in 0.0210758 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossFront/Attack/Monster3Front-Attack_14.png
+  artifactKey: Guid(782457ea3a2167f48aacfdf4f676bb89) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossFront/Attack/Monster3Front-Attack_14.png using Guid(782457ea3a2167f48aacfdf4f676bb89) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '255d9dfb0ce688c96f7fd08b23f5f654') in 0.0212404 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossBack/Idle/Monster3Back-Idle_34.png
+  artifactKey: Guid(bb3612457d62eef459fd0db32249c46c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossBack/Idle/Monster3Back-Idle_34.png using Guid(bb3612457d62eef459fd0db32249c46c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a6a308da0a943ab1ca6282ff46e41b61') in 0.0208455 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossBack/Hit/Monster3Back-Hit_1.png
+  artifactKey: Guid(19fc74a13093b554b9b4c766459e57f9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossBack/Hit/Monster3Back-Hit_1.png using Guid(19fc74a13093b554b9b4c766459e57f9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '4b78c0721d25cd4cf65b6326469f2fca') in 0.0191701 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossBack/Hit/Monster3Back-Hit_4.png
+  artifactKey: Guid(4840b6c4b23cf084a834105f2ab5b292) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossBack/Hit/Monster3Back-Hit_4.png using Guid(4840b6c4b23cf084a834105f2ab5b292) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '2d54ba160c2676b2b2e8117d5e3135a0') in 0.0218128 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossBack/Hit/Monster3Back-Hit_3.png
+  artifactKey: Guid(60d9d863d22b32e4bb6d324b85e4069d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossBack/Hit/Monster3Back-Hit_3.png using Guid(60d9d863d22b32e4bb6d324b85e4069d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a5186b20526ca0cd57e7a01944cd0c21') in 0.0226772 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000044 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Idle/Monster3Left-Idle_26.png
+  artifactKey: Guid(d8b27a40cf835f141a21c97df9cb2bc5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Idle/Monster3Left-Idle_26.png using Guid(d8b27a40cf835f141a21c97df9cb2bc5) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '32ade88f6ce44f37cbd0eb67eacb0e79') in 0.020434 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Run/Monster3Left-Run_5.png
+  artifactKey: Guid(26ada440731416341b1a07b481fe1d3a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Run/Monster3Left-Run_5.png using Guid(26ada440731416341b1a07b481fe1d3a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '73111928f56a5d3f8ea578f62b30f64c') in 0.0223091 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossFront/Hit/Monster3Front-Hit_6.png
+  artifactKey: Guid(a0ae3622c90e011458395ade2f2a7509) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossFront/Hit/Monster3Front-Hit_6.png using Guid(a0ae3622c90e011458395ade2f2a7509) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '2a27bed2a20145765031b2a9516ae1ef') in 0.0239582 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossFront/Run/Monster3Front-Run_4.png
+  artifactKey: Guid(ea9c1d8911907924b8d9c6d743df69b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossFront/Run/Monster3Front-Run_4.png using Guid(ea9c1d8911907924b8d9c6d743df69b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'f0849325b35e695d7e7adccbea3b4365') in 0.02258 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Attack/Monster3Left-Attack_5.png
+  artifactKey: Guid(ae46c8d10407ef648857eb700ccd3acf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Attack/Monster3Left-Attack_5.png using Guid(ae46c8d10407ef648857eb700ccd3acf) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '0be1ec57689f287daea342487912b459') in 0.0188661 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossBack/Death/Monster3Back-Death_8.png
+  artifactKey: Guid(af9dccd3f04aa7746bdfce7cd09223ed) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossBack/Death/Monster3Back-Death_8.png using Guid(af9dccd3f04aa7746bdfce7cd09223ed) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '528eb201d639b269d317a9309898b75b') in 0.0281025 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Flying Monster/Front/Idle/Monster2Right-Idle_24.png
+  artifactKey: Guid(6f75ec93f683fa84aa85db710aeb1708) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Flying Monster/Front/Idle/Monster2Right-Idle_24.png using Guid(6f75ec93f683fa84aa85db710aeb1708) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '2fc9ad87fdf2b2b6080f50544c033d04') in 0.0178392 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Flying Monster/Front/Hit/Monster2Right-Hit_9.png
+  artifactKey: Guid(6653ca6999d91fd41b1d41410b563918) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Flying Monster/Front/Hit/Monster2Right-Hit_9.png using Guid(6653ca6999d91fd41b1d41410b563918) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '93b7f6e594a7a49c1468b2c7021d2a4b') in 0.0213698 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Flying Monster/Front/Run/Monster2Right-Fly_5.png
+  artifactKey: Guid(0b9d9e5fe54d5d14a856efd58670348c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Flying Monster/Front/Run/Monster2Right-Fly_5.png using Guid(0b9d9e5fe54d5d14a856efd58670348c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '203fe722fe9c90663cbbfb2093fe53df') in 0.018071 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Flying Monster/Front/Run/Monster2Right-Fly_10.png
+  artifactKey: Guid(b828102f1a4e4154ea87de21de1c64d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Flying Monster/Front/Run/Monster2Right-Fly_10.png using Guid(b828102f1a4e4154ea87de21de1c64d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '7ab9cf5306e9fa78b94da646928cf77b') in 0.0174924 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Flying Monster/Front/Idle/Monster2Right-Idle_0.png
+  artifactKey: Guid(d928758da16829640aab8ccf8da3d2ed) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Flying Monster/Front/Idle/Monster2Right-Idle_0.png using Guid(d928758da16829640aab8ccf8da3d2ed) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '6656321b6cb9a321623cf43959b8837b') in 0.0207464 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Flying Monster/Front/Idle/Monster2Right-Idle_19.png
+  artifactKey: Guid(96a4363340dc1bf44a9d7d7545176e40) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Flying Monster/Front/Idle/Monster2Right-Idle_19.png using Guid(96a4363340dc1bf44a9d7d7545176e40) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'f99fcdc9456788d44847efca44b90846') in 0.0199952 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossBack/Death/Monster3Back-Death_11.png
+  artifactKey: Guid(e6d94b0ef1c92e94aa1fff56fdb39717) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossBack/Death/Monster3Back-Death_11.png using Guid(e6d94b0ef1c92e94aa1fff56fdb39717) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '705bca150a0b7e8fd7659e4c3f27ad53') in 0.024324 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossFront/Hit/Monster3Front-Hit_5.png
+  artifactKey: Guid(449cda2514125b24e8a55bac8824d525) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossFront/Hit/Monster3Front-Hit_5.png using Guid(449cda2514125b24e8a55bac8824d525) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '2e2ed6101e1a6d0485aef41ee35b90cc') in 0.0216102 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossFront/Idle/Monster3Front-Idle_3.png
+  artifactKey: Guid(7ecf1cbfa56066940a0f4a4ae253800b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossFront/Idle/Monster3Front-Idle_3.png using Guid(7ecf1cbfa56066940a0f4a4ae253800b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '59cd87821228f982532a6d273a34fc9d') in 0.0224304 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossBack/Death/Monster3Back-Death_10.png
+  artifactKey: Guid(a8b7c95bbe3932648891462c56f2a4fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossBack/Death/Monster3Back-Death_10.png using Guid(a8b7c95bbe3932648891462c56f2a4fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'ac801e0f8f59f3cd5e037788c037fb28') in 0.0218775 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Flying Monster/Front/Death/Monster2Right-Death_15.png
+  artifactKey: Guid(8fc8b370abc116a4c998025d0a448246) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Flying Monster/Front/Death/Monster2Right-Death_15.png using Guid(8fc8b370abc116a4c998025d0a448246) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '6864c4f344a22b1df8a1028a45a688b9') in 0.0203601 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Flying Monster/Front/Death/Monster2Right-Death_16.png
+  artifactKey: Guid(a9c911155d5fa9349ac4a8bb2c743a67) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Flying Monster/Front/Death/Monster2Right-Death_16.png using Guid(a9c911155d5fa9349ac4a8bb2c743a67) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '06aa69e3bd6fbf34ce353ac857e85572') in 0.0198086 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Flying Monster/Left/Idle/Monster2Left-Idle_1.png
+  artifactKey: Guid(b3397b6410ee47747b19e822bdcc1a73) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Flying Monster/Left/Idle/Monster2Left-Idle_1.png using Guid(b3397b6410ee47747b19e822bdcc1a73) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '2bb0e73f8ddc9c32bcb63dc4fd666789') in 0.0201378 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Flying Monster/Left/Idle/Monster2Left-Idle_7.png
+  artifactKey: Guid(c969ca5af11a0e0459a14bd2a516f979) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Flying Monster/Left/Idle/Monster2Left-Idle_7.png using Guid(c969ca5af11a0e0459a14bd2a516f979) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '333962175d5583d0af89fb64d34516fd') in 0.0194551 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Flying Monster/Left/Idle/Monster2Left-Idle_16.png
+  artifactKey: Guid(ac012a35a189fd04e819defb62b04648) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Flying Monster/Left/Idle/Monster2Left-Idle_16.png using Guid(ac012a35a189fd04e819defb62b04648) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'bf38b794a0e568c162ae15d711d1e645') in 0.0191822 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Flying Monster/Front/Death/Monster2Right-Death_19.png
+  artifactKey: Guid(4fa637a3eeea5ac42ae03caa305ef8ce) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Flying Monster/Front/Death/Monster2Right-Death_19.png using Guid(4fa637a3eeea5ac42ae03caa305ef8ce) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'c7802d580d1bcdb4e4ac32e7a178331b') in 0.0228719 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Attack/Monster3Left-Attack_2.png
+  artifactKey: Guid(b9348fe7e10f7244bb66a43497360abb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Boss/BossLeft/Attack/Monster3Left-Attack_2.png using Guid(b9348fe7e10f7244bb66a43497360abb) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '649abca6ce28c8e44c795c7802cc4100') in 0.0223631 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.199517 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Flying Monster/Left/Hit/Monster2Left-Hit_0.png
+  artifactKey: Guid(e9023169004002344b07024c5417b7a9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Flying Monster/Left/Hit/Monster2Left-Hit_0.png using Guid(e9023169004002344b07024c5417b7a9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '8a0a80f0e691654c4d39102c761b1a63') in 0.0215335 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Flying Monster/Left/Hit/Monster2Left-Hit_4.png
+  artifactKey: Guid(ebea64627045f95428cb86f7fc4d66d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Flying Monster/Left/Hit/Monster2Left-Hit_4.png using Guid(ebea64627045f95428cb86f7fc4d66d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '1f441c2c54d65633490c53eaa0d314f2') in 0.0179299 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Left/Run/Monster1Left-Walk_24.png
+  artifactKey: Guid(daffe8fe165d62d45ae4c5ca2eb48d97) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Left/Run/Monster1Left-Walk_24.png using Guid(daffe8fe165d62d45ae4c5ca2eb48d97) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '15db4c58d73b429e1c4b954d8a9074e6') in 0.0203912 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Left/Idle/Monster1Left-Idle_65.png
+  artifactKey: Guid(4d28089ba9a8a57499408ff2ba808b7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Left/Idle/Monster1Left-Idle_65.png using Guid(4d28089ba9a8a57499408ff2ba808b7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '363c7b41dcc05ff191626a68cd5298df') in 0.0200542 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Left/Idle/Monster1Left-Idle_73.png
+  artifactKey: Guid(eb55151a613fc92438f68a856957fbf0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Left/Idle/Monster1Left-Idle_73.png using Guid(eb55151a613fc92438f68a856957fbf0) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '9c0eaf167cd13f4632a128e2a9745537') in 0.0183308 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Left/Run/Monster1Left-Walk_30.png
+  artifactKey: Guid(d7bb18ace798bbe4d8fbad64a6b129b9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Left/Run/Monster1Left-Walk_30.png using Guid(d7bb18ace798bbe4d8fbad64a6b129b9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '737a8c9cf52307af1f6ee80daf9a3b4a') in 0.0204034 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Left/Idle/Monster1Left-Idle_72.png
+  artifactKey: Guid(b5f50db059a9d79409f7ba7d52acd164) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Left/Idle/Monster1Left-Idle_72.png using Guid(b5f50db059a9d79409f7ba7d52acd164) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'ef1fc2bd896af12a2eb58ae1341c1057') in 0.0202197 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Left/Idle/Monster1Left-Idle_52.png
+  artifactKey: Guid(5cc297efc286183438dec2c4bcbda07f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Left/Idle/Monster1Left-Idle_52.png using Guid(5cc297efc286183438dec2c4bcbda07f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '3f07dc831bfe1a78fc42ab16b409036d') in 0.0179294 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Left/Idle/Monster1Left-Idle_57.png
+  artifactKey: Guid(25248b9796aaec44a822f34aeba5799f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Left/Idle/Monster1Left-Idle_57.png using Guid(25248b9796aaec44a822f34aeba5799f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '2ebd943ee70c56887e7c78a68f6091fb') in 0.0157086 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Left/Idle/Monster1Left-Idle_19.png
+  artifactKey: Guid(1e6a01e8d606a2346a74152e059c4543) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Left/Idle/Monster1Left-Idle_19.png using Guid(1e6a01e8d606a2346a74152e059c4543) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '5e0645d91b6ee8977044113393279bd0') in 0.0187956 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Left/Idle/Monster1Left-Idle_21.png
+  artifactKey: Guid(56890e2e97c7f634ca1dc8063cd0bdbb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Left/Idle/Monster1Left-Idle_21.png using Guid(56890e2e97c7f634ca1dc8063cd0bdbb) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'f0ee13d3907ef6395da2066f55a6df3d') in 0.0193968 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Left/Idle/Monster1Left-Idle_58.png
+  artifactKey: Guid(d0febae6d9d2c864aa9633fc71609959) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Left/Idle/Monster1Left-Idle_58.png using Guid(d0febae6d9d2c864aa9633fc71609959) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '8c545e49d74873158827bf30927ca71b') in 0.0165625 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Left/Idle/Monster1Left-Idle_2.png
+  artifactKey: Guid(82686d0a99ae4e945855e831cc91783a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Left/Idle/Monster1Left-Idle_2.png using Guid(82686d0a99ae4e945855e831cc91783a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '136c1ceecfaeba6177debfa37e5bf7bf') in 0.0202803 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Left/Idle/Monster1Left-Idle_6.png
+  artifactKey: Guid(dfe567553bb01244cbb01047a888d324) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Left/Idle/Monster1Left-Idle_6.png using Guid(dfe567553bb01244cbb01047a888d324) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a27e9e2100ffce327eb2e9317ba24ef5') in 0.0171394 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Left/Hit/Monster1Left-Hit_6.png
+  artifactKey: Guid(2be1126a9402f704f8689f0b50fa8ecb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Left/Hit/Monster1Left-Hit_6.png using Guid(2be1126a9402f704f8689f0b50fa8ecb) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '45d5f5685f9170cfed05bee4f8a4dd77') in 0.018464 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Front/Run/Monster1Front-Walk_17.png
+  artifactKey: Guid(e8c0dde3afe9ab34784dcd0120ee688d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Front/Run/Monster1Front-Walk_17.png using Guid(e8c0dde3afe9ab34784dcd0120ee688d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'd412441c6fe7b13fa5b84e98a977c0cc') in 0.0212979 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Front/Run/Monster1Front-Walk_24.png
+  artifactKey: Guid(dac4a7a168ad6414f869d354cff5af70) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Front/Run/Monster1Front-Walk_24.png using Guid(dac4a7a168ad6414f869d354cff5af70) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a7b885938ab79241d0968d261a18a1de') in 0.0176055 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Front/Idle/Monster1Front-Idle_103.png
+  artifactKey: Guid(159345ba36f891e4ea23d14ea8550774) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Front/Idle/Monster1Front-Idle_103.png using Guid(159345ba36f891e4ea23d14ea8550774) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a13e736d462fc8f85ec94eeaaa46af4d') in 0.0192142 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Front/Idle/Monster1Front-Idle_74.png
+  artifactKey: Guid(0867b01b488782c4eb7069557da71b4b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Front/Idle/Monster1Front-Idle_74.png using Guid(0867b01b488782c4eb7069557da71b4b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '94266485b2d93e4aba9ed478c1b59d95') in 0.0196262 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Front/Idle/Monster1Front-Idle_79.png
+  artifactKey: Guid(652af8b0244ea1b42b4d176ac4bb3b73) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Front/Idle/Monster1Front-Idle_79.png using Guid(652af8b0244ea1b42b4d176ac4bb3b73) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '6b205a02f70e4baaab00ed8682d2c2a8') in 0.0212851 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Front/Idle/Monster1Front-Idle_97.png
+  artifactKey: Guid(5dc78141500f0b647872b71f6c8c8ae3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Front/Idle/Monster1Front-Idle_97.png using Guid(5dc78141500f0b647872b71f6c8c8ae3) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '014088ea734d1e2d542f63be4511e8d3') in 0.0257407 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Front/Idle/Monster1Front-Idle_102.png
+  artifactKey: Guid(dc21040799c28364c8682e8cc2582a77) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Front/Idle/Monster1Front-Idle_102.png using Guid(dc21040799c28364c8682e8cc2582a77) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '697627ea9b038014808920e334b58896') in 0.0187957 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Front/Run/Monster1Front-Walk_20.png
+  artifactKey: Guid(2231efa7613286545b1aac9b62a837d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Front/Run/Monster1Front-Walk_20.png using Guid(2231efa7613286545b1aac9b62a837d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '2de9fe82f21fb19eb9c2b5402018a383') in 0.0229192 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.015796 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Front/Idle/Monster1Front-Idle_57.png
+  artifactKey: Guid(dc53060a108b2344dba299864347d6fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Front/Idle/Monster1Front-Idle_57.png using Guid(dc53060a108b2344dba299864347d6fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '1923cb30cb76786766ac5ccbedb2d082') in 0.0179063 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Front/Idle/Monster1Front-Idle_61.png
+  artifactKey: Guid(d7100256fa0856148916f92c9fecc5f2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Front/Idle/Monster1Front-Idle_61.png using Guid(d7100256fa0856148916f92c9fecc5f2) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '84059caa8c3af7be06eb19bc0fac8702') in 0.0206672 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Front/Idle/Monster1Front-Idle_20.png
+  artifactKey: Guid(f07f2861a0063e94aac51bc89a1d1483) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Front/Idle/Monster1Front-Idle_20.png using Guid(f07f2861a0063e94aac51bc89a1d1483) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'ff2a3bbe59c0875005cdfac002b5e6a2') in 0.017034 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Flying Monster/Back/Idle/Monster1Back-Idle_23.png
+  artifactKey: Guid(399f8eee6de305e4ea23ecd965ae08bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Flying Monster/Back/Idle/Monster1Back-Idle_23.png using Guid(399f8eee6de305e4ea23ecd965ae08bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '6c3fbb952cba3ee4a1883cece7dd0d95') in 0.0202282 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Back/Idle/Monster1Back-Idle_25.png
+  artifactKey: Guid(80cd2cadabe85ad4f995eab99abea0db) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Back/Idle/Monster1Back-Idle_25.png using Guid(80cd2cadabe85ad4f995eab99abea0db) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '7f6fcd7cc788b7d72c77d3f2fd34d3c9') in 0.0173443 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Back/Attack/Monster1Back-Attack_1.png
+  artifactKey: Guid(64817106beb9b5f45ae37b0dc0f56ce4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Back/Attack/Monster1Back-Attack_1.png using Guid(64817106beb9b5f45ae37b0dc0f56ce4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '29cb7d031a8687ecad92ef3a84299516') in 0.020446 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Flying Monster/Back/Attack/Monster1Back-Attack_2.png
+  artifactKey: Guid(17f21780d545baa4a94d299bf3b72f12) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Flying Monster/Back/Attack/Monster1Back-Attack_2.png using Guid(17f21780d545baa4a94d299bf3b72f12) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '088bfc5f7000bc1388add21ae1233e26') in 0.0192764 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Front/Idle/Monster1Front-Idle_65.png
+  artifactKey: Guid(ac2cf53f4ca4e05418a0fbc4e24840e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Front/Idle/Monster1Front-Idle_65.png using Guid(ac2cf53f4ca4e05418a0fbc4e24840e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '254c874682357909ce20b457ba4575bb') in 0.0210311 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Spine2D Knight Character Animation Pack/Exports/Frame by frame/idle_2/clown_export-idle_3_8.png
+  artifactKey: Guid(cf48dc9021b75404f966e0636e02a4df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Spine2D Knight Character Animation Pack/Exports/Frame by frame/idle_2/clown_export-idle_3_8.png using Guid(cf48dc9021b75404f966e0636e02a4df) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '17bafe7109c6c2765bb6dce7cd71993d') in 0.0237046 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Spine2D Knight Character Animation Pack/Exports/Frame by frame/idle_2/clown_export-idle_3_10.png
+  artifactKey: Guid(198510bcb1f9dad44b563f33d5354d21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Spine2D Knight Character Animation Pack/Exports/Frame by frame/idle_2/clown_export-idle_3_10.png using Guid(198510bcb1f9dad44b563f33d5354d21) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '2acdc8cc0b8cc18cd36877bf786f7cda') in 0.0197735 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Spine2D Knight Character Animation Pack/Exports/Frame by frame/idle_2/clown_export-idle_3_13.png
+  artifactKey: Guid(afec97a93a585dd40bd8b8fc4dd835de) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Spine2D Knight Character Animation Pack/Exports/Frame by frame/idle_2/clown_export-idle_3_13.png using Guid(afec97a93a585dd40bd8b8fc4dd835de) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '38a89e3011d267ceee10b4e83e595ca3') in 0.0179225 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Front/Idle/Monster1Front-Idle_22.png
+  artifactKey: Guid(92001e193c1cfd549bd0d321aedd69cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Front/Idle/Monster1Front-Idle_22.png using Guid(92001e193c1cfd549bd0d321aedd69cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'e5cd4e838f53c27b4e29d0ac3396b830') in 0.0193258 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Front/Idle/Monster1Front-Idle_21.png
+  artifactKey: Guid(1af90c1d135a6a143b0c40f718959817) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dungeon Crawler 2D Art Pack/Sprites/Monsters/Green Monster/M1_Front/Idle/Monster1Front-Idle_21.png using Guid(1af90c1d135a6a143b0c40f718959817) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '3314834d85c168a3377c15e7904ceb30') in 0.0253249 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0
