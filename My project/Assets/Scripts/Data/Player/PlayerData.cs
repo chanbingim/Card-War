@@ -1,16 +1,33 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Debug = UnityEngine.Debug;
 
-[Serializable]
-public struct DeckEntry
+[System.Serializable]
+public enum ECurrency
 {
-    public int CardID;
-    public int Count;
+    Gold,          // 기본 골드
+    Cash,          // 유료 재화(캐시, 보석 등)
+    Energy,        // 행동력 / 스태미나
+    Ticket,        // 뽑기권
+    Key,           // 던전 입장 키
+    Token,         // 이벤트 토큰
+    END,
 }
 
 public class PlayerData
 {
+    #region struct 
+    [Serializable]
+    public struct DeckEntry
+    {
+        public int CardID;
+        public int Count;
+    }
+    #endregion
+
+    public event Action<ECurrency, int>          OnChangeCurrencyValue;
+
     public string Name { get; private set; }
     public IReadOnlyDictionary<int, StageData>  StageDatas => _stageDatas;
     public IReadOnlyDictionary<int, int>        Collections => _Collections;
@@ -18,9 +35,10 @@ public class PlayerData
     public IReadOnlyList<DeckEntry>             Decks => _Decks;
     public IReadOnlyList<int>                   PlayerParty => _PlayerParty;
 
-    private List<int>           _Skills;
-    private List<DeckEntry>     _Decks;
-    private List<int>           _PlayerParty;
+    private int[]               _Currency = null;
+    private List<int>           _Skills = null;
+    private List<DeckEntry>     _Decks = null;
+    private List<int>           _PlayerParty = null;
 
     // 플레이어가 습득한 카드의 종류 및 개수
     private Dictionary<int, int>        _Collections = new Dictionary<int, int>();
@@ -33,11 +51,11 @@ public class PlayerData
         _Skills = new List<int>(GAME_CONST.Const.MAX_SKILL);
         _Decks = new List<DeckEntry>(GAME_CONST.Const.MAX_DECK);
 
+        _Currency = new int[(int)ECurrency.END];
+        Array.Fill(_Currency, 0);
+
         EventBus.Subscribe<StageClearEvent>(ClearStage);
-
         var stageData = new StageData(1, 3, true);
-
-        _stageDatas.Add(1, stageData);
     }
 
     public void ReName(string name)
@@ -87,6 +105,48 @@ public class PlayerData
             _Collections[CardID] = current - CardCount;
 
         return true;
+    }
+    #endregion
+
+    #region Currency Func
+    // 해당하는 재화의 보유량을 가져온다.
+    public int GetCurrency(ECurrency Type) 
+    {
+        int idx = (int)Type;
+        if(0 > idx || idx >= _Currency.Length)
+            return -1;
+
+        return _Currency[idx];
+    }
+
+    // 재화습득에 성공하면 해당하는 재화의 값을 알려준다.
+    public int ADDCurrency(ECurrency Type, int Value, int ErrorCode)
+    {
+        if(ErrorCode != 0)
+        {
+            Debug.Log("[PlayerData] Check Error Code");
+            return 0;
+        }
+
+        int idx = (int)Type;
+        if (idx < 0 || _Currency.Length <= idx)
+            return 0;
+
+        _Currency[idx] += Value;
+        if (_Currency[idx] < 0)
+            _Currency[idx] = 0;
+
+        OnChangeCurrencyValue?.Invoke(Type, _Currency[idx]);
+        return _Currency[idx];
+    }
+
+    public bool HasEnoughCurrency(ECurrency Type, int Value)
+    {
+        int idx = (int)Type;
+        if (idx < 0 || _Currency.Length <= idx)
+            return false;
+
+        return _Currency[idx] >= Value;
     }
     #endregion
 
@@ -145,6 +205,7 @@ public class PlayerData
     }
     #endregion
 
+    #region Stage Func
     void ClearStage(StageClearEvent data)
     {
         if (_stageDatas.TryGetValue(data.StageID, out var stage))
@@ -160,6 +221,7 @@ public class PlayerData
             _stageDatas.Add(data.StageID, stageData);
         }
     }
+    #endregion
 
     void OnDisable()
     {

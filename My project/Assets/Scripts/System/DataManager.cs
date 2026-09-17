@@ -2,10 +2,9 @@ using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using TurnCardGame.Data;
-using Unity.Profiling;
 using UnityEngine;
 using UnityEngine.U2D;
-using static CurrencyComponent;
+using static PlayerData;
 
 public class DataManager : MonoBehaviour
 {
@@ -18,7 +17,7 @@ public class DataManager : MonoBehaviour
     [Header("로드할 BmItem 경로 (Resources 폴더 기준)")]
     [SerializeField] private string _BmDataloadPath = "SO/BM";
 
-    private Dictionary<CurrencyType, List<CurrencyProductData>> BmDatas = new Dictionary<CurrencyType, List<CurrencyProductData>>();
+    private Dictionary<ECurrency, List<CurrencyProductData>> BmDatas = new Dictionary<ECurrency, List<CurrencyProductData>>();
     private Dictionary<int, CharacterData>      CharacterDatas = new Dictionary<int, CharacterData>();
     private Dictionary<int, CardData>           CardDatas = new Dictionary<int, CardData>();
     private Sprite[] Cardsprites;
@@ -33,7 +32,7 @@ public class DataManager : MonoBehaviour
         return null;
     }
 
-    public List<CurrencyProductData> GetBMData(CurrencyType type)
+    public List<CurrencyProductData> GetBMData(ECurrency type)
     {
         if (BmDatas.TryGetValue(type, out var data))
             return data;

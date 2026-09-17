@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using static CurrencyComponent;
+using static PlayerData;
 
 public class BuyPopup : UIBase
 {
@@ -9,17 +9,17 @@ public class BuyPopup : UIBase
     [SerializeField] private List<BuyButtonComponent>   _BuyitemList;
     [SerializeField] private Scrollbar          _ItemListScroll;
 
-    private CurrencyType _SelectType = CurrencyType.END;
+    private ECurrency _SelectType = ECurrency.END;
 
     private void Start()
     {
         for(int i = 0; i < _SelectButton.Count; i++)
         {
             int index = i;
-            _SelectButton[i].gameObject.GetComponentInChildren<Text>().text = ((CurrencyType)i).ToString();
+            _SelectButton[i].gameObject.GetComponentInChildren<Text>().text = ((ECurrency)i).ToString();
             _SelectButton[i].onClick.AddListener(() =>
             {
-                ButtonSelectEvent((CurrencyType)index);
+                ButtonSelectEvent((ECurrency)index);
             });
         }
     }
@@ -28,16 +28,16 @@ public class BuyPopup : UIBase
     {
         base.Open(data);
         
-        if (_SelectType == CurrencyType.END)
-            ButtonSelectEvent(CurrencyType.Gold);
+        if (_SelectType == ECurrency.END)
+            ButtonSelectEvent(ECurrency.Gold);
         else
         {
             if (data != null)
-                ButtonSelectEvent((CurrencyType)data);
+                ButtonSelectEvent((ECurrency)data);
         }
     }
 
-    public void ButtonSelectEvent(CurrencyType type)
+    public void ButtonSelectEvent(ECurrency type)
     {
         if (_SelectType == type)
             return;

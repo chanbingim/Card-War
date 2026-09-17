@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static PlayerData;
 
 [CreateAssetMenu(fileName = "AI", menuName = "Scriptable Objects/AI Data")]
 public class StageAISO : ScriptableObject

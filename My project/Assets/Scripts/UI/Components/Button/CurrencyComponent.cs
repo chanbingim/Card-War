@@ -4,22 +4,11 @@ using UnityEngine.UI;
 
 public class CurrencyComponent : MonoBehaviour
 {
-    [System.Serializable]
-    public enum CurrencyType
-    {
-        Gold,          // 기본 골드
-        Cash,          // 유료 재화(캐시, 보석 등)
-        Energy,        // 행동력 / 스태미나
-        Ticket,        // 뽑기권
-        Key,           // 던전 입장 키
-        Token,         // 이벤트 토큰
-        END,
-    }
+    public ECurrency        Type => _Type;
 
-    public CurrencyType Type => _Type;
-
-    [SerializeField] private CurrencyType _Type;
+    [SerializeField] private ECurrency    _Type;
     [SerializeField] private Image        _Icon;
+    [SerializeField] private Text         _text;
 
     private void Start()
     {
@@ -34,6 +23,11 @@ public class CurrencyComponent : MonoBehaviour
         _Icon.sprite = IconAtlas.GetSprite(_Type.ToString());
     }
 
+    public void SettingData(int Value)
+    {
+        _text.text = Value.ToString();
+    }
+
     public void ClickedAddEvent()
     {
         // 여기서 팝업을 열고 Index에 맞게 재화 확인
@@ -41,6 +35,9 @@ public class CurrencyComponent : MonoBehaviour
         if(UIMgr == null)
             Debug.LogWarning("[CurrencyComponent] Not Create UIManager");
 
-        UIMgr.ShowAsync(UI.Enum.UIID.CashShop);
+        if (_Type == ECurrency.Cash)
+            UIMgr.ShowAsync(UI.Enum.UIID.CashShop);
+        else
+            GameClientManager.instance.ADDCurrency(Type, 1000, 0);
     }
 }

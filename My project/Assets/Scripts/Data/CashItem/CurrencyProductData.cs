@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
-using static CurrencyComponent;
+using static PlayerData;
 
 [CreateAssetMenu(menuName = "Shop/CurrencyProduct")]
 public class CurrencyProductData : ScriptableObject
 {
     public string ProductID;
 
-    public CurrencyType CurrencyType;
+    public ECurrency    CurrencyType;
 
     public int Amount;
 

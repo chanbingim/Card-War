@@ -10,7 +10,6 @@ public class SpriteAnimation : MonoBehaviour
     private Animator animator = null;
     private int NextCount = 0;
 
-
     private void Awake()
     {
         animator = GetComponent<Animator>();
