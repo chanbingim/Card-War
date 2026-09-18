@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using UI.Enum;
 using Unity.Behavior;
+using UnityEngine;
 
 [BlackboardEnum]
 public enum ETurnType
@@ -23,6 +25,8 @@ public class TurnManager
 
     public BattlePlayerData Current => _participants[CurrentTurnIndex];
     public int ParticipantCount => _participants.Count;
+
+    private float _TurnMaxTimer = 30.0f;
 
     List<BattlePlayerData>              _GameOverList = new List<BattlePlayerData>();
     List<CharacterAction>               _AllPlayerAction = new List<CharacterAction>();
@@ -97,13 +101,13 @@ public class TurnManager
         return true;
     }
 
-    public void Begin()
+    public async void Begin()
     {
         CurrentTurnIndex = 0;
         CurrentPhase = 1;
         IsRunning = true;
 
-        StartTurn();
+        await UIManager.instance.ShowAsync(UIID.Fade, new FadeUIDesc(true, (System.Action)StartTurn));
     }
 
     private void StartTurn()
@@ -117,7 +121,9 @@ public class TurnManager
         bool IsLocal = LocalPlayer.IsActive;
         EventBus.Publish<ChangeTurnEvent>(new ChangeTurnEvent(IsLocal, () =>
         {
-            EventBus.Publish<ChangeTurnActEvent>(new ChangeTurnActEvent(_TurnType, IsLocal));
+            EventBus.Publish<ChangeTurnActEvent>(new ChangeTurnActEvent(_TurnMaxTimer, _TurnType, IsLocal, null, () => {
+                RequestEndTurn(Current.Name);
+            }));
             BattleManager.instance.RequestDraw(GAME_CONST.Const.DRAW_CARDCOUNT);
         }));
     }
@@ -127,7 +133,7 @@ public class TurnManager
         if (Current == null)
             return;
 
-        Current.TurnRunning();
+       Current.TurnRunning();
     }
 
     /// 현재 참가자의 턴을 종료하고 다음 참가자로 넘김.
@@ -164,7 +170,10 @@ public class TurnManager
                 };
             }
 
-            EventBus.Publish<ChangeTurnActEvent>(new ChangeTurnActEvent(_TurnType, LocalPlayer.IsActive, OnCompleted));
+            EventBus.Publish<ChangeTurnActEvent>(new ChangeTurnActEvent(_TurnMaxTimer, _TurnType, LocalPlayer.IsActive, OnCompleted, ()=>
+            {
+                RequestEndTurn(Current.Name);
+            }));
         }
 
         return true;

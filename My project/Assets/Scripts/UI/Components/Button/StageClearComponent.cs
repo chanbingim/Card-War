@@ -43,7 +43,6 @@ public class StageClearComponent : MonoBehaviour
             image.enabled = false;
         }
 
-
         CloseStage();
     }
     

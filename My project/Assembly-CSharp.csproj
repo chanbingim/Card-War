@@ -199,9 +199,13 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile-2-Pass.shader" />
     <None Include="Assets\Scripts\UI\ToolKit\Inventory\Inventory.uxml" />
+    <None Include="Assets\GoogleMobileAds\GoogleMobileAds.Common.dll" />
+    <None Include="Assets\GoogleMobileAds\GoogleMobileAds.Ump.iOS.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
+    <None Include="Assets\GoogleMobileAds\GoogleMobileAds.dll" />
     <None Include="Assets\FireBase\Plugins\x86_64\FirebaseCppStorage.dll" />
     <None Include="Assets\FireBase\Plugins\Firebase.App.dll" />
+    <None Include="Assets\GoogleMobileAds\GoogleMobileAds.iOS.dll" />
     <None Include="Assets\Spine2D Knight Character Animation Pack\readme.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
@@ -210,8 +214,10 @@
     <None Include="Assets\FireBase\Plugins\x86_64\FirebaseCppAuth.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\FireBase\Plugins\Firebase.TaskExtension.dll" />
+    <None Include="Assets\GoogleMobileAds\GoogleMobileAds.Core.dll" />
     <None Include="Assets\FireBase\m2repository\com\google\firebase\firebase-app-unity\maven-metadata.xml" />
     <None Include="Assets\TextMesh Pro\Shaders\SDFFunctions.hlsl" />
+    <None Include="Assets\GoogleMobileAds\link.xml" />
     <None Include="Assets\Scripts\UI\ToolKit\Slot\InventorySlot.uxml" />
     <None Include="Assets\FireBase\Plugins\Firebase.Auth.dll" />
     <None Include="Assets\Dungeon Crawler 2D Art Pack\Spine Projects\ExportedForUnity\Monster3\Left\Monster3Left.atlas.txt" />
@@ -221,16 +227,21 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
     <None Include="Assets\Scripts\HLSL\TestShader.shader" />
+    <None Include="Assets\GoogleMobileAds\GoogleMobileAds.Ump.Unity.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+    <None Include="Assets\GoogleMobileAds\GoogleMobileAds.Ump.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\FireBase\m2repository\com\google\firebase\firebase-auth-unity\maven-metadata.xml" />
     <None Include="Assets\Dungeon Crawler 2D Art Pack\Spine Projects\ExportedForUnity\Monster1\Left\Monster1Left.atlas.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\FireBase\Plugins\iOS\Firebase.Auth.dll" />
+    <None Include="Assets\GoogleMobileAds\GoogleMobileAds_version-11.5.0_manifest.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+    <None Include="Assets\GoogleMobileAds\GoogleMobileAds.Unity.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\FireBase\Plugins\Firebase.Platform.dll" />
+    <None Include="Assets\GoogleMobileAds\GoogleMobileAds.Android.dll" />
     <None Include="Assets\SkySeries Freebie\Hdri setup.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
@@ -241,6 +252,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\FireBase\Plugins\iOS\Firebase.App.dll" />
     <None Include="Assets\FireBase\m2repository\com\google\firebase\firebase-storage-unity\maven-metadata.xml" />
+    <None Include="Assets\GoogleMobileAds\GoogleMobileAds.Ump.Android.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
   </ItemGroup>
   <ItemGroup>
@@ -834,6 +846,30 @@
     </Reference>
     <Reference Include="Google.MiniJson">
       <HintPath>Assets\FireBase\Plugins\Google.MiniJson.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="GoogleMobileAds">
+      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="GoogleMobileAds.Unity">
+      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Unity.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="GoogleMobileAds.Core">
+      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="GoogleMobileAds.Ump.Unity">
+      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Ump.Unity.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="GoogleMobileAds.Common">
+      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="GoogleMobileAds.Ump">
+      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Ump.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Android.Types">
@@ -1473,6 +1509,10 @@
     <ProjectReference Include="Unity.VisualScripting.SettingsProvider.Editor.csproj">
       <Project>{A5EC846E-BD95-6712-4F58-3A4ED63FFC9E}</Project>
       <Name>Unity.VisualScripting.SettingsProvider.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="GoogleMobileAds.Editor.csproj">
+      <Project>{531DB18F-62E4-2C29-A302-B8556356DF04}</Project>
+      <Name>GoogleMobileAds.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Behavior.Serialization.csproj">
       <Project>{E874484E-0C4D-1BBD-0D35-C4181F6E7875}</Project>

@@ -67,8 +67,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -91,7 +91,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DoTweenAnimator
   _AnimList:
   - rid: 4182431761163616331
-  - rid: 4182431761163616332
   _TotalPlayTime: 3
   _bIsLoop: 0
   references:
@@ -101,14 +100,8 @@ MonoBehaviour:
       type: {class: UIColorAnimData, ns: , asm: Assembly-CSharp}
       data:
         _startFrame: 0
-        _endFrame: 20
-        _Color: {r: 0, g: 0, b: 0, a: 0}
-    - rid: 4182431761163616332
-      type: {class: UIColorAnimData, ns: , asm: Assembly-CSharp}
-      data:
-        _startFrame: 20
         _endFrame: 100
-        _Color: {r: 0.04150939, g: 0.04150939, b: 0.04150939, a: 1}
+        _Color: {r: 0, g: 0, b: 0, a: 1}
 --- !u!114 &3488482699778490272
 MonoBehaviour:
   m_ObjectHideFlags: 0

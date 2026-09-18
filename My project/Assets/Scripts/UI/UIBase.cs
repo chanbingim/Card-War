@@ -26,7 +26,7 @@ public class UIBase : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         transform.DOKill();
     }

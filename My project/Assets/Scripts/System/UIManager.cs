@@ -153,9 +153,6 @@ public class UIManager : MonoBehaviour
             OpenPopup(_UIList[idx]);
         }
 
-        if(data != null)
-            data = _UIList[idx];
-
         _UIList[idx].Open(data);
     }
 

@@ -7,7 +7,7 @@ public class ExitComponent : MonoBehaviour, IPointerClickHandler
 {
     private async void ExitGame()
     {
-        await UIManager.instance.ShowAsync(UIID.Fade, (Action)FadeCompeleted);
+        await UIManager.instance.ShowAsync(UIID.Fade, new FadeUIDesc(false, (System.Action)FadeCompeleted));
     }
 
     public void OnPointerClick(PointerEventData eventData)
