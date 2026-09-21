@@ -36,10 +36,9 @@ public class DoTweenAnimator : MonoBehaviour
 
         if (_AnimList.Count > 0)
         {
-            _AnimList = _AnimList
-                .OrderBy(x => x.EndFrame)
-                .ThenBy(x => x.StartFrame)
-                .ToList();
+            _AnimList = _AnimList.OrderBy(x => x.EndFrame)
+                                 .ThenBy(x => x.StartFrame)
+                                 .ToList();
 
             foreach(var anim in _AnimList)
             {

@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\Game\FSM\State\DeadState.cs" />
     <Compile Include="Assets\Scripts\Game\FSM\SO\CharacterFsmConfig.cs" />
     <Compile Include="Assets\Scripts\Game\GachaCardAnim.cs" />
+    <Compile Include="Assets\Scripts\Utility\CSVReader\CsvReader.cs" />
     <Compile Include="Assets\Scripts\Data\ActionData\CharacterAction.cs" />
     <Compile Include="Assets\Scripts\UI\Components\Gacha\DateComponent.cs" />
     <Compile Include="Assets\Scripts\System\Addressable\AddressableManager.cs" />
@@ -87,6 +88,7 @@
     <Compile Include="Assets\Scripts\System\BattleSystem\BattleManager.cs" />
     <Compile Include="Assets\Scripts\Game\SceneComponent\Interface\Initialize.cs" />
     <Compile Include="Assets\Scripts\System\DataManager.cs" />
+    <Compile Include="Assets\Scripts\Data\CardData\CardData.cs" />
     <Compile Include="Assets\Scripts\UI\Entity\ReCycleScroll\RecycleScrollView.cs" />
     <Compile Include="Assets\Scripts\UI\Entity\GameResultUI.cs" />
     <Compile Include="Assets\Scripts\Utility\Radnom\CryptoRandom.cs" />
@@ -118,13 +120,13 @@
     <Compile Include="Assets\Scripts\System\PoolManager\Component\PoolComponent.cs" />
     <Compile Include="Assets\Scripts\Game\Character\Component\AnimComponent.cs" />
     <Compile Include="Assets\Scripts\UI\Entity\Slot\BaseSlot.cs" />
-    <Compile Include="Assets\Scripts\Data\Stage\CardData.cs" />
     <Compile Include="Assets\Scripts\Event\Events\TrunEvent\ChangeTurnActEvent.cs" />
     <Compile Include="Assets\Scripts\UI\Controller\GachaController.cs" />
     <Compile Include="Assets\Scripts\System\DragSystem\DragManager.cs" />
     <Compile Include="Assets\Scripts\Game\MainMenu\MainSceneController.cs" />
     <Compile Include="Assets\Scripts\Game\AI\BT_Node\AttackActionNode.cs" />
     <Compile Include="Assets\Scripts\Abstract\AdderssableCreateFactory.cs" />
+    <Compile Include="Assets\Scripts\Data\CardData\Runtime\RuntimeCardData.cs" />
     <Compile Include="Assets\Scripts\Enum\UIEnum.cs" />
     <Compile Include="Assets\Scripts\Event\EventBus.cs" />
     <Compile Include="Assets\Scripts\UI\Components\Gacha\GachaComponent.cs" />
@@ -160,8 +162,8 @@
     <Compile Include="Assets\Scripts\FireBase\LoginManager.cs" />
     <Compile Include="Assets\Scripts\Game\FSM\State\AttackState.cs" />
     <Compile Include="Assets\Scripts\Game\FSM\SO\FSMStateSO.cs" />
+    <Compile Include="Assets\Scripts\Data\Stage\StageData.cs" />
     <Compile Include="Assets\Scripts\Event\Events\TrunEvent\ChangeTurnEvent.cs" />
-    <Compile Include="Assets\Scripts\Data\CardData.cs" />
     <Compile Include="Assets\Scripts\UI\Entity\Character\BattleCharacterUI.cs" />
     <Compile Include="Assets\Scripts\Game\FSM\State\State.cs" />
     <Compile Include="Assets\Scripts\UI\Components\Button\HoverComponent.cs" />
@@ -788,6 +790,10 @@
       <HintPath>C:\Program Files\Unity\Hub\Editor\6000.3.17f1\Editor\Data\Managed\UnityEngine\UnityEditor.XRModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="GoogleMobileAds.Common">
+      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.Collections.LowLevel.ILSupport">
       <HintPath>Library\PackageCache\com.unity.collections@9796e5ee0d9e\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
       <Private>False</Private>
@@ -800,12 +806,20 @@
       <HintPath>Library\PackageCache\com.unity.microsoft.gdk.tools@d61763b7f228\Tools\SandboxSwitcher\XblPCSandbox.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="GoogleMobileAds">
+      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Firebase.App">
       <HintPath>Assets\FireBase\Plugins\Firebase.App.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Firebase.TaskExtension">
       <HintPath>Assets\FireBase\Plugins\Firebase.TaskExtension.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="GoogleMobileAds.Core">
+      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Core.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Firebase.Auth">
@@ -820,8 +834,20 @@
       <HintPath>Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="GoogleMobileAds.Ump.Unity">
+      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Ump.Unity.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="GoogleMobileAds.Ump">
+      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Ump.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="GoogleMobileAds.Unity">
+      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Unity.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json">
@@ -846,30 +872,6 @@
     </Reference>
     <Reference Include="Google.MiniJson">
       <HintPath>Assets\FireBase\Plugins\Google.MiniJson.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="GoogleMobileAds">
-      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="GoogleMobileAds.Unity">
-      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Unity.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="GoogleMobileAds.Core">
-      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Core.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="GoogleMobileAds.Ump.Unity">
-      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Ump.Unity.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="GoogleMobileAds.Common">
-      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Common.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="GoogleMobileAds.Ump">
-      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Ump.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Android.Types">

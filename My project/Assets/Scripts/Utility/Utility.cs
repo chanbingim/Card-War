@@ -1,4 +1,7 @@
+using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 public static class Utility
@@ -47,5 +50,8 @@ public static class Utility
         return random.GetRandom(min, max);
     }
 
+    public static IReadOnlyList<T> ReadCSV<T>(TextAsset asset) where T : new()
+    {
+        return CsvReader.ReadCSV<T>(asset);
+    }
 }
-

@@ -129,7 +129,7 @@ public class GachaSystem : MonoBehaviour, IInitialize
 
     private UniTask LoadPickupList()
     {
-        TextAsset[] jsonFiles = Resources.LoadAll<TextAsset>("PickUpList");
+        TextAsset[] jsonFiles = Resources.LoadAll<TextAsset>("Data/Json");
         if (jsonFiles == null)
             return UniTask.CompletedTask;
 

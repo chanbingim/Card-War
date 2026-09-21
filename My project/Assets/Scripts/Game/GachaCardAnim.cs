@@ -54,7 +54,7 @@ public class GachaCardAnim : MonoBehaviour, IPointerClickHandler
             return;
         }
 
-        Sprite sprite = null;
+       /* Sprite sprite = null;
         switch (Type)
         {
             case ECardType.EffectCard:
@@ -63,6 +63,6 @@ public class GachaCardAnim : MonoBehaviour, IPointerClickHandler
             case ECardType.Character:
 
                 break;
-        }
+        }*/
     }
 }

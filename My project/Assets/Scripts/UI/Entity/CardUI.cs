@@ -28,7 +28,7 @@ public class CardUI : UIBase, IActionDragHandler
         if (_Data == null)
             return;
 
-        image.sprite = DataManager.instance.GetCardSprite(data.CardID);
+        image.sprite = data.sprite;
     }
 
     public void DrawAnimation(Vector3 Pos)

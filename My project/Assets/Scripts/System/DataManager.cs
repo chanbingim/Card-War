@@ -1,6 +1,8 @@
 using Cysharp.Threading.Tasks;
+using DG.Tweening.Plugins.Core.PathCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using TurnCardGame.Data;
 using UnityEngine;
 using UnityEngine.U2D;
@@ -9,10 +11,10 @@ using static PlayerData;
 public class DataManager : MonoBehaviour
 {
     [Header("로드할 CharacterData 경로 (Resources 폴더 기준)")]
-    [SerializeField] private string _CharacterDataloadPath = "SO/Characters";
+    [SerializeField] private TextAsset      _CardData;
 
     [Header("로드할 CardData 경로 (Resources 폴더 기준)")]
-    [SerializeField] private string _CardDataloadPath = "SO/Cards";
+    [SerializeField] private string _CharacterDataloadPath = "SO/Characters";
 
     [Header("로드할 BmItem 경로 (Resources 폴더 기준)")]
     [SerializeField] private string _BmDataloadPath = "SO/BM";
@@ -20,8 +22,6 @@ public class DataManager : MonoBehaviour
     private Dictionary<ECurrency, List<CurrencyProductData>> BmDatas = new Dictionary<ECurrency, List<CurrencyProductData>>();
     private Dictionary<int, CharacterData>      CharacterDatas = new Dictionary<int, CharacterData>();
     private Dictionary<int, CardData>           CardDatas = new Dictionary<int, CardData>();
-    private Sprite[] Cardsprites;
-
 
     public CharacterData GetCharacterById(int id)
     {
@@ -60,14 +60,6 @@ public class DataManager : MonoBehaviour
         return CardDatas.TryGetValue(id, out data);
     }
 
-    public Sprite GetCardSprite(int ID) 
-    {
-        if(TryCardDataGetById(ID, out CardData data))
-            return Cardsprites[data.SpriteID];
-
-        return null;
-    }
-
     #region Defualt
     static public DataManager instance { get; private set; }
     private void Awake()
@@ -92,8 +84,7 @@ public class DataManager : MonoBehaviour
         await UniTask.WhenAll(
             LoadAllCharacterData(),
             LoadAllCardData(),
-            LoadAllBMData(),
-            LoadCardSprites()
+            LoadAllBMData()
         );
     }
 
@@ -120,38 +111,22 @@ public class DataManager : MonoBehaviour
 
     private async UniTask LoadAllCardData()
     {
-        CardData[] allData = Resources.LoadAll<CardData>(_CardDataloadPath);
+        var Datas = Utility.ReadCSV<CardData>(_CardData);
         await UniTask.RunOnThreadPool(() =>
         {
-            foreach (var data in allData)
+            foreach (var data in Datas)
             {
-                if (CardDatas.ContainsKey(data.CardId))
+                if (CardDatas.ContainsKey(data.ID))
                 {
-                    Debug.LogError($"[DataManager] 중복된 카드 ID 발견: {data.CardId} ({data.name})");
+                    Debug.LogError($"[DataManager] 중복된 카드 ID 발견: {data.ID} ({data.Name})");
                     continue;
                 }
 
-                CardDatas.Add(data.CardId, data);
+                CardDatas.Add(data.ID, data);
             }
         });
 
         Debug.Log($"[DataManager] 카드 데이터 {CharacterDatas.Count}개 로드 완료");
-    }
-
-    private async UniTask LoadCardSprites()
-    {
-        AddressableManager AddressableMgr = AddressableManager.instance;
-        if (AddressableMgr == null)
-            throw new ArgumentException("어드레서블 매니저 생성 필요");
-
-        SpriteAtlas spriteAtlas = AddressableMgr.Get<SpriteAtlas>("Atlas/CardAtlas");
-        if (spriteAtlas == null)
-            return;
-
-        Cardsprites = new Sprite[spriteAtlas.spriteCount];
-        spriteAtlas.GetSprites(Cardsprites);
-
-        await UniTask.CompletedTask;
     }
 
     private async UniTask LoadAllBMData()
