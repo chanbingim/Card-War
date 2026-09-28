@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.U2D;
-using UnityEngine.UI;
 
 public class ChangeCanvasComponent : MonoBehaviour, IPointerClickHandler
 {
+    [SerializeField] bool         _OnEnable = true;
+
     [SerializeField] List<Canvas> _VisibleCanvas;
     [SerializeField] List<Canvas> _UnVisibleCanvas;
 

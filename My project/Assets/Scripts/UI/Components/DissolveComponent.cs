@@ -6,9 +6,13 @@ using UnityEngine.UI;
 public class DissolveComponent : MonoBehaviour
 {
     [SerializeField] private float _speed = 0.5f;
+    [SerializeField] private Texture2D _NoiseTex = null;
+
+    public Material Material => _material;
+    public event Action          OnCompelted;
 
     private Coroutine   _Dissovle = null;
-    private Material    _matrial = null;
+    private Material    _material = null;
     private Image       _image;
 
     private void Awake()
@@ -17,8 +21,13 @@ public class DissolveComponent : MonoBehaviour
 
         if (_image != null)
         {
-            _matrial = _image.material;
-            _matrial.SetTexture("_Base", _image.sprite.texture);
+            _material = _image.material;
+
+            _material.SetTexture("_Base", _image.sprite.texture);
+            if (_NoiseTex != null)
+            {
+                _material.SetTexture("_NoiseTexture", _NoiseTex);
+            }
         }
     }
 
@@ -30,16 +39,14 @@ public class DissolveComponent : MonoBehaviour
         if(bIsActive)
             gameObject.SetActive(bIsActive);
 
-        _Dissovle = StartCoroutine(Dissolve(!bIsActive, () =>
-        {
-            gameObject.SetActive(bIsActive);
-        }));
+        OnCompelted += () => { };
+        _Dissovle = StartCoroutine(Dissolve(!bIsActive));
     }
 
-    IEnumerator Dissolve(bool Reverse, Action OnCompleted = null)
+    IEnumerator Dissolve(bool Reverse)
     {
         float _Time = Reverse == true ? 1f : 0f;
-        _matrial.SetFloat("_DissovleHeight", _Time);
+        _material.SetFloat("_DissovleHeight", _Time);
 
         while (_Time >= 0f && _Time <= 1f)
         {
@@ -48,11 +55,12 @@ public class DissolveComponent : MonoBehaviour
             else
                 _Time += Time.deltaTime * _speed;
 
-            _matrial.SetFloat("_DissovleHeight", _Time);
+            _material.SetFloat("_DissovleHeight", _Time);
             yield return null;
         }
 
-        OnCompleted?.Invoke();
+        OnCompelted?.Invoke();
+        gameObject.SetActive(!Reverse);
         _Dissovle = null;
     }
 }

@@ -1,27 +1,27 @@
 using DG.Tweening;
+using GAME_CONST;
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
+using UnityEngine.U2D;
 
 public class GachaCardAnim : MonoBehaviour, IPointerClickHandler
 {
     public enum ECardType { EffectCard, Character };
     public event Action OnCompelted;
 
+    public bool         bIsSecret { get; private set; } = true;
+
     #region Orizin Data
-    [SerializeField] private Sprite _OrizinImage;
+    [SerializeField] private DissolveComponent _dissolveComponent = null;
     #endregion
-
-    private Image _image;
-    private ECardType Type;
-
-    private int ID;
-    private bool bIsSecret = true;
+    
+    private int         ID;
+    private ECardType   Type;
 
     private void Awake()
     {
-        _image = GetComponent<Image>();
+        _dissolveComponent = GetComponent<DissolveComponent>();
         gameObject.SetActive(false);
     }
 
@@ -35,9 +35,10 @@ public class GachaCardAnim : MonoBehaviour, IPointerClickHandler
         }
 
         ID = id;
-        bIsSecret = true;
-        _image.sprite = _OrizinImage;
+        if (!SettingSpriteImage())
+            return;
 
+        bIsSecret = true;
         transform.position = AnimTargetPoint + Vector3.right * 10;
         transform.DOMove(AnimTargetPoint, 0.6f)
                  .OnComplete(() => OnCompelted?.Invoke());
@@ -45,24 +46,52 @@ public class GachaCardAnim : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        bIsSecret = false;
+        if(bIsSecret)
+        {
+            bIsSecret = false;
 
+            var DataMgr = DataManager.instance;
+            if (DataMgr == null)
+            {
+                Debug.Log("[GachaCardAnim] Not Find DataManager");
+                return;
+            }
+
+            _dissolveComponent?.OnDissloveAnim(true);
+        }
+    }
+
+    public void SetSpriteTexture()
+    {
+        bIsSecret = false;
+        _dissolveComponent.Material.SetFloat("_DissovleHeight", 1);
+    }
+
+    private bool SettingSpriteImage()
+    {
         var DataMgr = DataManager.instance;
         if(DataMgr == null)
         {
             Debug.Log("[GachaCardAnim] Not Find DataManager");
-            return;
+            return false;
         }
 
-       /* Sprite sprite = null;
-        switch (Type)
-        {
-            case ECardType.EffectCard:
-                sprite = DataMgr.GetCardSprite(ID);
-                break;
-            case ECardType.Character:
+        var CardData = DataMgr.GetCardById(ID);
+        if (CardData == null)
+            return false;
 
-                break;
-        }*/
+        var AddressableMgr = AddressableManager.instance;
+        if (AddressableMgr == null)
+        {
+            Debug.Log("[GachaCardAnim] Not Find AddressableManager");
+            return false;
+        }
+
+        var Atlas = AddressableMgr.Get<SpriteAtlas>(Const.CharacterIconAddress);
+        if (Atlas == null)
+            return false;
+
+        _dissolveComponent.Material.SetTexture("_ItemTexture", Atlas.GetSprite(CardData.TextureKey).texture);
+        return true;
     }
 }

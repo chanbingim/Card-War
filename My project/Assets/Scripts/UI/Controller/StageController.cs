@@ -23,13 +23,13 @@ public class StageController : MonoBehaviour
             if (Stages == null)
                 throw new ArgumentException("Not Find Stage Data");
 
-            for (int i = 0; i < StageUIs.Count; i++)
+            for (int i = 0; i < StageUIs.Count + 1; i++)
             {
                 if(Stages.Count >= i)
                 {
                     StageUIs[i].OpenStage($"{1} - {i + 1}");
 
-                    if(Stages.TryGetValue(i +1, out var stageData))
+                    if(Stages.TryGetValue(i + 1, out var stageData))
                     {
                         StageUIs[i].ClearStage(stageData.StarCount, stageData.IsClear);
                     }

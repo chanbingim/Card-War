@@ -43,7 +43,8 @@ public class StageClearComponent : MonoBehaviour
             image.enabled = false;
         }
 
-        CloseStage();
+        if(!_Text.gameObject.activeSelf)
+            CloseStage();
     }
     
     public void OpenStage(string Stagename)
