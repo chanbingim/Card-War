@@ -31,7 +31,7 @@ public class DissolveComponent : MonoBehaviour
         }
     }
 
-    public void OnDissloveAnim(bool bIsActive)
+    public void OnDissloveAnim(bool bIsActive, bool bIsReverse = false)
     {
         if (_Dissovle != null)
             StopCoroutine(_Dissovle);
@@ -40,7 +40,7 @@ public class DissolveComponent : MonoBehaviour
             gameObject.SetActive(bIsActive);
 
         OnCompelted += () => { };
-        _Dissovle = StartCoroutine(Dissolve(!bIsActive));
+        _Dissovle = StartCoroutine(Dissolve(bIsReverse));
     }
 
     IEnumerator Dissolve(bool Reverse)
@@ -60,7 +60,6 @@ public class DissolveComponent : MonoBehaviour
         }
 
         OnCompelted?.Invoke();
-        gameObject.SetActive(!Reverse);
         _Dissovle = null;
     }
 }

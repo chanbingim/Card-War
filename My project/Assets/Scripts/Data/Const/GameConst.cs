@@ -8,5 +8,6 @@ namespace GAME_CONST
         public const int MAX_SKILL = 1;
 
         public const string CharacterIconAddress = "Atlas/Character/Image";
+        public const string CardIconAddress = "Atlas/CardIcon";
     }
 }

@@ -93,6 +93,8 @@ public class SpriteAnimation : MonoBehaviour
          NextCount++;
     }
 
+    // 이거 생각해보니 CardDissolve가 될때마다 카운트하든
+    // Flag 설정이 있어야 스무스 하게 될거같네
     private void ClickEvent()
     {
         if (AllVeiw)

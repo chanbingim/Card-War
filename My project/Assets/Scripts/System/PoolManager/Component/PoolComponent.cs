@@ -1,7 +1,7 @@
 using GamePlay.Enum;
 using UnityEngine;
 
-public class PoolAbleComponent : MonoBehaviour, IPoolAble
+public class PoolAbleComponent : MonoBehaviour
 {
     public EPoolType        PoolType;
     public string           PoolName;

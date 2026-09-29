@@ -79,7 +79,17 @@ public class DataManager : MonoBehaviour
             instance = null;
     }
 
-    public async UniTask InitializeAsync()
+    public async void Initalize()
+    {
+        await InitializeAsync();
+
+        foreach(var iter in CardDatas)
+        {
+            iter.Value.ParseData();
+        }
+    }
+
+    private async UniTask InitializeAsync()
     {
         await UniTask.WhenAll(
             LoadAllCharacterData(),

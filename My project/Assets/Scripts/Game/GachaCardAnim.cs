@@ -38,6 +38,7 @@ public class GachaCardAnim : MonoBehaviour, IPointerClickHandler
         if (!SettingSpriteImage())
             return;
 
+        _dissolveComponent.Material.SetFloat("_DissovleHeight", 0);
         bIsSecret = true;
         transform.position = AnimTargetPoint + Vector3.right * 10;
         transform.DOMove(AnimTargetPoint, 0.6f)
@@ -87,7 +88,7 @@ public class GachaCardAnim : MonoBehaviour, IPointerClickHandler
             return false;
         }
 
-        var Atlas = AddressableMgr.Get<SpriteAtlas>(Const.CharacterIconAddress);
+        var Atlas = AddressableMgr.Get<SpriteAtlas>(Const.CardIconAddress);
         if (Atlas == null)
             return false;
 

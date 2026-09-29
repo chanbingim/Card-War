@@ -424,6 +424,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DissolveComponent
   _speed: 0.5
+  _NoiseTex: {fileID: 0}
 --- !u!1 &241195639
 GameObject:
   m_ObjectHideFlags: 0
@@ -6221,7 +6222,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00066364475}
+  m_AnchoredPosition: {x: 0, y: 0.000011532367}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &976241709
@@ -6777,7 +6778,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1786743276}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9985142
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6870,7 +6871,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2072861774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7071,6 +7072,14 @@ PrefabInstance:
     - target: {fileID: 992487372744745100, guid: eaee3fb8ad72c8e4aa84ae098865bb6c, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1014214207239073068, guid: eaee3fb8ad72c8e4aa84ae098865bb6c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1014214207239073068, guid: eaee3fb8ad72c8e4aa84ae098865bb6c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3313539775949081038, guid: eaee3fb8ad72c8e4aa84ae098865bb6c, type: 3}
       propertyPath: m_Pivot.x

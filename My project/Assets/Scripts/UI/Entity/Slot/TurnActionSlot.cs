@@ -38,7 +38,7 @@ public class TurnActionSlot : BaseSlot
             {
                 var Data = _Data as CardAction;
               
-                _Image.sprite = Data.CardData.sprite;
+                _Image.sprite = Data.CardData.CardData.Icon;
                 if (bIsAnimPlay)
                 {
                     _RectTransform.DOKill();

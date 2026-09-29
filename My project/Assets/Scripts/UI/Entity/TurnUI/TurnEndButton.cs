@@ -29,14 +29,7 @@ public class TurnEndButton: UIBase, IPointerClickHandler
 
     private void View_TurnUI(ChangeTurnEvent turnStartEvent)
     {
-        if (turnStartEvent._IsLocal)
-        {
-            _Dissolve.OnDissloveAnim(true);
-        }
-        else
-        {
-            _Dissolve.OnDissloveAnim(false);
-        }
+        _Dissolve.OnDissloveAnim(true, turnStartEvent._IsLocal);
     }
 
     protected override void OnDestroy()

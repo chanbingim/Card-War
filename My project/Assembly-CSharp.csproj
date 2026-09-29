@@ -80,7 +80,6 @@
     <Compile Include="Assets\Scripts\UI\Entity\FadeUI.cs" />
     <Compile Include="Assets\Scripts\System\UIManager.cs" />
     <Compile Include="Assets\Scripts\Game\AI\BT_Node\TestModifier.cs" />
-    <Compile Include="Assets\Scripts\System\PoolManager\interface\IPoolAble.cs" />
     <Compile Include="Assets\Scripts\UI\Controller\CardController.cs" />
     <Compile Include="Assets\Scripts\UI\Components\Button\CurrencyComponent.cs" />
     <Compile Include="Assets\Scripts\UI\Controller\UIBuilder\InventoryController.cs" />
@@ -129,6 +128,7 @@
     <Compile Include="Assets\Scripts\Data\CardData\Runtime\RuntimeCardData.cs" />
     <Compile Include="Assets\Scripts\Enum\UIEnum.cs" />
     <Compile Include="Assets\Scripts\Event\EventBus.cs" />
+    <Compile Include="Assets\Scripts\Game\Effect\EffectBase.cs" />
     <Compile Include="Assets\Scripts\UI\Components\Gacha\GachaComponent.cs" />
     <Compile Include="Assets\Scripts\NewMonoBehaviourScript.cs" />
     <Compile Include="Assets\Scripts\FireBase\CallBackServer\OAuthCallbackServer.cs" />
@@ -195,6 +195,7 @@
     <Compile Include="Assets\Scripts\Enum\Enums.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Eric VFX Studio\Resource\Shader\AlphaBlendFlow.shader" />
     <None Include="Assets\Scripts\UI\ToolKit\UXML\UILayerOut.UXML" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\Spine\version.txt" />
@@ -203,12 +204,14 @@
     <None Include="Assets\Scripts\UI\ToolKit\Inventory\Inventory.uxml" />
     <None Include="Assets\GoogleMobileAds\GoogleMobileAds.Common.dll" />
     <None Include="Assets\GoogleMobileAds\GoogleMobileAds.Ump.iOS.dll" />
+    <None Include="Assets\Effect\Cartoon FX Remaster\CFXR Assets\Shaders\CFXR_SETTINGS.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\GoogleMobileAds\GoogleMobileAds.dll" />
     <None Include="Assets\FireBase\Plugins\x86_64\FirebaseCppStorage.dll" />
     <None Include="Assets\FireBase\Plugins\Firebase.App.dll" />
     <None Include="Assets\GoogleMobileAds\GoogleMobileAds.iOS.dll" />
     <None Include="Assets\Spine2D Knight Character Animation Pack\readme.txt" />
+    <None Include="Assets\Effect\Cartoon FX Remaster\CFXR Assets\Shaders\CFXR.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\Scripts\HLSL\Graph Node\Dissolve.hlsl" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
@@ -225,6 +228,7 @@
     <None Include="Assets\FireBase\Plugins\Firebase.Auth.dll" />
     <None Include="Assets\Dungeon Crawler 2D Art Pack\Spine Projects\ExportedForUnity\Monster3\Left\Monster3Left.atlas.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
+    <None Include="Assets\Effect\Hit Impact Effects\Readme.txt" />
     <None Include="Assets\Spine2D Knight Character Animation Pack\Exports\json_export\Knight.atlas.txt" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
@@ -239,6 +243,8 @@
     <None Include="Assets\Dungeon Crawler 2D Art Pack\Spine Projects\ExportedForUnity\Monster1\Left\Monster1Left.atlas.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\FireBase\Plugins\iOS\Firebase.Auth.dll" />
+    <None Include="Assets\Effect\Cartoon FX Remaster\CFXR Prefabs\Texts\_Make your own text effect.txt" />
+    <None Include="Assets\Effect\Cartoon FX Remaster\CFXR Assets\Shaders\CFXR_PASSES.cginc" />
     <None Include="Assets\GoogleMobileAds\GoogleMobileAds_version-11.5.0_manifest.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\GoogleMobileAds\GoogleMobileAds.Unity.dll" />
@@ -249,8 +255,10 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\FireBase\Plugins\Firebase.Storage.dll" />
+    <None Include="Assets\Effect\Cartoon FX Remaster\CFXR Assets\Shaders\CFXR_URP.cginc" />
     <None Include="Assets\FireBase\Plugins\Google.MiniJson.dll" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
+    <None Include="Assets\Eric VFX Studio\Resource\Shader\AdditiveFlow.shader" />
     <None Include="Assets\FireBase\Plugins\iOS\Firebase.Storage.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\FireBase\Plugins\iOS\Firebase.App.dll" />
@@ -1768,6 +1776,10 @@
     <ProjectReference Include="Unity.AppUI.MVVM.csproj">
       <Project>{217D491B-526E-5046-A8FF-73C5E137F37D}</Project>
       <Name>Unity.AppUI.MVVM</Name>
+    </ProjectReference>
+    <ProjectReference Include="CFXREditor.csproj">
+      <Project>{EF2EB5DD-1D50-068B-C85E-5A2EB60FEA54}</Project>
+      <Name>CFXREditor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.2D.Tilemap.Extras.csproj">
       <Project>{70BA36D3-0F7A-A181-3B1B-57510611A1D8}</Project>

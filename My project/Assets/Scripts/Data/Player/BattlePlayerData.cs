@@ -192,7 +192,7 @@ public class BattlePlayerData : TurnParticipantBase
     private void ADDSamplePlayerData()
     {
         for (int i = 1; i <= GAME_CONST.Const.MAX_DECK; i++)
-            Decks.Add(i % 4 + 1);
+            Decks.Add(i % 4 + 1001);
 
         var stage = BattleManager.instance.GetCurrentStage();
         var AddressableMgr = AddressableManager.instance;

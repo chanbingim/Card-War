@@ -7,28 +7,27 @@ using UnityEngine.UI;
 
 public class CardUI : UIBase, IActionDragHandler
 {
-    public UI_CardData  _Data { get; private set; }
+    public UI_CardData _Data { get; private set; }
 
     [SerializeField] private Vector3 HoverAnimScale;
-    private Image       image = null;
-    private Text        text = null;
+
+    [SerializeField] private CanvasGroup    _CanvasGroup;
+    [SerializeField] private Image          _CardIcon;
+    [SerializeField] private Text           _Explanation;
 
     void Awake()
     {
-        image = GetComponent<Image>();
-        text = GetComponent<Text>();
-
-        DOTween.Init(true, true, LogBehaviour.Verbose).SetCapacity(200, 10);
+        
     }
 
     public void SettingData(UI_CardData data)
     {
-        _Data = data;
-
-        if (_Data == null)
+        if (data == null)
             return;
 
-        image.sprite = data.sprite;
+        _Data = data;
+        _CardIcon.sprite = _Data.CardData.Icon;
+        _Explanation.text = _Data.CardData.Description;
     }
 
     public void DrawAnimation(Vector3 Pos)
@@ -39,12 +38,15 @@ public class CardUI : UIBase, IActionDragHandler
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (DragManager.instance.StartDrag(this))
-            image.DOFade(0, 0.3f);
+        {
+            _CanvasGroup.DOFade(0, 0.3f);
+            _CanvasGroup.interactable = false;
+        }
     }
 
     protected override void OnDestroy()
     {
-        image.DOKill();
+        _CanvasGroup.DOKill();
         base.OnDestroy();
     }
 
@@ -71,7 +73,8 @@ public class CardUI : UIBase, IActionDragHandler
 
     void IActionDragHandler.EndDrag()
     {
-        image.DOFade(1, 0.3f);
+        _CanvasGroup.DOFade(1, 0.3f);
+        _CanvasGroup.interactable = true;
     }
 
     void IActionDragHandler.OnHovering()

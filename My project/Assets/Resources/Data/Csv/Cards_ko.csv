@@ -1,5 +1,5 @@
-ID,TextureKey,Name,eEffectType,eTargetType,Power,Duration,MaxStacks,Description
-1001,Boss,타격,Damage,EnemySelf,3,0,1,대상에게 3의 피해를 줍니다.
-1002,Fly,치유,Heal,FriendlySelf,4,0,1,대상의 체력을 4 회복합니다.
-1003,Green,공격 강화,AttackBuff,FriendlySelf,2,3,3,3턴 동안 대상의 공격력을 2 증가시킵니다. 최대 3회 중첩됩니다.
-1004,Knight,방어 강화,DefenseBuff,FriendlySelf,3,2,1,2턴 동안 대상의 방어력을 3 증가시킵니다 아마도?.
+ID,TextureKey,Name,eEffectType,eTargetType,Power,Duration,MaxStacks,Description,EffectKeys
+1001,Attack,타격,Damage,EnemySelf,3,0,1,대상에게 3의 피해를 줍니다.,VFX_Boom
+1002,Heal,치유,Heal,FriendlySelf,4,0,1,대상의 체력을 4 회복합니다.,VFX_Heal
+1003,Guard,공격 강화,AttackBuff,FriendlySelf,2,3,3,3턴 동안 대상의 공격력을 2 증가시킵니다. 최대 3회 중첩됩니다.,VFX_Strong
+1004,Guard,방어 강화,DefenseBuff,FriendlySelf,3,2,1,2턴 동안 대상의 방어력을 3 증가시킵니다 아마도?.,VFX_Strong

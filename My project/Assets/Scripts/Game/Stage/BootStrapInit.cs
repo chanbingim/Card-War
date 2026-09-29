@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 
@@ -13,12 +14,11 @@ public class BootStrapInit : MonoBehaviour
 
     private async UniTask InitAsync()
     {
+        DOTween.Init(true, true, LogBehaviour.Verbose).SetCapacity(200, 10);
         await AddressableManager.instance.InitializeAsync();
-        await UniTask.WhenAll(
-            UIManager.instance.InitializeAsync(),
-            DataManager.instance.InitializeAsync()
-         );
+        await UIManager.instance.InitializeAsync();
 
+        DataManager.instance.Initalize();
         GameManager.instance.ChangeScene("MainMenu");
 
         Debug.Log("비동기 2초 대기");
