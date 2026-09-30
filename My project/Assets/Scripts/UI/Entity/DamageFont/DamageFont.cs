@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using UnityEditor;
 using UnityEngine;
 
 public class DamageFont : MonoBehaviour
@@ -19,7 +20,7 @@ public class DamageFont : MonoBehaviour
     [SerializeField] int        _ViewFontCount = 10;
     [SerializeField] Texture    _DamageTexture = null;
     [SerializeField] Mesh       _Mesh = null;
-    [SerializeField] Material _material = null;
+    [SerializeField] Material   _material = null;
 
     InstancingComponent         _InstancingComponent = null;
     PoolAbleComponent           _PoolAbleComponent = null;
@@ -49,7 +50,7 @@ public class DamageFont : MonoBehaviour
         _DoTweenAnimator = GetComponent<DoTweenAnimator>();
         _PoolAbleComponent = GetComponent<PoolAbleComponent>();
 
-        _DoTweenAnimator.Pause_Animation();
+        _DoTweenAnimator?.Pause_Animation();
 
         _material.SetTexture("_BaseMap", _DamageTexture);
     }
@@ -86,7 +87,8 @@ public class DamageFont : MonoBehaviour
         if (_AnimCoroutine != null)
             StopCoroutine(_AnimCoroutine);
 
-        _AnimCoroutine = StartCoroutine(AnimCorutine(_DoTweenAnimator.GetToatalAnimTime()));
+       /* if (_DoTweenAnimator != null)
+            _AnimCoroutine = StartCoroutine(AnimCorutine(_DoTweenAnimator.GetToatalAnimTime()));*/
     }
 
     private void LateUpdate()
@@ -99,9 +101,6 @@ public class DamageFont : MonoBehaviour
     IEnumerator AnimCorutine(float LifeTime)
     {
         float time = 0;
-        if (_DoTweenAnimator == null)
-            yield return null;
-
         _DoTweenAnimator.Play_Animation();
 
         while (time < LifeTime)

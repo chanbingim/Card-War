@@ -73,7 +73,11 @@ public class GachaSystem : MonoBehaviour, IInitialize
             return -1;
         }
 
-        return GetGachaResult();
+        int ItemID = GetGachaResult();
+        if (ItemID != 0)
+            ClientData._playerData.ADDCollection(ItemID);
+
+        return ItemID;
     }
 
     private int GetGachaResult()

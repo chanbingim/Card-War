@@ -1,11 +1,11 @@
 [Licensing::Module] Trying to connect to existing licensing client channel...
 Built from '6000.3/staging' branch; Version is '6000.3.17f1 (cf0352b38e81) revision 13566802'; Using compiler version '194234433'; Build Type 'Release'
-OS: 'Windows 11  (10.0.26200) Core' Language: 'ko' Physical Memory: 32586 MB
-[Licensing::IpcConnector] Successfully connected to: "LicenseClient-gimch" at "2026-09-29T05:40:06.119338Z"
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-gimch" at "2026-09-30T15:03:25.4665578Z"
+OS: 'Windows 11  (10.0.26200) Professional' Language: 'ko' Physical Memory: 16232 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
 System  architecture: x64
 Process architecture: x64
-Date: 2026-09-29T05:40:06Z
+Date: 2026-09-30T15:03:25Z
 
 COMMAND LINE ARGUMENTS:
 C:\Program Files\Unity\Hub\Editor\6000.3.17f1\Editor\Unity.exe
@@ -15,11 +15,11 @@ C:\Program Files\Unity\Hub\Editor\6000.3.17f1\Editor\Unity.exe
 -name
 AssetImportWorker7
 -projectPath
-C:/Git/GitHub/HanessTest/My project
+C:/Users/gimch/Documents/GitHub/HanessTest/My project
 -logFile
 Logs/AssetImportWorker7.log
 -srvPort
-59185
+58262
 -licensingIpc
 LicenseClient-gimch
 -job-worker-count
@@ -30,8 +30,8 @@ LicenseClient-gimch
 1
 -name
 AssetImport
-Successfully changed project path to: C:/Git/GitHub/HanessTest/My project
-C:/Git/GitHub/HanessTest/My project
+Successfully changed project path to: C:/Users/gimch/Documents/GitHub/HanessTest/My project
+C:/Users/gimch/Documents/GitHub/HanessTest/My project
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
     "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
     "memorysetup-temp-allocator-size-audio-worker=65536"
@@ -67,12 +67,12 @@ C:/Git/GitHub/HanessTest/My project
     "memorysetup-job-temp-allocator-block-size-background=1048576"
     "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
     "memorysetup-temp-allocator-size-cloud-worker=32768"
-Player connection [47564]  Target information:
+Player connection [25828]  Target information:
 
-Player connection [47564]  * "[IP] 10.167.236.160 [Port] 0 [Flags] 2 [Guid] 710404346 [EditorId] 710404346 [Version] 1048832 [Id] WindowsEditor(7,PinkPig) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+Player connection [25828]  * "[IP] 49.142.53.194 [Port] 0 [Flags] 2 [Guid] 581172067 [EditorId] 581172067 [Version] 1048832 [Id] WindowsEditor(7,CHANBIN) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
 
-Player connection [47564] Host joined multi-casting on [225.0.0.222:54997]...
-Player connection [47564] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [25828] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [25828] Host joined alternative multi-casting on [225.0.0.222:34997]...
 JobSystem: Creating JobQueue using job-worker-count value 7
 Input System module state changed to: Initialized.
 [Physics::Module] Initialized fallback backend.
@@ -84,25 +84,25 @@ Library Redirect Path: Library/
 [Physics::Module] SDK Version: 4.1.2
 [Physics::Module] Integration Version: 1.0.0
 [Physics::Module] Threading Mode: Multi-Threaded
-Refreshing native plugins compatible for Editor in 16.66 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 1.41 ms.
+Refreshing native plugins compatible for Editor in 12.64 ms, found 9 plugins.
+Preloading 1 native plugins for Editor in 1.72 ms.
 Initialize engine version: 6000.3.17f1 (cf0352b38e81)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.3.17f1/Editor/Data/Resources/UnitySubsystems
-[Subsystems] Discovering subsystems at path C:/Git/GitHub/HanessTest/My project/Assets
+[Subsystems] Discovering subsystems at path C:/Users/gimch/Documents/GitHub/HanessTest/My project/Assets
 GfxDevice: creating device client; kGfxThreadingModeNonThreaded
 d3d12: failed to query info queue interface (0x80004002).
 Direct3D:
     Version:         Direct3D 12 [level 12.2]
-    Renderer:        NVIDIA GeForce RTX 4050 Laptop GPU (ID=0x28e1)
+    Renderer:        NVIDIA GeForce RTX 3060 (ID=0x2504)
     Vendor:          NVIDIA
-    VRAM:            5921 MB
-    App VRAM Budget: 5153 MB
-    Driver:          32.0.15.6626
+    VRAM:            12115 MB
+    App VRAM Budget: 11347 MB
+    Driver:          32.0.15.6094
 Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.3.17f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.3.17f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.3.17f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56748
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56820
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.3.17f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
@@ -112,19 +112,19 @@ Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.3.17f1/
 	ResponseStatus: Unsupported protocol version '1.18.1'.
 [Licensing::Module] Error: Failed to handshake to channel: "LicenseClient-gimch"
 [Licensing::IpcConnector] LicenseClient-gimch channel disconnected successfully.
-[Licensing::IpcConnector] Successfully connected to: "LicenseClient-gimch-6000.3.17" at "2026-09-29T05:40:08.2076526Z"
-[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 37000, path: "C:/Program Files/Unity/Hub/Editor/6000.3.17f1/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client.exe")
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-gimch-6000.3.17" at "2026-09-30T15:03:27.5451799Z"
+[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 17076, path: "C:/Program Files/Unity/Hub/Editor/6000.3.17f1/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client.exe")
 [Licensing::Module] LicensingClient has failed validation; ignoring
 [Licensing::Client] Handshaking with LicensingClient:
   Version:                 1.18.1+9fbee8e
-  Session Id:              64795e199a0e49e389b5841711ae9576
-  Correlation Id:          e336da426deaf78ac6fc5ce035e16ec8
-  External correlation Id: 3176292158152931030
-  Machine Id:              qYODGWtciqlND+gpT+KAP1aicpw=
+  Session Id:              a989e5b8b9c043868689ec42a76b3f29
+  Correlation Id:          87d44e3b621c466e083af483a6a21302
+  External correlation Id: 6428076309489647238
+  Machine Id:              KrNS+X8tESWlg/RUg6sq3F0RFxo=
 [Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-gimch-6000.3.17" (connect: 0.00s, validation: 0.00s, handshake: 0.01s)
-[Licensing::IpcConnector] Successfully connected to: "LicenseClient-gimch-6000.3.17-notifications" at "2026-09-29T05:40:08.2178504Z"
-[Licensing::Module] Licensing Background thread has ended after 2.10s
-[Licensing::Module] Licensing is initialized (took 0.74s).
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-gimch-6000.3.17-notifications" at "2026-09-30T15:03:27.5529332Z"
+[Licensing::Module] Licensing Background thread has ended after 2.09s
+[Licensing::Module] Licensing is initialized (took 1.07s).
 [Licensing::Client] Successfully resolved entitlement details
 [Licensing::Module] License group:
   Id: 14568713557572-UnityPersXXXX
@@ -132,8 +132,8 @@ Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.3.17f1/
   Type: Assigned
   Expiration: Unlimited
 Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.3.17f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
-Registered in 0.747439 seconds.
-- Loaded All Assemblies, in  1.138 seconds
+Registered in 1.078466 seconds.
+- Loaded All Assemblies, in  1.506 seconds
 Native extension for Android target not found
 Native extension for WindowsStandalone target not found
 Package Manager log level set to [2]
@@ -142,35 +142,35 @@ Package Manager log level set to [2]
 [Package Manager] Cannot connect to Unity Package Manager local server
 ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.431 seconds
-Domain Reload Profiling: 1567ms
-	BeginReloadAssembly (132ms)
+- Finished resetting the current domain, in  0.416 seconds
+Domain Reload Profiling: 1921ms
+	BeginReloadAssembly (158ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
 		CreateAndSetChildDomain (1ms)
-	RebuildCommonClasses (35ms)
+	RebuildCommonClasses (34ms)
 	RebuildNativeTypeToScriptingClass (11ms)
-	initialDomainReloadingComplete (795ms)
-	LoadAllAssembliesAndSetupDomain (162ms)
-		LoadAssemblies (130ms)
+	initialDomainReloadingComplete (1122ms)
+	LoadAllAssembliesAndSetupDomain (180ms)
+		LoadAssemblies (157ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (158ms)
-			TypeCache.Refresh (156ms)
-				TypeCache.ScanAssembly (144ms)
+		AnalyzeDomain (176ms)
+			TypeCache.Refresh (174ms)
+				TypeCache.ScanAssembly (161ms)
 			BuildScriptInfoCaches (0ms)
-			ResolveRequiredComponents (1ms)
-	FinalizeReload (431ms)
+			ResolveRequiredComponents (0ms)
+	FinalizeReload (417ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (371ms)
+		SetupLoadedEditorAssemblies (358ms)
 			LogAssemblyErrors (0ms)
 			InitializePlatformSupportModulesInManaged (57ms)
-			SetLoadedEditorAssemblies (5ms)
-			BeforeProcessingInitializeOnLoad (88ms)
-			ProcessInitializeOnLoadAttributes (141ms)
-			ProcessInitializeOnLoadMethodAttributes (79ms)
+			SetLoadedEditorAssemblies (4ms)
+			BeforeProcessingInitializeOnLoad (77ms)
+			ProcessInitializeOnLoadAttributes (132ms)
+			ProcessInitializeOnLoadMethodAttributes (88ms)
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
@@ -181,28 +181,28 @@ Import Worker Mode flag is 0x00
 Begin MonoManager ReloadAssembly
 [Licensing::Client] Successfully resolved entitlement details
 Symbol file LoadedFromMemory is not a mono symbol file
-- Loaded All Assemblies, in  1.399 seconds
-Refreshing native plugins compatible for Editor in 19.80 ms, found 9 plugins.
+- Loaded All Assemblies, in  1.286 seconds
+Refreshing native plugins compatible for Editor in 30.58 ms, found 9 plugins.
 Native extension for Android target not found
 Native extension for WindowsStandalone target not found
 [Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] Unable to send message (not connected to server process).
 [Package Manager] Cannot connect to Unity Package Manager local server
-Refreshing native plugins compatible for Editor in 20.99 ms, found 9 plugins.
+Refreshing native plugins compatible for Editor in 18.53 ms, found 9 plugins.
 [Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] Unable to send message (not connected to server process).
 [Package Manager] Cannot connect to Unity Package Manager local server
 System.Exception: Error! Visual Scripting: couldn't find visual scripting package
-  at Unity.VisualScripting.PackageVersionUtility.get_version () [0x00025] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\PackageVersionUtility.cs:22 
+  at Unity.VisualScripting.PackageVersionUtility.get_version () [0x00043] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\PackageVersionUtility.cs:31 
   at Unity.VisualScripting.BoltCoreManifest.get_version () [0x00000] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Plugin\BoltCoreManifest.cs:11 
   at Unity.VisualScripting.PluginManifest.get_currentVersion () [0x00000] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Plugins\PluginManifest.cs:33 
   at Unity.VisualScripting.PluginManifest.get_versionMismatch () [0x00000] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Plugins\PluginManifest.cs:48 
-  at Unity.VisualScripting.PluginContainer.Initialize () [0x0057d] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Plugins\PluginContainer.cs:208 
-  at Unity.VisualScripting.PluginContainer.InitializeOnLoad () [0x00012] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Plugins\PluginContainer.cs:32 
-  at Unity.VisualScripting.VSUsageUtility.DoInitializeOnLoadCalls () [0x00044] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\VSUsageUtility.cs:76 
-  at Unity.VisualScripting.VSUsageUtility.set_isVisualScriptingUsed (System.Boolean value) [0x00037] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\VSUsageUtility.cs:114 
-  at Unity.VisualScripting.VSUsageUtility.CheckAndSetIsVisualScriptingUsed () [0x0003f] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\VSUsageUtility.cs:48 
-  at Unity.VisualScripting.VSUsageUtility..cctor () [0x0000d] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\VSUsageUtility.cs:22 
+  at Unity.VisualScripting.PluginContainer.Initialize () [0x00525] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Plugins\PluginContainer.cs:208 
+  at Unity.VisualScripting.PluginContainer.InitializeOnLoad () [0x00009] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Plugins\PluginContainer.cs:32 
+  at Unity.VisualScripting.VSUsageUtility.DoInitializeOnLoadCalls () [0x00034] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\VSUsageUtility.cs:76 
+  at Unity.VisualScripting.VSUsageUtility.set_isVisualScriptingUsed (System.Boolean value) [0x0002c] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\VSUsageUtility.cs:114 
+  at Unity.VisualScripting.VSUsageUtility.CheckAndSetIsVisualScriptingUsed () [0x00032] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\VSUsageUtility.cs:48 
+  at Unity.VisualScripting.VSUsageUtility..cctor () [0x00000] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\VSUsageUtility.cs:22 
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
@@ -213,39 +213,39 @@ UnityEditor.EditorAssemblies:ProcessInitializeOnLoadAttributes (System.Type[])
 
 ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  3.515 seconds
-Domain Reload Profiling: 4908ms
-	BeginReloadAssembly (186ms)
+- Finished resetting the current domain, in  1.777 seconds
+Domain Reload Profiling: 3053ms
+	BeginReloadAssembly (178ms)
 		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (7ms)
+		DisableScriptedObjects (10ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (34ms)
-	RebuildCommonClasses (44ms)
-	RebuildNativeTypeToScriptingClass (12ms)
-	initialDomainReloadingComplete (47ms)
-	LoadAllAssembliesAndSetupDomain (1104ms)
-		LoadAssemblies (712ms)
+		CreateAndSetChildDomain (28ms)
+	RebuildCommonClasses (33ms)
+	RebuildNativeTypeToScriptingClass (11ms)
+	initialDomainReloadingComplete (48ms)
+	LoadAllAssembliesAndSetupDomain (1006ms)
+		LoadAssemblies (653ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (489ms)
-			TypeCache.Refresh (332ms)
-				TypeCache.ScanAssembly (305ms)
-			BuildScriptInfoCaches (136ms)
-			ResolveRequiredComponents (15ms)
-	FinalizeReload (3516ms)
+		AnalyzeDomain (447ms)
+			TypeCache.Refresh (308ms)
+				TypeCache.ScanAssembly (285ms)
+			BuildScriptInfoCaches (120ms)
+			ResolveRequiredComponents (12ms)
+	FinalizeReload (1777ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (3200ms)
+		SetupLoadedEditorAssemblies (1541ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (13ms)
-			SetLoadedEditorAssemblies (14ms)
-			BeforeProcessingInitializeOnLoad (556ms)
-			ProcessInitializeOnLoadAttributes (2147ms)
-			ProcessInitializeOnLoadMethodAttributes (460ms)
-			AfterProcessingInitializeOnLoad (8ms)
+			InitializePlatformSupportModulesInManaged (10ms)
+			SetLoadedEditorAssemblies (6ms)
+			BeforeProcessingInitializeOnLoad (197ms)
+			ProcessInitializeOnLoadAttributes (1047ms)
+			ProcessInitializeOnLoadMethodAttributes (277ms)
+			AfterProcessingInitializeOnLoad (4ms)
 			EditorAssembliesLoaded (1ms)
 		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (9ms)
+		AwakeInstancesAfterBackupRestoration (6ms)
 WARNING: Shader Unsupported: 'Spine/Outline/SkeletonGraphic' - All subshaders removed
 WARNING: Shader Did you use #pragma only_renderers and omit this platform?
 WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
@@ -336,13 +336,13 @@ WARNING: Shader If subshaders removal was intentional, you may have forgotten tu
 WARNING: Shader Unsupported: 'Spine/Outline/Blend Modes/Skeleton PMA Multiply' - All subshaders removed
 WARNING: Shader Did you use #pragma only_renderers and omit this platform?
 WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.01 seconds
-Refreshing native plugins compatible for Editor in 22.21 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 0.15 ms.
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.02 seconds
+Refreshing native plugins compatible for Editor in 11.50 ms, found 9 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
 Unloading 31 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 11481 unused Assets / (10.7 MB). Loaded Objects now: 12343.
-Memory consumption went from 225.3 MB to 214.6 MB.
-Total: 54.294500 ms (FindLiveObjects: 1.680600 ms CreateObjectMapping: 2.294900 ms MarkObjects: 41.671500 ms  DeleteObjects: 8.646200 ms)
+Unloading 11476 unused Assets / (10.9 MB). Loaded Objects now: 12342.
+Memory consumption went from 228.3 MB to 217.4 MB.
+Total: 25.380100 ms (FindLiveObjects: 0.959000 ms CreateObjectMapping: 1.103600 ms MarkObjects: 17.679200 ms  DeleteObjects: 5.635300 ms)
 
 ========================================================================
 Received Prepare
@@ -436,83 +436,16 @@ WARNING: Shader If subshaders removal was intentional, you may have forgotten tu
 WARNING: Shader Unsupported: 'Spine/Outline/Blend Modes/Skeleton PMA Multiply' - All subshaders removed
 WARNING: Shader Did you use #pragma only_renderers and omit this platform?
 WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-Refreshing native plugins compatible for Editor in 22.53 ms, found 9 plugins.
+Refreshing native plugins compatible for Editor in 66.98 ms, found 9 plugins.
 Preloading 1 native plugins for Editor in 0.14 ms.
 Unloading 31 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 11384 unused Assets / (7.2 MB). Loaded Objects now: 12343.
-Memory consumption went from 218.5 MB to 211.4 MB.
-Total: 48.778300 ms (FindLiveObjects: 2.013500 ms CreateObjectMapping: 2.043100 ms MarkObjects: 38.672700 ms  DeleteObjects: 6.047500 ms)
+Unloading 11379 unused Assets / (4.6 MB). Loaded Objects now: 12342.
+Memory consumption went from 221.6 MB to 217.0 MB.
+Total: 79.211400 ms (FindLiveObjects: 4.778700 ms CreateObjectMapping: 2.250800 ms MarkObjects: 60.202800 ms  DeleteObjects: 11.976800 ms)
 
 Prepare: number of updated asset objects reloaded= 0
 ========================================================================
 Received Prepare
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory is not a mono symbol file
-- Loaded All Assemblies, in  2.127 seconds
-Refreshing native plugins compatible for Editor in 21.84 ms, found 9 plugins.
-Native extension for Android target not found
-Native extension for WindowsStandalone target not found
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-Refreshing native plugins compatible for Editor in 27.14 ms, found 9 plugins.
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-System.Exception: Error! Visual Scripting: couldn't find visual scripting package
-  at Unity.VisualScripting.PackageVersionUtility.get_version () [0x00025] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\PackageVersionUtility.cs:22 
-  at Unity.VisualScripting.BoltCoreManifest.get_version () [0x00000] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Plugin\BoltCoreManifest.cs:11 
-  at Unity.VisualScripting.PluginManifest.get_currentVersion () [0x00000] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Plugins\PluginManifest.cs:33 
-  at Unity.VisualScripting.PluginManifest.get_versionMismatch () [0x00000] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Plugins\PluginManifest.cs:48 
-  at Unity.VisualScripting.PluginContainer.Initialize () [0x0057d] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Plugins\PluginContainer.cs:208 
-  at Unity.VisualScripting.PluginContainer.InitializeOnLoad () [0x00012] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Plugins\PluginContainer.cs:32 
-  at Unity.VisualScripting.VSUsageUtility.DoInitializeOnLoadCalls () [0x00044] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\VSUsageUtility.cs:76 
-  at Unity.VisualScripting.VSUsageUtility.set_isVisualScriptingUsed (System.Boolean value) [0x00037] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\VSUsageUtility.cs:114 
-  at Unity.VisualScripting.VSUsageUtility.CheckAndSetIsVisualScriptingUsed () [0x00013] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\VSUsageUtility.cs:33 
-  at Unity.VisualScripting.VSUsageUtility..cctor () [0x0000d] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\VSUsageUtility.cs:22 
-UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
-UnityEngine.StackTraceUtility:ExtractStackTrace ()
-UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
-UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
-UnityEngine.Logger:Log (UnityEngine.LogType,object)
-UnityEngine.Debug:LogError (object)
-UnityEditor.EditorAssemblies:ProcessInitializeOnLoadAttributes (System.Type[])
-
-ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
-Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  3.858 seconds
-Domain Reload Profiling: 5980ms
-	BeginReloadAssembly (513ms)
-		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (30ms)
-		BackupInstance (0ms)
-		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (167ms)
-	RebuildCommonClasses (89ms)
-	RebuildNativeTypeToScriptingClass (27ms)
-	initialDomainReloadingComplete (74ms)
-	LoadAllAssembliesAndSetupDomain (1418ms)
-		LoadAssemblies (1057ms)
-		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (535ms)
-			TypeCache.Refresh (18ms)
-				TypeCache.ScanAssembly (2ms)
-			BuildScriptInfoCaches (482ms)
-			ResolveRequiredComponents (26ms)
-	FinalizeReload (3859ms)
-		ReleaseScriptCaches (0ms)
-		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (2693ms)
-			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (14ms)
-			SetLoadedEditorAssemblies (27ms)
-			BeforeProcessingInitializeOnLoad (680ms)
-			ProcessInitializeOnLoadAttributes (1385ms)
-			ProcessInitializeOnLoadMethodAttributes (576ms)
-			AfterProcessingInitializeOnLoad (10ms)
-			EditorAssembliesLoaded (1ms)
-		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (43ms)
 WARNING: Shader Unsupported: 'Spine/Outline/SkeletonGraphic' - All subshaders removed
 WARNING: Shader Did you use #pragma only_renderers and omit this platform?
 WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
@@ -603,12 +536,12 @@ WARNING: Shader If subshaders removal was intentional, you may have forgotten tu
 WARNING: Shader Unsupported: 'Spine/Outline/Blend Modes/Skeleton PMA Multiply' - All subshaders removed
 WARNING: Shader Did you use #pragma only_renderers and omit this platform?
 WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-Refreshing native plugins compatible for Editor in 21.71 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 0.11 ms.
+Refreshing native plugins compatible for Editor in 34.41 ms, found 9 plugins.
+Preloading 1 native plugins for Editor in 0.12 ms.
 Unloading 31 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 11479 unused Assets / (8.1 MB). Loaded Objects now: 12351.
-Memory consumption went from 227.4 MB to 219.3 MB.
-Total: 50.610800 ms (FindLiveObjects: 1.771800 ms CreateObjectMapping: 1.807900 ms MarkObjects: 40.605200 ms  DeleteObjects: 6.424200 ms)
+Unloading 11379 unused Assets / (2.5 MB). Loaded Objects now: 12342.
+Memory consumption went from 233.9 MB to 231.4 MB.
+Total: 75.576800 ms (FindLiveObjects: 2.821700 ms CreateObjectMapping: 2.426600 ms MarkObjects: 49.951500 ms  DeleteObjects: 20.375500 ms)
 
 Prepare: number of updated asset objects reloaded= 0
 ========================================================================
@@ -703,182 +636,24 @@ WARNING: Shader If subshaders removal was intentional, you may have forgotten tu
 WARNING: Shader Unsupported: 'Spine/Outline/Blend Modes/Skeleton PMA Multiply' - All subshaders removed
 WARNING: Shader Did you use #pragma only_renderers and omit this platform?
 WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-Refreshing native plugins compatible for Editor in 22.18 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 0.13 ms.
-Unloading 31 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 11384 unused Assets / (7.2 MB). Loaded Objects now: 12351.
-Memory consumption went from 230.5 MB to 223.3 MB.
-Total: 46.171300 ms (FindLiveObjects: 2.077100 ms CreateObjectMapping: 2.522500 ms MarkObjects: 34.619600 ms  DeleteObjects: 6.950400 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-========================================================================
-Received Prepare
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory is not a mono symbol file
-- Loaded All Assemblies, in  2.062 seconds
-Refreshing native plugins compatible for Editor in 22.57 ms, found 9 plugins.
-Native extension for Android target not found
-Native extension for WindowsStandalone target not found
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-Refreshing native plugins compatible for Editor in 26.55 ms, found 9 plugins.
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-System.Exception: Error! Visual Scripting: couldn't find visual scripting package
-  at Unity.VisualScripting.PackageVersionUtility.get_version () [0x00025] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\PackageVersionUtility.cs:22 
-  at Unity.VisualScripting.BoltCoreManifest.get_version () [0x00000] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Plugin\BoltCoreManifest.cs:11 
-  at Unity.VisualScripting.PluginManifest.get_currentVersion () [0x00000] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Plugins\PluginManifest.cs:33 
-  at Unity.VisualScripting.PluginManifest.get_versionMismatch () [0x00000] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Plugins\PluginManifest.cs:48 
-  at Unity.VisualScripting.PluginContainer.Initialize () [0x0057d] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Plugins\PluginContainer.cs:208 
-  at Unity.VisualScripting.PluginContainer.InitializeOnLoad () [0x00012] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Plugins\PluginContainer.cs:32 
-  at Unity.VisualScripting.VSUsageUtility.DoInitializeOnLoadCalls () [0x00044] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\VSUsageUtility.cs:76 
-  at Unity.VisualScripting.VSUsageUtility.set_isVisualScriptingUsed (System.Boolean value) [0x00037] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\VSUsageUtility.cs:114 
-  at Unity.VisualScripting.VSUsageUtility.CheckAndSetIsVisualScriptingUsed () [0x00013] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\VSUsageUtility.cs:33 
-  at Unity.VisualScripting.VSUsageUtility..cctor () [0x0000d] in .\Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\VSUsageUtility.cs:22 
-UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
-UnityEngine.StackTraceUtility:ExtractStackTrace ()
-UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
-UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
-UnityEngine.Logger:Log (UnityEngine.LogType,object)
-UnityEngine.Debug:LogError (object)
-UnityEditor.EditorAssemblies:ProcessInitializeOnLoadAttributes (System.Type[])
-
-ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
-Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  3.744 seconds
-Domain Reload Profiling: 5801ms
-	BeginReloadAssembly (485ms)
-		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (29ms)
-		BackupInstance (0ms)
-		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (143ms)
-	RebuildCommonClasses (78ms)
-	RebuildNativeTypeToScriptingClass (21ms)
-	initialDomainReloadingComplete (65ms)
-	LoadAllAssembliesAndSetupDomain (1406ms)
-		LoadAssemblies (1066ms)
-		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (515ms)
-			TypeCache.Refresh (26ms)
-				TypeCache.ScanAssembly (4ms)
-			BuildScriptInfoCaches (464ms)
-			ResolveRequiredComponents (19ms)
-	FinalizeReload (3745ms)
-		ReleaseScriptCaches (0ms)
-		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (2607ms)
-			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (11ms)
-			SetLoadedEditorAssemblies (19ms)
-			BeforeProcessingInitializeOnLoad (674ms)
-			ProcessInitializeOnLoadAttributes (1269ms)
-			ProcessInitializeOnLoadMethodAttributes (618ms)
-			AfterProcessingInitializeOnLoad (14ms)
-			EditorAssembliesLoaded (2ms)
-		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (45ms)
-WARNING: Shader Unsupported: 'Spine/Outline/SkeletonGraphic' - All subshaders removed
-WARNING: Shader Did you use #pragma only_renderers and omit this platform?
-WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-WARNING: Shader Unsupported: 'Spine/Outline/SkeletonGraphic' - All subshaders removed
-WARNING: Shader Did you use #pragma only_renderers and omit this platform?
-WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-WARNING: Shader Unsupported: 'Spine/Outline/Special/Skeleton Grayscale' - All subshaders removed
-WARNING: Shader Did you use #pragma only_renderers and omit this platform?
-WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-WARNING: Shader Unsupported: 'Spine/Outline/Special/Skeleton Grayscale' - All subshaders removed
-WARNING: Shader Did you use #pragma only_renderers and omit this platform?
-WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-WARNING: Shader Unsupported: 'Spine/Outline/Sprite/Vertex Lit' - All subshaders removed
-WARNING: Shader Did you use #pragma only_renderers and omit this platform?
-WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-WARNING: Shader Unsupported: 'Spine/Outline/Sprite/Vertex Lit' - All subshaders removed
-WARNING: Shader Did you use #pragma only_renderers and omit this platform?
-WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-WARNING: Shader Unsupported: 'Spine/Outline/SkeletonGraphic Tint Black' - All subshaders removed
-WARNING: Shader Did you use #pragma only_renderers and omit this platform?
-WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-WARNING: Shader Unsupported: 'Spine/Outline/SkeletonGraphic Tint Black' - All subshaders removed
-WARNING: Shader Did you use #pragma only_renderers and omit this platform?
-WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Lit ZWrite' - All subshaders removed
-WARNING: Shader Did you use #pragma only_renderers and omit this platform?
-WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Lit ZWrite' - All subshaders removed
-WARNING: Shader Did you use #pragma only_renderers and omit this platform?
-WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Fill' - All subshaders removed
-WARNING: Shader Did you use #pragma only_renderers and omit this platform?
-WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Fill' - All subshaders removed
-WARNING: Shader Did you use #pragma only_renderers and omit this platform?
-WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-WARNING: Shader Unsupported: 'Spine/Outline/Blend Modes/Skeleton PMA Additive' - All subshaders removed
-WARNING: Shader Did you use #pragma only_renderers and omit this platform?
-WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-WARNING: Shader Unsupported: 'Spine/Outline/Blend Modes/Skeleton PMA Additive' - All subshaders removed
-WARNING: Shader Did you use #pragma only_renderers and omit this platform?
-WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Lit' - All subshaders removed
-WARNING: Shader Did you use #pragma only_renderers and omit this platform?
-WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Lit' - All subshaders removed
-WARNING: Shader Did you use #pragma only_renderers and omit this platform?
-WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-WARNING: Shader Unsupported: 'Spine/Outline/Sprite/Unlit' - All subshaders removed
-WARNING: Shader Did you use #pragma only_renderers and omit this platform?
-WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-WARNING: Shader Unsupported: 'Spine/Outline/Sprite/Unlit' - All subshaders removed
-WARNING: Shader Did you use #pragma only_renderers and omit this platform?
-WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Tint' - All subshaders removed
-WARNING: Shader Did you use #pragma only_renderers and omit this platform?
-WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Tint' - All subshaders removed
-WARNING: Shader Did you use #pragma only_renderers and omit this platform?
-WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-WARNING: Shader Unsupported: 'Spine/Outline/Sprite/Pixel Lit' - All subshaders removed
-WARNING: Shader Did you use #pragma only_renderers and omit this platform?
-WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-WARNING: Shader Unsupported: 'Spine/Outline/Sprite/Pixel Lit' - All subshaders removed
-WARNING: Shader Did you use #pragma only_renderers and omit this platform?
-WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-WARNING: Shader Unsupported: 'Spine/Outline/Skeleton' - All subshaders removed
-WARNING: Shader Did you use #pragma only_renderers and omit this platform?
-WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-WARNING: Shader Unsupported: 'Spine/Outline/Skeleton' - All subshaders removed
-WARNING: Shader Did you use #pragma only_renderers and omit this platform?
-WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-WARNING: Shader Unsupported: 'Spine/Outline/Blend Modes/Skeleton PMA Screen' - All subshaders removed
-WARNING: Shader Did you use #pragma only_renderers and omit this platform?
-WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-WARNING: Shader Unsupported: 'Spine/Outline/Blend Modes/Skeleton PMA Screen' - All subshaders removed
-WARNING: Shader Did you use #pragma only_renderers and omit this platform?
-WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Tint Black' - All subshaders removed
-WARNING: Shader Did you use #pragma only_renderers and omit this platform?
-WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-WARNING: Shader Unsupported: 'Spine/Outline/Skeleton Tint Black' - All subshaders removed
-WARNING: Shader Did you use #pragma only_renderers and omit this platform?
-WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-WARNING: Shader Unsupported: 'Spine/Outline/Blend Modes/Skeleton PMA Multiply' - All subshaders removed
-WARNING: Shader Did you use #pragma only_renderers and omit this platform?
-WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-WARNING: Shader Unsupported: 'Spine/Outline/Blend Modes/Skeleton PMA Multiply' - All subshaders removed
-WARNING: Shader Did you use #pragma only_renderers and omit this platform?
-WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-Refreshing native plugins compatible for Editor in 23.71 ms, found 9 plugins.
+Refreshing native plugins compatible for Editor in 53.30 ms, found 9 plugins.
 Preloading 1 native plugins for Editor in 0.15 ms.
 Unloading 31 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 11479 unused Assets / (8.3 MB). Loaded Objects now: 12358.
-Memory consumption went from 234.9 MB to 226.6 MB.
-Total: 40.393200 ms (FindLiveObjects: 2.052100 ms CreateObjectMapping: 2.800900 ms MarkObjects: 28.389700 ms  DeleteObjects: 7.147900 ms)
+Unloading 11379 unused Assets / (2.5 MB). Loaded Objects now: 12342.
+Memory consumption went from 246.6 MB to 244.0 MB.
+Total: 56.398100 ms (FindLiveObjects: 1.781000 ms CreateObjectMapping: 3.177600 ms MarkObjects: 44.848900 ms  DeleteObjects: 6.588500 ms)
 
 Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Import Request.
+  Time since last request: 9785.860408 seconds.
+  path: Assets/Effect/Eric VFX Studio/Free Game VFX/Prefab/FX_PinkCross_Up.prefab
+  artifactKey: Guid(cd2a6771c578ec3478980c2e5a5f41ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Effect/Eric VFX Studio/Free Game VFX/Prefab/FX_PinkCross_Up.prefab using Guid(cd2a6771c578ec3478980c2e5a5f41ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'd0d6578555894aefdcbdd0393f445de5') in 1.1669321 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 46
+
 Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
 AssetImportWorker is now disconnected from the server
 Process exiting
 Exiting without the bug reporter. Application will terminate with return code 0

@@ -19,6 +19,7 @@ public class GameClientManager : MonoBehaviour
     {
         _playerData.OnChangeCurrencyValue += action;
     }
+
     public void UnSubscribeCurrencyEvent(Action<ECurrency, int> action)
     {
         _playerData.OnChangeCurrencyValue -= action;

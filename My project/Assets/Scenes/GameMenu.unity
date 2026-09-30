@@ -490,6 +490,7 @@ GameObject:
   - component: {fileID: 336968767}
   - component: {fileID: 336968766}
   - component: {fileID: 336968765}
+  - component: {fileID: 336968768}
   m_Layer: 5
   m_Name: BuildDeck
   m_TagString: Untagged
@@ -567,6 +568,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 336968763}
   m_CullTransparentMesh: 1
+--- !u!114 &336968768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 336968763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39546e2ecf8967e4e90231ac116ee42b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneMoveComponent
+  _PointerEventEnable: 1
+  _NextScene: DeckBuildScene
+  _StageIndex: 0
 --- !u!1 &391893411
 GameObject:
   m_ObjectHideFlags: 0
@@ -617,6 +633,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0704a2b615ac3f745b5711bab4e47d87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChangeCanvasComponent
+  _OnEnable: 1
   _VisibleCanvas:
   - {fileID: 1974506756}
   - {fileID: 288492857}
@@ -762,6 +779,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0704a2b615ac3f745b5711bab4e47d87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChangeCanvasComponent
+  _OnEnable: 1
   _VisibleCanvas:
   - {fileID: 1279647995}
   _UnVisibleCanvas:

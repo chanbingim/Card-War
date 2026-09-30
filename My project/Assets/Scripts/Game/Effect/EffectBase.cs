@@ -1,22 +1,15 @@
 using DG.Tweening;
+using System.Collections;
 using UnityEngine;
 
-public class EffectBase : MonoBehaviour
+public class EffectBase : PoolAbleComponent
 {
     private ParticleSystem       _particleSystem = null;
-    private PoolAbleComponent    _PoolableComponent = null;
+    private Coroutine            _returnCoroutine = null;
 
-    void Start()
+    void Awake()
     {
-        _particleSystem = GetComponent<ParticleSystem>();
-        if(_particleSystem == null)
-            Debug.LogWarning($"[EffectBase] Name : {name} Not find ParticleSystem");
-
-        // Callback 설정
-        var Particle = _particleSystem.main;
-        Particle.stopAction = ParticleSystemStopAction.Callback;
-
-        _PoolableComponent = GetComponent<PoolAbleComponent>();
+    
     }
 
     public void Play()
@@ -24,14 +17,19 @@ public class EffectBase : MonoBehaviour
         // 자식까지 시작은 해야함
         if( _particleSystem == null )
         {
-            Debug.LogWarning($"[EffectBase] Name : {name} Not find ParticleSystem");
-            return;
+            _particleSystem = GetComponent<ParticleSystem>();
+
         }
 
         if (_particleSystem.isPlaying)
             _particleSystem.DORestart();
         else
             _particleSystem.DOPlay();
+
+        if (_returnCoroutine != null)
+            StopCoroutine(_returnCoroutine);
+
+        _returnCoroutine = StartCoroutine(WaitUntilFinished());
     }
 
     public void Stop()
@@ -46,8 +44,15 @@ public class EffectBase : MonoBehaviour
         _particleSystem.Stop();
     }
 
-    private void OnParticleSystemStopped()
+    private IEnumerator WaitUntilFinished()
     {
-        _PoolableComponent?.ReturnToPool();
+        // 매 프레임 확인할 필요가 없으면 간격을 둘 수 있음
+        var particleMain = _particleSystem.main;
+
+        float Time = particleMain.startLifetime.constantMax + particleMain.duration;
+        yield return new WaitForSeconds(Time);
+
+        _returnCoroutine = null;
+        ReturnToPool();
     }
 }

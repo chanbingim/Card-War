@@ -32,7 +32,7 @@ public class ObjectPool<T> where T : PoolAbleComponent
 
             CreateCount = PoolObject.PoolInitCount;
 
-            _PoolList.Add(PoolObject.name, PoolQueue);
+            _PoolList.Add(PoolObject.PoolName, PoolQueue);
         }
 
         for (int i = 0; i < CreateCount; i++)

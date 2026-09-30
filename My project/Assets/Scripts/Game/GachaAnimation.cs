@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,7 +10,9 @@ public class SpriteAnimation : MonoBehaviour
 
     private ChangeCanvasComponent        _OnCanvasChange = null;
     private Animator                     animator = null;
+
     private bool    AllVeiw = false;
+    private int     GachaCount = 0;
     private int     NextCount = 0;
 
     private void Awake()
@@ -24,7 +25,7 @@ public class SpriteAnimation : MonoBehaviour
         _OkButton.onClick.AddListener(ClickEvent);
     }
 
-    public void PlayAnimation() 
+    public void PlayAnimation(int Count) 
     {
         gameObject.SetActive(true);
 
@@ -32,6 +33,7 @@ public class SpriteAnimation : MonoBehaviour
             animator = GetComponent<Animator>();
 
         animator.enabled = true;
+        GachaCount = Count;
         animator.SetBool("PlayAnim", false);
     }
 
@@ -77,7 +79,10 @@ public class SpriteAnimation : MonoBehaviour
             return;
         }
 
-        if(NextCount < 1)
+        if (_CardList.Count <= GachaCount)
+            return;
+
+        if (NextCount < GachaCount)
         {
             _CardList[NextCount].gameObject.SetActive(true);
             _CardList[NextCount].Initialize(Gachasystem.RequestGachaResult(),

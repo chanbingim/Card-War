@@ -82,8 +82,12 @@ public class PoolManager : MonoBehaviour
 
             _PoolList.Add(PoolObject.PoolType, objectPool);
         }
+        else
+        {
+            objectPool.CreatePoolObject(PoolObject, PoolRoot);
+        }
 
-        return true;
+         return true;
     }
 
     #region Default

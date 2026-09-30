@@ -1,4 +1,5 @@
 using DG.Tweening;
+using GamePlay.Enum;
 using Spine;
 using Spine.Unity;
 using System;
@@ -36,6 +37,10 @@ public class Character : MonoBehaviour, IActionDragHandler
     private void Update()
     {
         _CharacterFSM?.UpdateFSM();
+    }
+
+    private void OnEnable()
+    {
     }
 
     private void OnDestroy()
@@ -186,6 +191,17 @@ public class Character : MonoBehaviour, IActionDragHandler
             var CardUI = DragItem as CardUI;
             if (CardUI != null)
             {
+                foreach (var Key in CardUI._Data.CardData.VFXKeys)
+                {
+                    var PoolComponent = PoolManager.Instance.Get<EffectBase>(EPoolType.Effect, Key);
+                    if (PoolComponent != null)
+                    {
+                        PoolComponent.Play();
+                        PoolComponent.gameObject.transform.position = transform.position;
+                    }
+
+                }
+
                 EventBus.Publish<UseCardEvent>(new UseCardEvent(this, CardUI));
             }
         }
