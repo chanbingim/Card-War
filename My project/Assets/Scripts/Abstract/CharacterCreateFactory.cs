@@ -10,27 +10,26 @@ namespace Factory
 {
     public class CharacterCreateFactory
     {
-        public static Character Create(int ID, Transform Party, Vector3 Position, bool bIsLoacl)
+        public static Character Create(int OwnerID, int ID, Transform Party, Vector3 Position, bool bIsLoacl)
         {
             var obj = Factory.AdderssableCreateFactory.Create<GameObject>("Prefabs/Character", Party);
             if (obj == null)
                 return null;
 
-            CharacterData CharacterSO = DataManager.instance.GetCharacterById(ID);
-            Character character = (Character)obj.AddComponent(GetCreateCharacter(CharacterSO.ATKType));
+            var CharacterInfo = DataManager.instance.GetCharacterById(ID);
+            Character character = (Character)obj.AddComponent(GetCreateCharacter(CharacterInfo.Item1.ATKType));
 
             if (Utility.CHECK(character))
             {
-                character.Initialize(CharacterSO, Position, !bIsLoacl);
+                character.Initialize(OwnerID, CharacterInfo, Position, !bIsLoacl);
             }
-            character.AddComponent<BoxCollider2D>();
 
             var PoolAble = PoolManager.Instance.Get<PoolAbleComponent>(GamePlay.Enum.EPoolType.UI, "CharacterHP");
             if (PoolAble == null)
                 return null;
 
             // NXOR 연산을 통해서 0, 0 또는 1, 1일경우만 뒤집어서 표현
-            if (!(CharacterSO.AnimReverse ^ bIsLoacl))
+            if (!(CharacterInfo.Item1.AnimReverse ^ bIsLoacl))
             {
                 character.transform.DORotate(new Vector3(0, 180, 0), 0.2f);
             }

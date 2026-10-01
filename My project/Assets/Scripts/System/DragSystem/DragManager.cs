@@ -14,7 +14,7 @@ public class DragManager : MonoBehaviour
     private IActionDragHandler  _hover = null;
     private PointerEventData    _Ponterevent = null;
 
-    public bool StartDrag(IActionDragHandler DragItem) 
+    public bool StartDrag(IActionDragHandler DragItem)
     {
         if (BattleManager.instance.IsPlayerTurn() == false)
             return false;
@@ -53,7 +53,9 @@ public class DragManager : MonoBehaviour
             newHover = Get_WorldRayCast();
 
         if (newHover == _hover)
+        {
             _hover?.OnDrop(_CurDrag);
+        }
 
         _hover = null;
         _CurDrag = null;

@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using TurnCardGame.Data;
 using UnityEngine;
 
 public class CardController : MonoBehaviour
@@ -37,17 +35,17 @@ public class CardController : MonoBehaviour
         obj.transform.position = _CardDeck.position;
 
         _cardList.Add(obj.GetComponent<CardUI>());
-        _cardList.Last().SettingData(data._CardData);
+        _cardList.Last().SettingData(_cardList.Count - 1, data._CardData);
         RefreshCardTransform();
     }
 
     private void Remove_Card(UseCardEvent card)
     {
-        _cardList.Remove(card.UseCard);
+        var UICard = _cardList[card.ContollerIdx];
+        _cardList.RemoveAt(card.ContollerIdx);
 
-        card.UseCard.Close();
-        Destroy(card.UseCard.gameObject);
-
+        UICard.Close();
+        Destroy(UICard.gameObject);
         RefreshCardTransform();
     }
 

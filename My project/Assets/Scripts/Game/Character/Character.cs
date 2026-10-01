@@ -1,5 +1,5 @@
+using Custom.Struct;
 using DG.Tweening;
-using GamePlay.Enum;
 using Spine;
 using Spine.Unity;
 using System;
@@ -21,6 +21,8 @@ public class Character : MonoBehaviour, IActionDragHandler
     #endregion
 
     public bool bIsLeft = false;
+
+    public int                      OwnerID { get; private set; }
     public CharacterRuntimeData     Data { get; protected set; }
     public float RotSpeed = 0.2f;
 
@@ -33,14 +35,12 @@ public class Character : MonoBehaviour, IActionDragHandler
 
     protected Vector3               vOrizinLook = Vector3.right;
     protected Vector3               vOrizinPoint = Vector3.zero;
+
+    private BoxCollider2D           _boxCollider = null;
     
     private void Update()
     {
         _CharacterFSM?.UpdateFSM();
-    }
-
-    private void OnEnable()
-    {
     }
 
     private void OnDestroy()
@@ -50,8 +50,9 @@ public class Character : MonoBehaviour, IActionDragHandler
         _AnimComponent.RemoveListener(EFSM_STATE.ATTACK, AnimationCallbackEvent);
     }
 
-    public void Initialize(CharacterData CharacterSO, Vector3 Position, bool IsEnemy)
+    public void Initialize(int ownerID, (CharacterData, TurnCardGame.Data.CharacterInfo) Info, Vector3 Position, bool IsEnemy)
     {
+        OwnerID = ownerID;
         transform.position = Position;
         bIsLeft = IsEnemy;
 
@@ -59,13 +60,13 @@ public class Character : MonoBehaviour, IActionDragHandler
         if (DataMgr == null)
             return;
 
-        Data = new CharacterRuntimeData(CharacterSO);
+        Data = new CharacterRuntimeData(Info.Item1, Info.Item2);
         var AddressableMgr = AddressableManager.instance;
         var animator = gameObject.GetComponent<SkeletonAnimation>();
 
         _AnimComponent = gameObject.GetComponent<AnimComponent>();
         if(_AnimComponent != null )
-            _AnimComponent.Initialize(CharacterSO, animator);
+            _AnimComponent.Initialize(Data.SourceAsset, animator);
 
         _AnimComponent.AddListener(EFSM_STATE.ATTACK, AnimationCallbackEvent);
 
@@ -73,10 +74,13 @@ public class Character : MonoBehaviour, IActionDragHandler
         if (_CharacterFSM == null)
             _CharacterFSM = GetComponent<FSM>();
 
-        _CharacterFSM.Initialized(Data.Source.FSMConfig, this, _AnimComponent);
+        _CharacterFSM.Initialized(Data.SourceAsset.FSMConfig, this, _AnimComponent);
         
         _OutLineRender = gameObject.GetComponent<OutLineRenderer>();
         _OutLineRender.Initialize();
+
+        gameObject.AddComponent<BoxCollider2D>();
+        _boxCollider = GetComponent<BoxCollider2D>();
     }
 
     public void SetAttackAble(bool Active)
@@ -100,6 +104,21 @@ public class Character : MonoBehaviour, IActionDragHandler
             _CharacterFSM.ChangeState(EFSM_STATE.HIT);
 
         OnChangedState?.Invoke(Data);
+    }
+
+    public void ApplyCardEffect(CardData _Data)
+    {
+        if(_Data.eEffectType == EEffectType.Heal)
+        {
+            Debug.Log($"{name} : Heal");
+        }
+    }
+
+    // Box Size
+    // return : Center + Box.x Half 
+    public BoxInfo GetPivotPoint()
+    {
+        return new BoxInfo(_boxCollider);
     }
 
     public virtual void AttackAction(Vector3 vTargetPoint) { }
@@ -181,9 +200,7 @@ public class Character : MonoBehaviour, IActionDragHandler
     void IActionDragHandler.OnDrop(MonoBehaviour DragItem)
     {
         if (Data.IsDead)
-        {
             return;
-        }
 
         var BattleMgr = BattleManager.instance;
         if (ETurnType.USE_CARDTRUN == BattleMgr.GetTurnType())
@@ -191,27 +208,21 @@ public class Character : MonoBehaviour, IActionDragHandler
             var CardUI = DragItem as CardUI;
             if (CardUI != null)
             {
-                foreach (var Key in CardUI._Data.CardData.VFXKeys)
-                {
-                    var PoolComponent = PoolManager.Instance.Get<EffectBase>(EPoolType.Effect, Key);
-                    if (PoolComponent != null)
-                    {
-                        PoolComponent.Play();
-                        PoolComponent.gameObject.transform.position = transform.position;
-                    }
-
-                }
-
-                EventBus.Publish<UseCardEvent>(new UseCardEvent(this, CardUI));
+                // 캐릭터에서 체크하는거보다 위에서 체크해서 넘기는게 바람직할것 같음
+                // 로직 테스만 하고 옮기자
+                if (!BattleMgr.RequestUseCardAction(BattleMgr.GetTurnPlayer().PlayerTurnIndex, this, CardUI))
+                    return;
             }
         }
         else if (ETurnType.ATTACK_ACTIONTURN == BattleMgr.GetTurnType())
         {
-            /*if (_bIsAttackAble == false)
-                return;*/
+            if (_bIsAttackAble == false)
+                return;
 
-            BattleMgr.RequestAttack((Character)DragItem, this);
-            _bIsAttackAble = false;
+            var DragCharacter = DragItem as Character;
+            if (BattleMgr.RequestAttack(DragCharacter, this))
+                _bIsAttackAble = false;
+
         }
     }
 

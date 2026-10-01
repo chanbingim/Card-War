@@ -1,3 +1,4 @@
+using Custom.Struct;
 using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
@@ -11,8 +12,10 @@ public class BattleManager : MonoBehaviour, IInitialize
     public BattleAction              _CurBattleAction { get; private set; } = null;
 
     private BattleCardManager        _BattleCardManager = null;
+    private ActionSystem             _ActionSystem = new ActionSystem();
     private MatchParing              _MatchMakingMgr = null;
     private TurnManager              _TrunMgr = null;
+
     private Stage                    _Cur_Stage = null;
     private List<(int, int)>         _CurPhaseMatch = null;
 
@@ -28,6 +31,8 @@ public class BattleManager : MonoBehaviour, IInitialize
     public bool             IsPlayerTurn() { return _TrunMgr?.IsPlayerTurn() ?? false; }
     public BattlePlayerData GetLoaclPlayer() { return _TrunMgr?.LocalPlayer; }
     public BattlePlayerData GetTurnPlayer() { return _TrunMgr?.Current; }
+    public BattlePlayerData GetPlayer(int ID) { return _TrunMgr?._participants[ID]; }
+
     public void             RequestDraw(int Count) { _BattleCardManager?.RequestDrawCard(Count); }
     #endregion
 
@@ -48,6 +53,10 @@ public class BattleManager : MonoBehaviour, IInitialize
     }
     #endregion
 
+    #region ActionSystem
+    public bool RequestUseCardAction(int ID, MonoBehaviour TargetItem, CardUI UseCard) { return _ActionSystem?.RequestUseCardAction(ID, TargetItem, UseCard) ?? false; }
+    #endregion
+
     #region Battle Mgr
 
     public Stage GetCurrentStage() { return _Cur_Stage ? _Cur_Stage : null; }
@@ -65,7 +74,7 @@ public class BattleManager : MonoBehaviour, IInitialize
         return Partys[iRandIdx];
     }
 
-    public List<Character> GetEnemyPartyList(int idx)
+    public IReadOnlyList<Character> GetEnemyPartyList(int idx)
     {
         if(_TrunMgr == null)
         {
@@ -94,16 +103,27 @@ public class BattleManager : MonoBehaviour, IInitialize
         return Data?.PlayerParty;
     }
 
-    public void RequestAttack(Character Attacker, Character Target)
+    public bool RequestAttack(Character Attacker, Character Target)
     {
-        _CurBattleAction = new BattleAction(Attacker, Target, EACTION_TYPE.ATTACK);
-        
-        Vector3 TargetPos = Target.gameObject.transform.position;
-        Vector3 vDir = Attacker.bIsLeft ? -Vector3.right : Vector3.right;
-        Vector3 Point = TargetPos - (vDir * 0.5f); 
+        if(_ActionSystem.RequestActtackdAction(Attacker, Target))
+        {
+            _CurBattleAction = new BattleAction(Attacker, Target, EACTION_TYPE.ATTACK);
 
-        Attacker.AttackAction(Point);
-        EventBus.Publish<CardActionEvent>(new CardActionEvent(_CurBattleAction));
+            var TargetTransform = Target.transform;
+            var AttackerTransform = Attacker.transform;
+
+            Vector3 TargetPos = TargetTransform.position;
+            BoxInfo boxBound = Target.GetPivotPoint();
+
+            Vector3 vDir = Attacker.bIsLeft ? -Vector3.right : Vector3.right;
+            Vector3 Point = TargetPos - (vDir * boxBound.size.x * 0.5f);
+
+            Attacker.AttackAction(Point);
+            EventBus.Publish<CardActionEvent>(new CardActionEvent(_CurBattleAction));
+            return true;
+        }
+
+        return false;
     }
 
     public int ComputeDamageLogic(int OrizinDamage)

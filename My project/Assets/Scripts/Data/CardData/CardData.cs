@@ -6,6 +6,7 @@ namespace TurnCardGame.Data
     public class UI_CardData
     {
         public int               HandIndex;
+        public int               ControllerIdx;
         public int               CardID;
 
         public readonly CardData CardData;

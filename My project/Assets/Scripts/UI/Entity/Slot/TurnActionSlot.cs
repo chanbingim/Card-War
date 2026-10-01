@@ -55,7 +55,7 @@ public class TurnActionSlot : BaseSlot
                     throw new System.Exception("[Trun Action Slot] Not Find Addressable");
                 }
 
-                var AssetRef = Data.ActObject.Data.Source.CharacterIcon;
+                var AssetRef = Data.ActObject.Data.SourceAsset.CharacterIcon;
                 var atlas = AddressableMgr.Get<SpriteAtlas>(GAME_CONST.Const.CharacterIconAddress);
                
                 _Image.sprite = atlas.GetSprite(AssetRef.SubObjectName);

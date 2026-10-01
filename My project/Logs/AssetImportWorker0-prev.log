@@ -1,11 +1,11 @@
 [Licensing::Module] Trying to connect to existing licensing client channel...
 Built from '6000.3/staging' branch; Version is '6000.3.17f1 (cf0352b38e81) revision 13566802'; Using compiler version '194234433'; Build Type 'Release'
 OS: 'Windows 11  (10.0.26200) Professional' Language: 'ko' Physical Memory: 16232 MB
-[Licensing::IpcConnector] Successfully connected to: "LicenseClient-gimch" at "2026-09-30T05:13:55.4815741Z"
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-gimch" at "2026-09-30T14:35:09.6377042Z"
 System  architecture: x64
 Process architecture: x64
-Date: 2026-09-30T05:13:55Z
+Date: 2026-09-30T14:35:09Z
 
 COMMAND LINE ARGUMENTS:
 C:\Program Files\Unity\Hub\Editor\6000.3.17f1\Editor\Unity.exe
@@ -19,7 +19,7 @@ C:/Users/gimch/Documents/GitHub/HanessTest/My project
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-60402
+58262
 -licensingIpc
 LicenseClient-gimch
 -job-worker-count
@@ -67,12 +67,12 @@ C:/Users/gimch/Documents/GitHub/HanessTest/My project
     "memorysetup-job-temp-allocator-block-size-background=1048576"
     "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
     "memorysetup-temp-allocator-size-cloud-worker=32768"
-Player connection [3444]  Target information:
+Player connection [8180]  Target information:
 
-Player connection [3444]  * "[IP] 49.142.53.194 [Port] 0 [Flags] 2 [Guid] 4288171927 [EditorId] 4288171927 [Version] 1048832 [Id] WindowsEditor(7,CHANBIN) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+Player connection [8180]  * "[IP] 49.142.53.194 [Port] 0 [Flags] 2 [Guid] 1215972624 [EditorId] 1215972624 [Version] 1048832 [Id] WindowsEditor(7,CHANBIN) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
 
-Player connection [3444] Host joined multi-casting on [225.0.0.222:54997]...
-Player connection [3444] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [8180] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [8180] Host joined alternative multi-casting on [225.0.0.222:34997]...
 JobSystem: Creating JobQueue using job-worker-count value 7
 Input System module state changed to: Initialized.
 [Physics::Module] Initialized fallback backend.
@@ -84,8 +84,8 @@ Library Redirect Path: Library/
 [Physics::Module] SDK Version: 4.1.2
 [Physics::Module] Integration Version: 1.0.0
 [Physics::Module] Threading Mode: Multi-Threaded
-Refreshing native plugins compatible for Editor in 13.76 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 1.22 ms.
+Refreshing native plugins compatible for Editor in 16.08 ms, found 9 plugins.
+Preloading 1 native plugins for Editor in 1.50 ms.
 Initialize engine version: 6000.3.17f1 (cf0352b38e81)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.3.17f1/Editor/Data/Resources/UnitySubsystems
 [Subsystems] Discovering subsystems at path C:/Users/gimch/Documents/GitHub/HanessTest/My project/Assets
@@ -102,7 +102,7 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.3.17f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.3.17f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.3.17f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56308
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56276
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.3.17f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
@@ -112,19 +112,19 @@ Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.3.17f1/
 	ResponseStatus: Unsupported protocol version '1.18.1'.
 [Licensing::Module] Error: Failed to handshake to channel: "LicenseClient-gimch"
 [Licensing::IpcConnector] LicenseClient-gimch channel disconnected successfully.
-[Licensing::IpcConnector] Successfully connected to: "LicenseClient-gimch-6000.3.17" at "2026-09-30T05:13:58.2029177Z"
-[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 13156, path: "C:/Program Files/Unity/Hub/Editor/6000.3.17f1/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client.exe")
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-gimch-6000.3.17" at "2026-09-30T14:35:11.5227143Z"
+[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 17076, path: "C:/Program Files/Unity/Hub/Editor/6000.3.17f1/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client.exe")
 [Licensing::Module] LicensingClient has failed validation; ignoring
 [Licensing::Client] Handshaking with LicensingClient:
   Version:                 1.18.1+9fbee8e
-  Session Id:              7f9321332ef7491496bea80b69f29bc7
-  Correlation Id:          3e3f0f0e37af3ffa6f683e1c6c93ff28
-  External correlation Id: 7855153760014368077
+  Session Id:              0f410fe1c939455684058943f5f99ceb
+  Correlation Id:          87d44e3b621c466e083af483a6a21302
+  External correlation Id: 6344671484465601212
   Machine Id:              KrNS+X8tESWlg/RUg6sq3F0RFxo=
 [Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-gimch-6000.3.17" (connect: 0.00s, validation: 0.00s, handshake: 0.01s)
-[Licensing::IpcConnector] Successfully connected to: "LicenseClient-gimch-6000.3.17-notifications" at "2026-09-30T05:13:58.2134052Z"
-[Licensing::Module] Licensing Background thread has ended after 2.73s
-[Licensing::Module] Licensing is initialized (took 1.52s).
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-gimch-6000.3.17-notifications" at "2026-09-30T14:35:11.5302856Z"
+[Licensing::Module] Licensing Background thread has ended after 1.89s
+[Licensing::Module] Licensing is initialized (took 0.59s).
 [Licensing::Client] Successfully resolved entitlement details
 [Licensing::Module] License group:
   Id: 14568713557572-UnityPersXXXX
@@ -132,8 +132,8 @@ Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.3.17f1/
   Type: Assigned
   Expiration: Unlimited
 Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.3.17f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
-Registered in 1.531467 seconds.
-- Loaded All Assemblies, in  2.011 seconds
+Registered in 0.593229 seconds.
+- Loaded All Assemblies, in  1.064 seconds
 Native extension for Android target not found
 Native extension for WindowsStandalone target not found
 Package Manager log level set to [2]
@@ -142,35 +142,35 @@ Package Manager log level set to [2]
 [Package Manager] Cannot connect to Unity Package Manager local server
 ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.420 seconds
-Domain Reload Profiling: 2428ms
-	BeginReloadAssembly (156ms)
+- Finished resetting the current domain, in  0.402 seconds
+Domain Reload Profiling: 1465ms
+	BeginReloadAssembly (178ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
 		CreateAndSetChildDomain (1ms)
-	RebuildCommonClasses (36ms)
+	RebuildCommonClasses (39ms)
 	RebuildNativeTypeToScriptingClass (12ms)
-	initialDomainReloadingComplete (1581ms)
-	LoadAllAssembliesAndSetupDomain (223ms)
-		LoadAssemblies (155ms)
+	initialDomainReloadingComplete (642ms)
+	LoadAllAssembliesAndSetupDomain (191ms)
+		LoadAssemblies (176ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (218ms)
-			TypeCache.Refresh (216ms)
-				TypeCache.ScanAssembly (200ms)
+		AnalyzeDomain (187ms)
+			TypeCache.Refresh (185ms)
+				TypeCache.ScanAssembly (171ms)
 			BuildScriptInfoCaches (0ms)
-			ResolveRequiredComponents (0ms)
-	FinalizeReload (420ms)
+			ResolveRequiredComponents (1ms)
+	FinalizeReload (403ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (384ms)
+		SetupLoadedEditorAssemblies (365ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (55ms)
+			InitializePlatformSupportModulesInManaged (60ms)
 			SetLoadedEditorAssemblies (4ms)
-			BeforeProcessingInitializeOnLoad (88ms)
-			ProcessInitializeOnLoadAttributes (156ms)
-			ProcessInitializeOnLoadMethodAttributes (82ms)
+			BeforeProcessingInitializeOnLoad (82ms)
+			ProcessInitializeOnLoadAttributes (133ms)
+			ProcessInitializeOnLoadMethodAttributes (85ms)
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
@@ -181,14 +181,14 @@ Import Worker Mode flag is 0x00
 Begin MonoManager ReloadAssembly
 [Licensing::Client] Successfully resolved entitlement details
 Symbol file LoadedFromMemory is not a mono symbol file
-- Loaded All Assemblies, in  1.554 seconds
-Refreshing native plugins compatible for Editor in 88.89 ms, found 9 plugins.
+- Loaded All Assemblies, in  1.881 seconds
+Refreshing native plugins compatible for Editor in 24.70 ms, found 9 plugins.
 Native extension for Android target not found
 Native extension for WindowsStandalone target not found
 [Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] Unable to send message (not connected to server process).
 [Package Manager] Cannot connect to Unity Package Manager local server
-Refreshing native plugins compatible for Editor in 34.87 ms, found 9 plugins.
+Refreshing native plugins compatible for Editor in 21.89 ms, found 9 plugins.
 [Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] Unable to send message (not connected to server process).
 [Package Manager] Cannot connect to Unity Package Manager local server
@@ -213,39 +213,39 @@ UnityEditor.EditorAssemblies:ProcessInitializeOnLoadAttributes (System.Type[])
 
 ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  2.212 seconds
-Domain Reload Profiling: 3759ms
-	BeginReloadAssembly (201ms)
+- Finished resetting the current domain, in  2.416 seconds
+Domain Reload Profiling: 4278ms
+	BeginReloadAssembly (205ms)
 		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (6ms)
+		DisableScriptedObjects (8ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
 		CreateAndSetChildDomain (30ms)
-	RebuildCommonClasses (43ms)
-	RebuildNativeTypeToScriptingClass (11ms)
-	initialDomainReloadingComplete (46ms)
-	LoadAllAssembliesAndSetupDomain (1245ms)
-		LoadAssemblies (848ms)
+	RebuildCommonClasses (41ms)
+	RebuildNativeTypeToScriptingClass (13ms)
+	initialDomainReloadingComplete (48ms)
+	LoadAllAssembliesAndSetupDomain (1555ms)
+		LoadAssemblies (1050ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (511ms)
-			TypeCache.Refresh (345ms)
-				TypeCache.ScanAssembly (315ms)
-			BuildScriptInfoCaches (145ms)
-			ResolveRequiredComponents (15ms)
-	FinalizeReload (2213ms)
+		AnalyzeDomain (620ms)
+			TypeCache.Refresh (411ms)
+				TypeCache.ScanAssembly (375ms)
+			BuildScriptInfoCaches (188ms)
+			ResolveRequiredComponents (16ms)
+	FinalizeReload (2417ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (1915ms)
+		SetupLoadedEditorAssemblies (2121ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (8ms)
+			InitializePlatformSupportModulesInManaged (9ms)
 			SetLoadedEditorAssemblies (7ms)
-			BeforeProcessingInitializeOnLoad (257ms)
-			ProcessInitializeOnLoadAttributes (1246ms)
-			ProcessInitializeOnLoadMethodAttributes (389ms)
-			AfterProcessingInitializeOnLoad (6ms)
+			BeforeProcessingInitializeOnLoad (290ms)
+			ProcessInitializeOnLoadAttributes (1280ms)
+			ProcessInitializeOnLoadMethodAttributes (523ms)
+			AfterProcessingInitializeOnLoad (11ms)
 			EditorAssembliesLoaded (1ms)
 		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (12ms)
+		AwakeInstancesAfterBackupRestoration (10ms)
 WARNING: Shader Unsupported: 'Spine/Outline/SkeletonGraphic' - All subshaders removed
 WARNING: Shader Did you use #pragma only_renderers and omit this platform?
 WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
@@ -337,36 +337,412 @@ WARNING: Shader Unsupported: 'Spine/Outline/Blend Modes/Skeleton PMA Multiply' -
 WARNING: Shader Did you use #pragma only_renderers and omit this platform?
 WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
 Launched and connected shader compiler UnityShaderCompiler.exe after 0.02 seconds
-Refreshing native plugins compatible for Editor in 12.91 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 0.08 ms.
+Refreshing native plugins compatible for Editor in 24.28 ms, found 9 plugins.
+Preloading 1 native plugins for Editor in 0.11 ms.
 Unloading 31 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 11476 unused Assets / (10.2 MB). Loaded Objects now: 12333.
-Memory consumption went from 226.1 MB to 215.9 MB.
-Total: 34.403500 ms (FindLiveObjects: 2.519000 ms CreateObjectMapping: 1.137300 ms MarkObjects: 23.054200 ms  DeleteObjects: 7.690800 ms)
+Unloading 11476 unused Assets / (9.3 MB). Loaded Objects now: 12340.
+Memory consumption went from 228.0 MB to 218.6 MB.
+Total: 35.396400 ms (FindLiveObjects: 6.561600 ms CreateObjectMapping: 1.492800 ms MarkObjects: 20.596400 ms  DeleteObjects: 6.743500 ms)
 
 ========================================================================
 Received Import Request.
-  Time since last request: 8251.663938 seconds.
-  path: Assets/Prefabs/SpineCharacter.prefab
-  artifactKey: Guid(ba84866aad65f9049b634ab03b743c70) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/SpineCharacter.prefab using Guid(ba84866aad65f9049b634ab03b743c70) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '60a630fc0c6bfeb0a8d7cf34322bccef') in 0.1155222 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 17
+  Time since last request: 8061.322512 seconds.
+  path: Assets/Model/Gacha/Materials/base_color.mat
+  artifactKey: Guid(f9d837249d336a942ac580835a1f8656) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Model/Gacha/Materials/base_color.mat using Guid(f9d837249d336a942ac580835a1f8656) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '9b90a44afb53ebfe3bce465888858c89') in 0.1968482 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000043 seconds.
-  path: Assets/Prefabs/Character.prefab
-  artifactKey: Guid(84c0fe512383f1c49ae1d4bca95ae44d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/Character.prefab using Guid(84c0fe512383f1c49ae1d4bca95ae44d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '0e784ea0cbfa184514608cf51c43ae93') in 1.2575957 seconds
+  Time since last request: 0.000107 seconds.
+  path: Assets/Scenes/GameMenu.unity
+  artifactKey: Guid(cb3ce24a5d9c09245b523b2c992de70a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/GameMenu.unity using Guid(cb3ce24a5d9c09245b523b2c992de70a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '28248928121a557d00a1641aeefbf96f') in 0.0044434 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Scenes/GameScene.unity
+  artifactKey: Guid(8c9cfa26abfee488c85f1582747f6a02) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/GameScene.unity using Guid(8c9cfa26abfee488c85f1582747f6a02) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '2d1ae04244f7bab3eca092880b161f60') in 0.0007392 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Texture/UI/DamageFont/damage_numbers_30x50 1.png
+  artifactKey: Guid(2cc437649e8ad0d428b2acc467f9304e) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Texture/UI/DamageFont/damage_numbers_30x50 1.png using Guid(2cc437649e8ad0d428b2acc467f9304e) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '45e8795a1632687f8471ea731dba7513') in 0.0852163 seconds
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 12
 
 ========================================================================
 Received Import Request.
-  Time since last request: 16.161457 seconds.
-  path: Assets/Prefabs/UI/GameGold.prefab
-  artifactKey: Guid(74a442f55f218c44c9ca1e62a76d86dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/UI/GameGold.prefab using Guid(74a442f55f218c44c9ca1e62a76d86dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'ed9c976f7bdb115873db210010364e29') in 0.0201981 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 24
+  Time since last request: 35.906937 seconds.
+  path: Assets/Effect/Cartoon FX Remaster/CFXR Prefabs/Nature/CFXR4 Rain Splashes.prefab
+  artifactKey: Guid(ac009bb7498fcfb4b96614c4fd1f735c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Effect/Cartoon FX Remaster/CFXR Prefabs/Nature/CFXR4 Rain Splashes.prefab using Guid(ac009bb7498fcfb4b96614c4fd1f735c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'f851428a48723672d84a51dfabb7cd6d') in 0.4480062 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 15
+
+========================================================================
+Received Import Request.
+  Time since last request: 18.948779 seconds.
+  path: Assets/Effect/Eric VFX Studio/Resource/Textures
+  artifactKey: Guid(d9be0b4f22d8fe147b1737bd2e7933af) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Effect/Eric VFX Studio/Resource/Textures using Guid(d9be0b4f22d8fe147b1737bd2e7933af) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '8c7e00d113b4fb3c199b064923d47f6b') in 0.0141155 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Effect/Eric VFX Studio/Resource/Materials/lightning01_02_22.mat
+  artifactKey: Guid(2874ccc392e246646b07258bd9033fab) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Effect/Eric VFX Studio/Resource/Materials/lightning01_02_22.mat using Guid(2874ccc392e246646b07258bd9033fab) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '645b38ca7526bd2c12aa179bf99b5037') in 0.0176804 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Effect/Eric VFX Studio/Free Game VFX/Prefab/Mesh/Summon_Cylinder01.prefab
+  artifactKey: Guid(aa0a539294e15c840bd61bbc744a0d8f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Effect/Eric VFX Studio/Free Game VFX/Prefab/Mesh/Summon_Cylinder01.prefab using Guid(aa0a539294e15c840bd61bbc744a0d8f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'e3c908973545fab59ce9793eee2f8f9f') in 0.0378428 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 13
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Effect/Eric VFX Studio/Resource/Textures/light_Y.png
+  artifactKey: Guid(a4a404c5126761d44b95d25c52dfdc32) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Effect/Eric VFX Studio/Resource/Textures/light_Y.png using Guid(a4a404c5126761d44b95d25c52dfdc32) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '75218ffa0afa7ed4d4a03d75665ede0b') in 0.0158817 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000043 seconds.
+  path: Assets/Effect/Eric VFX Studio/Resource/Textures/FlameNoise_01.png
+  artifactKey: Guid(96e398f825d100e46a8ca8cfe6334db5) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Effect/Eric VFX Studio/Resource/Textures/FlameNoise_01.png using Guid(96e398f825d100e46a8ca8cfe6334db5) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '97b1f754d599a523e2124925b00fed6d') in 0.0145782 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/Effect/Eric VFX Studio/Resource/Materials/star_CPdr_wyy_006_alpha_01.mat
+  artifactKey: Guid(e47aec7919a59bf459081d4c5a0c3938) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Effect/Eric VFX Studio/Resource/Materials/star_CPdr_wyy_006_alpha_01.mat using Guid(e47aec7919a59bf459081d4c5a0c3938) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '43d4f6c0edec63a207f577171dd2dc4d') in 0.0139434 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Effect/Eric VFX Studio/Resource/Materials/bl_02-4.mat
+  artifactKey: Guid(b33ad88337504df4c8c0883ea500c592) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Effect/Eric VFX Studio/Resource/Materials/bl_02-4.mat using Guid(b33ad88337504df4c8c0883ea500c592) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '2aee2f3584ed379fe85602c23355394d') in 0.0139648 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/Effect/Eric VFX Studio/Resource/Materials/Plane.mat
+  artifactKey: Guid(568971491d5f1f541a463e58c9393f66) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Effect/Eric VFX Studio/Resource/Materials/Plane.mat using Guid(568971491d5f1f541a463e58c9393f66) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '63c64d4bc20f3e9f2729fa4ace78ec95') in 0.0183382 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Effect/Eric VFX Studio/Free Game VFX/Prefab/FX_LightPillar.prefab
+  artifactKey: Guid(6555300494081614fa6b6a823cca9f64) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Effect/Eric VFX Studio/Free Game VFX/Prefab/FX_LightPillar.prefab using Guid(6555300494081614fa6b6a823cca9f64) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '3290eaafd10b0b1b0f19203676f51014') in 0.0900667 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 41
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000050 seconds.
+  path: Assets/Effect/Eric VFX Studio/Resource/Textures/DungeonRingGuid.png
+  artifactKey: Guid(1bcdd79aafeb39c48aded8f780b78f9b) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Effect/Eric VFX Studio/Resource/Textures/DungeonRingGuid.png using Guid(1bcdd79aafeb39c48aded8f780b78f9b) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '93624bfd6d90b5558348f7c1bb3d5b6b') in 0.019202 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Effect/Eric VFX Studio/Resource/Materials/firerock 2.mat
+  artifactKey: Guid(fa64669a1ba87ce49bb1cf46be7e622e) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Effect/Eric VFX Studio/Resource/Materials/firerock 2.mat using Guid(fa64669a1ba87ce49bb1cf46be7e622e) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '440f09fadb7098c2274d54678d31e8f6') in 0.0158846 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Effect/Eric VFX Studio/Resource/Materials/Gradient_Beam_007.mat
+  artifactKey: Guid(f98c7f0acd24324408d00e1b68eb92c2) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Effect/Eric VFX Studio/Resource/Materials/Gradient_Beam_007.mat using Guid(f98c7f0acd24324408d00e1b68eb92c2) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '37a04691b0f988952450165abbf274ed') in 0.0135084 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/Effect/Eric VFX Studio/Resource/Textures/glow_yellow_01.png
+  artifactKey: Guid(0b512af7d1c07bc4dae89d450c8ef27f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Effect/Eric VFX Studio/Resource/Textures/glow_yellow_01.png using Guid(0b512af7d1c07bc4dae89d450c8ef27f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'b3196d6cc0957b2328ef1b45cd0a8b33') in 0.0142667 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Effect/Eric VFX Studio/Free Game VFX/Prefab/Mesh/Eric_Cylinder 1.prefab
+  artifactKey: Guid(b1b337e92f5224449acbb39f023bae1a) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Effect/Eric VFX Studio/Free Game VFX/Prefab/Mesh/Eric_Cylinder 1.prefab using Guid(b1b337e92f5224449acbb39f023bae1a) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '9ea1352cf2464a07af4a27cce8d9bcf2') in 0.0149011 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 13
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/Effect/Eric VFX Studio/Resource/Textures/Noise_02.png
+  artifactKey: Guid(b4e1e739d65ec7f41bc99511a1f33bcf) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Effect/Eric VFX Studio/Resource/Textures/Noise_02.png using Guid(b4e1e739d65ec7f41bc99511a1f33bcf) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '9366d7aad578dac692a41f0ec0bd4acf') in 0.0144297 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Effect/Eric VFX Studio/Resource/Mesh/Eric_HalfSphere003.FBX
+  artifactKey: Guid(9e4097e96d4f7f14fa1c206bbe39f0db) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Effect/Eric VFX Studio/Resource/Mesh/Eric_HalfSphere003.FBX using Guid(9e4097e96d4f7f14fa1c206bbe39f0db) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '0d2942a6b13155b8b6e0402f56e3e68b') in 0.0325207 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 7
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Effect/Eric VFX Studio/Resource/Textures/fm-g01-02.png
+  artifactKey: Guid(67e9c9d867f74544a80eda48f90816df) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Effect/Eric VFX Studio/Resource/Textures/fm-g01-02.png using Guid(67e9c9d867f74544a80eda48f90816df) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '5245e7fedfef5d8faa40bc615d8f45a5') in 0.0255249 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Effect/Eric VFX Studio/Resource/Mesh/Eric_HalfSphere000.FBX
+  artifactKey: Guid(192cd2224047f8c439068909fa5fbad5) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Effect/Eric VFX Studio/Resource/Mesh/Eric_HalfSphere000.FBX using Guid(192cd2224047f8c439068909fa5fbad5) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'bc7ad35933857de07da876f906a0d0b9') in 0.0157096 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 7
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Effect/Eric VFX Studio/Resource/Textures/grad10_07.png
+  artifactKey: Guid(b469d5ae92b18224db09c30832eb952c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Effect/Eric VFX Studio/Resource/Textures/grad10_07.png using Guid(b469d5ae92b18224db09c30832eb952c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '3771f6cc3c919bcd304c363901abf186') in 0.0180851 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/Effect/Eric VFX Studio/Resource/Materials/FlameNoise_01.mat
+  artifactKey: Guid(70deb06d0bfab734090f4390fe1406bc) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Effect/Eric VFX Studio/Resource/Materials/FlameNoise_01.mat using Guid(70deb06d0bfab734090f4390fe1406bc) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '0b8c5695974e330afe7070d46ad13638') in 0.0148067 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Effect/Eric VFX Studio/Resource/Mesh/Pike.FBX
+  artifactKey: Guid(67237c7d2c9e0e946b1116c3a30fa522) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Effect/Eric VFX Studio/Resource/Mesh/Pike.FBX using Guid(67237c7d2c9e0e946b1116c3a30fa522) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '1eec97aeb64c19b84830ac8d70ceb1e0') in 0.0235331 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Effect/Eric VFX Studio/Resource/Materials/A35.mat
+  artifactKey: Guid(35c07ebe4ef2fa44f86ad7dee095b346) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Effect/Eric VFX Studio/Resource/Materials/A35.mat using Guid(35c07ebe4ef2fa44f86ad7dee095b346) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '731fd1cd9a1a947bd7055ae1109a6187') in 0.0157838 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Effect/Eric VFX Studio/Resource/Textures/M_Glow_01A.tga
+  artifactKey: Guid(c89bef1bada1e49b7b72a50a8bcdf91b) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Effect/Eric VFX Studio/Resource/Textures/M_Glow_01A.tga using Guid(c89bef1bada1e49b7b72a50a8bcdf91b) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '0272fda48d58bfc9539e5eedfafee111') in 0.0157183 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Effect/Eric VFX Studio/Resource/Mesh/Eric_Cylinder 1.FBX
+  artifactKey: Guid(d41ac4e681f631a4581524f75514daa6) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Effect/Eric VFX Studio/Resource/Mesh/Eric_Cylinder 1.FBX using Guid(d41ac4e681f631a4581524f75514daa6) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '042657bad540fb59258ee4e6b83694df') in 0.015438 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 7
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/Effect/Eric VFX Studio/Resource/Textures/particle_sprite_01.png
+  artifactKey: Guid(a099c522f01d2114aa3475657dbc1d80) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Effect/Eric VFX Studio/Resource/Textures/particle_sprite_01.png using Guid(a099c522f01d2114aa3475657dbc1d80) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'a73e3e85b09d9156c3ea6d4dbb007f60') in 0.0158463 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Effect/Eric VFX Studio/Resource/Textures/hit_02.png
+  artifactKey: Guid(ccd4dfb0b6818874b963cb3bcdacc6e5) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Effect/Eric VFX Studio/Resource/Textures/hit_02.png using Guid(ccd4dfb0b6818874b963cb3bcdacc6e5) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'a7d0f64b0973e7307bf43e74f30805a7') in 0.0158139 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Effect/Eric VFX Studio/Resource/Materials/Epic Pulse.mat
+  artifactKey: Guid(5528d06d40b7a3e45abf15d10297be9b) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Effect/Eric VFX Studio/Resource/Materials/Epic Pulse.mat using Guid(5528d06d40b7a3e45abf15d10297be9b) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '94face919e2ae585add8249ef9f635d2') in 0.0177951 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000040 seconds.
+  path: Assets/Effect/Eric VFX Studio/Resource/Materials/Spark Blur.mat
+  artifactKey: Guid(618b7b619e1fe8d45bdf91ecf90d64b8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Effect/Eric VFX Studio/Resource/Materials/Spark Blur.mat using Guid(618b7b619e1fe8d45bdf91ecf90d64b8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '201c23ca1f293ad084584a933b94ede0') in 0.013787 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/Effect/Eric VFX Studio/Resource/Textures/firerock.png
+  artifactKey: Guid(79f635bbab7e83847928045650ae3013) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Effect/Eric VFX Studio/Resource/Textures/firerock.png using Guid(79f635bbab7e83847928045650ae3013) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'a63ed8a60de9308a5c8f696c1fcc23e9') in 0.0143817 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000046 seconds.
+  path: Assets/Effect/Eric VFX Studio/Free Game VFX/Prefab/Mesh/FX_Eric_Plane001.prefab
+  artifactKey: Guid(856cfad630e8132409a5461b41bf64e8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Effect/Eric VFX Studio/Free Game VFX/Prefab/Mesh/FX_Eric_Plane001.prefab using Guid(856cfad630e8132409a5461b41bf64e8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'ac1b544274cc2f21e29562d54b20bc3e') in 0.0175035 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 13
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Effect/Eric VFX Studio/Resource/Textures/Sheet_purple_W01.png
+  artifactKey: Guid(5b5fb735bd092fe4699084b0ed0e2fb4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Effect/Eric VFX Studio/Resource/Textures/Sheet_purple_W01.png using Guid(5b5fb735bd092fe4699084b0ed0e2fb4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '72528c07ff1f2e2e597c4ee6525ad058') in 0.0179274 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/Effect/Eric VFX Studio/Resource/Materials/Shock_05.mat
+  artifactKey: Guid(424d8f6b8cf4d0e41b00dc116cd1ab1e) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Effect/Eric VFX Studio/Resource/Materials/Shock_05.mat using Guid(424d8f6b8cf4d0e41b00dc116cd1ab1e) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '3796aa3a0073753f9bf12d99d588f563') in 0.0149101 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Effect/Eric VFX Studio/Free Game VFX/Scene/Free Game VFX
+  artifactKey: Guid(40f83bb69f0a61348a657f6dca4b1ee0) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Effect/Eric VFX Studio/Free Game VFX/Scene/Free Game VFX using Guid(40f83bb69f0a61348a657f6dca4b1ee0) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '69444f38d9425833a245f24c0ae2d691') in 0.0122309 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Effect/Eric VFX Studio/Resource/Materials/Back Glow.mat
+  artifactKey: Guid(506e772fa64543149b7c85f239842cb9) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Effect/Eric VFX Studio/Resource/Materials/Back Glow.mat using Guid(506e772fa64543149b7c85f239842cb9) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '38dd647cc8c29d2fedd682d36d1f84bf') in 0.0194063 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000061 seconds.
+  path: Assets/Effect/Eric VFX Studio/Free Game VFX/Scene
+  artifactKey: Guid(8612f1e3bc7409a4d8852e68c56e510f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Effect/Eric VFX Studio/Free Game VFX/Scene using Guid(8612f1e3bc7409a4d8852e68c56e510f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '5e81670f444741a3a47263d049e21e88') in 0.0136199 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Effect/Eric VFX Studio/Resource/Materials/M_2D_Ray_01.mat
+  artifactKey: Guid(f617f2011c85a463b8d34b1f7904fcbf) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Effect/Eric VFX Studio/Resource/Materials/M_2D_Ray_01.mat using Guid(f617f2011c85a463b8d34b1f7904fcbf) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '9dd128665a804b592f7d9c6dc163eb36') in 0.0208191 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Effect/Eric VFX Studio/Resource/Mesh
+  artifactKey: Guid(3ac20fd48127a3040aef4f8122fff183) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Effect/Eric VFX Studio/Resource/Mesh using Guid(3ac20fd48127a3040aef4f8122fff183) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '9183bf6878067af2feea2eadeff8d824') in 0.0119934 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/Effect/Eric VFX Studio/Free Game VFX/Prefab/FX_LootDrop_Blue.prefab
+  artifactKey: Guid(fb3b9b0b33d48c64c8c11e01dbe71caa) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Effect/Eric VFX Studio/Free Game VFX/Prefab/FX_LootDrop_Blue.prefab using Guid(fb3b9b0b33d48c64c8c11e01dbe71caa) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'c4aea2c81390d1900a23c5ea86183b92') in 0.0333449 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 46
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Effect/Eric VFX Studio/Resource/Materials/particle_sprite_droplet.mat
+  artifactKey: Guid(5f86ec6ff355e8549ae0062c45146588) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Effect/Eric VFX Studio/Resource/Materials/particle_sprite_droplet.mat using Guid(5f86ec6ff355e8549ae0062c45146588) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '4db8594c1930b8eeb9b553d4f8967b47') in 0.0137366 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/Effect/Eric VFX Studio/Resource/Materials/Front Glow.mat
+  artifactKey: Guid(362e2279517bad249a0a6ef64d48325f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Effect/Eric VFX Studio/Resource/Materials/Front Glow.mat using Guid(362e2279517bad249a0a6ef64d48325f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '6c565ee9e65629125bcb36955953d7f5') in 0.0167902 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Effect/Eric VFX Studio/Resource/Materials/fm-g01-10.mat
+  artifactKey: Guid(7447e7d554858de438e081bc836d4eb6) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Effect/Eric VFX Studio/Resource/Materials/fm-g01-10.mat using Guid(7447e7d554858de438e081bc836d4eb6) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'f39436e47b4350423e5033d2e32451ba') in 0.0148143 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Effect/Eric VFX Studio/Resource/Materials/tf-28.mat
+  artifactKey: Guid(44c24b7c1f4b0a54a8144beba7eaf280) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Effect/Eric VFX Studio/Resource/Materials/tf-28.mat using Guid(44c24b7c1f4b0a54a8144beba7eaf280) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '70937962f41c1a52109f8732b88b63e2') in 0.0140943 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 60.377873 seconds.
+  path: Assets/Effect/Eric VFX Studio/Free Game VFX/Prefab/FX_Greenlight_shrink.prefab
+  artifactKey: Guid(6c52ee79710704a4dab242c5ba8e0408) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Effect/Eric VFX Studio/Free Game VFX/Prefab/FX_Greenlight_shrink.prefab using Guid(6c52ee79710704a4dab242c5ba8e0408) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '70ba4cabd8e4e19fb6965350b75c429d') in 0.0447611 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 35
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/Effect/Eric VFX Studio/Free Game VFX/Prefab/FX_Orange_Slash_1.prefab
+  artifactKey: Guid(8f767d0b23c8e3b4cb2ead5380b1074d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Effect/Eric VFX Studio/Free Game VFX/Prefab/FX_Orange_Slash_1.prefab using Guid(8f767d0b23c8e3b4cb2ead5380b1074d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '10c21533d51eecc323c55ba10618f376') in 0.0262513 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 28
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/Effect/Eric VFX Studio/Free Game VFX/Prefab/FX_LightPillar.prefab
+  artifactKey: Guid(6555300494081614fa6b6a823cca9f64) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Effect/Eric VFX Studio/Free Game VFX/Prefab/FX_LightPillar.prefab using Guid(6555300494081614fa6b6a823cca9f64) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'cfdefff5c83227b92b23797c924865c4') in 0.0328046 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 42
 
 Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
 AssetImportWorker is now disconnected from the server

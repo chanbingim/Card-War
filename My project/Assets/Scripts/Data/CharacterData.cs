@@ -5,6 +5,21 @@ namespace TurnCardGame.Data
 {
     public enum EATTAK_TYPE { Attacker, Mage, END };
 
+    public class CharacterInfo
+    {
+        public int CharacterId { get; set; }
+
+        public string NameEn { get; set; }
+        public string NameKo { get; set; }
+
+        public int MaxHp { get; set; }
+        public int Attack { get; set; }
+        public int Defense { get; set; }
+
+        public int NormalActionId { get; set; }
+        public int SkillActionId { get; set; }
+    }
+
     [CreateAssetMenu(menuName = "Turn Card Game/Character", fileName = "CharacterData")]
     public sealed class CharacterData : ScriptableObject
     {
@@ -20,10 +35,6 @@ namespace TurnCardGame.Data
         public string SkeletonDataKey => _SkeletonDataKey;
         public bool AnimReverse => _AnimationReverse;
 
-        // Character Info
-        public int MaxHealth => Mathf.Max(1, _MaxHealth);
-        public int AttackPower => Mathf.Max(0, _ATKPower);
-
         [SerializeField] private int    _ID;
         [SerializeField] private EATTAK_TYPE _ATKType = EATTAK_TYPE.END;
 
@@ -37,12 +48,9 @@ namespace TurnCardGame.Data
         [SerializeField] string             _SkeletonDataKey;
         [SerializeField] bool               _AnimationReverse;
         [SerializeField] private TextAsset  _AnimationDatas = null;
-
-        [Header("Infomation")]
-        [SerializeField] private int _MaxHealth;
-        [SerializeField] private int _ATKPower;
     }
 
+    
     /*
     // CharacterData(원본 설계 데이터)를 기반으로 생성되는
     // 인게임 런타임 캐릭터 상태.
@@ -52,7 +60,8 @@ namespace TurnCardGame.Data
 
     public class CharacterRuntimeData
     {
-        public CharacterData Source { get; private set; }
+        public CharacterData SourceAsset { get; private set; }
+        public CharacterInfo SourceInfo { get; private set; }
 
         public int CurrentHealth { get; private set; }
         public int CurrentATKPower { get; private set; }
@@ -60,13 +69,15 @@ namespace TurnCardGame.Data
         // 앞으로 스탯 추가 시 여기에 계속 추가
         public bool IsDead => CurrentHealth <= 0;
         public float HealthRatio =>
-            Source.MaxHealth > 0 ? (float)CurrentHealth / Source.MaxHealth : 0f;
+            SourceInfo.MaxHp > 0 ? (float)CurrentHealth / SourceInfo.MaxHp : 0f;
 
-        public CharacterRuntimeData(CharacterData source)
+        public CharacterRuntimeData(CharacterData source, CharacterInfo Info)
         {
-            Source = source;
-            CurrentHealth = source.MaxHealth;
-            CurrentATKPower = source.AttackPower;
+            SourceAsset = source;
+            SourceInfo = Info;
+
+            CurrentHealth = Info.MaxHp;
+            CurrentATKPower = Info.Attack;
         }
 
         public void TakeDamage(int amount)
@@ -78,13 +89,13 @@ namespace TurnCardGame.Data
         public void Heal(int amount)
         {
             if (amount <= 0) return;
-            CurrentHealth = Mathf.Min(Source.MaxHealth, CurrentHealth + amount);
+            CurrentHealth = Mathf.Min(SourceInfo.MaxHp, CurrentHealth + amount);
         }
 
         public void ResetState()
         {
-            CurrentHealth = Source.MaxHealth;
-            CurrentATKPower = Source.AttackPower;
+            CurrentHealth = SourceInfo.MaxHp;
+            CurrentATKPower = SourceInfo.Attack;
         }
     }
 }

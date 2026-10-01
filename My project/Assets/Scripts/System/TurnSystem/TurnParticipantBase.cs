@@ -11,7 +11,7 @@ public class TurnParticipantBase : ITurnParticipant
     public int      PlayerTurnIndex { get; private set; }
     public string   Name { get; protected set; }
     public bool     IsActive { get; protected set; }
-    public bool IsLocal { get; protected set; }
+    public bool     IsLocal { get; protected set; }
 
     public void SetPlayerTurn(int Index)
     {

@@ -1,16 +1,9 @@
 using DG.Tweening;
-using System.Collections;
 using UnityEngine;
 
 public class EffectBase : PoolAbleComponent
 {
     private ParticleSystem       _particleSystem = null;
-    private Coroutine            _returnCoroutine = null;
-
-    void Awake()
-    {
-    
-    }
 
     public void Play()
     {
@@ -25,11 +18,6 @@ public class EffectBase : PoolAbleComponent
             _particleSystem.DORestart();
         else
             _particleSystem.DOPlay();
-
-        if (_returnCoroutine != null)
-            StopCoroutine(_returnCoroutine);
-
-        _returnCoroutine = StartCoroutine(WaitUntilFinished());
     }
 
     public void Stop()
@@ -44,15 +32,9 @@ public class EffectBase : PoolAbleComponent
         _particleSystem.Stop();
     }
 
-    private IEnumerator WaitUntilFinished()
+    private void OnParticleSystemStopped()
     {
-        // 매 프레임 확인할 필요가 없으면 간격을 둘 수 있음
-        var particleMain = _particleSystem.main;
-
-        float Time = particleMain.startLifetime.constantMax + particleMain.duration;
-        yield return new WaitForSeconds(Time);
-
-        _returnCoroutine = null;
+        Debug.Log("자동 재생 종료");
         ReturnToPool();
     }
 }

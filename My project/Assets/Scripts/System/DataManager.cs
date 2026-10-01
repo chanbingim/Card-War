@@ -1,35 +1,33 @@
 using Cysharp.Threading.Tasks;
-using DG.Tweening.Plugins.Core.PathCore;
-using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Linq;
 using TurnCardGame.Data;
 using UnityEngine;
-using UnityEngine.U2D;
-using static PlayerData;
+using CharacterInfo = TurnCardGame.Data.CharacterInfo;
 
 public class DataManager : MonoBehaviour
 {
-    [Header("로드할 CharacterData 경로 (Resources 폴더 기준)")]
+    [Header("CardData CSV")]
     [SerializeField] private TextAsset      _CardData;
 
-    [Header("로드할 CardData 경로 (Resources 폴더 기준)")]
-    [SerializeField] private string _CharacterDataloadPath = "SO/Characters";
+    [Header("캐릭터 Data CSV 또는 SO")]
+    [SerializeField] private TextAsset      _CharacterInfoCSV;
+    [SerializeField] private string         _CharacterDataloadPath = "SO/Characters";
 
     [Header("로드할 BmItem 경로 (Resources 폴더 기준)")]
     [SerializeField] private string _BmDataloadPath = "SO/BM";
 
     private Dictionary<ECurrency, List<CurrencyProductData>> BmDatas = new Dictionary<ECurrency, List<CurrencyProductData>>();
-    private Dictionary<int, CharacterData>      CharacterDatas = new Dictionary<int, CharacterData>();
+    private Dictionary<int, (CharacterData, CharacterInfo)>      CharacterDatas = new ();
     private Dictionary<int, CardData>           CardDatas = new Dictionary<int, CardData>();
 
-    public CharacterData GetCharacterById(int id)
+    public (CharacterData, CharacterInfo) GetCharacterById(int id)
     {
         if (CharacterDatas.TryGetValue(id, out var data))
             return data;
 
         UnityEngine.Debug.LogError($"[DataManager] ID {id}에 해당하는 캐릭터 데이터가 없습니다.");
-        return null;
+        return (null, null);
     }
 
     public List<CurrencyProductData> GetBMData(ECurrency type)
@@ -41,7 +39,7 @@ public class DataManager : MonoBehaviour
         return null;
     }
 
-    public bool TryCharacterGetById(int id, out CharacterData data)
+    public bool TryCharacterGetById(int id, out (CharacterData, CharacterInfo) data)
     {
         return CharacterDatas.TryGetValue(id, out data);
     }
@@ -101,6 +99,7 @@ public class DataManager : MonoBehaviour
     private async UniTask LoadAllCharacterData()
     {
         CharacterData[] allData = Resources.LoadAll<CharacterData>(_CharacterDataloadPath);
+        var allInfo = CsvReader.ReadCSV<CharacterInfo>(_CharacterInfoCSV);
 
         await UniTask.RunOnThreadPool(() =>
         {
@@ -111,8 +110,8 @@ public class DataManager : MonoBehaviour
                     Debug.LogError($"[CharacterDataManager] 중복된 캐릭터 ID 발견: {data.Id} ({data.name})");
                     continue;
                 }
-
-                CharacterDatas.Add(data.Id, data);
+               
+                CharacterDatas.Add(data.Id, (data, allInfo.FirstOrDefault(info => data.Id == info.CharacterId  )));
             }
         });
 

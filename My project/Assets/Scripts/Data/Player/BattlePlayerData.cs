@@ -1,9 +1,11 @@
 using GAME_CONST;
+using GamePlay.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using TurnCardGame.Data;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class BattlePlayerData : TurnParticipantBase
 {
@@ -91,6 +93,7 @@ public class BattlePlayerData : TurnParticipantBase
     public void Request_ADDParty(int ID, Vector3 WorldPosition = default)
     {
         var character = Factory.CharacterCreateFactory.Create(
+         PlayerTurnIndex,
          ID,
          TransformParent.transform,
          WorldPosition,
@@ -130,12 +133,46 @@ public class BattlePlayerData : TurnParticipantBase
 
     public void UseCard(UseCardEvent card)
     {
-        ETurnType TrunType = BattleManager.instance.GetTurnType();
+        var BattleMgr = BattleManager.instance;
+        ETurnType TrunType = BattleMgr.GetTurnType();
+
         if (TrunType == ETurnType.USE_CARDTRUN)
         {
-            Hands.Remove(card.UseCard._Data);
-            var CardAct = new CardAction(PlayerTurnIndex, card.Target, card.UseCard._Data, EACTION_TYPE.USE_CARD);
+            if(card.IsAll)
+            {
+                foreach(var Target in PlayerParty)
+                {
+                    foreach (var Key in card.UseCard.VFXKeys)
+                    {
+                        var PoolComponent = PoolManager.Instance.Get<EffectBase>(EPoolType.Effect, Key);
+                        if (PoolComponent != null)
+                        {
+                            PoolComponent.Play();
+                            PoolComponent.gameObject.transform.position = Target.transform.position;
+                        }
+                    }
+
+                    Target.ApplyCardEffect(card.UseCard);
+                }
+            }
+            else
+            {
+                foreach (var Key in card.UseCard.VFXKeys)
+                {
+                    var PoolComponent = PoolManager.Instance.Get<EffectBase>(EPoolType.Effect, Key);
+                    if (PoolComponent != null)
+                    {
+                        PoolComponent.Play();
+                        PoolComponent.gameObject.transform.position = card.Target.transform.position;
+                    }
+                }
+
+                card.Target.ApplyCardEffect(card.UseCard);
+            }
+
+            var CardAct = new CardAction(PlayerTurnIndex, card.Target, Hands[card.HandIdx], EACTION_TYPE.USE_CARD);
             EventBus.Publish<CardActionEvent>(new CardActionEvent(CardAct));
+            Hands.RemoveAt(card.HandIdx);
         }
     }
 

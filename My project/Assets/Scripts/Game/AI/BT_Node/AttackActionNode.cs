@@ -5,7 +5,6 @@ using Unity.Properties;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 
 [Serializable, GeneratePropertyBag]
 [NodeDescription(name: "AttackActionNode", story: "AttackAction", category: "Action", id: "e8f88ec07e2de88376c57b5209b99574")]
