@@ -104,6 +104,7 @@
     <Compile Include="Assets\Scripts\Game\Stage\Stage.cs" />
     <Compile Include="Assets\Scripts\Game\Stage\BootStrapInit.cs" />
     <Compile Include="Assets\Scripts\Data\Player\PlayerData.cs" />
+    <Compile Include="Assets\Scripts\Data\SKillData\SkillInfo.cs" />
     <Compile Include="Assets\Scripts\UI\Entity\SettingMenu.cs" />
     <Compile Include="Assets\Scripts\UI\Components\Button\abstract\HoverHandler.cs" />
     <Compile Include="Assets\Scripts\Data\CharacterData.cs" />
@@ -181,6 +182,7 @@
     <Compile Include="Assets\Scripts\System\PoolManager\PoolManager.cs" />
     <Compile Include="Assets\Scripts\UI\Entity\Slot\InventorySlot.cs" />
     <Compile Include="Assets\Scripts\Game\FSM\Factory\StateFactory.cs" />
+    <Compile Include="Assets\Scripts\System\PoolManager\Factory\PoolFactory.cs" />
     <Compile Include="Assets\Scripts\UI\Controller\UIBuilder\BuilderController.cs" />
     <Compile Include="Assets\Scripts\UI\Entity\TurnUI\TurnEndButton.cs" />
     <Compile Include="Assets\Scripts\UI\Entity\DamageFont\DamageFont.cs" />

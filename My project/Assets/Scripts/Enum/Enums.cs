@@ -23,10 +23,12 @@ namespace GamePlay.Enum
         END
     }
 
-    public enum EffectType
+    public enum ETargetType
     {
-        Hit,
-        END
+        FriendlySelf,
+        FriendlyAll,
+        EnemySelf,
+        EnemyAll,
+        None
     }
-   
 }

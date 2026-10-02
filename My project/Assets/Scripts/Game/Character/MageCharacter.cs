@@ -50,7 +50,8 @@ public class MageCharacter : Character
                 return;
 
             int Damage = BattleMgr.ComputeDamageLogic(Data.CurrentATKPower);
-            CurBattle.TargetObject.RequestDamaged(Damage);
+
+            CurBattle.TargetObject.RequestDamaged(GetSkill());
         }
     }
 

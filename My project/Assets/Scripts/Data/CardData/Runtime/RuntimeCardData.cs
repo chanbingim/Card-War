@@ -3,25 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.U2D;
+using GamePlay.Enum;
 
 namespace TurnCardGame.Data
 {
-    public enum EEffectType
+    public enum ECardEffectType
     {
         Damage,
         Guard,
         Heal,
         AttackBuff,
         DefenseBuff,
-        None
-    }
-
-    public enum ETargetType
-    {
-        FriendlySelf,
-        FriendlyAll,
-        EnemySelf,
-        EnemyAll,
         None
     }
 
@@ -33,8 +25,8 @@ namespace TurnCardGame.Data
         public Sprite       Icon { get; private set; }
 
         public string       Name;
-        public EEffectType  eEffectType;
-        public ETargetType  eTargetType;
+        public ECardEffectType  eEffectType;
+        public ETargetType      eTargetType;
 
         public int              Power;
         public int              Duration;

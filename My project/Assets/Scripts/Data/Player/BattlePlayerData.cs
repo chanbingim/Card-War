@@ -144,12 +144,7 @@ public class BattlePlayerData : TurnParticipantBase
                 {
                     foreach (var Key in card.UseCard.VFXKeys)
                     {
-                        var PoolComponent = PoolManager.Instance.Get<EffectBase>(EPoolType.Effect, Key);
-                        if (PoolComponent != null)
-                        {
-                            PoolComponent.Play();
-                            PoolComponent.gameObject.transform.position = Target.transform.position;
-                        }
+                        PoolFactory.GetPoolEffect(Key, card.Target.transform);
                     }
 
                     Target.ApplyCardEffect(card.UseCard);
@@ -159,12 +154,7 @@ public class BattlePlayerData : TurnParticipantBase
             {
                 foreach (var Key in card.UseCard.VFXKeys)
                 {
-                    var PoolComponent = PoolManager.Instance.Get<EffectBase>(EPoolType.Effect, Key);
-                    if (PoolComponent != null)
-                    {
-                        PoolComponent.Play();
-                        PoolComponent.gameObject.transform.position = card.Target.transform.position;
-                    }
+                    PoolFactory.GetPoolEffect(Key, card.Target.transform);
                 }
 
                 card.Target.ApplyCardEffect(card.UseCard);

@@ -14,12 +14,17 @@ public class DataManager : MonoBehaviour
     [SerializeField] private TextAsset      _CharacterInfoCSV;
     [SerializeField] private string         _CharacterDataloadPath = "SO/Characters";
 
+    [Header("Action CSV")]
+    [SerializeField] private TextAsset      _ActionCSV;
+
     [Header("로드할 BmItem 경로 (Resources 폴더 기준)")]
     [SerializeField] private string _BmDataloadPath = "SO/BM";
 
-    private Dictionary<ECurrency, List<CurrencyProductData>> BmDatas = new Dictionary<ECurrency, List<CurrencyProductData>>();
+    private Dictionary<ECurrency, List<CurrencyProductData>>     BmDatas = new Dictionary<ECurrency, List<CurrencyProductData>>();
     private Dictionary<int, (CharacterData, CharacterInfo)>      CharacterDatas = new ();
-    private Dictionary<int, CardData>           CardDatas = new Dictionary<int, CardData>();
+
+    private Dictionary<int, CardData>                            CardDatas = new Dictionary<int, CardData>();
+    private Dictionary<int, SkillInfo> SkillDatas = new();
 
     public (CharacterData, CharacterInfo) GetCharacterById(int id)
     {
@@ -42,6 +47,11 @@ public class DataManager : MonoBehaviour
     public bool TryCharacterGetById(int id, out (CharacterData, CharacterInfo) data)
     {
         return CharacterDatas.TryGetValue(id, out data);
+    }
+
+    public bool TryGetSkillByID(int id, out SkillInfo data)
+    {
+        return SkillDatas.TryGetValue(id, out data);
     }
 
     public CardData GetCardById(int id)
@@ -91,6 +101,7 @@ public class DataManager : MonoBehaviour
     {
         await UniTask.WhenAll(
             LoadAllCharacterData(),
+            LoadSkillDatas(),
             LoadAllCardData(),
             LoadAllBMData()
         );
@@ -116,6 +127,27 @@ public class DataManager : MonoBehaviour
         });
 
         Debug.Log($"[CharacterDataManager] 캐릭터 데이터 {CharacterDatas.Count}개 로드 완료");
+    }
+
+    private async UniTask LoadSkillDatas()
+    {
+        var datas = CsvReader.ReadCSV<SkillInfo>(_ActionCSV);
+
+        await UniTask.RunOnThreadPool(() =>
+        {
+            foreach (var data in datas)
+            {
+                if (SkillDatas.ContainsKey(data.ActionId))
+                {
+                    Debug.LogError($"[CharacterDataManager] 중복된 Skill ID 발견: {data.ActionId} ({data.NameKo})");
+                    continue;
+                }
+
+                SkillDatas.Add(data.ActionId, data);
+            }
+        });
+
+        Debug.Log($"[CharacterDataManager] 스킬 데이터 {SkillDatas.Count}개 로드 완료");
     }
 
     private async UniTask LoadAllCardData()

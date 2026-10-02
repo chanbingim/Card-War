@@ -28,6 +28,7 @@ Unity로 제작 중인 턴 기반 싱글 카드 전투 게임 프로토타입이
 ## 프로젝트 구조
 
 - `Assets/Scripts/Data`: 카드, 몬스터, 스테이지 ScriptableObject 데이터
+- `Assets/Scripts/Data/SKillData/SkillInfo.cs`: Action CSV의 공격/스킬 정보 모델
 - `Assets/Scripts/Game`: 턴/전투 상태 머신과 행동 기록 모델
 - `Assets/Scripts/UI/Components`: 공용 UI 컴포넌트
 - `Assets/Scripts/UI/Screens`: 런타임 UI 부트스트랩 및 화면 구성
@@ -58,6 +59,10 @@ Unity로 제작 중인 턴 기반 싱글 카드 전투 게임 프로토타입이
 
 Unity Editor에서 `Assets/Create/Turn Card Game` 메뉴를 사용해 에셋을 만들 수 있다.
 
+공격/스킬 데이터는 `Assets/Resources/Data/Csv/Action.csv`에서 갱신한다. CSV 헤더는
+`SkillInfo`의 public property 이름과 대소문자까지 일치해야 하며, `ActionType`은
+`NormalAttack` 또는 `Skill`, `TargetType`은 `EnemySelf` 또는 `EnemyAll`을 사용한다.
+
 ## 검증
 
 - EditMode 테스트: `Assets/Tests/EditMode/GameSessionTests.cs`
@@ -69,5 +74,5 @@ Unity Editor에서 `Assets/Create/Turn Card Game` 메뉴를 사용해 에셋을 
 Unity Test Runner 또는 batchmode test 실행으로 검증한다.
 
 ```powershell
-& "C:\Program Files\Unity\Hub\Editor\6000.3.17f1\Editor\Unity.exe" -batchmode -nographics -projectPath "C:\Users\gimch\My project" -runTests -testPlatform EditMode -testResults "C:\Users\gimch\My project\Temp\editmode-results.xml" -quit
+& "C:\Program Files\Unity\Hub\Editor\6000.3.17f1\Editor\Unity.exe" -batchmode -nographics -projectPath "C:\Git\GitHub\HanessTest\My project" -runTests -testPlatform EditMode -testResults "C:\Git\GitHub\HanessTest\My project\Temp\editmode-results.xml" -quit
 ```

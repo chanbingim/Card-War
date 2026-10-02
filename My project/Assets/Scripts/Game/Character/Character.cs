@@ -1,10 +1,13 @@
 using Custom.Struct;
 using DG.Tweening;
+using GamePlay.Enum;
 using Spine;
 using Spine.Unity;
 using System;
 using TurnCardGame.Data;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.Purchasing;
 
 public class Character : MonoBehaviour, IActionDragHandler
 {
@@ -88,12 +91,17 @@ public class Character : MonoBehaviour, IActionDragHandler
         _bIsAttackAble = Active;
     }
 
-    public void RequestDamaged(int Amount)
+    public void RequestDamaged(SkillInfo AttackData)
     {
-        Data.TakeDamage(Amount);
+        if(AttackData == null) return;
+
+        Data.TakeDamage(AttackData.Damage);
         var PoolItem = PoolManager.Instance.Get<PoolAbleComponent>(GamePlay.Enum.EPoolType.Obejct, "DamageFont");
         if(PoolItem != null)
-            PoolItem.gameObject.GetComponent<DamageFont>().Initalize(Amount, transform);
+            PoolItem.gameObject.GetComponent<DamageFont>().Initalize(AttackData.Damage, transform);
+
+        // 여기서 Effect ID 찾기
+        PoolFactory.GetPoolEffect(AttackData.HitEffectId, transform);
 
         if (Data.IsDead)
         {
@@ -106,9 +114,29 @@ public class Character : MonoBehaviour, IActionDragHandler
         OnChangedState?.Invoke(Data);
     }
 
+    public SkillInfo GetSkill()
+    {
+        var DataMgr = DataManager.instance;
+        if(DataMgr == null)
+        {
+            Debug.LogWarning("[Character] Not Find  Skill Data in Data Manager");
+            return null;
+        }
+
+        float ratio = Data.CurrentATKPower / Data.SourceInfo.Attack;
+
+        SkillInfo Result = null;
+        if(ratio <= 1.0f)
+            DataMgr.TryGetSkillByID(Data.SourceInfo.NormalActionId, out Result);
+        else
+            DataMgr.TryGetSkillByID(Data.SourceInfo.SkillActionId, out Result);
+
+        return Result;
+    }
+
     public void ApplyCardEffect(CardData _Data)
     {
-        if(_Data.eEffectType == EEffectType.Heal)
+        if(_Data.eEffectType == ECardEffectType.Heal)
         {
             Debug.Log($"{name} : Heal");
         }
@@ -143,7 +171,13 @@ public class Character : MonoBehaviour, IActionDragHandler
 
     }
 
-    protected virtual void Attack() { }
+    // 여기서 Attack Data에 대한 Attack 처리
+    protected virtual void Attack() 
+    {
+        
+
+    }
+
     protected virtual void AnimFinished(TrackEntry entry) 
     {
         OnFinishedAct?.Invoke(_CharacterFSM._CurStateType);
@@ -152,7 +186,9 @@ public class Character : MonoBehaviour, IActionDragHandler
     void AnimationCallbackEvent(Spine.Event e)
     {
         if(e.Data.Name == "attack_hit")
+        {
             Attack();
+        }
     }
 
     protected void MoveTarget(Vector3 vTargetPoint, TweenCallback action)

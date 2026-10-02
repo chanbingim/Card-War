@@ -1,7 +1,7 @@
-﻿ActionId,NameEn,NameKo,Damage,ActionType,TargetType,DescriptionEn,DescriptionKo,AttackEffectId,HitEffectId
-3001,Slash,베기,100,NormalAttack,EnemySingle,Slash one enemy.,적 한 명을 검으로 벤다.,FX_SWORD_SLASH,FX_HIT_SLASH
+ActionId,NameEn,NameKo,Damage,ActionType,TargetType,DescriptionEn,DescriptionKo,AttackEffectId,HitEffectId
+3001,Slash,베기,100,NormalAttack,EnemySelf,Slash one enemy.,적 한 명을 검으로 벤다.,FX_SWORD_SLASH,FX_HIT_SLASH
 3002,Whirlwind,회전 베기,170,Skill,EnemyAll,Damage all enemies with a spinning slash.,회전하며 모든 적에게 피해를 준다.,FX_WHIRLWIND,FX_HIT_SLASH
-3003,Magic Bolt,마력탄,110,NormalAttack,EnemySingle,Fire a magic bolt at one enemy.,적 한 명에게 마력탄을 발사한다.,FX_MAGIC_BOLT,FX_HIT_MAGIC
+3003,Magic Bolt,마력탄,110,NormalAttack,EnemySelf,Fire a magic bolt at one enemy.,적 한 명에게 마력탄을 발사한다.,FX_MAGIC_BOLT,FX_HIT_MAGIC
 3004,Meteor,운석 낙하,220,Skill,EnemyAll,Call down a meteor on all enemies.,모든 적에게 운석을 떨어뜨린다.,FX_METEOR,FX_HIT_FIRE
-3005,Arrow Shot,화살 사격,105,NormalAttack,EnemySingle,Shoot one enemy with an arrow.,적 한 명에게 화살을 발사한다.,FX_ARROW_SHOT,FX_HIT_ARROW
-3006,Piercing Arrow,관통 화살,190,Skill,EnemySingle,Fire a powerful arrow that pierces armor.,방어구를 관통하는 강력한 화살을 발사한다.,FX_PIERCING_ARROW,FX_HIT_PIERCE
+3005,Arrow Shot,화살 사격,105,NormalAttack,EnemySelf,Shoot one enemy with an arrow.,적 한 명에게 화살을 발사한다.,FX_ARROW_SHOT,FX_HIT_ARROW
+3006,Piercing Arrow,관통 화살,190,Skill,EnemySelf,Fire a powerful arrow that pierces armor.,방어구를 관통하는 강력한 화살을 발사한다.,FX_PIERCING_ARROW,FX_HIT_PIERCE
