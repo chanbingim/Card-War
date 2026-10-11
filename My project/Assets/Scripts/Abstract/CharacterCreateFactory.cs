@@ -28,6 +28,8 @@ namespace Factory
             if (PoolAble == null)
                 return null;
 
+            // 기준점은 오른쪽을 보고있어야한다.
+            // 원본 애니메이션의 좌우가 뒤집어져있나 확인
             // NXOR 연산을 통해서 0, 0 또는 1, 1일경우만 뒤집어서 표현
             if (!(CharacterInfo.Item1.AnimReverse ^ bIsLoacl))
             {

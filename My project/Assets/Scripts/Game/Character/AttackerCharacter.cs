@@ -1,9 +1,7 @@
-using DG.Tweening;
 using Spine;
 using Spine.Unity;
 using TurnCardGame.Data;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 
 public class AttackerCharacter : Character
 {
@@ -41,6 +39,9 @@ public class AttackerCharacter : Character
     public override void Hit()
     {
         // 파티클 재생
+        base.Hit();
+
+
     }
 
     public override void Dead()
@@ -65,8 +66,6 @@ public class AttackerCharacter : Character
         {
             _CharacterFSM.ChangeState(EFSM_STATE.IDLE);
         }
-
-       
     }
 
     protected override void Attack()

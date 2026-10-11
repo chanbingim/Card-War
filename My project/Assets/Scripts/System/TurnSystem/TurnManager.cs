@@ -93,6 +93,7 @@ public class TurnManager
                 LocalPlayer = Base;
 
             Base.SetPlayerTurn(_participants.Count);
+            Base.SettingPartyOwner(_participants.Count);
             _participants.Add(Base);
         }
 

@@ -6,8 +6,6 @@ using Spine.Unity;
 using System;
 using TurnCardGame.Data;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.Purchasing;
 
 public class Character : MonoBehaviour, IActionDragHandler
 {
@@ -51,6 +49,11 @@ public class Character : MonoBehaviour, IActionDragHandler
         var animator = gameObject.GetComponent<SkeletonAnimation>();
         animator.AnimationState.Complete -= AnimFinished;
         _AnimComponent.RemoveListener(EFSM_STATE.ATTACK, AnimationCallbackEvent);
+    }
+
+    public void SetOwner(int ownerID)
+    {
+        OwnerID = ownerID;
     }
 
     public void Initialize(int ownerID, (CharacterData, TurnCardGame.Data.CharacterInfo) Info, Vector3 Position, bool IsEnemy)
@@ -98,7 +101,14 @@ public class Character : MonoBehaviour, IActionDragHandler
         Data.TakeDamage(AttackData.Damage);
         var PoolItem = PoolManager.Instance.Get<PoolAbleComponent>(GamePlay.Enum.EPoolType.Obejct, "DamageFont");
         if(PoolItem != null)
-            PoolItem.gameObject.GetComponent<DamageFont>().Initalize(AttackData.Damage, transform);
+        {
+            var BoxSize = GetPivotPoint();
+
+            Vector3 Pos = Vector3.up * BoxSize.size.y;
+
+            var Font = PoolItem.gameObject.GetComponent<DamageFont>();
+            Font.Initalize(AttackData.Damage, transform, Pos);
+        }
 
         // 여기서 Effect ID 찾기
         PoolFactory.GetPoolEffect(AttackData.HitEffectId, transform);
@@ -164,6 +174,15 @@ public class Character : MonoBehaviour, IActionDragHandler
     public virtual void Hit()
     {
         // 파티클 재생
+        var BattleAct = BattleManager.instance._CurBattleAction;
+        if(BattleAct == null)
+        {
+            Debug.Log("Not Play Battle");
+            return;
+        }
+
+        var AttackerSkill = BattleAct.ActObject.GetSkill();
+        PoolFactory.GetPoolEffect(AttackerSkill.HitEffectId, transform);
     }
 
     public virtual void Dead()
@@ -256,9 +275,11 @@ public class Character : MonoBehaviour, IActionDragHandler
                 return;
 
             var DragCharacter = DragItem as Character;
-            if (BattleMgr.RequestAttack(DragCharacter, this))
-                _bIsAttackAble = false;
+            if (DragCharacter._bIsAttackAble == false)
+                return;
 
+            if (BattleMgr.RequestAttack(DragCharacter, this))
+                DragCharacter.SetAttackAble(false);
         }
     }
 

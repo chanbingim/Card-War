@@ -1,6 +1,11 @@
+using GamePlay.Enum;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
+using System.Reflection;
+using TurnCardGame.Data;
+using Unity.VisualScripting;
 using Debug = UnityEngine.Debug;
 
 [System.Serializable]
@@ -19,14 +24,48 @@ public class PlayerData
 {
     #region struct 
     [Serializable]
-    public struct DeckEntry
+    public struct DeckEntry 
     {
         public int CardID;
         public int Count;
+
+        public DeckEntry(int id, int count)
+        {
+            CardID = id;
+            Count = count;
+        }
+
+        public static bool operator ==(DeckEntry left, DeckEntry right)
+        {
+            return left.CardID == right.CardID;
+        }
+
+        public static bool operator !=(DeckEntry left, DeckEntry right)
+        {
+            return left.CardID != right.CardID;
+        }
+
+        public bool Equals(DeckEntry other)
+        {
+            return CardID == other.CardID;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is DeckEntry other && Equals(other);
+        }
+
+        public override int GetHashCode()
+        {
+            return CardID.GetHashCode();
+        }
+
     }
     #endregion
 
-    public event Action<ECurrency, int>          OnChangeCurrencyValue;
+    public event Action<ECurrency, int>             OnChangeCurrencyValue;
+    public event Action<IReadOnlyList<DeckEntry>>   OnChangeDeck;
+    public event Action                             OnChangeCollections;
 
     public string Name { get; private set; }
     public IReadOnlyDictionary<int, StageData>  StageDatas => _stageDatas;
@@ -80,6 +119,8 @@ public class PlayerData
         {
             _Collections.Add(CardID, CardCount);
         }
+
+        OnChangeCollections?.Invoke();
     }
 
     public bool RemoveCollection(int CardID, int CardCount = 1)
@@ -104,8 +145,95 @@ public class PlayerData
         else
             _Collections[CardID] = current - CardCount;
 
+        OnChangeCollections?.Invoke();
         return true;
     }
+
+    public IReadOnlyList<DeckEntry> FindCollectionList(ECardEffectType type)
+    {
+        List<DeckEntry> newList = new List<DeckEntry>();
+
+        var DataMgr = DataManager.instance;
+        if (DataMgr == null)
+            return null;
+
+        if(type == ECardEffectType.None)
+        {
+            newList = Collections.Select(item => new DeckEntry(item.Key, item.Value))
+                                 .ToList();
+        }
+        else
+        {
+            foreach (var iter in _Collections)
+            {
+                var data = DataMgr.GetCardById(iter.Key);
+
+                if (data.eEffectType == type)
+                    newList.Add(new DeckEntry(iter.Key, iter.Value));
+            }
+        }
+        
+        return newList;
+    }
+
+    #endregion
+
+    #region Deck
+    public void ADDDeck(int CardID, int CardCount = 1)
+    {
+        if (CardCount <= 0)
+        {
+            Debug.Log($"[Player Data] ADD Fail (CardCount Out Bound {CardCount})");
+            return;
+        }
+
+        var Data = _Decks.FirstOrDefault(item => item.CardID == CardID);
+        if (Data == default)
+        {
+            _Decks.Add(new DeckEntry(CardID, CardCount));
+        }
+        else
+        {
+            Data.Count += CardCount;
+        }
+
+        OnChangeDeck?.Invoke(_Decks);
+    }
+
+    public bool RemoveDeck(int CardID, int CardCount = 1)
+    {
+        if (CardCount <= 0)
+        {
+            Debug.Log($"[Player Data]  Remove Count  (CardCount Out Bound {CardCount})");
+            return false;
+        }
+
+        var Data = _Decks.FirstOrDefault(item => item.CardID == CardID);
+        if (Data == default)
+        {
+            Debug.Log($"[Player Data]  Remove Data Not Find)");
+            return false;
+        }
+        else
+        {
+            Data.Count -= CardCount;
+            if(Data.Count < 0)
+            {
+                Debug.Log($"[Player Data] Remove Count (CardCount Out Bound {CardCount})");
+                Data.Count += CardCount;
+                return false;
+            }
+
+            if(Data.Count == 0)
+            {
+                _Decks.Remove(Data);
+            }
+        }
+
+        OnChangeDeck?.Invoke(_Decks);
+        return true;
+    }
+
     #endregion
 
     #region Currency Func

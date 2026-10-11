@@ -1,8 +1,9 @@
+using GamePlay.Enum;
 using System;
 using System.Collections.Generic;
+using TurnCardGame.Data;
 using UnityEngine;
 using static PlayerData;
-using static UnityEngine.Rendering.DebugUI;
 
 public class GameClientManager : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class GameClientManager : MonoBehaviour
     public IReadOnlyList<int>                   GetPlayerSkill()        { return _playerData?.Skills; }
     public IReadOnlyList<int>                   GetPlayerPartyList()    { return _playerData?.PlayerParty; }
     public IReadOnlyList<DeckEntry>             GetPlayerDeck()         { return _playerData?.Decks; }
+    public IReadOnlyList<DeckEntry>             GetCollection(ECardEffectType type) { return _playerData?.FindCollectionList(type); }
 
     public void SubscribeCurrencyEvent(Action<ECurrency, int> action)
     {
@@ -55,10 +57,10 @@ public class GameClientManager : MonoBehaviour
     private void Initialize()
     {
        _playerData = new PlayerData();
-       _playerData.ADDCollection(1, 3);
-       _playerData.ADDCollection(2, 4);
-       _playerData.ADDCollection(3, 3);
-       _playerData.ADDCollection(4, 2);
+       _playerData.ADDCollection(1001, 3);
+       _playerData.ADDCollection(1002, 4);
+       _playerData.ADDCollection(1003, 3);
+       _playerData.ADDCollection(1004, 2);
 
         _playerData.ReName("Client A");
     }

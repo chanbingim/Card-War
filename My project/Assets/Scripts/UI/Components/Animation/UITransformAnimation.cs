@@ -24,12 +24,12 @@ public class UITransformAnimation : UIAnimation
 
             if (bIsLoacl)
             {
-                _ChangePosition = _transform.DOLocalMove(transform.position + _Position, AnimSpeed)
+                _ChangePosition = _transform.DOLocalMove(_Position, AnimSpeed)
                                             .SetAutoKill(false);
             }
             else
             {
-                _ChangePosition = _transform.DOLocalMove(_Position, AnimSpeed)
+                _ChangePosition = _transform.DOMove(_Position, AnimSpeed)
                                             .SetAutoKill(false);
             }
 

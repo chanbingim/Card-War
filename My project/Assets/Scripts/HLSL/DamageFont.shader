@@ -7,6 +7,7 @@ Shader "Custom/DamageFont"
         _WorldPosition("World Position", Vector) = (0, 0, 0, 0)
         _Scale("Scale", Vector) = (1, 1, 1, 0)
         _ParentAlpha("Parent Alpha", Float) = 1
+        _Offset("OffsetPos", Vector) = (0, 10, 0, 0)
     }
 
     SubShader
@@ -60,8 +61,10 @@ Shader "Custom/DamageFont"
 
             float _Count;
             float4 _WorldPosition;
+
             float4 _Scale;
             float _ParentAlpha;
+            float2 _OffsetPos;
 
             // ----------------------------------------
             // Texture
@@ -108,6 +111,7 @@ Shader "Custom/DamageFont"
                 float3 positionWS = _WorldPosition.xyz;
                 positionWS.x += xOffset;
                 positionWS += positionOS.xyz;
+                positionWS.xy += _OffsetPos.xy;
 
                 // 5. World ¡æ Clip
                 OUT.positionHCS = TransformWorldToHClip(positionWS);

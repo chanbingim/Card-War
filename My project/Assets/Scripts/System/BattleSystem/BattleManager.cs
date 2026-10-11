@@ -169,7 +169,6 @@ public class BattleManager : MonoBehaviour, IInitialize
             return UniTask.CompletedTask;
         }
 
-      
         // 이거 나중에 서버에서 받아오긴할거임
         List<ITurnParticipant> participants = null;
         var eGameMode = GameManager.instance.EGameMode;

@@ -1,4 +1,5 @@
 using Spine;
+using TurnCardGame.Data;
 using UnityEngine;
 
 public class MageCharacter : Character
@@ -26,6 +27,7 @@ public class MageCharacter : Character
     public override void Hit()
     {
         // 파티클 재생
+        base.Hit();
     }
 
     public override void Dead()
@@ -50,7 +52,6 @@ public class MageCharacter : Character
                 return;
 
             int Damage = BattleMgr.ComputeDamageLogic(Data.CurrentATKPower);
-
             CurBattle.TargetObject.RequestDamaged(GetSkill());
         }
     }

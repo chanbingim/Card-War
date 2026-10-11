@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using TurnCardGame.Data;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class BattlePlayerData : TurnParticipantBase
 {
@@ -88,6 +87,14 @@ public class BattlePlayerData : TurnParticipantBase
     public bool IsAlive()
     {
         return DeadCount <= PlayerParty.Count ? true : false;
+    }
+
+    public void SettingPartyOwner(int ownerID)
+    {
+        foreach(var character in PlayerParty)
+        {
+            character.SetOwner(ownerID);
+        }
     }
 
     public void Request_ADDParty(int ID, Vector3 WorldPosition = default)
@@ -184,6 +191,12 @@ public class BattlePlayerData : TurnParticipantBase
         }
     }
 
+    public override void TurnBegin()
+    {
+        base.TurnBegin();
+
+    }
+
     public override void TurnRunning()
     {
         if (IsActive == false)
@@ -213,6 +226,8 @@ public class BattlePlayerData : TurnParticipantBase
         foreach (var Character in PlayerParty)
         {
             Character.SetAttackAble(Active);
+            foreach (var character in PlayerParty)
+                character.SetAttackAble(true);
         }
     }
 

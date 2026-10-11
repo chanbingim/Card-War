@@ -23,6 +23,7 @@ namespace GamePlay.Enum
         END
     }
 
+    [System.Serializable]
     public enum ETargetType
     {
         FriendlySelf,
