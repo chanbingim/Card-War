@@ -4,6 +4,7 @@ using GamePlay.Enum;
 using Spine;
 using Spine.Unity;
 using System;
+using System.Collections;
 using TurnCardGame.Data;
 using UnityEngine;
 
@@ -30,6 +31,7 @@ public class Character : MonoBehaviour, IActionDragHandler
     protected FSM                   _CharacterFSM = null;
     protected AnimComponent         _AnimComponent = null;
 
+    protected RimLightComponent     _RimLightRender = null;
     protected OutLineRenderer       _OutLineRender = null;
     protected SpriteRenderer        _spriteRender = null;
     protected bool                  _bIsAttackAble = false;
@@ -38,6 +40,7 @@ public class Character : MonoBehaviour, IActionDragHandler
     protected Vector3               vOrizinPoint = Vector3.zero;
 
     private BoxCollider2D           _boxCollider = null;
+    private Coroutine               _HitStopCoroutine = null;
     
     private void Update()
     {
@@ -83,10 +86,19 @@ public class Character : MonoBehaviour, IActionDragHandler
         _CharacterFSM.Initialized(Data.SourceAsset.FSMConfig, this, _AnimComponent);
         
         _OutLineRender = gameObject.GetComponent<OutLineRenderer>();
-        _OutLineRender.Initialize();
+        if (_OutLineRender != null)
+        {
+            _OutLineRender.Initialize();
+        }
 
         gameObject.AddComponent<BoxCollider2D>();
         _boxCollider = GetComponent<BoxCollider2D>();
+
+        _RimLightRender = GetComponent<RimLightComponent>();
+        if(_RimLightRender != null)
+        {
+            _RimLightRender.Initialize();
+        }
     }
 
     public void SetAttackAble(bool Active)
@@ -166,6 +178,14 @@ public class Character : MonoBehaviour, IActionDragHandler
 
     }
 
+    public void HitStop(float Time)
+    {
+        if (_HitStopCoroutine != null)
+            StopCoroutine(_HitStopCoroutine);
+
+        _HitStopCoroutine = StartCoroutine(HitStopCorutine(Time));
+    }
+
     public virtual void Move()
     {
 
@@ -183,6 +203,8 @@ public class Character : MonoBehaviour, IActionDragHandler
 
         var AttackerSkill = BattleAct.ActObject.GetSkill();
         PoolFactory.GetPoolEffect(AttackerSkill.HitEffectId, transform);
+
+        _RimLightRender?.Play();
     }
 
     public virtual void Dead()
@@ -227,11 +249,30 @@ public class Character : MonoBehaviour, IActionDragHandler
         transform.DORotate(new Vector3(0, yAngle, 0), RotSpeed);
     }
 
+    IEnumerator HitStopCorutine(float time)
+    {
+        float CurTime = 0;
+        _AnimComponent.ChangeAnimSpeed(0.03f);
+
+        while(CurTime <= time)
+        {
+            CurTime += Time.deltaTime;
+            yield return null;
+        }
+
+        _AnimComponent.ChangeAnimSpeed(1.0f);
+        _HitStopCoroutine = null;
+    }
+
+
     #region DragInterfaceLogic
     void IActionDragHandler.OnHoverEnter()
     {
-        if (Data.IsDead)
+        if (Data.IsDead || _CharacterFSM._CurStateType == EFSM_STATE.HIT)
+        {
             return;
+            _OutLineRender.OnEnableOutLine(false);
+        }
 
         if (BattleManager.instance.IsPlayerTurn())
         {

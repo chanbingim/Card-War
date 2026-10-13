@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Hidden_GraphErrorShader2
+  m_Name: RimLightMaterial
   m_Shader: {fileID: -6465566751694194690, guid: 342d85c7170c43b43a2f7fa6de1b79e7, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -38,11 +38,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseTexture:
-        m_Texture: {fileID: 2800000, guid: 61dc08b524755274286ad202bece6405, type: 3}
+        m_Texture: {fileID: 2800000, guid: 6603f8411ac13674f973bfd78494027a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalTexture:
-        m_Texture: {fileID: 2800000, guid: 0c31ce348172c0644a9f23c2f302ae4a, type: 3}
+        m_Texture: {fileID: 2800000, guid: 4c151a19fc34bc847ae99b1999b6cbcb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -59,17 +59,19 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Enabled: 0
+    - _Intensity: 5
     - _OnEnable: 0
-    - _Power: 0.05
+    - _Power: 3
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _RimIntensity: 1
+    - _RimIntensity: 0.5
     - _RimLightEnabled: 1
     - _RimPower: 3
     - _RimWidth: 2
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _RimColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.9547169, g: 0.084663525, b: 0.084663525, a: 1}
+    - _RimColor: {r: 1, g: 0.013207495, b: 0.013207495, a: 1}
     - _RimDirection: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

@@ -130,6 +130,11 @@ public class AnimComponent : MonoBehaviour
         _CurrentFrame.eCurState = eState;
     }
 
+    public void ChangeAnimSpeed(float speed)
+    {
+        _Animation.timeScale = speed;
+    }
+
     private void HandleAnimationEvent(TrackEntry trackEntry, Spine.Event e)
     {
         if (_CurrentFrame.CurrnetEntry != trackEntry)

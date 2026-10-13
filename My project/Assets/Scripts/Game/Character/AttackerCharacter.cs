@@ -85,6 +85,9 @@ public class AttackerCharacter : Character
 
             int Damage = BattleMgr.ComputeDamageLogic(Data.CurrentATKPower);
             CurBattle.TargetObject.RequestDamaged(GetSkill());
+
+            HitStop(0.3f);
+            CurBattle.TargetObject.HitStop(0.3f);
         }
     }
 }
