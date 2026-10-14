@@ -1,13 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UIElements;
+using static CameraShakeComponent;
 
 public class CameraSystem
 {
-    Dictionary<string, Camera> Cameras = new Dictionary<string, Camera>();
+    Dictionary<string, CameraShakeComponent> Cameras = new Dictionary<string, CameraShakeComponent>();
 
-    public void RegisterCamera(string key, Camera cam)
+    public void RegisterCamera(string key, CameraShakeComponent cam)
     {
         if(Cameras.ContainsKey(key))
         {
@@ -29,37 +28,16 @@ public class CameraSystem
         Cameras.Remove(key);
     }
 
-    public void ShakeCamera(string key)
+    public void ShakeCamera(string key, CameraShakeData Data)
     {
         if (Cameras.TryGetValue(key, out var Cam))
         {
-            
-
-
-
+            Cam.ShakeCamera(Data);
         }
     }
 
     #region Defualt
-    static public CameraSystem instance { get; private set; }
-    private void Awake()
-    {
-        if (instance != null && instance != this)
-        {
-            return;
-        }
-
-        instance = this;
-        instance.Initialize();
-    }
-
-    private void OnDestroy()
-    {
-        if (instance == this)
-            instance = null;
-    }
-
-    private void Initialize()
+    public void Initialize()
     {
 
     }

@@ -12,8 +12,15 @@ internal class CollectionCardView : MonoBehaviour, IPointerClickHandler
     [SerializeField] private Text   CountText = null;
 
     private DataManager dataManager = null;
+
     private int     ID;
     private int     Count;
+
+    public int CardID => ID;
+    public RectTransform RectTransform => CardImage != null
+        ? CardImage.rectTransform
+        : transform as RectTransform;
+    public Sprite CardSprite => CardImage != null ? CardImage.sprite : null;
 
     private void Awake()
     {
@@ -39,8 +46,6 @@ internal class CollectionCardView : MonoBehaviour, IPointerClickHandler
         if (ClientMgr == null)
             return;
 
-        (int, int) Entry = (ID, Count);
-        if(ClientMgr._playerData.RemoveCollection(Entry.Item1, Entry.Item2))
-            ClientMgr._playerData.ADDDeck(Entry.Item1, Entry.Item2);
+        ClientMgr.RequestAddDeck(ID, Count);
     }
 }

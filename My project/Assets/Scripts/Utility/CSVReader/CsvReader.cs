@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Reflection;
 using UnityEngine;
 
@@ -32,8 +33,7 @@ public class CsvReader
             if (values.Length == 0 || string.IsNullOrWhiteSpace(values[0]))
                 continue;
 
-            T classInstance = new T();
-
+            object classInstance = new T();
             for (int memberIndex = 0; memberIndex < members.Count; memberIndex++)
             {
                 //튜플 구조분해
@@ -49,7 +49,7 @@ public class CsvReader
                 else if (member is PropertyInfo proInfo)
                     proInfo.SetValue(classInstance, convertedRaw);
             }
-            result.Add(classInstance);
+            result.Add((T)classInstance);
         }
         return result;
     }
@@ -61,6 +61,20 @@ public class CsvReader
         if (type == typeof(double)) return double.Parse(value);
         if (type == typeof(bool)) return bool.Parse(value.ToLower());
         if (type == typeof(string)) return value;
+        if (type == typeof(Vector3))
+        {
+            // 맨 앞과 뒤의 공백 및 큰따옴표 제거
+            string[] values = value.Split(' ');
+
+            if (values.Length != 3)
+                throw new FormatException($"Vector3 형식이 잘못되었습니다: {value}");
+
+            return new Vector3(
+                float.Parse(values[0].Trim(), CultureInfo.InvariantCulture),
+                float.Parse(values[1].Trim(), CultureInfo.InvariantCulture),
+                float.Parse(values[2].Trim(), CultureInfo.InvariantCulture)
+            );
+        }
         if (type.IsEnum) return Enum.Parse(type, value);
 
         var underlying = Nullable.GetUnderlyingType(type);

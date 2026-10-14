@@ -572,6 +572,7 @@ GameObject:
   - component: {fileID: 306607478}
   - component: {fileID: 306607477}
   - component: {fileID: 306607479}
+  - component: {fileID: 306607480}
   m_Layer: 5
   m_Name: DeckBuild
   m_TagString: Untagged
@@ -660,6 +661,18 @@ MonoBehaviour:
   - {fileID: 1009583778}
   - {fileID: 1978683272}
   DeckCountText: {fileID: 1623074870}
+--- !u!114 &306607480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 306607475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70f5e36d50d84bd8b0aa1d61a7662c32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeckCardTransferAnimation
 --- !u!1 &488108161
 GameObject:
   m_ObjectHideFlags: 0

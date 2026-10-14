@@ -15,6 +15,7 @@ Unity로 제작 중인 턴 기반 싱글 카드 전투 게임 프로토타입이
   - 카드 사용 기록 표시
   - 전투 해결 버튼
 - 스테이지 클리어 후 Lobby 역할의 Stage Select 화면으로 복귀
+- GameClientManager가 카드 이동을 요청하고 Collection/Deck UI 이벤트로 두 Transform을 받은 뒤 DeckCardTransferAnimation 이벤트를 발행하는 카드 이동 구조
 
 ### GameLogic agent
 
@@ -48,6 +49,13 @@ Unity로 제작 중인 턴 기반 싱글 카드 전투 게임 프로토타입이
 2. 전투 화면에서 카드 버튼을 눌러 행동을 기록한다.
 3. `Resolve Combat`를 눌러 플레이어 행동 후 몬스터 행동을 처리한다.
 4. 빠른 확인이 필요하면 `Sample Turn`을 눌러 현재 손패를 모두 기록하고 전투를 즉시 해결한다.
+
+### 덱 카드 이동 애니메이션
+
+1. 정상 부트스트랩 경로를 통해 `DeckBuildScene`으로 진입한다.
+2. Deck Collection의 카드를 클릭한다.
+3. Collection 카드가 사라지며 임시 카드 이미지가 실제 DeckViewEntry 위치로 이동하고, 완료 시 DeckViewEntry가 표시되는지 확인한다.
+4. Game View `1600 x 900` 해상도에서 카드 컬렉션과 덱 목록이 화면 안에 표시되는지 확인한다.
 
 ## 데이터 갱신법
 

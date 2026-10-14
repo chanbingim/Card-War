@@ -21,6 +21,7 @@ internal class DeckCollectionView : MonoBehaviour
         ClientManager = GameClientManager.instance;
 
         ClientManager._playerData.OnChangeCollections += RefreshList;
+        ClientManager.RequestCollectionItem += GetCollectionItem;
       
     }
 
@@ -32,6 +33,7 @@ internal class DeckCollectionView : MonoBehaviour
     private void OnDestroy()
     {
         ClientManager._playerData.OnChangeCollections -= RefreshList;
+        ClientManager.RequestCollectionItem -= GetCollectionItem;
     }
 
     public void RefreshItem(ECardEffectType Index)
@@ -66,5 +68,16 @@ internal class DeckCollectionView : MonoBehaviour
     public void PrevPage(int value)
     {
         viewPage = Math.Clamp(viewPage - value, 0, MaxPage);
+    }
+
+    private (RectTransform Transform, Sprite Sprite) GetCollectionItem(int cardID)
+    {
+        foreach (CollectionCardView cardView in CardViewList)
+        {
+            if (cardView.gameObject.activeInHierarchy && cardView.CardID == cardID)
+                return (cardView.RectTransform, cardView.CardSprite);
+        }
+
+        return default;
     }
 }

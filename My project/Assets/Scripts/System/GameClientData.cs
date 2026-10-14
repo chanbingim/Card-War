@@ -9,6 +9,11 @@ public class GameClientManager : MonoBehaviour
 {
     public PlayerData _playerData;
 
+    public event Func<int, (RectTransform Transform, Sprite Sprite)> RequestCollectionItem;
+    public event Func<int, RectTransform> RequestDeckItem;
+
+    public event Action<RectTransform, RectTransform, Sprite> DeckCardTransferRequested;
+
     public BattlePlayerData                     GetBattleData()         { return new BattlePlayerData(_playerData, true); }
     public IReadOnlyDictionary<int, StageData>  GetPlayerStages()       { return _playerData?.StageDatas; }
     public IReadOnlyDictionary<int, int>        GetCollection()         { return _playerData?.Collections; }
@@ -29,10 +34,40 @@ public class GameClientManager : MonoBehaviour
 
     public int GetCurrency(ECurrency Type) { return _playerData?.GetCurrency(Type) ?? 0; }
 
-    // ÀçÈ­½Àµæ¿¡ ¼º°øÇÏ¸é ÇØ´çÇÏ´Â ÀçÈ­ÀÇ °ªÀ» ¾Ë·ÁÁØ´Ù.
+    // ì¬í™”ìŠµë“ì— ì„±ê³µí•˜ë©´ í•´ë‹¹í•˜ëŠ” ì¬í™”ì˜ ê°’ì„ ì•Œë ¤ì¤€ë‹¤.
     public int ADDCurrency(ECurrency Type, int Value, int ErrorCode) { return _playerData?.ADDCurrency(Type, Value, ErrorCode) ?? 0; }
 
     public bool HasEnoughCurrency(ECurrency Type, int Value) { return _playerData?.HasEnoughCurrency(Type, Value) ?? false;  }
+
+    public bool RequestAddDeck(int cardID, int count)
+    {
+        if (_playerData == null || RequestCollectionItem == null)
+            return false;
+
+        var source = RequestCollectionItem.Invoke(cardID);
+        if (source.Transform == null || source.Sprite == null)
+            return false;
+
+        if (!_playerData.RemoveCollection(cardID, count))
+            return false;
+
+        _playerData.ADDDeck(cardID, count);
+
+        RectTransform destination = RequestDeckItem?.Invoke(cardID);
+        if (destination != null)
+            DeckCardTransferRequested?.Invoke(source.Transform, destination, source.Sprite);
+
+        return true;
+    }
+
+    public bool RequestRemoveDeck(int cardID, int count)
+    {
+        if (_playerData == null || !_playerData.RemoveDeck(cardID, count))
+            return false;
+
+        _playerData.ADDCollection(cardID, count);
+        return true;
+    }
 
     #region Defualt
     static public GameClientManager instance { get; private set; }

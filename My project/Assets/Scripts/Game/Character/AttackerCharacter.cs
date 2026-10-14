@@ -84,7 +84,12 @@ public class AttackerCharacter : Character
                 return;
 
             int Damage = BattleMgr.ComputeDamageLogic(Data.CurrentATKPower);
-            CurBattle.TargetObject.RequestDamaged(GetSkill());
+
+            var SkillInfo = GetSkill();
+            CurBattle.TargetObject.RequestDamaged(SkillInfo);
+
+            DataManager.instance.TryCameraData(SkillInfo.AttackerCameraShakeId, out var CamShakeData);
+            BattleMgr.ShakeCamera("MainCam", CamShakeData);
 
             HitStop(0.3f);
             CurBattle.TargetObject.HitStop(0.3f);

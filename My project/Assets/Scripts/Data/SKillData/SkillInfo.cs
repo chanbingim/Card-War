@@ -24,5 +24,8 @@ namespace TurnCardGame.Data
         public string DescriptionKo { get; set; }
         public string AttackEffectId { get; set; }
         public string HitEffectId { get; set; }
+
+        public int AttackerCameraShakeId { get; set; }
+        public int TargetCameraShakeId { get; set; }
     }
 }

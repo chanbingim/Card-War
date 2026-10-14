@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TurnCardGame.Data;
 using UnityEngine;
+using static CameraShakeComponent;
 using CharacterInfo = TurnCardGame.Data.CharacterInfo;
 
 public class DataManager : MonoBehaviour
@@ -17,6 +18,9 @@ public class DataManager : MonoBehaviour
     [Header("Action CSV")]
     [SerializeField] private TextAsset      _ActionCSV;
 
+    [Header("Camera Shake CSV")]
+    [SerializeField] private TextAsset      _CameraShakeCSV;
+
     [Header("로드할 BmItem 경로 (Resources 폴더 기준)")]
     [SerializeField] private string _BmDataloadPath = "SO/BM";
 
@@ -24,7 +28,10 @@ public class DataManager : MonoBehaviour
     private Dictionary<int, (CharacterData, CharacterInfo)>      CharacterDatas = new ();
 
     private Dictionary<int, CardData>                            CardDatas = new Dictionary<int, CardData>();
-    private Dictionary<int, SkillInfo> SkillDatas = new();
+    private Dictionary<int, SkillInfo>                           SkillDatas = new();
+    private Dictionary<int, CameraShakeData>                     CameraShakeDatas = new();
+
+
 
     public (CharacterData, CharacterInfo) GetCharacterById(int id)
     {
@@ -68,6 +75,11 @@ public class DataManager : MonoBehaviour
         return CardDatas.TryGetValue(id, out data);
     }
 
+    public bool TryCameraData(int id, out CameraShakeData data)
+    {
+        return CameraShakeDatas.TryGetValue(id, out data);
+    }
+
     #region Defualt
     static public DataManager instance { get; private set; }
     private void Awake()
@@ -103,6 +115,7 @@ public class DataManager : MonoBehaviour
             LoadAllCharacterData(),
             LoadSkillDatas(),
             LoadAllCardData(),
+            LoadAllCameraShakeData(),
             LoadAllBMData()
         );
     }
@@ -148,6 +161,27 @@ public class DataManager : MonoBehaviour
         });
 
         Debug.Log($"[CharacterDataManager] 스킬 데이터 {SkillDatas.Count}개 로드 완료");
+    }
+
+    private async UniTask LoadAllCameraShakeData()
+    {
+        var datas = CsvReader.ReadCSV<CameraShakeData>(_CameraShakeCSV);
+
+        await UniTask.RunOnThreadPool(() =>
+        {
+            foreach (var data in datas)
+            {
+                if (CameraShakeDatas.ContainsKey(data.ID))
+                {
+                    Debug.LogError($"[CharacterDataManager] 중복된 Camera Shake ID 발견: {data.ID})");
+                    continue;
+                }
+
+                CameraShakeDatas.Add(data.ID, data);
+            }
+        });
+
+        Debug.Log($"[CharacterDataManager] 카메라 데이터 {CameraShakeDatas.Count}개 로드 완료");
     }
 
     private async UniTask LoadAllCardData()

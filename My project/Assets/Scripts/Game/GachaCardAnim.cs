@@ -22,7 +22,6 @@ public class GachaCardAnim : MonoBehaviour, IPointerClickHandler
     private void Awake()
     {
         _dissolveComponent = GetComponent<DissolveComponent>();
-        gameObject.SetActive(false);
     }
 
     public void Initialize(int id, Vector3 AnimTargetPoint, Action OnCompelted)

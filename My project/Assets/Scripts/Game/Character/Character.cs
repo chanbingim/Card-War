@@ -194,7 +194,10 @@ public class Character : MonoBehaviour, IActionDragHandler
     public virtual void Hit()
     {
         // 파티클 재생
-        var BattleAct = BattleManager.instance._CurBattleAction;
+        var BattleMgr = BattleManager.instance;
+       
+
+        var BattleAct = BattleMgr._CurBattleAction;
         if(BattleAct == null)
         {
             Debug.Log("Not Play Battle");
@@ -204,6 +207,8 @@ public class Character : MonoBehaviour, IActionDragHandler
         var AttackerSkill = BattleAct.ActObject.GetSkill();
         PoolFactory.GetPoolEffect(AttackerSkill.HitEffectId, transform);
 
+        DataManager.instance.TryCameraData(AttackerSkill.TargetCameraShakeId, out var Data);
+        BattleMgr.ShakeCamera("MainCam", Data);
         _RimLightRender?.Play();
     }
 
@@ -216,7 +221,6 @@ public class Character : MonoBehaviour, IActionDragHandler
     protected virtual void Attack() 
     {
         
-
     }
 
     protected virtual void AnimFinished(TrackEntry entry) 

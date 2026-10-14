@@ -18,8 +18,8 @@ public class SpriteAnimation : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        _OnCanvasChange = GetComponent<ChangeCanvasComponent>();
-        _OnCanvasChange.enabled = false;
+       _OnCanvasChange = GetComponent<ChangeCanvasComponent>();
+       _OnCanvasChange.enabled = false;
 
         _OkButton.gameObject.SetActive(false);
         _OkButton.onClick.AddListener(ClickEvent);
@@ -79,7 +79,7 @@ public class SpriteAnimation : MonoBehaviour
             return;
         }
 
-        if (_CardList.Count <= GachaCount)
+        if (_CardList.Count < GachaCount)
             return;
 
         if (NextCount < GachaCount)

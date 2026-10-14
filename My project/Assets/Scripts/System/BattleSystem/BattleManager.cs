@@ -3,9 +3,10 @@ using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using TurnCardGame.Data;
-using Unity.VisualScripting;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static CameraShakeComponent;
 
 public class BattleManager : MonoBehaviour, IInitialize
 {
@@ -15,6 +16,7 @@ public class BattleManager : MonoBehaviour, IInitialize
     private ActionSystem             _ActionSystem = new ActionSystem();
     private MatchParing              _MatchMakingMgr = null;
     private TurnManager              _TrunMgr = null;
+    private CameraSystem             _CameraSystem = null;
 
     private Stage                    _Cur_Stage = null;
     private List<(int, int)>         _CurPhaseMatch = null;
@@ -133,6 +135,23 @@ public class BattleManager : MonoBehaviour, IInitialize
 
     #endregion
 
+    #region CameraSystem
+    public void ShakeCamera(string key, CameraShakeData Data)
+    {
+        _CameraSystem?.ShakeCamera(key, Data);
+    }
+
+    public void RegisterCamera(string key, CameraShakeComponent cam)
+    {
+        _CameraSystem?.RegisterCamera(key, cam);
+    }
+
+    public void UnRegisterCamera(string key)
+    {
+        _CameraSystem?.UnRegisterCamera(key);
+    }
+    #endregion
+
     #region Defualt
     static public BattleManager instance { get; private set; }
     private void Start()
@@ -211,6 +230,9 @@ public class BattleManager : MonoBehaviour, IInitialize
             Debug.LogWarning("Initialize Fail TurnManager");
             return UniTask.CompletedTask;
         }
+
+        _CameraSystem = new CameraSystem();
+        _CameraSystem.Initialize();
 
         return UniTask.CompletedTask;
     }

@@ -14,6 +14,9 @@ internal class DeckViewEntry : MonoBehaviour, IPointerClickHandler
     private int ID;
     private int Count;
 
+    public RectTransform RectTransform => transform as RectTransform;
+    public int CardID => ID;
+
     private void Awake()
     {
         dataManager = DataManager.instance;
@@ -41,9 +44,7 @@ internal class DeckViewEntry : MonoBehaviour, IPointerClickHandler
         if (ClientMgr == null)
             return;
 
-        (int, int) Entry = (ID, Count);
-        if (ClientMgr._playerData.RemoveDeck(Entry.Item1, Entry.Item2))
-            ClientMgr._playerData.ADDCollection(Entry.Item1, Entry.Item2);
+        ClientMgr.RequestRemoveDeck(ID, Count);
     }
 
     public void OnPointerClick(PointerEventData eventData)

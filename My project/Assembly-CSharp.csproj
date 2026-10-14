@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\Game\GachaCardAnim.cs" />
     <Compile Include="Assets\Scripts\Utility\CSVReader\CsvReader.cs" />
     <Compile Include="Assets\Scripts\Data\ActionData\CharacterAction.cs" />
+    <Compile Include="Assets\Scripts\System\Camera\Component\CameraShakeComponent.cs" />
     <Compile Include="Assets\Scripts\UI\View\DeckBuild\Collection\DeckCollectionView.cs" />
     <Compile Include="Assets\Scripts\UI\Components\Gacha\DateComponent.cs" />
     <Compile Include="Assets\Scripts\System\Addressable\AddressableManager.cs" />
@@ -126,6 +127,7 @@
     <Compile Include="Assets\Scripts\Game\Character\Component\RimLightComponent.cs" />
     <Compile Include="Assets\Scripts\UI\Controller\DeckBuildController.cs" />
     <Compile Include="Assets\Scripts\Game\Character\Component\AnimComponent.cs" />
+    <Compile Include="Assets\Scripts\UI\Components\Animation\DeckCardTransferAnimation.cs" />
     <Compile Include="Assets\Scripts\Event\Events\TrunEvent\ChangeTurnActEvent.cs" />
     <Compile Include="Assets\Scripts\UI\Controller\GachaController.cs" />
     <Compile Include="Assets\Scripts\System\DragSystem\DragManager.cs" />

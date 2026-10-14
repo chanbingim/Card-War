@@ -1,8 +1,9 @@
+using Cysharp.Threading.Tasks;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using Cysharp.Threading.Tasks;
-using System.Threading.Tasks;
 
 public class Loading : MonoBehaviour
 {
@@ -100,14 +101,34 @@ public class Loading : MonoBehaviour
 
     private async UniTask InitializeScene(Scene scene)
     {
+        var initializers = new List<IInitialize>();
+        var cameraShakes = new List<CameraShakeComponent>();
+
         foreach (GameObject rootObject in scene.GetRootGameObjects())
         {
-            var initializers = rootObject.GetComponentsInChildren<IInitialize>(true);
+            MonoBehaviour[] behaviours =
+                rootObject.GetComponentsInChildren<MonoBehaviour>(true);
 
-            foreach (var initializer in initializers)
+            foreach (MonoBehaviour behaviour in behaviours)
             {
-                await initializer.Initialize();
+                if (behaviour is IInitialize initializer)
+                    initializers.Add(initializer);
+
+                if (behaviour is CameraShakeComponent cameraShake)
+                    cameraShakes.Add(cameraShake);
             }
+        }
+
+        // 1단계: 매니저를 포함한 일반 객체 초기화
+        foreach (IInitialize initializer in initializers)
+        {
+            await initializer.Initialize();
+        }
+
+        // 2단계: 초기화된 매니저에 카메라 등록
+        foreach (CameraShakeComponent cameraShake in cameraShakes)
+        {
+            cameraShake.Init();
         }
     }
 }
