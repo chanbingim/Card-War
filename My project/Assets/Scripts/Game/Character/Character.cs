@@ -1,25 +1,30 @@
 using Custom.Struct;
 using DG.Tweening;
 using GamePlay.Enum;
+using NUnit.Framework.Constraints;
 using Spine;
 using Spine.Unity;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using TurnCardGame.Data;
 using UnityEngine;
+using UnityEngine.Rendering;
+using static BuffComponent;
 
 public class Character : MonoBehaviour, IActionDragHandler
 {
     #region Delegate
     public delegate void FinishedAction(EFSM_STATE state);
     public delegate void OnDagmaed(float fHealthRatio);
+
     public delegate void OnChangeState(CharacterRuntimeData Data);
 
     public event OnDagmaed OnDamaged;
     public event Action    OnDead;
 
-    public event OnChangeState OnChangedState;
-    public event FinishedAction OnFinishedAct;
+    public event OnChangeState    OnChangedState;
+    public event FinishedAction   OnFinishedAct;
     #endregion
 
     public bool bIsLeft = false;
@@ -34,11 +39,13 @@ public class Character : MonoBehaviour, IActionDragHandler
     protected RimLightComponent     _RimLightRender = null;
     protected OutLineRenderer       _OutLineRender = null;
     protected SpriteRenderer        _spriteRender = null;
+    protected BuffComponent         _buffComponent = null;
     protected bool                  _bIsAttackAble = false;
 
     protected Vector3               vOrizinLook = Vector3.right;
     protected Vector3               vOrizinPoint = Vector3.zero;
 
+    private SortingGroup            _sortingGroup = null;
     private BoxCollider2D           _boxCollider = null;
     private Coroutine               _HitStopCoroutine = null;
     
@@ -91,6 +98,7 @@ public class Character : MonoBehaviour, IActionDragHandler
             _OutLineRender.Initialize();
         }
 
+        _sortingGroup = GetComponent<SortingGroup>();
         gameObject.AddComponent<BoxCollider2D>();
         _boxCollider = GetComponent<BoxCollider2D>();
 
@@ -99,6 +107,34 @@ public class Character : MonoBehaviour, IActionDragHandler
         {
             _RimLightRender.Initialize();
         }
+
+        _buffComponent = GetComponent<BuffComponent>();
+        if (_buffComponent != null)
+        {
+            _buffComponent.Initialize();
+        }
+    }
+
+    public void SubscribeBuffChange(BuffListChangedHandler _action)
+    {
+        if(_buffComponent != null)
+            _buffComponent.OnChangeBuffList += _action;
+    }
+
+    public void UnSubscribeBuffChange(BuffListChangedHandler _action)
+    {
+        if (_buffComponent != null)
+            _buffComponent.OnChangeBuffList -= _action;
+    }
+
+    public void TurnEndLogic()
+    {
+        _buffComponent?.TurnEnd();
+    }
+
+    public void SetSortingOrder(int Order)
+    {
+        _sortingGroup.sortingOrder = Order;
     }
 
     public void SetAttackAble(bool Active)
@@ -110,7 +146,9 @@ public class Character : MonoBehaviour, IActionDragHandler
     {
         if(AttackData == null) return;
 
-        Data.TakeDamage(AttackData.Damage);
+        int Damage = AttackData.Damage - (_buffComponent?.GetTotalEffectValue(ECardEffectType.DefenseBuff) ?? 0);
+
+        Data.TakeDamage(Damage);
         var PoolItem = PoolManager.Instance.Get<PoolAbleComponent>(GamePlay.Enum.EPoolType.Obejct, "DamageFont");
         if(PoolItem != null)
         {
@@ -119,7 +157,7 @@ public class Character : MonoBehaviour, IActionDragHandler
             Vector3 Pos = Vector3.up * BoxSize.size.y;
 
             var Font = PoolItem.gameObject.GetComponent<DamageFont>();
-            Font.Initalize(AttackData.Damage, transform, Pos);
+            Font.Initalize(Damage, transform, Pos);
         }
 
         // 여기서 Effect ID 찾기
@@ -158,9 +196,16 @@ public class Character : MonoBehaviour, IActionDragHandler
 
     public void ApplyCardEffect(CardData _Data)
     {
-        if(_Data.eEffectType == ECardEffectType.Heal)
+        switch(_Data.eEffectType)
         {
-            Debug.Log($"{name} : Heal");
+            case ECardEffectType.Heal:
+                Debug.Log($"{name} : Heal");
+                break;
+
+            case ECardEffectType.AttackBuff:
+            case ECardEffectType.DefenseBuff:
+                _buffComponent.ADD_Bff(_Data);
+                break;
         }
     }
 
@@ -267,7 +312,6 @@ public class Character : MonoBehaviour, IActionDragHandler
         _AnimComponent.ChangeAnimSpeed(1.0f);
         _HitStopCoroutine = null;
     }
-
 
     #region DragInterfaceLogic
     void IActionDragHandler.OnHoverEnter()

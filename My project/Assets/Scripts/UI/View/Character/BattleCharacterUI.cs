@@ -1,32 +1,23 @@
 using Custom.Struct;
 using DG.Tweening;
 using TurnCardGame.Data;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class BattleCharacterUI : MonoBehaviour
 {
     [SerializeField] private Slider _progressBar;
-    [SerializeField] private Text   _ATKtext;
+    [SerializeField] private Slider _BackGroundBar;
+    [SerializeField] private Text   _Text;
+
     private Character     _Owner = null;
 
-    public void Initalize(Character Owner, Vector3 Position, Transform Parent)
+    public void Initalize(Character Owner)
     {
         _Owner = Owner;
 
-        Position.z = 0;
-
-        SettingHpPosition();
-        transform.SetParent(Parent);
-
         OnChangeState(_Owner.Data);
         _Owner.OnChangedState += OnChangeState;
-    }
-
-    public void Update()
-    {
-        SettingHpPosition();
     }
 
     public void Release()
@@ -38,21 +29,25 @@ public class BattleCharacterUI : MonoBehaviour
         _Owner = null;
     }
 
-    private void SettingHpPosition()
+    public void OnDisable()
     {
-        var BoxInfo = _Owner.GetPivotPoint();
-        transform.position = _Owner.transform.position + new Vector3(0, BoxInfo.size.y * 1.2f, 0);
+        _progressBar.DOKill();
+        _BackGroundBar.DOKill();
+        _Text.DOKill();
+        Release();
     }
 
     private void OnChangeState(CharacterRuntimeData Data)
     {
-        _progressBar.DOValue(Data.HealthRatio, 0.7f);
-        _ATKtext.DOText($"ATK : {Data.CurrentATKPower}", 0.7f);
+        _progressBar.value = Data.HealthRatio;
+
+        HPBackGroundAnim();
+        _Text.text = $" {Data.CurrentHealth} : {Data.SourceInfo.MaxHp}";
     }
 
-    public void OnDisable()
+    private void HPBackGroundAnim()
     {
-        _progressBar.DOKill();
-        Release();
+        _BackGroundBar.DOValue(_progressBar.value, 0.7f)
+                    .SetDelay(0.7f);
     }
 }

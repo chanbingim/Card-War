@@ -40,11 +40,11 @@ internal class DeckViewEntry : MonoBehaviour, IPointerClickHandler
     {
         // 여기서 데이터를 몇개 뺄지 결정하고 추가
 
-        var ClientMgr = GameClientManager.instance;
-        if (ClientMgr == null)
+        var DeckSystem = DeckBuildSystem.instance;
+        if (DeckSystem == null)
             return;
 
-        ClientMgr.RequestRemoveDeck(ID, Count);
+        DeckSystem.RequestRemoveDeck(ID, Count);
     }
 
     public void OnPointerClick(PointerEventData eventData)

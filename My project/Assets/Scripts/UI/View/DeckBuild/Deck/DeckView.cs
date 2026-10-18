@@ -11,22 +11,23 @@ internal class DeckView : MonoBehaviour
 
     private GameClientManager            ClientManager = null;
 
-    private void Awake()
-    {
-        ClientManager = GameClientManager.instance;
-        ClientManager._playerData.OnChangeDeck += RefreshItem;
-        ClientManager.RequestDeckItem += GetDeckItem;
-    }
-
     private void Start()
     {
+        var DeckSystem = DeckBuildSystem.instance;
+        ClientManager = GameClientManager.instance;
+
+        ClientManager._playerData.OnChangeDeck += RefreshItem;
+        DeckSystem.RequestDeckItem += GetDeckItem;
+
         RefreshItem(ClientManager.GetPlayerDeck());
     }
 
     private void OnDestroy()
     {
+        var DeckSystem = DeckBuildSystem.instance;
+
         ClientManager._playerData.OnChangeDeck -= RefreshItem;
-        ClientManager.RequestDeckItem -= GetDeckItem;
+        DeckSystem.RequestDeckItem -= GetDeckItem;
     }
 
     public void RefreshItem(IReadOnlyList<DeckEntry> Decks)

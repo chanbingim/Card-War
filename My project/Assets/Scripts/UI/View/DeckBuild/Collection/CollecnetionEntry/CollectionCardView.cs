@@ -42,10 +42,10 @@ internal class CollectionCardView : MonoBehaviour, IPointerClickHandler
 
     void IPointerClickHandler.OnPointerClick(PointerEventData eventData)
     {
-        var ClientMgr = GameClientManager.instance;
-        if (ClientMgr == null)
+        var DeckSystem = DeckBuildSystem.instance;
+        if (DeckSystem == null)
             return;
 
-        ClientMgr.RequestAddDeck(ID, Count);
+        DeckSystem.RequestAddDeck(ID, Count);
     }
 }

@@ -83,7 +83,8 @@ public class AttackerCharacter : Character
             if (CurBattle == null)
                 return;
 
-            int Damage = BattleMgr.ComputeDamageLogic(Data.CurrentATKPower);
+            int Damage = Data.CurrentATKPower + (_buffComponent?.GetTotalEffectValue(ECardEffectType.AttackBuff) ?? 0);
+            Damage = BattleMgr.ComputeDamageLogic(Damage);
 
             var SkillInfo = GetSkill();
             CurBattle.TargetObject.RequestDamaged(SkillInfo);

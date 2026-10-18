@@ -36,8 +36,8 @@ namespace Factory
                 character.transform.DORotate(new Vector3(0, 180, 0), 0.2f);
             }
 
-            var CharacterHP = PoolAble.gameObject.GetComponent<BattleCharacterUI>();
-            if (CharacterHP == null)
+            var CharacterUIController = PoolAble.gameObject.GetComponent<BattleCharacterUIController>();
+            if (CharacterUIController == null)
                 return null;
 
             var UIMgr = UIManager.instance;
@@ -54,7 +54,7 @@ namespace Factory
                 return null;
             }
 
-            CharacterHP.Initalize(character, Position, WorldCanvas.transform);
+            CharacterUIController.Initalize(character, WorldCanvas.transform);
             return character;
         }
 

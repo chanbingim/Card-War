@@ -12,7 +12,7 @@ public sealed class DeckCardTransferAnimation : MonoBehaviour
     [SerializeField, Range(0.0f, 1.0f)] private float _FadeStartRate = 0.65f;
     [SerializeField] private Ease _MovementEase = Ease.OutCubic;
 
-    private GameClientManager ClientManager = null;
+    private DeckBuildSystem DeckSystem = null;
     private bool IsSubscribed = false;
 
     private void OnEnable()
@@ -27,10 +27,10 @@ public sealed class DeckCardTransferAnimation : MonoBehaviour
 
     private void OnDisable()
     {
-        if (ClientManager != null && IsSubscribed)
-            ClientManager.DeckCardTransferRequested -= Play;
+        if (DeckSystem != null && IsSubscribed)
+            DeckSystem.DeckCardTransferRequested -= Play;
 
-        ClientManager = null;
+        DeckSystem = null;
         IsSubscribed = false;
     }
 
@@ -39,11 +39,11 @@ public sealed class DeckCardTransferAnimation : MonoBehaviour
         if (IsSubscribed)
             return;
 
-        ClientManager = GameClientManager.instance;
-        if (ClientManager == null)
+        DeckSystem = DeckBuildSystem.instance;
+        if (DeckSystem == null)
             return;
 
-        ClientManager.DeckCardTransferRequested += Play;
+        DeckSystem.DeckCardTransferRequested += Play;
         IsSubscribed = true;
     }
 

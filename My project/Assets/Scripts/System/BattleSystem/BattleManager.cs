@@ -3,7 +3,6 @@ using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using TurnCardGame.Data;
-using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static CameraShakeComponent;
@@ -119,6 +118,9 @@ public class BattleManager : MonoBehaviour, IInitialize
 
             Vector3 vDir = Attacker.bIsLeft ? -Vector3.right : Vector3.right;
             Vector3 Point = TargetPos - (vDir * boxBound.size.x * 0.5f);
+
+            Attacker.SetSortingOrder(1);
+            Target.SetSortingOrder(0);
 
             Attacker.AttackAction(Point);
             EventBus.Publish<CardActionEvent>(new CardActionEvent(_CurBattleAction));

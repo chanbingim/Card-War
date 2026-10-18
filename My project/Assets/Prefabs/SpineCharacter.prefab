@@ -12,7 +12,9 @@ GameObject:
   - component: {fileID: 2788733418643967971}
   - component: {fileID: 8028995197976001982}
   - component: {fileID: 7797618395491375407}
+  - component: {fileID: 8393783807703890169}
   - component: {fileID: 8643021290930552223}
+  - component: {fileID: -4544938744554259686}
   - component: {fileID: 1483722677898016706}
   - component: {fileID: -3320026105628448525}
   - component: {fileID: -1292008957963437698}
@@ -68,7 +70,7 @@ MeshRenderer:
   m_SmallMeshCulling: 1
   m_ForceMeshLod: -1
   m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 4201d5b0ded31aa4bbc03347f05728c4, type: 2}
@@ -132,6 +134,19 @@ MonoBehaviour:
   _animationName: shield_attack
   loop: 1
   timeScale: 1
+--- !u!210 &8393783807703890169
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6665665945045140450}
+  m_Enabled: 1
+  m_SortingLayerID: 413747523
+  m_SortingLayer: 1
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
+  m_Sort3DAs2D: 0
 --- !u!114 &8643021290930552223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,6 +159,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efcbde3aaf3aeb044820608060f76e55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FSM
+--- !u!114 &-4544938744554259686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6665665945045140450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4429f54e4aa6a764b975e5aeb3a00beb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuffComponent
 --- !u!114 &1483722677898016706
 MonoBehaviour:
   m_ObjectHideFlags: 0

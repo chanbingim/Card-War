@@ -203,6 +203,14 @@ public class BattlePlayerData : TurnParticipantBase
             return;
     }
 
+    public override void TurnEnd()
+    {
+        foreach(var Character in PlayerParty)
+            Character.TurnEndLogic();
+
+        base.TurnEnd();
+    }
+
     private void PartyCharacterDead()
     {
         DeadCount++;

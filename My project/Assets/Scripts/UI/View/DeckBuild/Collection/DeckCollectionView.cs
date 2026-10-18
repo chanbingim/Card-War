@@ -8,32 +8,33 @@ using UnityEngine;
 internal class DeckCollectionView : MonoBehaviour
 {
     [SerializeField] List<CollectionCardView>   CardViewList = new();
-    private GameClientManager                   ClientManager = null;
 
     private ECardEffectType SelectIndex = ECardEffectType.None;
+
+    private GameClientManager ClientMgr = null;
 
     // Page 관련 변수
     private int MaxPage = 5;
     private int viewPage = 0;
 
-    private void  Awake()
-    {
-        ClientManager = GameClientManager.instance;
-
-        ClientManager._playerData.OnChangeCollections += RefreshList;
-        ClientManager.RequestCollectionItem += GetCollectionItem;
-      
-    }
-
     private void Start()
     {
+        var DeckSystem = DeckBuildSystem.instance;
+        ClientMgr = GameClientManager.instance;
+
+        ClientMgr._playerData.OnChangeCollections += RefreshList;
+        DeckSystem.RequestCollectionItem += GetCollectionItem;
+
         RefreshList();
     }
 
     private void OnDestroy()
     {
-        ClientManager._playerData.OnChangeCollections -= RefreshList;
-        ClientManager.RequestCollectionItem -= GetCollectionItem;
+        var DeckSystem = DeckBuildSystem.instance;
+        ClientMgr = GameClientManager.instance;
+
+        ClientMgr._playerData.OnChangeCollections -= RefreshList;
+        DeckSystem.RequestCollectionItem -= GetCollectionItem;
     }
 
     public void RefreshItem(ECardEffectType Index)
@@ -45,7 +46,7 @@ internal class DeckCollectionView : MonoBehaviour
 
     private void RefreshList()
     {
-        var Collection = ClientManager.GetCollection(SelectIndex);
+        var Collection = ClientMgr.GetCollection(SelectIndex);
         MaxPage = Collection.Count / CardViewList.Count;
 
         int StartIdx = viewPage * (CardViewList.Count / CardViewList.Count);

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public struct PoolCash
@@ -67,8 +66,10 @@ public class ObjectPool<T> where T : PoolAbleComponent
         if (_PoolList.TryGetValue(PoolName, out var objectPool))
         {
             objectPool.Pool.Enqueue(objectToReturn);
+            objectToReturn.transform.SetParent(objectPool.BaseTarget.transform);
         }
 
+       
         objectToReturn.gameObject.SetActive(false);
     }
 
