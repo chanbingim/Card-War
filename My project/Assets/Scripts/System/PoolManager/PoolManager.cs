@@ -54,7 +54,6 @@ public class PoolManager : MonoBehaviour
     {
         if(_PoolList.TryGetValue(poolType, out var objectPool))
         {
-            gameObject.transform
             objectPool.Return(poolObjectName, obj);
         }
     }

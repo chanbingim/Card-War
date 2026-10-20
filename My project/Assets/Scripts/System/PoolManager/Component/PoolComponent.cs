@@ -13,4 +13,9 @@ public class PoolAbleComponent : MonoBehaviour
         // 오브젝트 반환
         PoolManager.Instance.Return<PoolAbleComponent>(PoolType, PoolName, this);
     }
+
+    public void Release()
+    {
+        Destroy(this.gameObject);
+    }
 }

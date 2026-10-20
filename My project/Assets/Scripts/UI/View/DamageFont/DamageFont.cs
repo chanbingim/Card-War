@@ -54,6 +54,8 @@ public class DamageFont : MonoBehaviour
         _DoTweenAnimator?.Pause_Animation();
 
         _material.SetTexture("_BaseMap", _DamageTexture);
+
+        Initalize(1000, null, Vector3.zero);
     }
 
     public void Initalize(Int64 Damage, Transform parent, Vector3 Offset)
@@ -68,7 +70,9 @@ public class DamageFont : MonoBehaviour
         int Count = 0;
         int half = Data.Count / 2;
 
-        transform.parent = parent;
+        if(parent != null)
+            transform.parent = parent;
+
         for (int i = Data.Count - 1; i >= 0; i--)
         {
             var instance = _InstanceBuffer[Count];
