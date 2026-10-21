@@ -28,11 +28,11 @@ public class CameraSystem
         Cameras.Remove(key);
     }
 
-    public void ShakeCamera(string key, CameraShakeProfile Data)
+    public void ShakeCamera(string key, CameraShakeProfile Data, bool EnableTimeScale)
     {
         if (Cameras.TryGetValue(key, out var Cam))
         {
-            Cam.ShakeCamera(Data);
+            Cam.ShakeCamera(Data, EnableTimeScale);
         }
     }
 

@@ -91,7 +91,7 @@ public class AttackerCharacter : Character
             CurBattle.TargetObject.RequestDamaged(SkillInfo);
 
             DataManager.instance.TryCameraData(SkillInfo.AttackerCameraShakeId, out var CamShakeData);
-            BattleMgr.ShakeCamera("MainCam", CamShakeData);
+            BattleMgr.ShakeCamera("MainCam", CamShakeData, false);
 
             /// 히트스탑을 처리하는데 여기서 한번 출력을 해보자
             UIManager.instance.SlpashPlay();

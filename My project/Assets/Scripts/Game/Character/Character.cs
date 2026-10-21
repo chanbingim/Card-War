@@ -253,7 +253,7 @@ public class Character : MonoBehaviour, IActionDragHandler
         PoolFactory.GetPoolEffect(AttackerSkill.HitEffectId, transform);
 
         DataManager.instance.TryCameraData(AttackerSkill.TargetCameraShakeId, out var Data);
-        BattleMgr.ShakeCamera("MainCam", Data);
+        BattleMgr.ShakeCamera("MainCam", Data, false);
         _RimLightRender?.Play();
     }
 

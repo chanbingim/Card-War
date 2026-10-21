@@ -1,13 +1,22 @@
+using System.Collections;
 using UnityEngine;
 
 public class CameraShakeComponent : MonoBehaviour
 {
+    public struct ShakePoint
+    {
+        public Vector2 offsetPx;   // 위치 변위 (px)
+        public float rotDeg;       // 회전 (도)
+        public float scale;        // 확대 배율
+        public float power;        // 현재 세기 (0~1)
+    }
+
     [SerializeField] private string _CameraKey;
     [SerializeField] private Camera targetCamera;
 
     [Header("툴(px) → Unity 단위 변환")]
     [Tooltip("툴의 intensity(px) 기준 화면 높이. 클수록 같은 px 값이 작게 흔들림")]
-    [SerializeField] private float referenceHeightPx = 900f;
+    [SerializeField] private float referenceHeightPx = 760f;
     [Tooltip("원근 카메라일 때 px 환산에 쓰는 초점 거리")]
     [SerializeField] private float perspectiveFocusDistance = 10f;
 
@@ -15,6 +24,7 @@ public class CameraShakeComponent : MonoBehaviour
     [SerializeField] private int _testShakeId = 2002;
 
     private float remainingTime = 0;
+    private bool UseTimeScale = false;
     private CameraShakeProfile ShakeData = null;
 
     // 쉐이크 시작 시점의 기준 자세 (끝나면 여기로 복구)
@@ -24,39 +34,12 @@ public class CameraShakeComponent : MonoBehaviour
     private float _baseFov;
     private float unitsPerPx;
 
-    public struct ShakePoint
-    {
-        public Vector2 offsetPx;   // 위치 변위 (px)
-        public float rotDeg;       // 회전 (도)
-        public float scale;        // 확대 배율
-        public float power;        // 현재 세기 (0~1)
-    }
+    private Coroutine shakeCorutine = null;
 
     private void Awake()
     {
-        if (targetCamera == null) targetCamera = GetComponent<Camera>();
-    }
-
-    private void LateUpdate()
-    {
-        if (remainingTime <= 0.0f)
-            return;
-
-        remainingTime -= Time.deltaTime;           // 히트스탑(timeScale 0) 중에도 진행
-        if (remainingTime <= 0.0f)
-        {
-            remainingTime = 0.0f;
-            Restore();                                     // 원래 자세로 복구
-            return;
-        }
-
-        float elapsed = ShakeData.DurationSec - remainingTime;   // 초 단위 경과 시간
-        ShakePoint pt = GetTechniquePoint(ShakeData.technique, ShakeData, elapsed);
-
-        var offset = new Vector3(-pt.offsetPx.x, pt.offsetPx.y, 0f) * unitsPerPx;
-        transform.localPosition = _baseLocalPos + _baseLocalRot * offset;
-        transform.localRotation = _baseLocalRot * Quaternion.Euler(0f, 0f, pt.rotDeg);
-        ApplyZoom(pt.scale);
+        if (targetCamera == null) 
+            targetCamera = GetComponent<Camera>();
     }
 
     // ── 재생 ────────────────────────────────────────────────────────────
@@ -67,15 +50,20 @@ public class CameraShakeComponent : MonoBehaviour
         else Debug.LogWarning($"[CameraShakeComponent] ShakeID {shakeId} 없음");
     }
 
-    public void ShakeCamera(CameraShakeProfile Data)
+    public void ShakeCamera(CameraShakeProfile Data, bool EnableTimeSacle = true)
     {
         if (Data == null || Data.durationMs <= 0f) return;
 
         if (remainingTime <= 0.0f)      // 재생 중이 아닐 때만 기준 자세 저장 (재생 중 재호출 시 유지)
             CaptureBase();
 
+        if(shakeCorutine != null)
+            StopCoroutine(shakeCorutine);
+
         ShakeData = Data;
         remainingTime = Data.DurationSec;   // ms → 초
+        UseTimeScale = EnableTimeSacle;
+        shakeCorutine = StartCoroutine(CameraShakeCorutine());
     }
 
     public void Stop()
@@ -93,6 +81,7 @@ public class CameraShakeComponent : MonoBehaviour
     {
         _baseLocalPos = transform.localPosition;
         _baseLocalRot = transform.localRotation;
+
         _baseOrthoSize = targetCamera.orthographicSize;
         _baseFov = targetCamera.fieldOfView;
 
@@ -106,6 +95,7 @@ public class CameraShakeComponent : MonoBehaviour
     {
         transform.localPosition = _baseLocalPos;
         transform.localRotation = _baseLocalRot;
+
         ApplyZoom(1f);
     }
 
@@ -117,41 +107,81 @@ public class CameraShakeComponent : MonoBehaviour
         Vector3 s;   // (x, y, r) 파형 -1 ~ 1
         switch (technique)
         {
-            case ShakeTechnique.SmoothNoise: s = SampleNoise(elapsedSec, p.frequencyHz); break;
-            case ShakeTechnique.DampedSpring: s = SampleSpring(progress, p.frequencyHz); break;
-            case ShakeTechnique.DirectionalRecoil: s = SampleRecoil(progress); break;
-            default: s = SampleLayered(elapsedSec, p.frequencyHz); break;
+            case ShakeTechnique.SmoothNoise: 
+                s = SampleNoise(elapsedSec, p.frequencyHz); 
+                break;
+
+            case ShakeTechnique.DampedSpring: 
+                s = SampleSpring(progress, p.frequencyHz);
+                break;
+
+            case ShakeTechnique.DirectionalRecoil: 
+                s = SampleRecoil(progress); 
+                break;
+
+            default: 
+                s = SampleLayered(elapsedSec, p.frequencyHz); 
+                break;
         }
 
+        float Intensity = p.intensityPx * power;
         return new ShakePoint
         {
-            offsetPx = new Vector2(s.x * p.intensityPx * power, s.y * p.intensityPx * power),
+            offsetPx = new Vector2(s.x * Intensity, s.y * Intensity),
             rotDeg = s.z * p.rotationDeg * power,
             scale = 1f + p.zoomPercent * 0.01f * power,
             power = power
         };
     }
 
-    // ── Power: 이전 점 / 현재 점 index 로 smoothstep 보간 ────────────────────
-    private static float GetPower(EnvelopePoint[] env, float progress)
+    private IEnumerator CameraShakeCorutine()
     {
-        if (env == null || env.Length == 0) return 0f;
-        if (progress <= env[0].time) return env[0].power;
-
-        for (int curr = 1; curr < env.Length; curr++)
+        while (remainingTime >= 0.0f)
         {
-            if (progress > env[curr].time) continue;
+            remainingTime -= UseTimeScale ? Time.deltaTime : Time.unscaledDeltaTime;           // 히트스탑(timeScale 0) 중에도 진행
+
+            float elapsed = ShakeData.DurationSec - remainingTime;   // 초 단위 경과 시간
+            ShakePoint pt = GetTechniquePoint(ShakeData.technique, ShakeData, elapsed);
+
+            var offset = new Vector3(-pt.offsetPx.x, pt.offsetPx.y, 0f) * unitsPerPx;
+            transform.localPosition = _baseLocalPos + _baseLocalRot * offset;
+            transform.localRotation = _baseLocalRot * Quaternion.Euler(0f, 0f, pt.rotDeg);
+            ApplyZoom(pt.scale);
+
+            yield return null;
+        }
+
+        shakeCorutine = null;
+        remainingTime = 0.0f;
+        Restore();
+    }
+
+    // ── Power: 이전 점 / 현재 점 index 로 smoothstep 보간 ────────────────────
+    private float GetPower(EnvelopePoint[] env, float progress)
+    {
+        if (env == null || env.Length == 0)
+            return 0f;
+
+        for (int curr = 0; curr < env.Length; curr++)
+        {
+            if (progress > env[curr].time)
+                continue;
+
+            if (curr == 0)
+                return env[0].power;
 
             int prev = curr - 1;
-            float raw = (progress - env[prev].time) / Mathf.Max(0.001f, env[curr].time - env[prev].time);
-            float smooth = raw * raw * (3f - 2f * raw);
-            return env[prev].power + (env[curr].power - env[prev].power) * smooth;
+
+            // value 가 A, B 값 사이에 어느정도 비율에 위치하는지
+            float t = Mathf.InverseLerp(env[prev].time, env[curr].time, progress);
+            return Mathf.SmoothStep(env[prev].power, env[curr].power, t);
         }
-        return 0f;   // 마지막 점 이후
+
+        return 0f;
     }
 
     // ── 기법별 파형: 반환값 (x, y, r) ───────────────────────────────────────
-    private static Vector3 SampleLayered(float t, float f)
+    private Vector3 SampleLayered(float t, float f)
     {
         return new Vector3(
             Wave(t, f, 0.72f, 1f),
@@ -159,7 +189,7 @@ public class CameraShakeComponent : MonoBehaviour
             Wave(t, f, 4.18f, 0.39f) * 0.39f);
     }
 
-    private static Vector3 SampleNoise(float t, float f)
+    private Vector3 SampleNoise(float t, float f)
     {
         return new Vector3(
             ValueNoise(t * f, 0.37),
@@ -167,14 +197,14 @@ public class CameraShakeComponent : MonoBehaviour
             ValueNoise(t * f * 0.42, 17.7) * 0.5f);
     }
 
-    private static Vector3 SampleSpring(float progress, float f)
+    private Vector3 SampleSpring(float progress, float f)
     {
         float damping = Mathf.Exp(-progress * 4.8f);
         float osc = Mathf.Sin(progress * Mathf.PI * 2f * Mathf.Max(2f, f / 5f));
         return new Vector3(osc * damping, -osc * damping * 0.28f, osc * damping * 0.42f);
     }
 
-    private static Vector3 SampleRecoil(float progress)
+    private Vector3 SampleRecoil(float progress)
     {
         const float kickEnd = 0.16f;
         float kick = progress < kickEnd
@@ -186,7 +216,7 @@ public class CameraShakeComponent : MonoBehaviour
 
     // ── 기본 수식 ──────────────────────────────────────────────────────────
     // 주파수 비율 1 / 1.73 / 0.47 사인파 3개 합성
-    private static float Wave(float time, float frequency, float phase, float ratio)
+    private float Wave(float time, float frequency, float phase, float ratio)
     {
         float w = time * frequency * Mathf.PI * 2f * ratio;
         return Mathf.Sin(w + phase) * 0.58f
@@ -194,18 +224,19 @@ public class CameraShakeComponent : MonoBehaviour
              + Mathf.Sin(w * 0.47f + phase * 0.63f) * 0.13f;
     }
 
-    // 격자 난수 사이를 smoothstep 으로 보간
-    private static float ValueNoise(double position, double seed)
+    // 격자 난수 사이를 SmoothStep으로 보간
+    private float ValueNoise(double position, double seed)
     {
-        double b = System.Math.Floor(position);
-        double fr = position - b;
-        double smooth = fr * fr * (3.0 - 2.0 * fr);
-        double h0 = Hash((int)b, seed);
-        double h1 = Hash((int)b + 1, seed);
-        return (float)(h0 + (h1 - h0) * smooth);
+        int index = (int)System.Math.Floor(position);
+        float t = (float)(position - index);
+
+        float h0 = (float)Hash(index, seed);
+        float h1 = (float)Hash(index + 1, seed);
+
+        return Mathf.SmoothStep(h0, h1, t);
     }
 
-    private static double Hash(int index, double seed)
+    private double Hash(int index, double seed)
     {
         double raw = System.Math.Sin((index + seed) * 12.9898) * 43758.5453;
         return (raw - System.Math.Floor(raw)) * 2.0 - 1.0;
