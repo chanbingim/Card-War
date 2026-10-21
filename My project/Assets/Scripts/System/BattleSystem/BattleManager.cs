@@ -138,7 +138,7 @@ public class BattleManager : MonoBehaviour, IInitialize
     #endregion
 
     #region CameraSystem
-    public void ShakeCamera(string key, CameraShakeData Data)
+    public void ShakeCamera(string key, CameraShakeProfile Data)
     {
         _CameraSystem?.ShakeCamera(key, Data);
     }

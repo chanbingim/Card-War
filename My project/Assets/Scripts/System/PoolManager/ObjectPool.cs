@@ -70,7 +70,7 @@ public class ObjectPool<T> where T : PoolAbleComponent
         var poolObject = objectPool.PoolData.Dequeue();
         poolObject.Data.gameObject.SetActive(true);
 
-        return poolObject as T;
+        return poolObject.Data as T;
     }
 
     public void Return(string PoolName, T objectToReturn)

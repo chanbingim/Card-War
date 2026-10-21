@@ -28,7 +28,7 @@ public class CameraSystem
         Cameras.Remove(key);
     }
 
-    public void ShakeCamera(string key, CameraShakeData Data)
+    public void ShakeCamera(string key, CameraShakeProfile Data)
     {
         if (Cameras.TryGetValue(key, out var Cam))
         {

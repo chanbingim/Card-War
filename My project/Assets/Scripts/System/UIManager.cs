@@ -37,6 +37,8 @@ public class UIManager : MonoBehaviour
     // UI Key 세팅에 따른 동작
     private Dictionary<KeyCode, Action>     _KeyInputs = new Dictionary<KeyCode, Action>();
 
+    [SerializeField] ScreenSplash SplashTest = null;
+
     #region Canvas
     public Canvas GetCanvas(EUICanvas Type)
     {
@@ -102,6 +104,11 @@ public class UIManager : MonoBehaviour
         {
             ConfigureScreen(idx, config, data);
         }
+    }
+
+    public void SlpashPlay()
+    {
+        SplashTest?.Play();
     }
 
     public async UniTask ShowAsync(UIID ID, System.Object data = null)

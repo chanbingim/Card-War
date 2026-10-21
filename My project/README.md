@@ -57,6 +57,14 @@ Unity로 제작 중인 턴 기반 싱글 카드 전투 게임 프로토타입이
 3. Collection 카드가 사라지며 임시 카드 이미지가 실제 DeckViewEntry 위치로 이동하고, 완료 시 DeckViewEntry가 표시되는지 확인한다.
 4. Game View `1600 x 900` 해상도에서 카드 컬렉션과 덱 목록이 화면 안에 표시되는지 확인한다.
 
+### Screen Flash Additive 연출
+
+1. Canvas 아래에 화면 전체를 덮는 UI Image를 만들고 `screen-flash-impact-gold` Sprite를 지정한다.
+2. Image의 Material에 `Assets/Matrial/ScreenFlashAdditive.mat`을 지정한다.
+3. `ScreenSplash`의 `flashImage`에 해당 Image를 연결한다.
+4. 셰이더는 `Blend SrcAlpha One`을 사용하므로 `ScreenSplash`가 변경하는 Image 알파가 실제 발광 강도로 반영된다.
+5. Image의 Raycast Target은 꺼서 입력을 가로막지 않도록 한다.
+
 ## 데이터 갱신법
 
 현재 샘플 데이터는 `GameAppBootstrap`에서 런타임 ScriptableObject 인스턴스로 생성된다. 실제 에셋 데이터로 전환할 때는 다음 타입의 ScriptableObject를 생성해 연결한다.

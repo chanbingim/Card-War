@@ -18,8 +18,8 @@ public class DataManager : MonoBehaviour
     [Header("Action CSV")]
     [SerializeField] private TextAsset      _ActionCSV;
 
-    [Header("Camera Shake CSV")]
-    [SerializeField] private TextAsset      _CameraShakeCSV;
+    [Header("Camera Shake File")]
+    [SerializeField] private TextAsset      _CameraShakeURL;
 
     [Header("로드할 BmItem 경로 (Resources 폴더 기준)")]
     [SerializeField] private string _BmDataloadPath = "SO/BM";
@@ -29,9 +29,7 @@ public class DataManager : MonoBehaviour
 
     private Dictionary<int, CardData>                            CardDatas = new Dictionary<int, CardData>();
     private Dictionary<int, SkillInfo>                           SkillDatas = new();
-    private Dictionary<int, CameraShakeData>                     CameraShakeDatas = new();
-
-
+    private Dictionary<int, CameraShakeProfile>                  CameraShakeDatas = new();
 
     public (CharacterData, CharacterInfo) GetCharacterById(int id)
     {
@@ -75,7 +73,7 @@ public class DataManager : MonoBehaviour
         return CardDatas.TryGetValue(id, out data);
     }
 
-    public bool TryCameraData(int id, out CameraShakeData data)
+    public bool TryCameraData(int id, out CameraShakeProfile data)
     {
         return CameraShakeDatas.TryGetValue(id, out data);
     }
@@ -165,19 +163,19 @@ public class DataManager : MonoBehaviour
 
     private async UniTask LoadAllCameraShakeData()
     {
-        var datas = CsvReader.ReadCSV<CameraShakeData>(_CameraShakeCSV);
+        var datas = JsonUtility.FromJson<ReadCameraShakeJson>(_CameraShakeURL.text);
 
         await UniTask.RunOnThreadPool(() =>
         {
-            foreach (var data in datas)
+            foreach (var data in datas.profiles)
             {
-                if (CameraShakeDatas.ContainsKey(data.ID))
+                if (CameraShakeDatas.ContainsKey(data.id))
                 {
-                    Debug.LogError($"[CharacterDataManager] 중복된 Camera Shake ID 발견: {data.ID})");
+                    Debug.LogError($"[CharacterDataManager] 중복된 Camera Shake ID 발견: {data.id})");
                     continue;
                 }
 
-                CameraShakeDatas.Add(data.ID, data);
+                CameraShakeDatas.Add(data.id, data);
             }
         });
 

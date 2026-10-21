@@ -7,6 +7,7 @@ public class AttackerCharacter : Character
 {
     [SerializeField] CharacterData SO = null;
     [SerializeField] SkeletonDataAsset skeletonDataAsset = null;
+ 
 
     private void Update()
     {
@@ -91,6 +92,9 @@ public class AttackerCharacter : Character
 
             DataManager.instance.TryCameraData(SkillInfo.AttackerCameraShakeId, out var CamShakeData);
             BattleMgr.ShakeCamera("MainCam", CamShakeData);
+
+            /// 히트스탑을 처리하는데 여기서 한번 출력을 해보자
+            UIManager.instance.SlpashPlay();
 
             HitStop(0.3f);
             CurBattle.TargetObject.HitStop(0.3f);
