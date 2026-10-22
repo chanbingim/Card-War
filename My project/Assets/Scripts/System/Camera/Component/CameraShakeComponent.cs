@@ -199,11 +199,32 @@ public class CameraShakeComponent : MonoBehaviour
 
     private Vector3 SampleSpring(float progress, float f)
     {
+        // 지수 감쇠 이기때문에 진행률을 음수로 만든다.
         float damping = Mathf.Exp(-progress * 4.8f);
+
+        // Sin파 형태로 Spring이 돌아가니 이걸 수식을 통해 구한다.
+        // 파형의 반복 횟수를 통한 진동을 결정
         float osc = Mathf.Sin(progress * Mathf.PI * 2f * Mathf.Max(2f, f / 5f));
+
         return new Vector3(osc * damping, -osc * damping * 0.28f, osc * damping * 0.42f);
     }
 
+    /// <summary>
+    /// 반동형 카메라 셰이크 파형을 생성한다.
+    ///
+    /// 처리 흐름:
+    /// 1. 전체 진행 시간의 16% 동안 카메라를 음의 방향으로 빠르게 밀어낸다.
+    /// 2. 초기 반동 이후에는 감쇠 사인파를 사용해 복귀와 잔진동을 만든다.
+    /// 3. 계산된 반동값을 기준으로 X 이동, Y 이동, 회전값을 구성한다.
+    ///
+    /// 반환값:
+    /// x = 주 반동
+    /// y = 주 반동에 연동된 약한 이동 + 미세한 별도 진동
+    /// z = 주 반동 반대 방향의 회전
+    ///
+    /// 반환된 값은 이후 Intensity와 Envelope Power가 적용되어
+    /// 실제 카메라의 위치 및 회전 오프셋으로 사용된다.
+    /// 
     private Vector3 SampleRecoil(float progress)
     {
         const float kickEnd = 0.16f;
