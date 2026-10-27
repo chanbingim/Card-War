@@ -146,6 +146,9 @@ public class GachaSystem : MonoBehaviour, IInitialize
                 return UniTask.CompletedTask;
             }
 
+            if (DataList.groups == null)
+                continue;
+
             List<(int ID, float Weight)> newList = new();
             foreach (var item in DataList.groups)
             {

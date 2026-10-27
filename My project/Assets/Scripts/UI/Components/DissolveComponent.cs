@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class DissolveComponent : MonoBehaviour
 {
+    [SerializeField] private bool _CloneMaterial = false;
     [SerializeField] private float _speed = 0.5f;
     [SerializeField] private Texture2D _NoiseTex = null;
 
@@ -22,6 +23,12 @@ public class DissolveComponent : MonoBehaviour
         if (_image != null)
         {
             _material = _image.material;
+
+            if(_CloneMaterial)
+            {
+                _material = new Material(_material);
+                _image.material = _material;
+            }
 
             _material.SetTexture("_Base", _image.sprite.texture);
             if (_NoiseTex != null)

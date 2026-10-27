@@ -65,6 +65,17 @@ Unity로 제작 중인 턴 기반 싱글 카드 전투 게임 프로토타입이
 4. 셰이더는 `Blend SrcAlpha One`을 사용하므로 `ScreenSplash`가 변경하는 Image 알파가 실제 발광 강도로 반영된다.
 5. Image의 Raycast Target은 꺼서 입력을 가로막지 않도록 한다.
 
+### 가챠 1회 / 10회 뽑기
+
+1. 정상 부트스트랩 경로로 `GachaScene`에 진입한다.
+2. 화면 하단의 `1회 뽑기` 또는 `10회 뽑기` 버튼을 선택한다.
+3. 1회 뽑기는 1,000 Gold, 10회 뽑기는 10,000 Gold를 사용한다.
+4. 연출이 끝나면 1회 결과는 `SingleResultPivot` 중앙에 한 장, 10회 결과는 `TenResultPivot` 기준 5 x 2 형태로 배치된다.
+5. 첫 확인 버튼은 모든 카드 공개, 두 번째 확인 버튼은 결과 화면 종료로 동작한다.
+6. Game View `1600 x 900`에서 두 버튼과 10장 결과가 화면 안에 표시되는지 확인한다.
+7. 버튼, 결과 피벗, 카드 10장과 원근 카메라 설정은 `GachaScene.unity`에 저장되어 있으므로 Play 전에도 Hierarchy와 Game View에서 확인할 수 있다.
+8. 뽑기 버튼 영역은 `World Space Canvas`를 사용하며 Main Camera는 Perspective/FOV 55, 위치 `(0, 1.2, -10)`, X축 7도로 설정되어 있다. 1회/10회 버튼은 서로 다른 Z 위치를 사용해 크기와 원근 차이를 만든다.
+
 ## 데이터 갱신법
 
 현재 샘플 데이터는 `GameAppBootstrap`에서 런타임 ScriptableObject 인스턴스로 생성된다. 실제 에셋 데이터로 전환할 때는 다음 타입의 ScriptableObject를 생성해 연결한다.

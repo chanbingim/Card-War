@@ -37,10 +37,12 @@ void Dissolve_float(UnityTexture2D MainTexture,
 void GachaDissolve_float(UnityTexture2D ItemTexture,
                     UnityTexture2D MainTexture,
                     UnityTexture2D NoiseTexture,
-                    float2 UV, float Amount, float EdgeWidth,
+                    float2 UV, float4 ItemTexUV, float Amount, float EdgeWidth,
                     float4 EdgeColor,
                     out float4 Result)
 {
+    float2 itemUV = ItemTexUV.xy + UV * ItemTexUV.zw;
+    
     if (!CalculateDissolve(MainTexture, NoiseTexture, UV, Amount, EdgeWidth, EdgeColor, Result))
-        Result = SAMPLE_TEXTURE2D(ItemTexture.tex, ItemTexture.samplerstate, UV);
+        Result = SAMPLE_TEXTURE2D(ItemTexture.tex, ItemTexture.samplerstate, itemUV);
 }

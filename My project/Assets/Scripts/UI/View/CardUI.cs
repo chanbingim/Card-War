@@ -45,6 +45,13 @@ public class CardUI : UIBase, IActionDragHandler
 
     void IActionDragHandler.BeginDrag()
     {
+        var BattleMgr = BattleManager.instance;
+        if(BattleMgr == null)
+        {
+            Debug.Log("[Card UI] Not Find Battle Manager");
+            return;
+        }
+
         _CanvasGroup.DOFade(0, 0.3f);
         _CanvasGroup.interactable = false;
     }

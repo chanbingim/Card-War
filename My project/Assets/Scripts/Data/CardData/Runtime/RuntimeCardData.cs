@@ -1,9 +1,10 @@
+using GamePlay.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using GAME_CONST;
 using UnityEngine.U2D;
-using GamePlay.Enum;
 
 namespace TurnCardGame.Data
 {
@@ -23,8 +24,9 @@ namespace TurnCardGame.Data
 
         public string       TextureKey;
         public Sprite       Icon { get; private set; }
+        public Vector4      SpriteUV { get; private set; }
 
-        public string       Name;
+        public string           Name;
         public ECardEffectType  eEffectType;
         public ETargetType      eTargetType;
 
@@ -35,6 +37,7 @@ namespace TurnCardGame.Data
         
         public string           EffectKeys;
         public List<string>     VFXKeys { get; private set; }
+        public Sprite           BuffIcon { get; private set; }
 
         public bool ParseData()
         {
@@ -53,11 +56,15 @@ namespace TurnCardGame.Data
                 return false;
             }
 
-            var Atlas = AddressableMgr.Get<SpriteAtlas>("Atlas/CardIcon");
-            if (Atlas == null)
+            var IconAtlas = AddressableMgr.Get<SpriteAtlas>(Const.CardIconAddress);
+            if (IconAtlas == null)
                 return false;
 
-            Icon = Atlas.GetSprite(TextureKey);
+            Icon = IconAtlas.GetSprite(TextureKey);
+            SpriteUV = Utility.GetAtlasUVData(Icon.texture, Icon);
+
+
+            BuffIcon = IconAtlas.GetSprite(eEffectType.ToString());
             return true;
         }
     }

@@ -50,7 +50,7 @@ public class ChracterBuffView : MonoBehaviour
             var lastIcon = _IconList.Last();
             if(lastIcon != null)
             {
-
+                lastIcon.sprite = List[i].Data.BuffIcon;
             }
         }
 

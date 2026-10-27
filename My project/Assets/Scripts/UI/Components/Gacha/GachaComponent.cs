@@ -7,12 +7,24 @@ public class GachaComponent : MonoBehaviour, IPointerClickHandler
     [SerializeField] UnityEvent OnClicked;
     [SerializeField] private ECurrency      _CurrencyType;
     [SerializeField] private int            _UseValue;
+    [SerializeField] private int            _GachaCount = 1;
+
+    private SpriteAnimation _Animation;
 
     private ChangeCanvasComponent _ChangeCanvas = null;
     private void Awake()
     {
         _ChangeCanvas = GetComponent<ChangeCanvasComponent>();
-        _ChangeCanvas.enabled = false;
+        if (_ChangeCanvas != null)
+            _ChangeCanvas.enabled = false;
+        _Animation = FindFirstObjectByType<SpriteAnimation>(FindObjectsInactive.Include);
+    }
+
+    public void ConfigureDraw(int count, int cost, SpriteAnimation animation)
+    {
+        _GachaCount = count;
+        _UseValue = cost;
+        _Animation = animation;
     }
 
 
@@ -29,9 +41,12 @@ public class GachaComponent : MonoBehaviour, IPointerClickHandler
         {
             ClientMgr.ADDCurrency(_CurrencyType, -_UseValue, 0);
 
-            // ¿©±â¼­ ¿¬Ãâ È£Ãâ
-            _ChangeCanvas.OnPointerClick(null);
-            OnClicked?.Invoke();
+            // ï¿½ï¿½ï¿½â¼­ ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½
+            _ChangeCanvas?.OnPointerClick(null);
+            if (_GachaCount == 1)
+                OnClicked?.Invoke();
+            else
+                _Animation?.PlayAnimation(_GachaCount);
         }
         else
         {
@@ -39,3 +54,4 @@ public class GachaComponent : MonoBehaviour, IPointerClickHandler
         }
     }
 }
+

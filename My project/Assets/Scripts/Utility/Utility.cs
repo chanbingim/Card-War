@@ -54,4 +54,16 @@ public static class Utility
     {
         return CsvReader.ReadCSV<T>(asset);
     }
+
+    public static Vector4 GetAtlasUVData(Texture2D atlasTexture, Sprite sprite)
+    {
+        Rect rect = sprite.textureRect;
+
+        return new Vector4(
+            rect.x / atlasTexture.width,       // Offset X
+            rect.y / atlasTexture.height,      // Offset Y
+            rect.width / atlasTexture.width,   // Scale X
+            rect.height / atlasTexture.height  // Scale Y
+        );
+    }
 }

@@ -10,7 +10,7 @@ public class ActionSystem
         var UseCard = UICard._Data.CardData;
 
         var Target = DragItem as Character;
-        if (Target == null)
+        if (Target == null || BattleMgr.GetTurnType() != ETurnType.USE_CARDTRUN)
             return false;
 
         if (!IsCanCardAction(ID, Target.OwnerID, UseCard.eTargetType))
@@ -37,7 +37,8 @@ public class ActionSystem
         if (!IsCanAttackAction(Attacker, Enemy))
             return false;
 
-        if (Enemy.Data.IsDead)
+        var BattleMgr = BattleManager.instance;
+        if (Enemy.Data.IsDead || BattleMgr.GetTurnType() != ETurnType.ATTACK_ACTIONTURN)
             return false;
 
         return true;

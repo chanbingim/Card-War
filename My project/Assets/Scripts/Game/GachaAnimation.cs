@@ -7,6 +7,12 @@ public class SpriteAnimation : MonoBehaviour
     [SerializeField] List<GachaCardAnim> _CardList;
     [SerializeField] Button              _OkButton;
     [SerializeField] GameObject          _CardTargetPoint;
+    [Header("Result layout")]
+    [SerializeField] RectTransform       _SingleResultPivot;
+    [SerializeField] RectTransform       _TenResultPivot;
+    [SerializeField] Vector2             _TenResultSpacing = new Vector2(175f, 245f);
+    [SerializeField] Vector2             _SingleCardSize = new Vector2(220f, 308f);
+    [SerializeField] Vector2             _TenCardSize = new Vector2(150f, 210f);
 
     private ChangeCanvasComponent        _OnCanvasChange = null;
     private Animator                     animator = null;
@@ -27,6 +33,12 @@ public class SpriteAnimation : MonoBehaviour
 
     public void PlayAnimation(int Count) 
     {
+        if (Count != 1 && Count != 10)
+        {
+            Debug.LogWarning($"[SpriteAnimation] Unsupported gacha count: {Count}");
+            return;
+        }
+
         gameObject.SetActive(true);
 
         if (animator == null)
@@ -34,6 +46,7 @@ public class SpriteAnimation : MonoBehaviour
 
         animator.enabled = true;
         GachaCount = Count;
+        PrepareResultLayout();
         animator.SetBool("PlayAnim", false);
     }
 
@@ -86,7 +99,7 @@ public class SpriteAnimation : MonoBehaviour
         {
             _CardList[NextCount].gameObject.SetActive(true);
             _CardList[NextCount].Initialize(Gachasystem.RequestGachaResult(),
-                                    _CardTargetPoint.transform.position,
+                                    GetCardTargetPosition(NextCount),
             () => {
                 NextCardAnim();
             });
@@ -98,15 +111,58 @@ public class SpriteAnimation : MonoBehaviour
          NextCount++;
     }
 
-    // ÀÌ°Å »ý°¢ÇØº¸´Ï CardDissolve°¡ µÉ¶§¸¶´Ù Ä«¿îÆ®ÇÏµç
-    // Flag ¼³Á¤ÀÌ ÀÖ¾î¾ß ½º¹«½º ÇÏ°Ô µÉ°Å°°³×
+    private void PrepareResultLayout()
+    {
+        RectTransform pivot = GachaCount == 1 ? _SingleResultPivot : _TenResultPivot;
+        Vector2 cardSize = GachaCount == 1 ? _SingleCardSize : _TenCardSize;
+
+        for (int i = 0; i < _CardList.Count; i++)
+        {
+            GachaCardAnim card = _CardList[i];
+            card.gameObject.SetActive(false);
+
+            RectTransform cardRect = card.transform as RectTransform;
+            if (cardRect == null || pivot == null)
+                continue;
+
+            cardRect.SetParent(pivot, false);
+            cardRect.anchorMin = cardRect.anchorMax = cardRect.pivot = new Vector2(0.5f, 0.5f);
+            cardRect.sizeDelta = cardSize;
+            cardRect.localRotation = Quaternion.identity;
+            cardRect.localScale = Vector3.one;
+
+            if (GachaCount == 1)
+            {
+                cardRect.anchoredPosition3D = Vector3.zero;
+                continue;
+            }
+
+            int column = i % 5;
+            int row = i / 5;
+            cardRect.anchoredPosition3D = new Vector3(
+                (column - 2) * _TenResultSpacing.x,
+                (0.5f - row) * _TenResultSpacing.y,
+                row * -8f);
+        }
+    }
+
+    private Vector3 GetCardTargetPosition(int index)
+    {
+        if (index >= 0 && index < _CardList.Count)
+            return _CardList[index].transform.position;
+
+        return _CardTargetPoint != null ? _CardTargetPoint.transform.position : transform.position;
+    }
+
+    // ï¿½Ì°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Øºï¿½ï¿½ï¿½ CardDissolveï¿½ï¿½ ï¿½É¶ï¿½ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½Æ®ï¿½Ïµï¿½
+    // Flag ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï°ï¿½ ï¿½É°Å°ï¿½ï¿½ï¿½
     private void ClickEvent()
     {
         if (AllVeiw)
         {
             bool AllSecret = true;
-            foreach (var item in _CardList)
-                item.SetSpriteTexture();
+            for (int i = 0; i < GachaCount && i < _CardList.Count; i++)
+                _CardList[i].SetSpriteTexture();
 
             if (AllSecret)
             {
@@ -117,8 +173,9 @@ public class SpriteAnimation : MonoBehaviour
         else
         {
             AllVeiw = true;
-            foreach (var item in _CardList)
-                item.OnPointerClick(null);
+            for (int i = 0; i < GachaCount && i < _CardList.Count; i++)
+                _CardList[i].OnPointerClick(null);
         }
     }
 }
+
