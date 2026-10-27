@@ -97,6 +97,7 @@ public class DataManager : MonoBehaviour
             instance = null;
     }
 
+    [ContextMenu("Debug Item")]
     public async void Initalize()
     {
         await InitializeAsync();

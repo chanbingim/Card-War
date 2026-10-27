@@ -1,8 +1,11 @@
 using DG.Tweening;
 using GAME_CONST;
 using System;
+using Unity.AppUI.UI;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.U2D;
 using UnityEngine.UI;
 
 public class GachaCardAnim : MonoBehaviour, IPointerClickHandler
@@ -14,18 +17,16 @@ public class GachaCardAnim : MonoBehaviour, IPointerClickHandler
 
     #region Orizin Data
     [SerializeField] private DissolveComponent _dissolveComponent = null;
-    //private Renderer _renderer;
     #endregion
 
     private int         ID;
-
-   // private MaterialPropertyBlock materialPropertyBlock;
+    private Image _image;
 
     private void Awake()
     {
         _dissolveComponent = GetComponent<DissolveComponent>();
+        _image = GetComponent<Image>();
     }
-
 
     public void Initialize(int id, Vector3 AnimTargetPoint, Action OnCompelted)
     {
@@ -39,12 +40,6 @@ public class GachaCardAnim : MonoBehaviour, IPointerClickHandler
         ID = id;
         bIsSecret = true;
        
-
-      // _renderer = GetComponent<Renderer>();
-      //
-      // materialPropertyBlock = new MaterialPropertyBlock();
-      // _renderer.GetPropertyBlock(materialPropertyBlock);
-      //
         if (!SettingSpriteImage())
             return;
 

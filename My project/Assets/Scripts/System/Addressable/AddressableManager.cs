@@ -263,6 +263,7 @@ public class AddressableManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    [ContextMenu("Debug Item")]
     public async UniTask InitializeAsync(Action<float> action = null)
     {
         // 어드레서블 초기화
