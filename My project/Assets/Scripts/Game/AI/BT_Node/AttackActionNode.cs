@@ -60,7 +60,6 @@ public partial class AttackActionNode : Action
         }
         else if(CurTime >= 1.0f)
         {
-            Debug.Log("[AttackActionNode] Attack Action");
             if(IsAttackAble && _CombatList.Count > 0)
             {
                 var hash = _CombatList.First();

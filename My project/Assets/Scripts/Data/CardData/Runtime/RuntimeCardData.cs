@@ -63,7 +63,6 @@ namespace TurnCardGame.Data
             Icon = IconAtlas.GetSprite(TextureKey);
             SpriteUV = Utility.GetAtlasUVData(Icon.texture, Icon);
 
-
             BuffIcon = IconAtlas.GetSprite(eEffectType.ToString());
             return true;
         }

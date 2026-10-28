@@ -117,7 +117,7 @@ public class BattleManager : MonoBehaviour, IInitialize
             BoxInfo boxBound = Target.GetPivotPoint();
 
             Vector3 vDir = Attacker.bIsLeft ? -Vector3.right : Vector3.right;
-            Vector3 Point = TargetPos - (vDir * boxBound.size.x * 0.5f);
+            Vector3 Point = TargetPos - (vDir * boxBound.size.x);
 
             Attacker.SetSortingOrder(1);
             Target.SetSortingOrder(0);

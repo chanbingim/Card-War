@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  CardUsePatternData -> CardUseTurnData -> CardUseActionData
+  CardUseActionData elements run in their XML order.
+-->
+<CardUsePatternData>
+  <Turns>
+    <CardUseTurnData number="1">
+      <CardUses>
+        <CardUseActionData cardId="1001" targetPolicy="LowestHpEnemy" />
+      </CardUses>
+    </CardUseTurnData>
+
+    <CardUseTurnData number="2">
+      <CardUses>
+        <CardUseActionData cardId="1003" targetPolicy="Self" />
+        <CardUseActionData cardId="1001" targetPolicy="LowestHpEnemy" />
+      </CardUses>
+    </CardUseTurnData>
+
+    <CardUseTurnData number="3">
+      <CardUses>
+        <CardUseActionData cardId="1004" targetPolicy="Self" />
+      </CardUses>
+    </CardUseTurnData>
+
+    <CardUseTurnData number="4">
+      <CardUses>
+        <CardUseActionData cardId="1001" targetPolicy="LowestHpEnemy" />
+        <CardUseActionData cardId="1001" targetPolicy="LowestHpEnemy" />
+      </CardUses>
+    </CardUseTurnData>
+
+    <CardUseTurnData number="5">
+      <CardUses>
+        <CardUseActionData cardId="1002" targetPolicy="Self" />
+      </CardUses>
+    </CardUseTurnData>
+
+    <CardUseTurnData number="6">
+      <CardUses>
+        <CardUseActionData cardId="1003" targetPolicy="Self" />
+        <CardUseActionData cardId="1001" targetPolicy="LowestHpEnemy" />
+      </CardUses>
+    </CardUseTurnData>
+
+    <CardUseTurnData number="7">
+      <CardUses>
+        <CardUseActionData cardId="1004" targetPolicy="Self" />
+        <CardUseActionData cardId="1002" targetPolicy="Self" />
+      </CardUses>
+    </CardUseTurnData>
+
+    <CardUseTurnData number="8">
+      <CardUses>
+        <CardUseActionData cardId="1001" targetPolicy="LowestHpEnemy" />
+        <CardUseActionData cardId="1001" targetPolicy="LowestHpEnemy" />
+      </CardUses>
+    </CardUseTurnData>
+
+    <CardUseTurnData number="9">
+      <CardUses>
+        <CardUseActionData cardId="1003" targetPolicy="Self" />
+        <CardUseActionData cardId="1004" targetPolicy="Self" />
+      </CardUses>
+    </CardUseTurnData>
+
+    <CardUseTurnData number="10">
+      <CardUses>
+        <CardUseActionData cardId="1001" targetPolicy="LowestHpEnemy" />
+        <CardUseActionData cardId="1001" targetPolicy="LowestHpEnemy" />
+      </CardUses>
+    </CardUseTurnData>
+  </Turns>
+</CardUsePatternData>

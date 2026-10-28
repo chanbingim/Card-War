@@ -29,7 +29,10 @@ Unity로 제작 중인 턴 기반 싱글 카드 전투 게임 프로토타입이
 ## 프로젝트 구조
 
 - `Assets/Scripts/Data`: 카드, 몬스터, 스테이지 ScriptableObject 데이터
+- `Assets/Scripts/Data/AI/CardUsePatternData.cs`: Stage AI Card Use XML 직렬화 struct와 대상 선택 enum
+- `Assets/Scripts/Utility/XMLReader/XmlDataLoader.cs`: struct XML 데이터를 읽는 Resources 지원 제네릭 로더
 - `Assets/Scripts/Data/SKillData/SkillInfo.cs`: Action CSV의 공격/스킬 정보 모델
+- `Assets/Resources/Data/Xml`: Stage별 AI Card Use 턴 패턴 XML
 - `Assets/Scripts/Game`: 턴/전투 상태 머신과 행동 기록 모델
 - `Assets/Scripts/UI/Components`: 공용 UI 컴포넌트
 - `Assets/Scripts/UI/Screens`: 런타임 UI 부트스트랩 및 화면 구성
@@ -89,6 +92,32 @@ Unity Editor에서 `Assets/Create/Turn Card Game` 메뉴를 사용해 에셋을 
 공격/스킬 데이터는 `Assets/Resources/Data/Csv/Action.csv`에서 갱신한다. CSV 헤더는
 `SkillInfo`의 public property 이름과 대소문자까지 일치해야 하며, `ActionType`은
 `NormalAttack` 또는 `Skill`, `TargetType`은 `EnemySelf` 또는 `EnemyAll`을 사용한다.
+
+### Stage AI Card Use 패턴 갱신
+
+Stage 1의 10턴 AI 카드 사용 패턴은 `Assets/Resources/Data/Xml/Stage01_CardUsePattern.xml`에서 갱신한다.
+
+- `CardUseTurnData number`: Queue에 넣을 턴 순서이며 1부터 연속되어야 한다.
+- 같은 턴의 `CardUseActionData`는 `CardUses`에 작성된 순서대로 실행한다.
+- `cardId`: `Cards_ko.csv`에 존재하는 카드 ID를 사용한다.
+- `targetPolicy`: 현재 패턴에서는 `Self`와 `LowestHpEnemy`를 사용한다.
+- 카드 이름, 설명, 효과 수치는 `cardId`로 `Cards_ko.csv`를 조회해 사용한다.
+
+XML 파일은 Unity에서 `Resources.Load<TextAsset>("Data/Xml/Stage01_CardUsePattern")`로 불러올 수 있다.
+`XmlSerializer(typeof(CardUsePatternData))`로 역직렬화하면 `CardUsePatternData.Turns`를 턴 Queue의 원본 데이터로 사용할 수 있다.
+
+제네릭 XML 로더를 사용하면 Resources 로드와 역직렬화를 한 번에 처리할 수 있다.
+
+```csharp
+using TurnCardGame.Data.AI;
+using TurnCardGame.Serialization;
+
+CardUsePatternData pattern =
+    XmlDataLoader<CardUsePatternData>.LoadFromResources("Data/Xml/Stage01_CardUsePattern");
+```
+
+잘못된 XML이나 누락된 Resources 파일을 예외 없이 처리해야 하는 초기화 코드에서는
+`TryLoadFromResources(path, out data, out error)`를 사용한다. 로더는 DTD와 외부 XML 엔티티를 허용하지 않는다.
 
 ## 검증
 

@@ -116,15 +116,15 @@ public class TurnManager
         BattleManager.instance.MakeMatchMaking();
         _TurnType = ETurnType.USE_CARDTRUN;
 
-        Current.TurnBegin();
-        Current.TrunChange(_TurnType);
-
-        bool IsLocal = LocalPlayer.IsActive;
+        bool IsLocal = LocalPlayer == Current;
         EventBus.Publish<ChangeTurnEvent>(new ChangeTurnEvent(IsLocal, () =>
         {
             EventBus.Publish<ChangeTurnActEvent>(new ChangeTurnActEvent(_TurnMaxTimer, _TurnType, IsLocal, null, () => {
                 RequestEndTurn(Current.Name);
             }));
+
+            Current.TurnBegin();
+            Current.TrunChange(_TurnType);
             BattleManager.instance.RequestDraw(GAME_CONST.Const.DRAW_CARDCOUNT);
         }));
     }

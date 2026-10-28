@@ -194,7 +194,6 @@ public class BattlePlayerData : TurnParticipantBase
     public override void TurnBegin()
     {
         base.TurnBegin();
-
     }
 
     public override void TurnRunning()

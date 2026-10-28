@@ -6,6 +6,7 @@ using static PlayerData;
 [CreateAssetMenu(fileName = "AI", menuName = "Scriptable Objects/AI Data")]
 public class StageAISO : ScriptableObject
 {
+    public TextAsset            _AIAction;
     public string              _Name;
     public  List<int>          _Skills;
     public  List<DeckEntry>    _Decks;

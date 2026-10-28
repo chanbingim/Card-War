@@ -8,26 +8,38 @@ using UnityEngine;
 [NodeDescription(name: "UseCardAction", story: "CardAction", category: "Action", id: "e34c1b5a4bb00546973a328f4f31f27a")]
 public partial class UseCardAction : Action
 {
-    float CurTime = 0;
+    [SerializeReference]
+    public BlackboardVariable<AIController> _Controller;
+
+    bool bIsCardAction = false;
+    float   CurTime = 0;
+    int     AccCount = 0;
 
     protected override Status OnStart()
     {
         CurTime = 0;
+        AccCount = 0;
+
+        bIsCardAction = false;
+        _Controller.Value.TurnBegin();
+
         return Status.Running;
     }
 
     protected override Status OnUpdate()
     {
         CurTime += Time.deltaTime;
-
-        if (CurTime > 5.0f)
+        if (AccCount > 15)
         {
             Debug.Log("[UseCardAction] Turn Time Out");
             return Status.Success;
         }
-        else
+
+        if(CurTime >= 1f)
         {
-            Debug.Log("[UseCardAction] Use Card Action");
+            _Controller.Value.UseCurrentTurnCardUse();
+            CurTime = 0f;
+            AccCount++;
         }
 
         return Status.Running;
