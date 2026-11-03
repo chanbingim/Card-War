@@ -20,8 +20,8 @@ public class BattleCardManager
 
     public void Use_Card(UseCardEvent card)
     {
-        var ClientPlayer = BattleManager.instance.GetLoaclPlayer();
-        ClientPlayer.UseCard(card);
+        var Client = BattleManager.instance.GetTurnPlayer();
+        Client.UseCard(card);
     }
 
     public void Relese()

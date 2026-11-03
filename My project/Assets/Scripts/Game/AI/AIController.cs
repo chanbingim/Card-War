@@ -53,8 +53,33 @@ public class AIController : MonoBehaviour
 
         var Act = _Actions.Dequeue();
 
+        // Best, Wrost, Middle 판단 확률에 따라서 진행한다음
+        int RandomIdx = Random.Range(0, _Data.PlayerParty.Count);
+        int handIdx = _Data.Decks.FindIndex(card => card == Act.CardId);
+
         // 여기서 조건에 맞는 데이터를 Queue에서 꺼내면 될듯
         Debug.Log($"{Act.CardId} AI의 카드 사용");
+
+        if(handIdx < 0)
+        {
+            Debug.Log($"{Act.CardId} AI의 카드 사용 불가 패에 카드없음");
+            return;
+        }
+
+        var BattleMgr = BattleManager.instance;
+        switch(Act.TargetPolicy)
+        {
+            case CardUseTargetPolicy.Self:
+                BattleMgr.RequestUseCardAction(BattleMgr.GetTurnPlayer().PlayerTurnIndex, _Data.PlayerParty[RandomIdx], handIdx, Act);
+                break;
+
+            case CardUseTargetPolicy.Target:
+                var enemyParty = BattleMgr.GetEnemyPartyList(_Data.PlayerTurnIndex);
+                RandomIdx = Random.Range(0, enemyParty.Count);
+
+                BattleMgr.RequestUseCardAction(BattleMgr.GetTurnPlayer().PlayerTurnIndex, enemyParty[RandomIdx], handIdx, Act);
+                break;
+        }
     }
 
     private void TurnChagneEvent(ETurnType TurnType)

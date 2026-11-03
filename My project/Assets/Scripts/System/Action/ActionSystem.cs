@@ -1,5 +1,7 @@
 ﻿using GamePlay.Enum;
+using TurnCardGame.Data.AI;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class ActionSystem
 {
@@ -26,6 +28,37 @@ public class ActionSystem
             case ETargetType.FriendlyAll:
             case ETargetType.EnemyAll:
                 EventBus.Publish<UseCardEvent>(new UseCardEvent(UICard._Data.HandIndex, UICard._ControllerIdx, UseCard));
+                break;
+        }
+
+        return true;
+    }
+
+    public bool RequestUseCardAction(int ID, MonoBehaviour DragItem, CardUseActionData Act, int HandIdx)
+    {
+        var BattleMgr = BattleManager.instance;
+        var DataMgr = DataManager.instance;
+        var Enemy = BattleMgr.GetEnemyPartyList(ID);
+
+        var UseCard = DataMgr.GetCardById(Act.CardId);
+
+        var Target = DragItem as Character;
+        if (Target == null || BattleMgr.GetTurnType() != ETurnType.USE_CARDTRUN)
+            return false;
+
+        if (!IsCanCardAction(ID, Target.OwnerID, UseCard.eTargetType))
+            return false;
+
+        switch (UseCard.eTargetType)
+        {
+            case ETargetType.FriendlySelf:
+            case ETargetType.EnemySelf:
+                EventBus.Publish<UseCardEvent>(new UseCardEvent(Target, HandIdx, UseCard));
+                break;
+
+            case ETargetType.FriendlyAll:
+            case ETargetType.EnemyAll:
+                EventBus.Publish<UseCardEvent>(new UseCardEvent(HandIdx, UseCard));
                 break;
         }
 

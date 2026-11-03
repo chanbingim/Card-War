@@ -9,6 +9,9 @@ namespace TurnCardGame.Data.AI
         [XmlEnum("Self")]
         Self,
 
+        [XmlEnum("Target")]
+        Target,
+
         [XmlEnum("LowestHpEnemy")]
         LowestHpEnemy
     }

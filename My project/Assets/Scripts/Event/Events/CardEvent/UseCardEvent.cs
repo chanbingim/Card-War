@@ -18,11 +18,29 @@ public readonly struct UseCardEvent
         UseCard = data;
     }
 
+    public UseCardEvent(Character target, int handIdx, CardData data)
+    {
+        IsAll = false;
+        HandIdx = handIdx;
+        ContollerIdx = -1;
+        Target = target;
+        UseCard = data;
+    }
+
     public UseCardEvent(int handIdx, int contollerIdx, CardData data)
     {
         IsAll = true;
         HandIdx = handIdx;
         ContollerIdx = contollerIdx;
+        Target = null;
+        UseCard = data;
+    }
+
+    public UseCardEvent(int handIdx, CardData data)
+    {
+        IsAll = true;
+        HandIdx = handIdx;
+        ContollerIdx = -1;
         Target = null;
         UseCard = data;
     }

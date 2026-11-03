@@ -41,6 +41,9 @@ public class CardController : MonoBehaviour
 
     private void Remove_Card(UseCardEvent card)
     {
+        if (card.ContollerIdx < 0)
+            return;
+
         var UICard = _cardList[card.ContollerIdx];
         _cardList.RemoveAt(card.ContollerIdx);
 

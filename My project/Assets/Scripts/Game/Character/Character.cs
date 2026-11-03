@@ -199,9 +199,11 @@ public class Character : MonoBehaviour, IActionDragHandler
         switch(_Data.eEffectType)
         {
             case ECardEffectType.Heal:
-                Debug.Log($"{name} : Heal");
+                Data.Heal(_Data.Power);
                 break;
-
+            case ECardEffectType.Damage:
+                Data.TakeDamage(_Data.Power);
+                break;
             case ECardEffectType.AttackBuff:
             case ECardEffectType.DefenseBuff:
                 _buffComponent.ADD_Bff(_Data);

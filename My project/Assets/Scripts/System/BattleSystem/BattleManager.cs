@@ -3,6 +3,7 @@ using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using TurnCardGame.Data;
+using TurnCardGame.Data.AI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static CameraShakeComponent;
@@ -56,6 +57,7 @@ public class BattleManager : MonoBehaviour, IInitialize
 
     #region ActionSystem
     public bool RequestUseCardAction(int ID, MonoBehaviour TargetItem, CardUI UseCard) { return _ActionSystem?.RequestUseCardAction(ID, TargetItem, UseCard) ?? false; }
+    public bool RequestUseCardAction(int ID, MonoBehaviour TargetItem, int handIdx, CardUseActionData Act) { return _ActionSystem?.RequestUseCardAction(ID, TargetItem, Act, handIdx) ?? false; }
     #endregion
 
     #region Battle Mgr
