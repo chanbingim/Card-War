@@ -1,3 +1,4 @@
+using GAME_CONST;
 using GamePlay.Enum;
 using System;
 using System.Collections.Generic;
@@ -66,6 +67,7 @@ public class PlayerData
 
     public event Action<ECurrency, int>             OnChangeCurrencyValue;
     public event Action<IReadOnlyList<DeckEntry>>   OnChangeDeck;
+    public event Action<IReadOnlyList<int>>         OnCharacterParty;
     public event Action                             OnChangeCollections;
 
     public string Name { get; private set; }
@@ -96,6 +98,9 @@ public class PlayerData
 
         EventBus.Subscribe<StageClearEvent>(ClearStage);
         var stageData = new StageData(1, 3, true);
+
+        for (int i = 0; i < Const.MaxPartyCount; i++)
+            _PlayerParty.Add(-1);
     }
 
     public void ReName(string name)
@@ -352,6 +357,12 @@ public class PlayerData
         }
     }
     #endregion
+
+    public void RquestADDPartData(int idx, int CharacterID)
+    {
+        _PlayerParty[idx] = CharacterID;
+        OnCharacterParty.Invoke(PlayerParty);
+    }
 
     void OnDisable()
     {

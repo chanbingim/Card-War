@@ -46,6 +46,15 @@ Unity로 제작 중인 턴 기반 싱글 카드 전투 게임 프로토타입이
 3. Hierarchy에서 `SampleBattleSceneRoot` 오브젝트가 있는지 확인한다.
 4. Play 버튼을 누르면 샘플 전투 화면으로 바로 진입한다.
 
+### GameMenu 파티 편성 UI
+
+1. `Assets/Scenes/GameMenu.unity`를 연다.
+2. 파티 편성 화면은 16:9 기준이며 캐릭터 슬롯을 누르면 교체 모달이 열린다.
+3. 상단 중앙의 A/B 테마 버튼으로 보랏빛 성역과 청록빛 월야 변형을 비교한다.
+4. 우하단 `편성 완료`를 누르면 저장 완료 피드백이 상단 안내 문구에 표시된다.
+5. 레이아웃을 다시 생성하려면 Unity 메뉴 `Tools > Haness > Build Character Party UI`를 실행한다.
+6. 캐릭터 정보는 이름, 역할/포지션, `캐릭터 변경` 안내만 표시하며 레벨과 별 등급은 파티 편성 화면에서 숨긴다.
+
 ## 샘플 테스트
 
 1. `GameScene.unity`는 `SampleBattleSceneRoot`의 `startInSampleTest` 옵션이 켜져 있어 Stage 1 전투 화면으로 바로 진입한다.
@@ -120,6 +129,15 @@ CardUsePatternData pattern =
 `TryLoadFromResources(path, out data, out error)`를 사용한다. 로더는 DTD와 외부 XML 엔티티를 허용하지 않는다.
 
 ## 검증
+
+### 파티 편성 플레이트 확인
+
+1. `GameMenu` 씬을 열고 `Tools > Haness > Build Character Party UI`를 실행한다.
+2. Game View를 `1600 x 900`으로 맞춘 뒤 Play한다.
+3. 캐릭터 슬롯을 누르고 다른 캐릭터를 선택해 이름, 특성, 초상 이니셜이 함께 바뀌는지 확인한다.
+4. 화면 상단 중앙의 A/B 버튼을 눌러 각진 금색 플레이트와 부드러운 청록 플레이트가 배경·강조색과 함께 전환되는지 확인한다.
+5. 이름과 특성은 저상형 플레이트 안에, `캐릭터 변경`은 분리된 하단 칩에 표시되며 Lv/별 설명은 표시하지 않는다.
+6. `편성 완료`를 눌러 상단 안내 문구가 저장 완료 상태로 바뀌는지 확인한다.
 
 - EditMode 테스트: `Assets/Tests/EditMode/GameSessionTests.cs`
 - 주요 테스트 범위:

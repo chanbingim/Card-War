@@ -6,6 +6,7 @@ namespace GAME_CONST
         public const int MAX_HAND = 5;
         public const int DRAW_CARDCOUNT = 2;
         public const int MAX_SKILL = 1;
+        public const int MaxPartyCount = 3;
 
         public const string CharacterIconAddress = "Atlas/Character/Image";
         public const string CardIconAddress = "Atlas/CardIcon";
