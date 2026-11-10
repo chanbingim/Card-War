@@ -432,8 +432,8 @@
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Flow\Framework\Math\Vector3\Vector3Divide.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Flow\UnitPortDefinitionCollection.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Flow\Framework\Variables\Obsolete\ISceneVariableUnit.cs" />
-    <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Flow\Framework\Math\Scalar\ScalarAbsolute.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Flow\Framework\Events\GameObjectEventUnit.cs" />
+    <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Flow\Framework\Math\Scalar\ScalarAbsolute.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Flow\Framework\Math\Vector3\Vector3Sum.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Flow\Framework\Collections\Lists\RemoveListItemAt.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Runtime\VisualScripting.Flow\Framework\Events\Animation\OnAnimatorIK.cs" />
@@ -1011,6 +1011,10 @@
     </Reference>
     <Reference Include="UnityEditor.Android.Extensions">
       <HintPath>C:\Program Files\Unity\Hub\Editor\6000.3.17f1\Editor\Data\PlaybackEngines\AndroidPlayer\UnityEditor.Android.Extensions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="websocket-sharp">
+      <HintPath>Library\PackageCache\com.unity.services.wire@aba8a6fb1fe2\Plugins\websocket-sharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="TextMateSharpPlastic">

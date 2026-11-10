@@ -134,8 +134,8 @@
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Plugin\Changelogs\LegacyLudiqCore\Changelog_1_4_1.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Plugin\Changelogs\LegacyLudiqCore\Changelog_1_0_6.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Descriptors\IDescriptor.cs" />
-    <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Platforms\AotPreBuilder.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Platforms\AotStubWriterProvider.cs" />
+    <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Platforms\AotPreBuilder.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Inspection\GraphElementEditor.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Inspection\Special\TypeHandleInspector.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Platforms\AotStubWriterAttribute.cs" />
@@ -323,8 +323,8 @@
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Exceptions\EditorDebugUtility.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Products\ProductAttribute.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\ReloadAssets.cs" />
-    <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\SearchUtility.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Platforms\ConstructorInfoStubWriter.cs" />
+    <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Utilities\SearchUtility.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Interface\LudiqStyles.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Assignment\Assignment.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@8bed5ad90189\Editor\VisualScripting.Core\Canvases\IGraphContextExtension.cs" />
@@ -1097,6 +1097,10 @@
     </Reference>
     <Reference Include="UnityEditor.Android.Extensions">
       <HintPath>C:\Program Files\Unity\Hub\Editor\6000.3.17f1\Editor\Data\PlaybackEngines\AndroidPlayer\UnityEditor.Android.Extensions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="websocket-sharp">
+      <HintPath>Library\PackageCache\com.unity.services.wire@aba8a6fb1fe2\Plugins\websocket-sharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="TextMateSharpPlastic">

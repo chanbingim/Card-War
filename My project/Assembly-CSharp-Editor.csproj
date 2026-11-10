@@ -742,6 +742,10 @@
       <HintPath>C:\Program Files\Unity\Hub\Editor\6000.3.17f1\Editor\Data\PlaybackEngines\AndroidPlayer\UnityEditor.Android.Extensions.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="websocket-sharp">
+      <HintPath>Library\PackageCache\com.unity.services.wire@aba8a6fb1fe2\Plugins\websocket-sharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="TextMateSharpPlastic">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@0b1559bcd34e\Lib\Editor\TextMateSharp\TextMateSharpPlastic.dll</HintPath>
       <Private>False</Private>
@@ -1540,6 +1544,10 @@
       <Project>{6339EF8B-5A9D-FBC7-8A98-AD1782291160}</Project>
       <Name>Unity.2D.Common.Path.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.Services.CloudCode.csproj">
+      <Project>{40FC7D8B-2FB8-6479-4150-7B792A521650}</Project>
+      <Name>Unity.Services.CloudCode</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.InternalAPIEngineBridge.001.csproj">
       <Project>{EF5405D5-9413-1136-C16F-4D61FC03E60C}</Project>
       <Name>Unity.InternalAPIEngineBridge.001</Name>
@@ -1551,6 +1559,10 @@
     <ProjectReference Include="Unity.Services.Core.csproj">
       <Project>{65F16392-679C-5B53-9435-F12308680A68}</Project>
       <Name>Unity.Services.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEditor.Purchasing.Editor.Authoring.Core.csproj">
+      <Project>{85CEFE97-7962-7FD6-0FC9-66B16CE9BE5D}</Project>
+      <Name>UnityEditor.Purchasing.Editor.Authoring.Core</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.VisualScripting.SettingsProvider.Editor.csproj">
       <Project>{A5EC846E-BD95-6712-4F58-3A4ED63FFC9E}</Project>
@@ -1600,13 +1612,21 @@
       <Project>{BD4024A1-4DBE-EA07-6534-C1796B01D1C7}</Project>
       <Name>Unity.2D.Aseprite.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.Rider.Editor.csproj">
-      <Project>{9B168589-3356-01B5-B9F7-335C1615CD9E}</Project>
-      <Name>Unity.Rider.Editor</Name>
+    <ProjectReference Include="Unity.Services.Authentication.csproj">
+      <Project>{8EB92CB1-017F-B5DE-12FB-A64C707D51A5}</Project>
+      <Name>Unity.Services.Authentication</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Services.Authentication.Server.csproj">
+      <Project>{CE4FE56D-3F3B-EBEC-114C-99077E86852E}</Project>
+      <Name>Unity.Services.Authentication.Server</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.2D.Aseprite.Editor.csproj">
       <Project>{2A5ED947-5A18-B02A-A2A6-D04AD142B25C}</Project>
       <Name>Unity.2D.Aseprite.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Rider.Editor.csproj">
+      <Project>{9B168589-3356-01B5-B9F7-335C1615CD9E}</Project>
+      <Name>Unity.Rider.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.VisualScripting.Flow.csproj">
       <Project>{A6503458-BC1A-FC3E-DE9F-320CB2945529}</Project>
@@ -1624,6 +1644,10 @@
       <Project>{78FE2771-71D4-4670-2679-9D980EA2FBF5}</Project>
       <Name>Unity.Behavior.Serialization.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.Services.Authentication.PlayerAccounts.csproj">
+      <Project>{B2BEE8E3-FCCF-A907-6308-AD32121FE1F6}</Project>
+      <Name>Unity.Services.Authentication.PlayerAccounts</Name>
+    </ProjectReference>
     <ProjectReference Include="UniTask.TextMeshPro.csproj">
       <Project>{65B4D07C-C996-FD33-3417-E55B3C6DCD07}</Project>
       <Name>UniTask.TextMeshPro</Name>
@@ -1635,6 +1659,10 @@
     <ProjectReference Include="spine-unity-examples.csproj">
       <Project>{CAC35531-63B1-918B-98C1-DAF366799C42}</Project>
       <Name>spine-unity-examples</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Purchasing.Security.csproj">
+      <Project>{E1FE727D-33E9-0EA7-4247-8D6BDB6194CE}</Project>
+      <Name>Unity.Purchasing.Security</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.InputSystem.ForUI.csproj">
       <Project>{B9B35DE5-7FDE-809C-333A-C4725FB33FBA}</Project>

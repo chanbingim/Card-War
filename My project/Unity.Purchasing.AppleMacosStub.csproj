@@ -61,11 +61,11 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.3.17f1\Editor\Data\Tools\BuildPipeline\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\AppleMacosStub\OSXStoreBindings.cs" />
-    <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\AppleMacosStub\AssemblyInfo.cs" />
+    <Compile Include="Library\PackageCache\com.unity.purchasing@00a2945f1a91\Runtime\AppleMacosStub\OSXStoreBindings.cs" />
+    <Compile Include="Library\PackageCache\com.unity.purchasing@00a2945f1a91\Runtime\AppleMacosStub\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\AppleMacosStub\Unity.Purchasing.AppleMacosStub.asmdef" />
+    <None Include="Library\PackageCache\com.unity.purchasing@00a2945f1a91\Runtime\AppleMacosStub\Unity.Purchasing.AppleMacosStub.asmdef" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -610,6 +610,10 @@
     </Reference>
     <Reference Include="UnityEditor.Android.Extensions">
       <HintPath>C:\Program Files\Unity\Hub\Editor\6000.3.17f1\Editor\Data\PlaybackEngines\AndroidPlayer\UnityEditor.Android.Extensions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="websocket-sharp">
+      <HintPath>Library\PackageCache\com.unity.services.wire@aba8a6fb1fe2\Plugins\websocket-sharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="TextMateSharpPlastic">

@@ -61,17 +61,17 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.3.17f1\Editor\Data\Tools\BuildPipeline\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Codeless\CodelessButtonType.cs" />
-    <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Codeless\CodelessCatalogProvider.cs" />
-    <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Codeless\CodelessIAPStoreListener.cs" />
-    <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Codeless\ComboBox.cs" />
-    <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Codeless\CodelessIAPButton.cs" />
-    <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Codeless\IAPButton.cs" />
-    <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Codeless\IAPListener.cs" />
-    <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Codeless\AssemblyInfo.cs" />
+    <Compile Include="Library\PackageCache\com.unity.purchasing@00a2945f1a91\Runtime\Codeless\CodelessButtonType.cs" />
+    <Compile Include="Library\PackageCache\com.unity.purchasing@00a2945f1a91\Runtime\Codeless\CodelessCatalogProvider.cs" />
+    <Compile Include="Library\PackageCache\com.unity.purchasing@00a2945f1a91\Runtime\Codeless\CodelessIAPStoreListener.cs" />
+    <Compile Include="Library\PackageCache\com.unity.purchasing@00a2945f1a91\Runtime\Codeless\ComboBox.cs" />
+    <Compile Include="Library\PackageCache\com.unity.purchasing@00a2945f1a91\Runtime\Codeless\CodelessIAPButton.cs" />
+    <Compile Include="Library\PackageCache\com.unity.purchasing@00a2945f1a91\Runtime\Codeless\IAPButton.cs" />
+    <Compile Include="Library\PackageCache\com.unity.purchasing@00a2945f1a91\Runtime\Codeless\IAPListener.cs" />
+    <Compile Include="Library\PackageCache\com.unity.purchasing@00a2945f1a91\Runtime\Codeless\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Codeless\Unity.Purchasing.Codeless.asmdef" />
+    <None Include="Library\PackageCache\com.unity.purchasing@00a2945f1a91\Runtime\Codeless\Unity.Purchasing.Codeless.asmdef" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -616,6 +616,10 @@
     </Reference>
     <Reference Include="UnityEditor.Android.Extensions">
       <HintPath>C:\Program Files\Unity\Hub\Editor\6000.3.17f1\Editor\Data\PlaybackEngines\AndroidPlayer\UnityEditor.Android.Extensions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="websocket-sharp">
+      <HintPath>Library\PackageCache\com.unity.services.wire@aba8a6fb1fe2\Plugins\websocket-sharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="TextMateSharpPlastic">

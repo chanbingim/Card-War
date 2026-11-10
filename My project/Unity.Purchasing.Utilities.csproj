@@ -61,27 +61,27 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.3.17f1\Editor\Data\Tools\BuildPipeline\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Utilities\TransactionHistory\TransactionLog.cs" />
-    <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Utilities\UnityThreadUtils.cs" />
-    <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Utilities\VersionCheck.cs" />
-    <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Utilities\UnityUtil.cs" />
-    <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Utilities\IAPVersion.cs" />
-    <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Utilities\LoggerExtensions.cs" />
-    <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Utilities\EnumerableExtensions.cs" />
-    <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Utilities\MonoBehaviorUtil.cs" />
-    <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Utilities\AssemblyInfo.cs" />
-    <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Utilities\MiniJSON.cs" />
-    <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Utilities\TransactionHistory\Interfaces\ITransactionLog.cs" />
-    <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Utilities\TaskQueue.cs" />
-    <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Utilities\StoreKitSelector.cs" />
-    <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Utilities\Interfaces\IMonoBehaviorUtil.cs" />
-    <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Utilities\FileReference.cs" />
-    <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Utilities\Interfaces\IThreadUtils.cs" />
-    <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Utilities\IAPObsoleteMessages.cs" />
-    <Compile Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Utilities\Interfaces\IUtil.cs" />
+    <Compile Include="Library\PackageCache\com.unity.purchasing@00a2945f1a91\Runtime\Utilities\TransactionHistory\TransactionLog.cs" />
+    <Compile Include="Library\PackageCache\com.unity.purchasing@00a2945f1a91\Runtime\Utilities\UnityThreadUtils.cs" />
+    <Compile Include="Library\PackageCache\com.unity.purchasing@00a2945f1a91\Runtime\Utilities\VersionCheck.cs" />
+    <Compile Include="Library\PackageCache\com.unity.purchasing@00a2945f1a91\Runtime\Utilities\UnityUtil.cs" />
+    <Compile Include="Library\PackageCache\com.unity.purchasing@00a2945f1a91\Runtime\Utilities\IAPVersion.cs" />
+    <Compile Include="Library\PackageCache\com.unity.purchasing@00a2945f1a91\Runtime\Utilities\LoggerExtensions.cs" />
+    <Compile Include="Library\PackageCache\com.unity.purchasing@00a2945f1a91\Runtime\Utilities\EnumerableExtensions.cs" />
+    <Compile Include="Library\PackageCache\com.unity.purchasing@00a2945f1a91\Runtime\Utilities\MonoBehaviorUtil.cs" />
+    <Compile Include="Library\PackageCache\com.unity.purchasing@00a2945f1a91\Runtime\Utilities\AssemblyInfo.cs" />
+    <Compile Include="Library\PackageCache\com.unity.purchasing@00a2945f1a91\Runtime\Utilities\MiniJSON.cs" />
+    <Compile Include="Library\PackageCache\com.unity.purchasing@00a2945f1a91\Runtime\Utilities\TransactionHistory\Interfaces\ITransactionLog.cs" />
+    <Compile Include="Library\PackageCache\com.unity.purchasing@00a2945f1a91\Runtime\Utilities\TaskQueue.cs" />
+    <Compile Include="Library\PackageCache\com.unity.purchasing@00a2945f1a91\Runtime\Utilities\StoreKitSelector.cs" />
+    <Compile Include="Library\PackageCache\com.unity.purchasing@00a2945f1a91\Runtime\Utilities\Interfaces\IMonoBehaviorUtil.cs" />
+    <Compile Include="Library\PackageCache\com.unity.purchasing@00a2945f1a91\Runtime\Utilities\FileReference.cs" />
+    <Compile Include="Library\PackageCache\com.unity.purchasing@00a2945f1a91\Runtime\Utilities\Interfaces\IThreadUtils.cs" />
+    <Compile Include="Library\PackageCache\com.unity.purchasing@00a2945f1a91\Runtime\Utilities\IAPObsoleteMessages.cs" />
+    <Compile Include="Library\PackageCache\com.unity.purchasing@00a2945f1a91\Runtime\Utilities\Interfaces\IUtil.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Library\PackageCache\com.unity.purchasing@290a16a9a099\Runtime\Utilities\Unity.Purchasing.Utilities.asmdef" />
+    <None Include="Library\PackageCache\com.unity.purchasing@00a2945f1a91\Runtime\Utilities\Unity.Purchasing.Utilities.asmdef" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -626,6 +626,10 @@
     </Reference>
     <Reference Include="UnityEditor.Android.Extensions">
       <HintPath>C:\Program Files\Unity\Hub\Editor\6000.3.17f1\Editor\Data\PlaybackEngines\AndroidPlayer\UnityEditor.Android.Extensions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="websocket-sharp">
+      <HintPath>Library\PackageCache\com.unity.services.wire@aba8a6fb1fe2\Plugins\websocket-sharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="TextMateSharpPlastic">
