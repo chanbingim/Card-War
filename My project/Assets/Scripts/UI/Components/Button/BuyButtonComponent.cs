@@ -7,13 +7,10 @@ public class BuyButtonComponent : UIBase
     [SerializeField] private Text   _ItemCount;
     [SerializeField] private Text   _BuyMondey;
 
-    private CurrencyProductData    _info;
 
-    public void SettingData(CurrencyProductData data)
+    public void SettingData(IapBmProduct data)
     {
-        _info = data;
-
-        string AddressableKey = data.CurrencyType.ToString() + data.Price.ToString();
+        string AddressableKey = data.productId;
         var AddressableMgr = AddressableManager.instance;
         if (AddressableMgr == null)
             Debug.LogWarning("[BuyButtonComponent] Not Create Addressable Manager");
@@ -24,8 +21,7 @@ public class BuyButtonComponent : UIBase
             return;
 
         _ItemIcon.sprite = sprite;*/
-        _ItemCount.text = $"º¸¼® * {_info.Amount}";
-        _BuyMondey.text = $"KRW *  {_info.Price}";
+        _BuyMondey.text = $"KRW *  {data.price}";
     }
 
     public void ClickedEvent()

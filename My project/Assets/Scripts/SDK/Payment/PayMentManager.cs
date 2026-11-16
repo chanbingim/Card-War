@@ -1,15 +1,34 @@
-using System;
 using Cysharp.Threading.Tasks;
+using System;
 using System.Collections.Generic;
+using System.Text;
 using Unity.Services.Authentication;
+using Unity.Services.CloudCode;
 using Unity.Services.Core;
 using UnityEngine;
 using UnityEngine.Purchasing;
 using UnityEngine.Purchasing.Extension;
-using System.Text;
 
 public class PayMentManager : MonoBehaviour
 {
+    [Serializable]
+    public class PurchaseResult
+    {
+        public bool Success { get; set; }
+        public bool AlreadyProcessed { get; set; }
+        public string OrderId { get; set; } = string.Empty;
+        public string Message { get; set; } = string.Empty;
+        public List<GrantedReward> GrantedRewards { get; set; } = new();
+    }
+
+    [Serializable]
+    public class GrantedReward
+    {
+        public string Type { get; set; } = string.Empty;
+        public string ItemId { get; set; } = string.Empty;
+        public int Amount { get; set; }
+    }
+
     public StringBuilder StoreName = new StringBuilder("My project (3)");
     [SerializeField] bool m_UseNative = true;
     [SerializeField] bool m_UseD2C = true;
@@ -118,15 +137,77 @@ public class PayMentManager : MonoBehaviour
     }
 
     // Every store's purchases arrive here, with the name of the store the player paid through.
-    void OnPurchasePending(string storeName, PendingOrder order)
+    async void OnPurchasePending(string storeName, PendingOrder order)
     {
-        // Grant the content for the order here, then confirm it.
-        // ConfirmPurchase sends the order back to its own store.
-        Debug.Log("Item Buy");
-        m_Controller.ConfirmPurchase(order);
+        string orderId = order.Info.TransactionID;
+
+        try
+        {
+            var result = await CloudCodeService.Instance.CallModuleEndpointAsync<PurchaseResult>(
+                "IapFulfillment",
+                "ProcessPurchase",
+                new Dictionary<string, object>
+                {
+                    { "orderId", orderId }
+                });
+
+            if (!result.Success)
+            {
+                Debug.LogError($"Purchase validation failed: {result.Message}");
+                return;
+            }
+
+            Debug.Log($"Purchase validation succeeded: {result.OrderId}");
+
+            foreach (GrantedReward reward in result.GrantedRewards)
+            {
+                Debug.Log(
+                    $"Granted reward: Type={reward.Type}, " +
+                    $"ItemId={reward.ItemId}, Amount={reward.Amount}");
+            }
+
+            m_Controller.ConfirmPurchase(order);
+        }
+        catch (Exception exception)
+        {
+            Debug.LogException(exception);
+        }
     }
 
-    private void OnPurchasesFetched(string storeName, Orders orders)
+    private void Awake()
+    {
+        Application.deepLinkActivated += HandleDeepLink;
+
+        // 게임이 완전히 종료된 상태에서 링크로 실행된 경우
+        if (!string.IsNullOrEmpty(Application.absoluteURL))
+            HandleDeepLink(Application.absoluteURL);
+    }
+
+    private void HandleDeepLink(string url)
+    {
+        Debug.Log($"Received deep link: {url}");
+
+        var uri = new Uri(url);
+        var query = System.Web.HttpUtility.ParseQueryString(uri.Query);
+
+        if (query["status"] == "success")
+        {
+            // 주문 내역을 다시 조회하고 구매 완료 UI 표시
+            Debug.Log("Webshop purchase completed");
+        }
+    }
+    public async void TestPing()
+    {
+        string result =
+        await CloudCodeService.Instance.CallModuleEndpointAsync<string>(
+            "IapFulfillment",
+            "Ping",
+            new Dictionary<string, object>());
+
+        Debug.Log($"Cloud Code ����: {result}");
+    }
+
+    private  void OnPurchasesFetched(string storeName, Orders orders)
     {
         Debug.Log($"Pending: {orders.PendingOrders.Count}");
         Debug.Log($"Confirmed: {orders.ConfirmedOrders.Count}");
@@ -134,7 +215,7 @@ public class PayMentManager : MonoBehaviour
 
         foreach (var order in orders.PendingOrders)
         {
-            Debug.Log($"�̿Ϸ� �ֹ�: {order}");
+            Debug.Log($"{order.Info.TransactionID} : 미지급 주문 처리");   
         }
     }
 

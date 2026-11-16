@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "catalogVersion": "2026.11.16.1",
+
+  "categories": [
+    {
+      "categoryId": "Currency",
+      "displayName": "재화",
+      "sortOrder": 10
+    },
+    {
+      "categoryId": "Package",
+      "displayName": "패키지",
+      "sortOrder": 20
+    }
+  ],
+
+  "products": [
+    {
+      "productId": "gem_100",
+      "categoryId": "Currency",
+      "productType": "Consumable",
+      "enabled": true,
+
+      "price": {
+        "currencyCode": "KRW",
+        "amount": 1500
+      },
+
+      "storeProducts": {
+        "android": "com.mygame.gem.100",
+        "ios": "com.mygame.gem.100",
+        "windows": "gem_100"
+      },
+
+      "display": {
+        "name": "젬 100개",
+        "description": "젬 100개를 즉시 지급합니다.",
+        "iconAddress": "Shop/Icons/gem_pack_100",
+        "badge": "",
+        "sortOrder": 10
+      },
+
+      "rewards": [
+        {
+          "rewardType": "Currency",
+          "rewardId": "GEM",
+          "quantity": 100
+        }
+      ],
+
+      "purchaseLimit": {
+        "enabled": false,
+        "maxCount": 0,
+        "period": "None"
+      },
+
+      "availability": {
+        "startAtUtc": "",
+        "endAtUtc": "",
+        "platforms": [
+          "Android",
+          "iOS",
+          "Windows"
+        ]
+      }
+    },
+
+    {
+      "productId": "starter_pack_1",
+      "categoryId": "Package",
+      "productType": "Consumable",
+      "enabled": true,
+
+      "price": {
+        "currencyCode": "KRW",
+        "amount": 5500
+      },
+
+      "storeProducts": {
+        "android": "com.mygame.starterpack.1",
+        "ios": "com.mygame.starterpack.1",
+        "windows": "starter_pack_1"
+      },
+
+      "display": {
+        "name": "스타터 패키지",
+        "description": "젬, 골드, 스타터 검이 포함되어 있습니다.",
+        "iconAddress": "Shop/Icons/starter_pack",
+        "badge": "BEST_VALUE",
+        "sortOrder": 20
+      },
+
+      "rewards": [
+        {
+          "rewardType": "Currency",
+          "rewardId": "GEM",
+          "quantity": 300
+        },
+        {
+          "rewardType": "Currency",
+          "rewardId": "GOLD",
+          "quantity": 10000
+        },
+        {
+          "rewardType": "Item",
+          "rewardId": "STARTER_SWORD",
+          "quantity": 1
+        }
+      ],
+
+      "purchaseLimit": {
+        "enabled": true,
+        "maxCount": 1,
+        "period": "Lifetime"
+      },
+
+      "availability": {
+        "startAtUtc": "",
+        "endAtUtc": "",
+        "platforms": [
+          "Android",
+          "iOS",
+          "Windows"
+        ]
+      }
+    }
+  ]
+}

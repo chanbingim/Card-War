@@ -22,9 +22,9 @@ public class DataManager : MonoBehaviour
     [SerializeField] private TextAsset      _CameraShakeURL;
 
     [Header("로드할 BmItem 경로 (Resources 폴더 기준)")]
-    [SerializeField] private string _BmDataloadPath = "SO/BM";
+    [SerializeField] private TextAsset      _BmData;
 
-    private Dictionary<ECurrency, List<CurrencyProductData>>     BmDatas = new Dictionary<ECurrency, List<CurrencyProductData>>();
+    private Dictionary<string, List<IapBmProduct>>               BmDatas = new ();
     private Dictionary<int, (CharacterData, CharacterInfo)>      CharacterDatas = new ();
 
     private Dictionary<int, CardData>                            CardDatas = new Dictionary<int, CardData>();
@@ -40,9 +40,9 @@ public class DataManager : MonoBehaviour
         return (null, null);
     }
 
-    public List<CurrencyProductData> GetBMData(ECurrency type)
+    public List<IapBmProduct> GetBMData(ECurrency type)
     {
-        if (BmDatas.TryGetValue(type, out var data))
+        if (BmDatas.TryGetValue(type.ToString(), out var data))
             return data;
 
         UnityEngine.Debug.LogError($"[DataManager] {type}에 해당하는 BM 데이터가 없습니다.");
@@ -205,27 +205,28 @@ public class DataManager : MonoBehaviour
 
     private async UniTask LoadAllBMData()
     {
-        CurrencyProductData[] allData = Resources.LoadAll<CurrencyProductData>(_BmDataloadPath);
+        IapBmCatalog iapBmCatalogs = JsonUtility.FromJson<IapBmCatalog>(_BmData.text);
 
+        int ToatlCount = 0;
         await UniTask.RunOnThreadPool(() =>
         {
-            foreach (var data in allData)
+            foreach (var data in iapBmCatalogs.categories)
             {
-                if (BmDatas.TryGetValue(data.CurrencyType, out var list))
+                if (BmDatas.TryGetValue(data.categoryId, out var list))
                 {
-                    list.Add(data);
+                    list.AddRange(data.products.ToList());
                 }
                 else
                 {
-                    var newList = new List<CurrencyProductData>();
-                    newList.Add(data);
-
-                    BmDatas.Add(data.CurrencyType, newList);
+                    List<IapBmProduct> products = new List<IapBmProduct>(data.products);
+                    BmDatas.Add(data.categoryId, products);
                 }
+
+                ToatlCount += data.products.Length;
             }
         });
 
-        Debug.Log($"[DataManager] BM 데이터 {allData.Length}개 로드 완료");
+        Debug.Log($"[DataManager] BM 데이터 {ToatlCount}개 로드 완료");
     }
     #endregion
 

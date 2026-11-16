@@ -1,13 +1,8 @@
 using GAME_CONST;
-using GamePlay.Enum;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
-using System.Reflection;
 using TurnCardGame.Data;
-using Unity.VisualScripting;
-using UnityEngine;
 using Debug = UnityEngine.Debug;
 
 [System.Serializable]
@@ -18,6 +13,7 @@ public enum ECurrency
     Energy,        // 행동력 / 스태미나
     Ticket,        // 뽑기권
     Key,           // 던전 입장 키
+    Package,       // 패키지
     Token,         // 이벤트 토큰
     END,
 }

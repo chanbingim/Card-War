@@ -46,7 +46,7 @@ public class BuyPopup : UIBase
         _ItemListScroll.value = 0;
 
         // 여기서 캐싱해둔 Data에 접근해서 확인
-        List<CurrencyProductData> ItemList = DataManager.instance.GetBMData(_SelectType);
+        List<IapBmProduct> ItemList = DataManager.instance.GetBMData(_SelectType);
         if (ItemList == null)
             return;
 

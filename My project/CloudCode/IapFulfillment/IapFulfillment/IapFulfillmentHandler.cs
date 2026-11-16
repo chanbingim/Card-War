@@ -1,6 +1,4 @@
-using System.Net;
 using System.Net.Http.Headers;
-using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.Logging;
@@ -14,11 +12,39 @@ namespace IapFulfillment;
 public class IapFulfillmentHandler
 {
     private const string InventoryKey = "player_inventory";
-    private const string IapApiBaseUrl = "https://iap.services.api.unity.com/v1";
+
+    private const string IapApiBaseUrl =
+        "https://iap.services.api.unity.com/v1";
+
+    // Remote Catalog의 SKU와 실제 지급 내용을 서버에서 관리합니다.
+    // 아래 SKU는 샘플이므로 프로젝트의 실제 SKU로 교체하세요.
+    private static readonly IReadOnlyDictionary<string, RewardDefinition[]> RewardsBySku =
+        new Dictionary<string, RewardDefinition[]>(StringComparer.Ordinal)
+        {
+            ["Test3"] =
+            [
+                new RewardDefinition(RewardType.Gold, string.Empty, 100)
+            ],
+            ["Test33"] =
+            [
+                new RewardDefinition(RewardType.Gem, string.Empty, 10)
+            ],
+            ["Gold"] =
+            [
+                new RewardDefinition(RewardType.Gold, string.Empty, 500),
+                new RewardDefinition(RewardType.Gem, string.Empty, 50),
+                new RewardDefinition(RewardType.Item, "starter_sword", 1)
+            ]
+        };
 
     private static readonly HttpClient HttpClient = new()
     {
         Timeout = TimeSpan.FromSeconds(10)
+    };
+
+    private static readonly JsonSerializerOptions JsonOptions = new()
+    {
+        PropertyNameCaseInsensitive = true
     };
 
     private readonly ILogger<IapFulfillmentHandler> _logger;
@@ -28,262 +54,222 @@ public class IapFulfillmentHandler
         _logger = logger;
     }
 
-    [CloudCodeFunction("ProcessPurchaseFulfillment")]
-    public async Task<WebhookResponse> ProcessPurchaseFulfillment(
+    [CloudCodeFunction("Ping")]
+    public Task<string> Ping(IExecutionContext context)
+    {
+        _logger.LogInformation(
+            "Ping called. PlayerId={PlayerId}",
+            context.PlayerId);
+
+        return Task.FromResult("pong");
+    }
+
+    [CloudCodeFunction("ProcessPurchase")]
+    public async Task<PurchaseResult> ProcessPurchase(
         IExecutionContext context,
         IGameApiClient gameApiClient,
-        Guid id,
-        string version,
-        string eventType,
-        DateTime time,
-        string projectId,
-        string environmentId,
-        string dataType,
-        WebhookOrderData data)
+        string orderId)
     {
-        if (!string.Equals(eventType, "order.paid", StringComparison.Ordinal))
-        {
-            _logger.LogInformation(
-                "Ignoring IAP event {EventType} for order {OrderId}",
-                eventType,
-                data.Id);
-            return WebhookResponse.Ok();
-        }
-
         try
         {
-            ValidateRequest(context, projectId, environmentId, data);
+            ValidateRequest(context, orderId);
 
-            bool granted = await GrantItemsOnceAsync(context, gameApiClient, data);
-            await MarkOrderFulfilledAsync(
-                context.ServiceToken!,
-                projectId,
-                environmentId,
-                data.Id);
+            // orderId로 조회되면 Unity IAP에 등록된 주문입니다.
+            IapOrder order = await GetOrderFromUnityIap(context, orderId);
 
-            _logger.LogInformation(
-                "IAP order {OrderId} processed. Newly granted={NewlyGranted}",
-                data.Id,
-                granted);
+            if (!string.Equals(order.Id, orderId, StringComparison.Ordinal))
+            {
+                throw new InvalidOperationException(
+                    "조회된 주문 ID가 요청한 주문 ID와 일치하지 않습니다.");
+            }
 
-            return WebhookResponse.Ok();
+            if (!string.Equals(
+                    order.PlayerId,
+                    context.PlayerId,
+                    StringComparison.Ordinal))
+            {
+                throw new InvalidOperationException(
+                    "주문 소유자가 일치하지 않습니다.");
+            }
+
+            if (!string.Equals(
+                    order.Status,
+                    "paid",
+                    StringComparison.OrdinalIgnoreCase))
+            {
+                throw new InvalidOperationException(
+                    $"결제가 완료되지 않은 주문입니다: {order.Status}");
+            }
+
+            if (order.LineItems.Count == 0)
+                throw new InvalidOperationException("주문에 상품이 없습니다.");
+
+            List<GrantedReward> grantedRewards = DescribeRewards(order.LineItems);
+
+            foreach (IapOrderItem lineItem in order.LineItems)
+            {
+                GrantRewardsForSku(
+                    inventory,
+                    lineItem.Sku);
+            }
+
+            return new PurchaseResult
+            {
+                Success = true,
+                AlreadyProcessed = false,
+                OrderId = order.Id,
+                Message = "결제 검증과 상품 지급이 완료되었습니다.",
+                GrantedRewards = grantedRewards
+            };
         }
         catch (Exception exception)
         {
             _logger.LogError(
                 exception,
-                "IAP fulfillment failed for order {OrderId}",
-                data.Id);
+                "Purchase validation failed. OrderId={OrderId}",
+                orderId);
 
-            // Returning an error makes Unity IAP retry this webhook.
-            return WebhookResponse.Error(exception.Message);
+            return new PurchaseResult
+            {
+                Success = false,
+                OrderId = orderId,
+                Message = exception.Message
+            };
         }
     }
 
     private static void ValidateRequest(
         IExecutionContext context,
-        string projectId,
-        string environmentId,
-        WebhookOrderData order)
-    {
-        if (string.IsNullOrWhiteSpace(context.ServiceToken))
-            throw new InvalidOperationException("Cloud Code service token is missing.");
-        if (string.IsNullOrWhiteSpace(projectId) || string.IsNullOrWhiteSpace(environmentId))
-            throw new InvalidOperationException("Project or environment ID is missing.");
-        if (string.IsNullOrWhiteSpace(order.Id) || string.IsNullOrWhiteSpace(order.PlayerId))
-            throw new InvalidOperationException("Order or player ID is missing.");
-        if (order.LineItems.Count == 0)
-            throw new InvalidOperationException("The paid order has no line items.");
-    }
-
-    private async Task<bool> GrantItemsOnceAsync(
-        IExecutionContext context,
-        IGameApiClient gameApiClient,
-        WebhookOrderData order)
-    {
-        const int maxAttempts = 3;
-        for (int attempt = 1; attempt <= maxAttempts; attempt++)
-        {
-            InventorySnapshot snapshot = await GetInventoryAsync(
-                context,
-                gameApiClient,
-                order.PlayerId);
-            PlayerInventory inventory = snapshot.Inventory;
-
-            if (inventory.ProcessedOrderIds.Contains(order.Id))
-            {
-                _logger.LogInformation(
-                    "Order {OrderId} was already granted; skipping duplicate grant",
-                    order.Id);
-                return false;
-            }
-
-            foreach (WebhookLineItem lineItem in order.LineItems)
-                ApplyReward(inventory, lineItem.Sku);
-
-            // Save the order ID with the reward. If the Orders API call fails afterwards,
-            // a webhook retry skips the reward and retries only the fulfilled update.
-            inventory.ProcessedOrderIds.Add(order.Id);
-            inventory.LastProcessedOrderId = order.Id;
-            inventory.UpdatedAt = DateTime.UtcNow;
-
-            try
-            {
-                await SaveInventoryAsync(
-                    context,
-                    gameApiClient,
-                    order.PlayerId,
-                    inventory,
-                    snapshot.WriteLock);
-                return true;
-            }
-            catch (ApiException exception) when (
-                exception.Response.StatusCode == HttpStatusCode.Conflict &&
-                attempt < maxAttempts)
-            {
-                _logger.LogWarning(
-                    "Cloud Save write conflict for order {OrderId}; retrying {Attempt}/{MaxAttempts}",
-                    order.Id,
-                    attempt,
-                    maxAttempts);
-            }
-        }
-
-        throw new InvalidOperationException(
-            $"Could not grant order {order.Id} after {maxAttempts} write conflicts.");
-    }
-
-    private static void ApplyReward(PlayerInventory inventory, string sku)
-    {
-        switch (sku)
-        {
-            // The current mock catalog item shown in this project.
-            case "Test":
-            case "test":
-            case "coins_100":
-                inventory.Cash += 100;
-                break;
-
-            case "coins_500":
-                inventory.Cash += 500;
-                break;
-
-            default:
-                // Do not fulfill a paid SKU until its server reward is configured.
-                throw new InvalidOperationException(
-                    $"No server reward is configured for SKU '{sku}'.");
-        }
-    }
-
-    private async Task<InventorySnapshot> GetInventoryAsync(
-        IExecutionContext context,
-        IGameApiClient gameApiClient,
-        string playerId)
-    {
-        var response = await gameApiClient.CloudSaveData.GetProtectedItemsAsync(
-            context,
-            context.ServiceToken!,
-            context.ProjectId!,
-            playerId,
-            new List<string> { InventoryKey });
-
-        if (response.Data.Results.Count == 0 || response.Data.Results[0].Value == null)
-            return new InventorySnapshot(new PlayerInventory(), null);
-
-        string? json = response.Data.Results[0].Value.ToString();
-        if (string.IsNullOrWhiteSpace(json))
-            return new InventorySnapshot(new PlayerInventory(), response.Data.Results[0].WriteLock);
-
-        PlayerInventory inventory =
-            JsonSerializer.Deserialize<PlayerInventory>(json) ?? new PlayerInventory();
-        return new InventorySnapshot(inventory, response.Data.Results[0].WriteLock);
-    }
-
-    private static async Task SaveInventoryAsync(
-        IExecutionContext context,
-        IGameApiClient gameApiClient,
-        string playerId,
-        PlayerInventory inventory,
-        string? writeLock)
-    {
-        string json = JsonSerializer.Serialize(inventory);
-        SetItemBody body = writeLock == null
-            ? new SetItemBody(InventoryKey, json)
-            : new SetItemBody(InventoryKey, json, writeLock);
-
-        await gameApiClient.CloudSaveData.SetProtectedItemAsync(
-            context,
-            context.ServiceToken!,
-            context.ProjectId!,
-            playerId,
-            body);
-    }
-
-    private async Task MarkOrderFulfilledAsync(
-        string serviceToken,
-        string projectId,
-        string environmentId,
         string orderId)
     {
-        string url = $"{IapApiBaseUrl}/projects/{projectId}/environments/" +
-                     $"{environmentId}/orders/{orderId}";
+        if (string.IsNullOrWhiteSpace(context.PlayerId))
+            throw new InvalidOperationException("인증된 Player ID가 없습니다.");
 
-        using var patch = new HttpRequestMessage(HttpMethod.Patch, url)
+        if (string.IsNullOrWhiteSpace(context.ProjectId))
+            throw new InvalidOperationException("Project ID가 없습니다.");
+
+        if (string.IsNullOrWhiteSpace(context.EnvironmentId))
+            throw new InvalidOperationException("Environment ID가 없습니다.");
+
+        if (string.IsNullOrWhiteSpace(context.ServiceToken))
+            throw new InvalidOperationException("Service Token이 없습니다.");
+
+        if (string.IsNullOrWhiteSpace(orderId))
+            throw new ArgumentException("Order ID가 비어 있습니다.", nameof(orderId));
+    }
+
+    private static async Task<IapOrder> GetOrderFromUnityIap(
+        IExecutionContext context,
+        string orderId)
+    {
+        string url =
+            $"{IapApiBaseUrl}/projects/{context.ProjectId}" +
+            $"/environments/{context.EnvironmentId}" +
+            $"/orders/{Uri.EscapeDataString(orderId)}";
+
+        using var request = new HttpRequestMessage(HttpMethod.Get, url);
+        request.Headers.Authorization = new AuthenticationHeaderValue(
+            "Bearer",
+            context.ServiceToken);
+
+        using HttpResponseMessage response =
+            await HttpClient.SendAsync(request);
+
+        string responseBody =
+            await response.Content.ReadAsStringAsync();
+
+        if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+            throw new InvalidOperationException("Unity IAP에 존재하지 않는 주문입니다.");
+
+        if (!response.IsSuccessStatusCode)
         {
-            Content = new StringContent(
-                "{\"status\":\"fulfilled\"}",
-                Encoding.UTF8,
-                "application/json")
-        };
-        patch.Headers.Authorization = new AuthenticationHeaderValue("Bearer", serviceToken);
-
-        using HttpResponseMessage response = await HttpClient.SendAsync(patch);
-        if (response.IsSuccessStatusCode)
-            return;
-
-        // The first call can succeed while its webhook response is lost. Verify a
-        // conflict before treating a retry as a failure.
-        if (response.StatusCode == HttpStatusCode.Conflict &&
-            await IsOrderAlreadyFulfilledAsync(url, serviceToken))
-        {
-            return;
+            throw new HttpRequestException(
+                $"Unity IAP 주문 조회 실패: " +
+                $"{(int)response.StatusCode} {responseBody}");
         }
 
-        string body = await response.Content.ReadAsStringAsync();
-        throw new HttpRequestException(
-            $"Orders API PATCH failed ({(int)response.StatusCode}): {body}");
+        IapOrder? order = JsonSerializer.Deserialize<IapOrder>(
+            responseBody,
+            JsonOptions);
+
+        return order ?? throw new InvalidOperationException(
+            "Unity IAP 주문 응답을 변환하지 못했습니다.");
     }
 
-    private static async Task<bool> IsOrderAlreadyFulfilledAsync(
-        string url,
-        string serviceToken)
+    private static void GrantRewardsForSku(
+        PlayerInventory inventory,
+        string sku)
     {
-        using var get = new HttpRequestMessage(HttpMethod.Get, url);
-        get.Headers.Authorization = new AuthenticationHeaderValue("Bearer", serviceToken);
+        if (!RewardsBySku.TryGetValue(sku, out RewardDefinition[]? rewards))
+            throw new InvalidOperationException($"서버에 등록되지 않은 SKU입니다: {sku}");
 
-        using HttpResponseMessage response = await HttpClient.SendAsync(get);
-        if (!response.IsSuccessStatusCode)
-            return false;
+        foreach (RewardDefinition reward in rewards)
+        {
+            switch (reward.Type)
+            {
+                case RewardType.Gold:
+                    inventory.Gold += reward.Amount;
+                    break;
 
-        string json = await response.Content.ReadAsStringAsync();
-        using JsonDocument document = JsonDocument.Parse(json);
-        return document.RootElement.TryGetProperty("status", out JsonElement status) &&
-               string.Equals(status.GetString(), "fulfilled", StringComparison.OrdinalIgnoreCase);
+                case RewardType.Gem:
+                    inventory.Gems += reward.Amount;
+                    break;
+
+                case RewardType.Item:
+                    inventory.Items.TryGetValue(reward.ItemId, out int currentAmount);
+                    inventory.Items[reward.ItemId] = currentAmount + reward.Amount;
+                    break;
+
+                default:
+                    throw new ArgumentOutOfRangeException(
+                        nameof(reward.Type),
+                        reward.Type,
+                        "지원하지 않는 보상 종류입니다.");
+            }
+
+        }
+    }
+
+    private static List<GrantedReward> DescribeRewards(
+        IEnumerable<IapOrderItem> lineItems)
+    {
+        var result = new List<GrantedReward>();
+
+        foreach (IapOrderItem lineItem in lineItems)
+        {
+            if (!RewardsBySku.TryGetValue(
+                    lineItem.Sku,
+                    out RewardDefinition[]? rewards))
+            {
+                throw new InvalidOperationException(
+                    $"서버에 등록되지 않은 SKU입니다: {lineItem.Sku}");
+            }
+
+            foreach (RewardDefinition reward in rewards)
+            {
+                result.Add(new GrantedReward
+                {
+                    Type = reward.Type.ToString(),
+                    ItemId = reward.ItemId,
+                    Amount = reward.Amount
+                });
+            }
+        }
+
+        return result;
     }
 }
 
-public sealed record InventorySnapshot(PlayerInventory Inventory, string? WriteLock);
-
-public sealed class PlayerInventory
+public class PurchaseResult
 {
-    public int Cash { get; set; }
-    public int Gold { get; set; }
-    public HashSet<string> ProcessedOrderIds { get; set; } = new(StringComparer.Ordinal);
-    public string? LastProcessedOrderId { get; set; }
-    public DateTime UpdatedAt { get; set; }
+    public bool Success { get; set; }
+    public bool AlreadyProcessed { get; set; }
+    public string OrderId { get; set; } = string.Empty;
+    public string Message { get; set; } = string.Empty;
+    public List<GrantedReward> GrantedRewards { get; set; } = new();
 }
 
-public sealed class WebhookOrderData
+public class IapOrder
 {
     [JsonPropertyName("id")]
     public string Id { get; set; } = string.Empty;
@@ -291,20 +277,14 @@ public sealed class WebhookOrderData
     [JsonPropertyName("playerId")]
     public string PlayerId { get; set; } = string.Empty;
 
-    [JsonPropertyName("paymentProvider")]
-    public string PaymentProvider { get; set; } = string.Empty;
-
-    [JsonPropertyName("paymentProviderResourceId")]
-    public string? PaymentProviderResourceId { get; set; }
-
-    [JsonPropertyName("lineItems")]
-    public List<WebhookLineItem> LineItems { get; set; } = new();
-
     [JsonPropertyName("status")]
     public string Status { get; set; } = string.Empty;
+
+    [JsonPropertyName("lineItems")]
+    public List<IapOrderItem> LineItems { get; set; } = new();
 }
 
-public sealed class WebhookLineItem
+public class IapOrderItem
 {
     [JsonPropertyName("sku")]
     public string Sku { get; set; } = string.Empty;
@@ -313,21 +293,29 @@ public sealed class WebhookLineItem
     public string ProductType { get; set; } = string.Empty;
 }
 
-public sealed class WebhookResponse
+public enum RewardType
 {
-    public string Status { get; set; } = string.Empty;
-    public string? Code { get; set; }
-    public string? Description { get; set; }
+    Gold,
+    Gem,
+    Item
+}
 
-    public static WebhookResponse Ok() => new()
-    {
-        Status = "ok"
-    };
+public sealed record RewardDefinition(
+    RewardType Type,
+    string ItemId,
+    int Amount);
 
-    public static WebhookResponse Error(string description) => new()
-    {
-        Status = "error",
-        Code = "declined",
-        Description = description
-    };
+public class GrantedReward
+{
+    public string Type { get; set; } = string.Empty;
+    public string ItemId { get; set; } = string.Empty;
+    public int Amount { get; set; }
+}
+
+public class PlayerInventory
+{
+    public int Gold { get; set; }
+    public int Gems { get; set; }
+    public Dictionary<string, int> Items { get; set; } = new();
+    public HashSet<string> ProcessedOrderIds { get; set; } = new();
 }
