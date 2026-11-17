@@ -6,6 +6,9 @@
     <Configurations>Debug;Release</Configurations>
   </PropertyGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Data/CurrencyProductGrants.json" LogicalName="IapFulfillment.Data.CurrencyProductGrants.json" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Com.Unity.Services.CloudCode.Apis" Version="0.0.26" />
     <PackageReference Include="Com.Unity.Services.CloudCode.Core" Version="0.0.5" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.1" />

@@ -1,129 +1,46 @@
 {
   "schemaVersion": 1,
-  "catalogVersion": "2026.11.16.1",
-
-  "categories": [
-    {
-      "categoryId": "Currency",
-      "displayName": "Ïû¨Ìôî",
-      "sortOrder": 10
-    },
-    {
-      "categoryId": "Package",
-      "displayName": "Ìå®ÌÇ§ÏßÄ",
-      "sortOrder": 20
-    }
-  ],
-
+  "catalogVersion": "1.0.0",
   "products": [
     {
-      "productId": "gem_100",
-      "categoryId": "Currency",
-      "productType": "Consumable",
+      "productId": "gem_pack_001",
+      "productType": "consumable",
       "enabled": true,
-
-      "price": {
-        "currencyCode": "KRW",
-        "amount": 1500
-      },
-
-      "storeProducts": {
-        "android": "com.mygame.gem.100",
-        "ios": "com.mygame.gem.100",
-        "windows": "gem_100"
-      },
-
-      "display": {
-        "name": "Ï†¨ 100Í∞ú",
-        "description": "Ï†¨ 100Í∞úÎ•º Ï¶âÏãú ÏßÄÍ∏âÌï©ÎãàÎã§.",
-        "iconAddress": "Shop/Icons/gem_pack_100",
-        "badge": "",
-        "sortOrder": 10
-      },
-
-      "rewards": [
+      "displayName": "∫∏ºÆ 500∞≥",
+      "description": "∫∏ºÆ 500∞≥∏¶ »πµÊ«’¥œ¥Ÿ.",
+      "icon": "icons/currency/gem_500",
+      "sortOrder": 10,
+      "currency": "USD",
+      "price": 499,
+      "grants": [
         {
-          "rewardType": "Currency",
-          "rewardId": "GEM",
-          "quantity": 100
+          "itemId": "gem",
+          "quantity": 500
         }
       ],
-
-      "purchaseLimit": {
-        "enabled": false,
-        "maxCount": 0,
-        "period": "None"
-      },
-
-      "availability": {
-        "startAtUtc": "",
-        "endAtUtc": "",
-        "platforms": [
-          "Android",
-          "iOS",
-          "Windows"
-        ]
-      }
+      "purchaseLimit": 0
     },
-
     {
-      "productId": "starter_pack_1",
-      "categoryId": "Package",
-      "productType": "Consumable",
+      "productId": "starter_pack_001",
+      "productType": "consumable",
       "enabled": true,
-
-      "price": {
-        "currencyCode": "KRW",
-        "amount": 5500
-      },
-
-      "storeProducts": {
-        "android": "com.mygame.starterpack.1",
-        "ios": "com.mygame.starterpack.1",
-        "windows": "starter_pack_1"
-      },
-
-      "display": {
-        "name": "Ïä§ÌÉÄÌÑ∞ Ìå®ÌÇ§ÏßÄ",
-        "description": "Ï†¨, Í≥®Îìú, Ïä§ÌÉÄÌÑ∞ Í≤ÄÏù¥ Ìè¨Ìï®ÎêòÏñ¥ ÏûàÏäµÎãàÎã§.",
-        "iconAddress": "Shop/Icons/starter_pack",
-        "badge": "BEST_VALUE",
-        "sortOrder": 20
-      },
-
-      "rewards": [
+      "displayName": "Ω∫≈∏≈Õ ∆—",
+      "description": "∫∏ºÆ∞˙ ∞ÒµÂ∏¶ ∆˜«‘«— Ω√¿€ ∆–≈∞¡ˆ¿‘¥œ¥Ÿ.",
+      "icon": "icons/currency/starter_pack",
+      "sortOrder": 20,
+      "currency": "USD",
+      "price": 999,
+      "grants": [
         {
-          "rewardType": "Currency",
-          "rewardId": "GEM",
-          "quantity": 300
+          "itemId": "gem",
+          "quantity": 500
         },
         {
-          "rewardType": "Currency",
-          "rewardId": "GOLD",
+          "itemId": "gold",
           "quantity": 10000
-        },
-        {
-          "rewardType": "Item",
-          "rewardId": "STARTER_SWORD",
-          "quantity": 1
         }
       ],
-
-      "purchaseLimit": {
-        "enabled": true,
-        "maxCount": 1,
-        "period": "Lifetime"
-      },
-
-      "availability": {
-        "startAtUtc": "",
-        "endAtUtc": "",
-        "platforms": [
-          "Android",
-          "iOS",
-          "Windows"
-        ]
-      }
+      "purchaseLimit": 1
     }
   ]
 }

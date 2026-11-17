@@ -8,7 +8,7 @@ public class BuyButtonComponent : UIBase
     [SerializeField] private Text   _BuyMondey;
 
 
-    public void SettingData(IapBmProduct data)
+    public void SettingData(CurrencyProduct data)
     {
         string AddressableKey = data.productId;
         var AddressableMgr = AddressableManager.instance;

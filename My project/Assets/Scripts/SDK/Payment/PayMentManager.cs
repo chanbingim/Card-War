@@ -18,15 +18,7 @@ public class PayMentManager : MonoBehaviour
         public bool AlreadyProcessed { get; set; }
         public string OrderId { get; set; } = string.Empty;
         public string Message { get; set; } = string.Empty;
-        public List<GrantedReward> GrantedRewards { get; set; } = new();
-    }
-
-    [Serializable]
-    public class GrantedReward
-    {
-        public string Type { get; set; } = string.Empty;
-        public string ItemId { get; set; } = string.Empty;
-        public int Amount { get; set; }
+        public List<BMReward> GrantedRewards { get; set; } = new();
     }
 
     public StringBuilder StoreName = new StringBuilder("My project (3)");
@@ -136,6 +128,11 @@ public class PayMentManager : MonoBehaviour
         }
     }
 
+    public List<CurrencyProduct> RequestItemList(ECurrency ItemCurrency)
+    {
+        return null;
+    }
+
     // Every store's purchases arrive here, with the name of the store the player paid through.
     async void OnPurchasePending(string storeName, PendingOrder order)
     {
@@ -153,16 +150,16 @@ public class PayMentManager : MonoBehaviour
 
             if (!result.Success)
             {
-                Debug.LogError($"Purchase validation failed: {result.Message}");
+                Debug.Log($"Purchase validation failed: {result.Message}");
                 return;
             }
 
             Debug.Log($"Purchase validation succeeded: {result.OrderId}");
 
-            foreach (GrantedReward reward in result.GrantedRewards)
+            foreach (var reward in result.GrantedRewards)
             {
                 Debug.Log(
-                    $"Granted reward: Type={reward.Type}, " +
+                    $"Granted reward: Type= {reward.Type}, " +
                     $"ItemId={reward.ItemId}, Amount={reward.Amount}");
             }
 
@@ -196,16 +193,9 @@ public class PayMentManager : MonoBehaviour
             Debug.Log("Webshop purchase completed");
         }
     }
-    public async void TestPing()
-    {
-        string result =
-        await CloudCodeService.Instance.CallModuleEndpointAsync<string>(
-            "IapFulfillment",
-            "Ping",
-            new Dictionary<string, object>());
+    
+ 
 
-        Debug.Log($"Cloud Code ����: {result}");
-    }
 
     private  void OnPurchasesFetched(string storeName, Orders orders)
     {

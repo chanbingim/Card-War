@@ -1,94 +1,45 @@
 ﻿using System;
 
 [Serializable]
-public struct IapBmCatalog
-{
-    public int schemaVersion;
-    public string catalogVersion;
-
-    public IapBmCategory[] categories;
-    public IapBmProduct[] products;
-}
-
-[Serializable]
-public struct IapBmCategory
-{
-    public string categoryId;
-    public string displayName;
-    public int sortOrder;
-}
-
-[Serializable]
-public struct IapBmProduct
+public struct CurrencyProduct
 {
     public string productId;
-    public string categoryId;
     public string productType;
     public bool enabled;
 
-    // 상품 또는 패키지 전체 가격
-    public IapBmPrice price;
-
-    // 플랫폼별 스토어 상품 ID
-    public IapBmStoreProducts storeProducts;
-
-    public IapBmDisplay display;
-
-    // 구매 시 지급되는 여러 보상
-    public IapBmReward[] rewards;
-
-    public IapBmPurchaseLimit purchaseLimit;
-    public IapBmAvailability availability;
-}
-
-[Serializable]
-public struct IapBmPrice
-{
-    // KRW, USD 등
-    public string currencyCode;
-
-    // 패키지 전체 가격
-    public long amount;
-}
-
-[Serializable]
-public struct IapBmStoreProducts
-{
-    public string android;
-    public string ios;
-    public string windows;
-}
-
-[Serializable]
-public struct IapBmDisplay
-{
-    public string name;
+    public string displayName;
     public string description;
-    public string iconAddress;
-    public string badge;
+    public string icon;
     public int sortOrder;
+
+    public string currency;
+    public int price;
+
+    public CurrencyProductGrant[] grants;
+
+    // 0이면 구매 제한 없음
+    public int purchaseLimit;
 }
 
 [Serializable]
-public struct IapBmReward
+public struct CurrencyProductGrant
 {
-    public string rewardType;
-    public string rewardId;
-    public long quantity;
+    public string   itemId;
+    public int      quantity;
 }
 
 [Serializable]
-public struct IapBmPurchaseLimit
+public struct CurrencyProductCatalog
 {
-    public bool enabled;
-    public int maxCount;
-    public string period;
+    public int schemaVersion;
+    public string catalogVersion;
+    public CurrencyProduct[] products;
 }
 
 [Serializable]
-public struct IapBmAvailability
+public struct BMReward
 {
-    public string startAtUtc;
-    public string endAtUtc;
-    public string[] platforms;
+    public string Type;
+    public string ItemId;
+    public int Amount;
 }

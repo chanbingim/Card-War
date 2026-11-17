@@ -24,7 +24,6 @@ public class DataManager : MonoBehaviour
     [Header("로드할 BmItem 경로 (Resources 폴더 기준)")]
     [SerializeField] private TextAsset      _BmData;
 
-    private Dictionary<string, List<IapBmProduct>>               BmDatas = new ();
     private Dictionary<int, (CharacterData, CharacterInfo)>      CharacterDatas = new ();
 
     private Dictionary<int, CardData>                            CardDatas = new Dictionary<int, CardData>();
@@ -38,15 +37,6 @@ public class DataManager : MonoBehaviour
 
         UnityEngine.Debug.LogError($"[DataManager] ID {id}에 해당하는 캐릭터 데이터가 없습니다.");
         return (null, null);
-    }
-
-    public List<IapBmProduct> GetBMData(ECurrency type)
-    {
-        if (BmDatas.TryGetValue(type.ToString(), out var data))
-            return data;
-
-        UnityEngine.Debug.LogError($"[DataManager] {type}에 해당하는 BM 데이터가 없습니다.");
-        return null;
     }
 
     public bool TryCharacterGetById(int id, out (CharacterData, CharacterInfo) data)
@@ -114,8 +104,7 @@ public class DataManager : MonoBehaviour
             LoadAllCharacterData(),
             LoadSkillDatas(),
             LoadAllCardData(),
-            LoadAllCameraShakeData(),
-            LoadAllBMData()
+            LoadAllCameraShakeData()
         );
     }
 
@@ -201,32 +190,6 @@ public class DataManager : MonoBehaviour
         });
 
         Debug.Log($"[DataManager] 카드 데이터 {CharacterDatas.Count}개 로드 완료");
-    }
-
-    private async UniTask LoadAllBMData()
-    {
-        IapBmCatalog iapBmCatalogs = JsonUtility.FromJson<IapBmCatalog>(_BmData.text);
-
-        int ToatlCount = 0;
-        await UniTask.RunOnThreadPool(() =>
-        {
-            foreach (var data in iapBmCatalogs.categories)
-            {
-                if (BmDatas.TryGetValue(data.categoryId, out var list))
-                {
-                    list.AddRange(data.products.ToList());
-                }
-                else
-                {
-                    List<IapBmProduct> products = new List<IapBmProduct>(data.products);
-                    BmDatas.Add(data.categoryId, products);
-                }
-
-                ToatlCount += data.products.Length;
-            }
-        });
-
-        Debug.Log($"[DataManager] BM 데이터 {ToatlCount}개 로드 완료");
     }
     #endregion
 
